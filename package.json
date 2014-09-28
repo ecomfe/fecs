@@ -1,0 +1,49 @@
+{
+  "name": "fecs",
+  "version": "0.0.1-beta",
+  "description": "Front End Code Style Suite",
+  "main": "index.js",
+  "scripts": {
+    "test": "edp test start -s"
+  },
+  "bin": {
+    "fecs": "./bin/fecs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ecomfe/fecs"
+  },
+  "keywords": [
+    "jscs",
+    "jshint",
+    "jslint",
+    "csslint",
+    "csshint",
+    "htmllint",
+    "htmllint",
+    "jsbeautify",
+    "cssbeautify",
+    "htmlbeautify"
+  ],
+  "author": "chris <wfsr@foxmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ecomfe/fecs/issues"
+  },
+  "homepage": "https://github.com/ecomfe/fecs",
+  "dependencies": {
+    "chalk": "^0.5.1",
+    "cssbeautify": "^0.3.1",
+    "csscomb": "^3.0.2",
+    "csslint": "^0.10.0",
+    "fixmyjs": "^0.13.2",
+    "jformatter": "^0.1.6",
+    "jscs": "^1.6.2",
+    "jshint": "^2.5.5",
+    "minimist": "^1.1.0",
+    "msee": "^0.1.1",
+    "rcloader": "^0.1.2",
+    "through2": "^0.6.1",
+    "vinyl-fs": "^0.3.7"
+  }
+}
