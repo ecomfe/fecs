@@ -1,0 +1,12 @@
+{
+    "ids": false,
+    "box-model": false,
+    "outline-none": false,
+    "text-indent": false,
+    "qualified-headings": false,
+    "unique-headings": false,
+    "underscore-property-hack": false,
+    "star-property-hack": false,
+    "overqualified-elements": false
+}
+
