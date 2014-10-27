@@ -3,13 +3,11 @@
  * @author chris<wfsr@foxmail.com>
  */
 
-var fs        = require('vinyl-fs');
-var path      = require('path');
+var fs         = require('vinyl-fs');
 
-var util      = require('../lib/util');
-var jschecker = require('../lib/js/checker');
+var util       = require('../lib/util');
+var jschecker  = require('../lib/js/checker');
 var csschecker = require('../lib/css/checker');
-var reporter  = require('../lib/reporter');
 
 
 
@@ -36,14 +34,15 @@ exports.run = function (options) {
     }
 
     var patterns = util.buildPattern(dirs, extensions);
+    var reporter = require('../lib/reporter').get(log, options);
 
     fs.src(patterns)
         .pipe(jschecker(options))
-        .pipe(csschecker(options))
+        // .pipe(csschecker(options))
         // .pipe(htmlchecker(options))
-        .pipe(reporter(log))
-        .on('end', function (fail) {
+        .pipe(reporter)
+        .once('end', function (success) {
             console.timeEnd('fecs');
-            process.exit(fail ? 1 : 0);
+            process.exit(success ? 0 : 1);
         });
 };
