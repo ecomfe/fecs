@@ -3,11 +3,10 @@
  * @author chris<wfsr@foxmail.com>
  */
 
-var fs        = require('vinyl-fs');
-var path      = require('path');
+var fs          = require('vinyl-fs');
 
-var util      = require('../lib/util');
-var jsformater = require('../lib/js/formater');
+var util        = require('../lib/util');
+var jsformater  = require('../lib/js/formater');
 var cssformater = require('../lib/css/formater');
 
 
@@ -19,7 +18,6 @@ var cssformater = require('../lib/css/formater');
 exports.run = function (options) {
     console.time('fecs');
 
-    var log = require('../lib/log')(options.color);
     var types = options.t || options.type || 'js,css,html';
 
     var extensions = types;
