@@ -1,0 +1,72 @@
+{
+    "indent":  "003",
+
+    "no-comma-dangle": 2,
+    "no-debugger": 2,
+    "no-dupe-keys": 2,
+    "no-empty-class": 2,
+
+    "no-extra-semi": "023",
+    "no-invalid-regexp": 2,
+    "no-reserved-keys": "094",
+    "no-sparse-arrays": 2,
+    "no-unreachable": 2,
+    "use-isnan": 2,
+
+    "valid-jsdoc": [2, {
+        "prefer": {
+            "return": "returns"
+        },
+        "requireReturn": false
+    }],
+    "valid-typeof": "082",
+
+    // "block-scoped-var": 1,
+    "curly": "022",
+    "dot-notation": "096",
+    "eqeqeq": "073",
+    "guard-for-in": "097",
+    "no-else-return": "077",
+    "no-eval": "116",
+    "no-extend-native": "095",
+    "no-loop-func": "078",
+    "no-multi-str": "090",
+    "no-native-reassign": "097",
+    "no-new-wrappers": 2,
+    "no-proto": 2,
+    "no-iterator": 2,
+    "no-self-compare": 2,
+    "no-with": "118",
+    "radix": "086",
+    "wrap-iife": "024",
+    "no-delete-var": "120", // 119
+    "no-shadow-restricted-names": "095",
+    "no-undef": "070",
+    "no-unused-vars": [2, {"vars": "local", "args": "none"}],
+    "no-use-before-define": "072",
+
+    "brace-style": "020",
+    "camelcase": "025",
+    "eol-last": "002",
+    "new-cap": "029",
+    "no-array-constructor": "098",
+    "no-new-object": "092",
+    "no-spaced-func": "009",
+    "no-space-before-semi": "010",
+    "no-trailing-spaces": "013",
+    "no-wrap-func": "024",
+    "no-mixed-spaces-and-tabs": "003",
+    "quotes": "089",
+    "semi": "021",
+    "space-after-keywords": "008",
+    "space-in-brackets": "012",
+    "space-in-parens": "012",
+    "space-infix-ops": "005",
+    "space-return-throw-case": 2,
+    // "space-unary-word-ops": 2,
+
+    // "max-depth": [2, 6],
+    "max-len": "015",
+    "max-params": "103",
+    "max-statements": "102"
+}
