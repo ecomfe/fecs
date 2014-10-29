@@ -6,8 +6,8 @@
 var fs          = require('vinyl-fs');
 
 var util        = require('../lib/util');
-var jsformater  = require('../lib/js/formater');
-var cssformater = require('../lib/css/formater');
+var jsformatter  = require('../lib/js/formatter');
+var cssformatter = require('../lib/css/formatter');
 
 
 /**
@@ -36,9 +36,8 @@ exports.run = function (options) {
     var output = options.output;
 
     fs.src(patterns)
-        .pipe(jsformater(options))
-        .pipe(cssformater(options))
-        // .pipe(htmlformater(options))
+        .pipe(jsformatter(options))
+        .pipe(cssformatter(options))
         .pipe(fs.dest(output))
         .on('end', function () {
             console.timeEnd('fecs');
