@@ -38,7 +38,7 @@ exports.run = function (options) {
 
     fs.src(patterns)
         .pipe(jschecker(options))
-        // .pipe(csschecker(options))
+        .pipe(csschecker(options))
         // .pipe(htmlchecker(options))
         .pipe(reporter)
         .once('end', function (success) {
