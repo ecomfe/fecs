@@ -35,7 +35,7 @@ exports.run = function (options) {
 
     var output = options.output;
 
-    fs.src(patterns)
+    fs.src(patterns, {cwdbase: true})
         .pipe(jsformatter(options))
         .pipe(cssformatter(options))
         .pipe(fs.dest(output))

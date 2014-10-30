@@ -36,7 +36,7 @@ exports.run = function (options) {
     var patterns = util.buildPattern(dirs, extensions);
     var reporter = require('../lib/reporter').get(log, options);
 
-    fs.src(patterns)
+    fs.src(patterns, {cwdbase: true})
         .pipe(jschecker(options))
         .pipe(csschecker(options))
         // .pipe(htmlchecker(options))
