@@ -9,7 +9,6 @@
     "no-empty-class": "998",
     "no-ex-assign": "998",
     "no-extra-boolean-cast": "997",
-    "no-extra-parens": "997",
     "no-extra-semi": "023",
     "no-func-assign": "997",
     "no-inner-declarations": "997",
