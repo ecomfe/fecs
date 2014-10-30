@@ -103,7 +103,7 @@
         "space-infix-ops": 2,
         "space-return-throw-case": 1,
         "space-unary-word-ops": 1,
-        "spaced-line-comment": [2, "always"],
+        "spaced-line-comment": [2, "always", {"exceptions": ["-", "+", ""]}],
         "key-spacing": [2, {"beforeColon": false, "afterColon": true}],
         "max-nested-callbacks": [1, 3],
 
