@@ -1,7 +1,6 @@
 {
     "env": {
         "browser": true,
-        "node": true,
         "amd": true,
         "jasmine": true
     },
@@ -15,7 +14,15 @@
     },
 
     "rules": {
-        "indent":  [2, "spaces", 4],
+        "fecs-indent":  [2, "spaces", 4],
+        "fecs-valid-jsdoc": [2, {
+            "prefer": {
+                "returns": "return",
+                "fileoverview": "file"
+            },
+            "requireReturn": false,
+            "requireParamDescription": true
+        }],
 
         "no-console": 1,
         "no-constant-condition": 1,
@@ -25,7 +32,6 @@
         "no-empty-class": 2,
         "no-ex-assign": 2,
         "no-extra-boolean-cast": 1,
-        "no-extra-parens": 1,
         "no-extra-semi": 2,
         "no-func-assign": 1,
         "no-inner-declarations": 1,
@@ -37,12 +43,6 @@
         "no-unreachable": 2,
         "use-isnan": 2,
 
-        "valid-jsdoc": [2, {
-            "prefer": {
-                "return": "returns"
-            },
-            "requireReturn": false
-        }],
         "valid-typeof": 2,
 
         "block-scoped-var": 1,
@@ -103,7 +103,7 @@
         "space-infix-ops": 2,
         "space-return-throw-case": 1,
         "space-unary-word-ops": 1,
-        "spaced-line-comment": [2, "always"],
+        "spaced-line-comment": [2, "always", {"exceptions": ["-", "+", ""]}],
         "key-spacing": [2, {"beforeColon": false, "afterColon": true}],
         "max-nested-callbacks": [1, 3],
 

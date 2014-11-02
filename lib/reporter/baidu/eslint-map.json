@@ -1,5 +1,6 @@
 {
-    "indent":  "003",
+    "fecs-indent":  "003",
+    // "fecs-valid-jsdoc": 0,
 
     "no-console": "997",
     "no-constant-condition": "997",
@@ -9,7 +10,6 @@
     "no-empty-class": "998",
     "no-ex-assign": "998",
     "no-extra-boolean-cast": "997",
-    "no-extra-parens": "997",
     "no-extra-semi": "023",
     "no-func-assign": "997",
     "no-inner-declarations": "997",
@@ -21,7 +21,6 @@
     "no-unreachable": "997",
     "use-isnan": "098",
 
-    // "valid-jsdoc": 0,
     "valid-typeof": "082",
 
     "block-scoped-var": "997",
