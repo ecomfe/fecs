@@ -1,7 +1,6 @@
 {
     "env": {
         "browser": true,
-        "node": true,
         "amd": true,
         "jasmine": true
     },
@@ -15,7 +14,15 @@
     },
 
     "rules": {
-        "indent":  [2, "spaces", 4],
+        "fecs-indent":  [2, "spaces", 4],
+        "fecs-valid-jsdoc": [2, {
+            "prefer": {
+                "returns": "return",
+                "fileoverview": "file"
+            },
+            "requireReturn": false,
+            "requireParamDescription": true
+        }],
 
         "no-console": 1,
         "no-constant-condition": 1,
@@ -36,12 +43,6 @@
         "no-unreachable": 2,
         "use-isnan": 2,
 
-        "valid-jsdoc": [2, {
-            "prefer": {
-                "return": "returns"
-            },
-            "requireReturn": false
-        }],
         "valid-typeof": 2,
 
         "block-scoped-var": 1,
