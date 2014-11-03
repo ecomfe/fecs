@@ -8,6 +8,8 @@
     "globals": {
         "baidu": true,
         "T": true,
+        "$": true,
+        "jQuery": true,
         "alert": true,
         "confirm": true,
         "prompt": true
