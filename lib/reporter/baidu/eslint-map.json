@@ -1,6 +1,7 @@
 {
     "fecs-indent":  "003",
     // "fecs-valid-jsdoc": 0,
+    "fecs-max-statements": "102",
 
     "no-console": "997",
     "no-constant-condition": "997",
@@ -87,6 +88,5 @@
 
     "max-depth": "997",
     "max-len": "015",
-    "max-params": "103",
-    "max-statements": "102"
+    "max-params": "103"
 }

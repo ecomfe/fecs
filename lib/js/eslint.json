@@ -25,6 +25,7 @@
             "requireReturn": false,
             "requireParamDescription": true
         }],
+        "fecs-max-statements": [1, 50],
 
         "no-console": 1,
         "no-constant-condition": 1,
@@ -111,7 +112,6 @@
 
         "max-depth": [1, 6],
         "max-len": [2, 120, 4],
-        "max-params": [1, 6],
-        "max-statements": [1, 50]
+        "max-params": [1, 6]
     }
 }
