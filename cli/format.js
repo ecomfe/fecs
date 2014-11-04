@@ -3,9 +3,9 @@
  * @author chris<wfsr@foxmail.com>
  */
 
-var fs          = require('vinyl-fs');
+var fs           = require('vinyl-fs');
 
-var util        = require('../lib/util');
+var util         = require('../lib/util');
 var jsformatter  = require('../lib/js/formatter');
 var cssformatter = require('../lib/css/formatter');
 
