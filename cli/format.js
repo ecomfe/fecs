@@ -51,7 +51,7 @@ var streams = {
             .pipe(handler)
             .pipe(
                 through.obj(function (file, enc, cb) {
-                    console.log(file.contents.toString());
+                    process.stdout.write(file.contents.toString() + '\n');
                     cb(null, file);
                 }
             ));

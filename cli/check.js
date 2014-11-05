@@ -64,8 +64,17 @@ exports.run = function (options) {
 
     streams[options.stream ? 'stdin' : 'files'](options)
         .pipe(reporter)
-        .once('end', function (success) {
+        .once('end', function (success, json) {
             console.timeEnd('fecs');
+
+            if (!success && options.format) {
+                var formatter = require('../lib/formatter');
+
+                if (formatter[options.format]) {
+                    formatter[options.format](json);
+                }
+            }
+
             process.exit(success ? 0 : 1);
         });
 };
