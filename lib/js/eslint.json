@@ -26,6 +26,7 @@
             "requireParamDescription": true
         }],
         "fecs-max-statements": [1, 50],
+        "fecs-disallow-multi-var": 2,
 
         "no-console": 1,
         "no-constant-condition": 1,

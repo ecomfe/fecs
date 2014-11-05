@@ -2,6 +2,7 @@
     "fecs-indent":  "003",
     // "fecs-valid-jsdoc": 0,
     "fecs-max-statements": "102",
+    "fecs-disallow-multi-var": "071",
 
     "no-console": "997",
     "no-constant-condition": "997",
