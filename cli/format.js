@@ -22,22 +22,7 @@ var streams = {
      * @param {Object} options minimist 处理后的 cli 参数
      */
     files: function (options) {
-
-        var types = options.t || options.type || 'js,css,html';
-
-        var extensions = types;
-        types = types.split(/\s*,\s*/);
-
-        if (types.length > 1) {
-            extensions = '{' + types.join(',') + '}';
-        }
-
-        var dirs = options._;
-        if (!dirs.length) {
-            dirs = ['./'];
-        }
-
-        var patterns = util.buildPattern(dirs, extensions);
+        var patterns = util.buildPattern(options._, options.types);
 
         return fs.src(patterns, {cwdbase: true})
             .pipe(jsformatter(options))
