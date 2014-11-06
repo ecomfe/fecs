@@ -27,6 +27,7 @@
         }],
         "fecs-max-statements": [1, 50],
         "fecs-disallow-multi-var": 2,
+        "fecs-key-spacing": [2, {"beforeColon": false, "afterColon": true, "align": "colon"}],
 
         "no-console": 1,
         "no-constant-condition": 1,
@@ -108,7 +109,6 @@
         "space-return-throw-case": 1,
         "space-unary-word-ops": 1,
         "spaced-line-comment": [2, "always", {"exceptions": ["-", "+", ""]}],
-        "key-spacing": [2, {"beforeColon": false, "afterColon": true}],
         "max-nested-callbacks": [1, 3],
 
         "max-depth": [1, 6],
