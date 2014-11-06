@@ -67,7 +67,7 @@ exports.run = function (options) {
         .once('end', function (success, json) {
             console.timeEnd('fecs');
 
-            if (!success && options.format) {
+            if (options.format) {
                 var formatter = require('../lib/formatter');
 
                 if (formatter[options.format]) {
