@@ -20,6 +20,7 @@ var streams = {
      * 处理文件系统中的代码
      *
      * @param {Object} options minimist 处理后的 cli 参数
+     * @return {Transform} 转换流
      */
     files: function (options) {
         var patterns = util.buildPattern(options._, options.type);
@@ -33,6 +34,7 @@ var streams = {
      * 处理从 stdin 输入的代码
      *
      * @param {Object} options minimist 处理后的 cli 参数
+     * @return {Transform} 转换流
      */
     stdin: function (options) {
         var through = require('through2');
