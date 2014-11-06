@@ -23,7 +23,7 @@ var streams = {
      * @return {Transform} 转换流
      */
     files: function (options) {
-        var patterns = util.buildPattern(options._, options.type);
+        var patterns = util.buildPattern(options._, options.type, options.ignore);
 
         return fs.src(patterns, {cwdbase: true})
             .pipe(jschecker(options))
