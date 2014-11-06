@@ -1,6 +1,9 @@
 {
     "fecs-indent":  "003",
     // "fecs-valid-jsdoc": 0,
+    "fecs-max-statements": "102",
+    "fecs-disallow-multi-var": "071",
+    "fecs-key-spacing": "008",
 
     "no-console": "997",
     "no-constant-condition": "997",
@@ -82,11 +85,9 @@
     "space-return-throw-case": "997",
     "space-unary-word-ops": "997",
     "spaced-line-comment": "038",
-    "key-spacing": "008",
     "max-nested-callbacks": "997",
 
     "max-depth": "997",
     "max-len": "015",
-    "max-params": "103",
-    "max-statements": "102"
+    "max-params": "103"
 }

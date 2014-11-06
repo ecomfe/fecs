@@ -27,7 +27,7 @@
 
     "require-around-space": [">", "+", "~"],
 
-    "require-doublequotes": ["text-content"],
+    "require-doublequotes": ["attr-selector", "text-content"],
 
     "always-semicolon": true,
 
