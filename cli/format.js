@@ -41,7 +41,7 @@ var streams = {
         var through = require('through2');
         var File = require('vinyl');
 
-        var type = (options.t || options.type || 'js').split(',')[0];
+        var type = (options.type || 'js').split(',')[0];
         var handler = type === 'js' ? jsformatter(options) : (type === 'css' ? cssformatter(options) : through());
 
         return process.stdin
