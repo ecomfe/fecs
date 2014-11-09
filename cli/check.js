@@ -6,6 +6,7 @@
 var fs         = require('vinyl-fs');
 
 var util       = require('../lib/util');
+var ignored    = require('../lib/ignored');
 var jschecker  = require('../lib/js/checker');
 var csschecker = require('../lib/css/checker');
 
@@ -23,9 +24,10 @@ var streams = {
      * @return {Transform} 转换流
      */
     files: function (options) {
-        var patterns = util.buildPattern(options._, options.type, options.ignore);
+        var patterns = util.buildPattern(options._, options.type);
 
         return fs.src(patterns, {cwdbase: true})
+            .pipe(ignored(options))
             .pipe(jschecker(options))
             .pipe(csschecker(options));
     },

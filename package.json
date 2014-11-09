@@ -41,6 +41,7 @@
     "eslint": "~0.9.2",
     "fixmyjs": "^0.13.6",
     "jformatter": "~0.2.0",
+    "minimatch": "^1.0.0",
     "minimist": "^1.1.0",
     "msee": "^0.1.1",
     "rcloader2": "^0.1.3",

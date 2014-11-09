@@ -6,6 +6,7 @@
 var fs           = require('vinyl-fs');
 
 var util         = require('../lib/util');
+var ignored    = require('../lib/ignored');
 var jsformatter  = require('../lib/js/formatter');
 var cssformatter = require('../lib/css/formatter');
 
@@ -23,9 +24,10 @@ var streams = {
      * @return {Transform} 转换流
      */
     files: function (options) {
-        var patterns = util.buildPattern(options._, options.types, options.ignore);
+        var patterns = util.buildPattern(options._, options.types);
 
         return fs.src(patterns, {cwdbase: true})
+            .pipe(ignored(options))
             .pipe(jsformatter(options))
             .pipe(cssformatter(options))
             .pipe(fs.dest(options.output));
