@@ -6,7 +6,7 @@
 var fs           = require('vinyl-fs');
 
 var util         = require('../lib/util');
-var ignored    = require('../lib/ignored');
+var ignored      = require('../lib/ignored');
 var jsformatter  = require('../lib/js/formatter');
 var cssformatter = require('../lib/css/formatter');
 
