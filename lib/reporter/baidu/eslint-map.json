@@ -26,7 +26,6 @@
 
     "valid-typeof": "082",
 
-    "block-scoped-var": "997",
     "curly": "022",
     "dot-notation": "096",
     "eqeqeq": "073",
