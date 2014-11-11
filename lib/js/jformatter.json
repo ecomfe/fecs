@@ -1,0 +1,41 @@
+{
+    "lineSeparator": "\n",
+    "maxLength": 120,
+    "wrapIfLong": false,
+    "indent": 4,
+    "useTabIndent": false,
+    "spaces": {
+        "around": {
+            "unaryOperators": false,
+            "binaryOperators": true,
+            "ternaryOperators": true
+        },
+        "before": {
+            "functionDeclarationParentheses": false,
+            "functionExpressionParentheses": true,
+            "parentheses": true,
+            "leftBrace": true,
+            "keywords": true
+        },
+        "within": {
+            "parentheses": false
+        },
+        "other": {
+            "beforePropertyNameValueSeparator": false,
+            "afterPropertyNameValueSeparator": true
+        }
+    },
+    "bracesPlacement": {
+        "functionDeclaration": 1,
+        "other": 1
+    },
+    "other": {
+        "keepArraySingleLine": false
+    },
+    "fix": {
+        "prefixSpaceToLineComment": true,
+        "alterCommonBlockCommentToLineComment": false,
+        "singleVariableDeclarator": true,
+        "fixInvalidTypeof": true
+    }
+}
