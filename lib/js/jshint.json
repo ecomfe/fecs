@@ -1,4 +1,9 @@
 {
+    // for fixmyjs
+    "indent": 4,
+    "parseint": true,
+    "debugger": true,
+
     "bitwise": false,
     "camelcase": true,
     "curly": true,
