@@ -23,6 +23,7 @@
                 "fileoverview": "file"
             },
             "requireReturn": false,
+            "requireReturnDescription": false,
             "requireParamDescription": true
         }],
         "fecs-max-statements": [1, 50, {"ignore": "IIFE"}],
