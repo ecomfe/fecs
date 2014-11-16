@@ -41,7 +41,7 @@
     "no-lone-blocks": "997",
     "no-loop-func": "078",
     "no-multi-str": "090",
-    "no-native-reassign": "097",
+    "no-native-reassign": "095",
     "no-new-wrappers": "997",
     "no-octal": "997",
     "no-octal-escape": "997",
