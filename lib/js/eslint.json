@@ -12,7 +12,8 @@
         "jQuery": true,
         "alert": true,
         "confirm": true,
-        "prompt": true
+        "prompt": true,
+        "setImmediate": true
     },
 
     "rules": {
