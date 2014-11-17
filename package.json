@@ -4,7 +4,10 @@
   "description": "Front End Code Style Suite",
   "main": "index.js",
   "scripts": {
-    "test": "edp test start -s"
+    "lint": "./bin/fecs lib cli test/**/*.spec.js --type=js",
+    "test": "npm run lint && jasmine-node test/**/*.spec.js",
+    "coveralls": "istanbul cover jasmine-node --captureExceptions test/**/*.spec.js && cat ./coverage/lcov.info | coveralls"
+
   },
   "bin": {
     "fecs": "./bin/fecs"
@@ -21,7 +24,7 @@
     "csslint",
     "csshint",
     "htmllint",
-    "htmllint",
+    "htmlhint",
     "jsbeautify",
     "cssbeautify",
     "htmlbeautify"
@@ -49,5 +52,10 @@
     "through2": "^0.6.1",
     "vinyl": "^0.4.3",
     "vinyl-fs": "^0.3.7"
+  },
+  "devDependencies": {
+    "coveralls": "^2.11.2",
+    "istanbul": "^0.3.2",
+    "jasmine-node": "^1.14.5"
   }
 }

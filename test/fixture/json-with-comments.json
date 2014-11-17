@@ -1,0 +1,6 @@
+{
+    // for foo
+    "foo": false, // foo too
+
+    "bar": true /* for bar */
+}
