@@ -13,7 +13,9 @@
         "alert": true,
         "confirm": true,
         "prompt": true,
-        "setImmediate": true
+        "setImmediate": true,
+        "console": true,
+        "ActiveXObject": true
     },
 
     "rules": {
