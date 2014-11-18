@@ -7,7 +7,6 @@
     "lint": "./bin/fecs lib cli test/**/*.spec.js --type=js",
     "test": "npm run lint && jasmine-node test/**/*.spec.js",
     "coveralls": "istanbul cover jasmine-node --captureExceptions test/**/*.spec.js && cat ./coverage/lcov.info | coveralls"
-
   },
   "bin": {
     "fecs": "./bin/fecs"
@@ -43,6 +42,8 @@
     "doctrine": "^0.6.2",
     "eslint": "~0.9.2",
     "fixmyjs": "^0.13.6",
+    "htmlhint": "^0.9.6",
+    "htmllint": "^0.2.0",
     "jformatter": "~0.2.0",
     "jshint": "^2.5.10",
     "minimatch": "^1.0.0",
