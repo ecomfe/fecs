@@ -5,8 +5,9 @@
   "main": "index.js",
   "scripts": {
     "lint": "./bin/fecs lib cli test/**/*.spec.js --type=js",
-    "test": "npm run lint && jasmine-node test/**/*.spec.js",
-    "coveralls": "istanbul cover jasmine-node --captureExceptions test/**/*.spec.js && cat ./coverage/lcov.info | coveralls"
+    "coverage": "istanbul cover jasmine-node --captureExceptions test/**/*.spec.js",
+    "test": "npm run lint && npm run coverage",
+    "coveralls": "cat ./coverage/lcov.info | coveralls"
   },
   "bin": {
     "fecs": "./bin/fecs"
