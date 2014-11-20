@@ -25,9 +25,11 @@ var streams = {
      */
     files: function (options) {
         var patterns = util.buildPattern(options._, options.types);
+        var specials = patterns.specials;
+        delete patterns.specials;
 
         return fs.src(patterns, {cwdbase: true})
-            .pipe(ignored(options))
+            .pipe(ignored(options, specials))
             .pipe(jsformatter(options))
             .pipe(cssformatter(options))
             .pipe(fs.dest(options.output));

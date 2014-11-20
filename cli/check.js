@@ -3,12 +3,13 @@
  * @author chris<wfsr@foxmail.com>
  */
 
-var fs         = require('vinyl-fs');
+var fs          = require('vinyl-fs');
 
-var util       = require('../lib/util');
-var ignored    = require('../lib/ignored');
-var jschecker  = require('../lib/js/checker');
-var csschecker = require('../lib/css/checker');
+var util        = require('../lib/util');
+var ignored     = require('../lib/ignored');
+var jschecker   = require('../lib/js/checker');
+var csschecker  = require('../lib/css/checker');
+var htmlchecker = require('../lib/html/checker');
 
 /**
  * 不同的输入流处理
@@ -25,11 +26,14 @@ var streams = {
      */
     files: function (options) {
         var patterns = util.buildPattern(options._, options.type);
+        var specials = patterns.specials;
+        delete patterns.specials;
 
         return fs.src(patterns, {cwdbase: true})
-            .pipe(ignored(options))
+            .pipe(ignored(options, specials))
             .pipe(jschecker(options))
-            .pipe(csschecker(options));
+            .pipe(csschecker(options))
+            .pipe(htmlchecker(options));
     },
 
     /**
