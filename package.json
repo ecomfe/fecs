@@ -31,6 +31,10 @@
   ],
   "author": "chris <wfsr@foxmail.com>",
   "license": "MIT",
+  "preferGlobal": true,
+  "engines": {
+    "node": ">=0.10"
+  },
   "bugs": {
     "url": "https://github.com/ecomfe/fecs/issues"
   },
