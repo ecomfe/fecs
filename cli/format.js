@@ -3,12 +3,13 @@
  * @author chris<wfsr@foxmail.com>
  */
 
-var fs           = require('vinyl-fs');
+var fs            = require('vinyl-fs');
 
-var util         = require('../lib/util');
-var ignored      = require('../lib/ignored');
-var jsformatter  = require('../lib/js/formatter');
-var cssformatter = require('../lib/css/formatter');
+var util          = require('../lib/util');
+var ignored       = require('../lib/ignored');
+var jsformatter   = require('../lib/js/formatter');
+var cssformatter  = require('../lib/css/formatter');
+var htmlformatter = require('../lib/html/formatter');
 
 /**
  * 不同的输入流处理
@@ -32,6 +33,7 @@ var streams = {
             .pipe(ignored(options, specials))
             .pipe(jsformatter(options))
             .pipe(cssformatter(options))
+            .pipe(htmlformatter(options))
             .pipe(fs.dest(options.output));
     },
 

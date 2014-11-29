@@ -46,6 +46,7 @@
     "htmlhint": "^0.9.6",
     "htmllint": "^0.2.0",
     "jformatter": "~0.2.0",
+    "js-beautify": "^1.5.4",
     "jshint": "^2.5.10",
     "minimatch": "^1.0.0",
     "minimist": "^1.1.0",
