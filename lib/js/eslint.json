@@ -15,7 +15,8 @@
         "prompt": true,
         "setImmediate": true,
         "console": true,
-        "ActiveXObject": true
+        "ActiveXObject": true,
+        "angular": true
     },
 
     "rules": {
