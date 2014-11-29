@@ -29,6 +29,9 @@
         "functionDeclaration": 1,
         "other": 1
     },
+    "blankLines": {
+        "keepMaxBlankLines": 1
+    },
     "other": {
         "keepArraySingleLine": false
     },
