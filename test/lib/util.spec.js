@@ -1,22 +1,97 @@
 var util = require('../../lib/util');
 
-
 describe('util', function () {
+
+    describe('parseError', function () {
+
+        it('error from csshint', function () {
+            var csshint = require('csshint');
+            var errors = csshint.checkString('\nbody{}');
+
+            expect(errors.length).toEqual(1);
+
+            var error = util.parseError({foo: 'bar'}, errors[0]);
+
+            expect(error).not.toBeNull();
+            expect(error.foo).toBe('bar');
+            expect(error.line).toBe(2);
+            expect(error.column).toBe(5);
+        });
+
+        it('error from eslint', function () {
+            var eslint = require('eslint').linter;
+            var errors = eslint.verify('\nvar a', {rules: {semi: 2}});
+
+            expect(errors.length).toEqual(1);
+
+            var error = util.parseError({foo: 'bar'}, errors[0]);
+
+            expect(error).not.toBeNull();
+            expect(error.foo).toBe('bar');
+            expect(error.line).toBe(2);
+            expect(error.column).toBe(5);
+        });
+
+        it('error from exception', function () {
+
+            try {
+                throw new Error('foo', 'bar');
+            }
+            catch (e) {
+                var error = util.parseError({foo: 'bar'}, e);
+
+                expect(error).not.toBeNull();
+                expect(error.foo).toBe('bar');
+
+                // 行列信息必须对应上面 throw new 的位置
+                //                         ^
+                // 有变化时必须更正以下两个期望值
+                expect(error.line).toBe(38);
+                expect(error.column).toBe(23);
+                expect(error.message).toMatch(/foo\([^\)]+\)/);
+            }
+        });
+
+    });
+
+    describe('getConfig', function () {
+
+        it('no filepath and defaults', function () {
+            var config = util.getConfig('eslint');
+
+            expect(config.rules).toBeDefined();
+            expect(config.rules['fecs-valid-jsdoc'][0]).toEqual(2);
+        });
+
+        it('current filepath', function () {
+            var config = util.getConfig('eslint', __dirname);
+
+            expect(config.rules).toBeDefined();
+            expect(config.rules['fecs-valid-jsdoc']).toEqual(0);
+        });
+
+        it('not exists path', function () {
+            var config = util.getConfig('foo-bar', 'foo/bar');
+
+            expect(config).toEqual({});
+        });
+
+    });
 
     describe('buildPattern', function () {
 
         it('default options', function () {
             var patterns = util.buildPattern();
 
-            expect(patterns.length).toEqual(2);
-            expect(patterns[0]).toEqual('./**/*.{js,css,html}');
+            expect(patterns.length).toEqual(4);
+            expect(patterns[0]).toEqual('lib/**/*.{js,css,html}');
         });
 
         it('js only', function () {
             var patterns = util.buildPattern([], 'js');
 
-            expect(patterns.length).toEqual(2);
-            expect(patterns[0]).toEqual('./**/*.js');
+            expect(patterns.length).toEqual(4);
+            expect(patterns[0]).toEqual('lib/**/*.js');
         });
 
         it('not exists dirs', function () {
@@ -116,6 +191,13 @@ describe('util', function () {
             expect(maps.htmlhintMap).not.toBeUndefined();
         });
 
+        it('from no exists path', function () {
+            var maps = {};
+            util.readConfigs('foo/bar', maps);
+
+            expect(maps).toEqual({});
+        });
+
     });
 
     it('fixWidth', function () {
@@ -139,57 +221,4 @@ describe('util', function () {
         expect(util.format(hello, 'world')).toEqual('hello world');
     });
 
-
-    describe('parseError', function () {
-
-        it('error from csshint', function () {
-            var csshint = require('csshint');
-            var errors = csshint.checkString('\nbody{}');
-
-            expect(errors.length).toEqual(1);
-
-            var error = util.parseError({foo: 'bar'}, errors[0]);
-
-            expect(error).not.toBeNull();
-            expect(error.foo).toBe('bar');
-            expect(error.line).toBe(2);
-            expect(error.column).toBe(5);
-        });
-
-        it('error from eslint', function () {
-            var eslint = require('eslint').linter;
-            var errors = eslint.verify('\nvar a', {rules: {semi: 2}});
-
-            expect(errors.length).toEqual(1);
-
-            var error = util.parseError({foo: 'bar'}, errors[0]);
-
-            expect(error).not.toBeNull();
-            expect(error.foo).toBe('bar');
-            expect(error.line).toBe(2);
-            expect(error.column).toBe(5);
-        });
-
-        it('error from exception', function () {
-
-            try {
-                throw new Error('foo', 'bar');
-            }
-            catch (e) {
-                var error = util.parseError({foo: 'bar'}, e);
-
-                expect(error).not.toBeNull();
-                expect(error.foo).toBe('bar');
-
-                // 行列信息必须对应上面 throw new 的位置
-                //                         ^
-                // 有变化时必须更正以下两个期望值
-                expect(error.line).toBe(176);
-                expect(error.column).toBe(23);
-                expect(error.message).toMatch(/foo\([^\)]+\)/);
-            }
-        });
-
-
-    });
 });
