@@ -49,7 +49,7 @@
     "fixmyjs": "^0.13.6",
     "esformatter": "^0.4.3",
     "htmlhint": "^0.9.6",
-    "htmllint": "^0.2.0",
+    "htmlcomb": "^0.1.1",
     "jformatter": "~1.0.2",
     "js-beautify": "^1.5.4",
     "jshint": "^2.5.10",
