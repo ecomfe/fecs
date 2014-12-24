@@ -105,7 +105,7 @@
         "no-mixed-spaces-and-tabs": 2,
         "quotes": [2, "single"],
         "semi": [2, "always"],
-        "space-after-keywords": 2,
+        "space-after-keywords": [2, "always", {"checkFunctionKeyword": true}],
         "space-before-blocks": [2, "always"],
         "space-in-brackets": [2, "never"],
         "space-in-parens": [2, "never"],
