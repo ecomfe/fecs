@@ -16,7 +16,9 @@
         "setImmediate": true,
         "console": true,
         "ActiveXObject": true,
-        "angular": true
+        "angular": true,
+        "unescape": true,
+        "escape": true
     },
 
     "rules": {
