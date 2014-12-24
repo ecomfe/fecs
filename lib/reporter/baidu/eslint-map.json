@@ -4,6 +4,7 @@
     "fecs-max-statements": "102",
     "fecs-disallow-multi-var": "071",
     "fecs-key-spacing": "008",
+    "fecs-eol-last": "002",
 
     "no-console": "997",
     "no-constant-condition": "997",
@@ -64,7 +65,6 @@
     "camelcase": "025",
     "comma-spacing": "010",
     "comma-style": "017",
-    "eol-last": "002",
     "new-cap": "029",
     "new-parens": "997",
     "no-array-constructor": "098",

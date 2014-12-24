@@ -35,6 +35,7 @@
         "fecs-max-statements": [1, 50, {"ignore": "IIFE"}],
         "fecs-disallow-multi-var": 2,
         "fecs-key-spacing": [2, {"beforeColon": false, "afterColon": true, "align": "colon"}],
+        "fecs-eol-last": [2, true],
 
         "no-console": 1,
         "no-constant-condition": 1,
@@ -95,7 +96,6 @@
         "camelcase": 2,
         "comma-spacing": [2, {"before": false, "after": true}],
         "comma-style": [2, "last"],
-        "eol-last": 2,
         "new-cap": 2,
         "new-parens": 1,
         "no-array-constructor": 2,
