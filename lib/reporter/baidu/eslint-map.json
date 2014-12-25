@@ -82,7 +82,7 @@
     "space-in-parens": "012",
     "space-infix-ops": "005",
     "space-return-throw-case": "997",
-    "space-unary-word-ops": "997",
+    "space-unary-ops": "997",
     "spaced-line-comment": "038",
     "max-nested-callbacks": "997",
 
