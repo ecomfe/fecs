@@ -1,0 +1,23 @@
+{
+    "asset-type": true,
+    "bool-attribute-value": true,
+    "button-name": true,
+    "button-type": true,
+    "charset": true,
+    "css-in-head": true,
+    "doctype": true,
+    "html-lang": true,
+    "ie-edge": true,
+    "img-alt": true,
+    "img-src": true,
+    "img-title": true,
+    "img-width-height": true,
+    "lowercase-class-with-hyphen": true,
+    "lowercase-id-with-hyphen": true,
+    "rel-stylesheet": true,
+    "script-in-tail": true,
+    "title-required": true,
+    "unique-id": true,
+    "viewport": true,
+    "max-len": true
+}
