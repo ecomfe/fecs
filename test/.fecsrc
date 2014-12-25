@@ -1,7 +1,8 @@
 {
     "eslint": {
         "rules": {
-            "fecs-valid-jsdoc": 0
+            "fecs-valid-jsdoc": 0,
+            "max-nested-callbacks": [1, 5]
         }
     }
 }
