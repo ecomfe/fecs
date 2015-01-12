@@ -127,6 +127,18 @@ describe('util', function () {
             expect(json).toEqual({});
         });
 
+        it('invalid json and throw error', function () {
+            var read = function () {
+                util.parseJSON('.npmignore');
+            };
+
+            process.env.DEBUG = true;
+
+            expect(read).toThrow();
+
+            process.env.DEBUG = false;
+        });
+
         it('json with no comment', function () {
             var json = util.parseJSON('test/fixture/json-with-nocomment.json');
 
