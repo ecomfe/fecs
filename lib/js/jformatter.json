@@ -11,7 +11,7 @@
             "ternaryOperators": true
         },
         "before": {
-            "functionDeclarationParentheses": false,
+            "functionDeclarationParentheses": true,
             "functionExpressionParentheses": true,
             "parentheses": true,
             "leftBrace": true,
