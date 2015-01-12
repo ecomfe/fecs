@@ -36,6 +36,7 @@
         "fecs-disallow-multi-var": 2,
         "fecs-key-spacing": [2, {"beforeColon": false, "afterColon": true, "align": "colon"}],
         "fecs-eol-last": [2, true],
+        "fecs-camelcase": 2,
 
         "no-console": 1,
         "no-constant-condition": 1,
@@ -93,7 +94,6 @@
         "no-use-before-define": [2, "nofunc"],
 
         "brace-style": [1, "stroustrup", {}],
-        "camelcase": 2,
         "comma-spacing": [2, {"before": false, "after": true}],
         "comma-style": [2, "last"],
         "new-cap": 2,
