@@ -19,5 +19,5 @@
     "title-required": true,
     "unique-id": true,
     "viewport": true,
-    "max-len": true
+    "max-len": 120
 }
