@@ -18,3 +18,5 @@ fs.readdirSync(dir).forEach(function (file) {
         exports[key] = require(path.join(dir, file)).run;
     }
 });
+
+exports.getOptions = require('./lib/cli').getOptions;
