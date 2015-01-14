@@ -38,6 +38,7 @@
         "fecs-eol-last": [2, true],
         "fecs-camelcase": 2,
         "fecs-space-infix-ops": 2,
+        "fecs-dot-notation": [2, {"allowKeywords": false}],
 
         "no-console": 1,
         "no-constant-condition": 1,
@@ -61,7 +62,6 @@
         "valid-typeof": 2,
 
         "curly": [2, "all"],
-        "dot-notation": [2, {"allowKeywords": true}],
         "eqeqeq": [2, "allow-null"],
         "guard-for-in": 1,
         "no-else-return": 1,

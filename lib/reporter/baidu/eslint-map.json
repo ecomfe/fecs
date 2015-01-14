@@ -7,6 +7,7 @@
     "fecs-eol-last": "002",
     "fecs-camelcase": "025",
     "fecs-space-infix-ops": "005",
+    "fecs-dot-notation": "096",
 
     "no-console": "997",
     "no-constant-condition": "997",
@@ -30,7 +31,6 @@
     "valid-typeof": "082",
 
     "curly": "022",
-    "dot-notation": "096",
     "eqeqeq": "073",
     "guard-for-in": "097",
     "no-else-return": "077",
