@@ -6,6 +6,7 @@
     "fecs-key-spacing": "008",
     "fecs-eol-last": "002",
     "fecs-camelcase": "025",
+    "fecs-space-infix-ops": "005",
 
     "no-console": "997",
     "no-constant-condition": "997",
@@ -80,7 +81,6 @@
     "space-before-blocks": "006",
     "space-in-brackets": "012",
     "space-in-parens": "012",
-    "space-infix-ops": "005",
     "space-return-throw-case": "997",
     "space-unary-ops": "997",
     "spaced-line-comment": "038",
