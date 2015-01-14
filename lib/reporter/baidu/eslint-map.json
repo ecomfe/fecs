@@ -8,6 +8,7 @@
     "fecs-camelcase": "025",
     "fecs-space-infix-ops": "005",
     "fecs-dot-notation": "096",
+    "fecs-no-reserved-keys": "094",
 
     "no-console": "997",
     "no-constant-condition": "997",
@@ -23,7 +24,6 @@
     "no-invalid-regexp": "998",
     "no-negated-in-lhs": "998",
     "no-obj-calls": "998",
-    "no-reserved-keys": "094",
     "no-sparse-arrays": "998",
     "no-unreachable": "997",
     "use-isnan": "098",

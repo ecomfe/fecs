@@ -38,7 +38,8 @@
         "fecs-eol-last": [2, true],
         "fecs-camelcase": 2,
         "fecs-space-infix-ops": 2,
-        "fecs-dot-notation": [2, {"allowKeywords": false}],
+        "fecs-dot-notation": [2, {"allowKeywords": true}],
+        "fecs-no-reserved-keys": 2,
 
         "no-console": 1,
         "no-constant-condition": 1,
@@ -54,7 +55,6 @@
         "no-invalid-regexp": 2,
         "no-negated-in-lhs": 2,
         "no-obj-calls": 2,
-        "no-reserved-keys": 2,
         "no-sparse-arrays": 2,
         "no-unreachable": 2,
         "use-isnan": 2,
