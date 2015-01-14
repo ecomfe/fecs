@@ -5,6 +5,7 @@
     "fecs-disallow-multi-var": "071",
     "fecs-key-spacing": "008",
     "fecs-eol-last": "002",
+    "fecs-camelcase": "025",
 
     "no-console": "997",
     "no-constant-condition": "997",
@@ -62,7 +63,6 @@
     "no-use-before-define": "072",
 
     "brace-style": "020",
-    "camelcase": "025",
     "comma-spacing": "010",
     "comma-style": "017",
     "new-cap": "029",
