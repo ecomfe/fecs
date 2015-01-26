@@ -5,7 +5,7 @@
     "fecs-disallow-multi-var": "071",
     "fecs-key-spacing": "008",
     "fecs-eol-last": "002",
-    "fecs-camelcase": "025",
+    // "fecs-camelcase": "025",
     "fecs-space-infix-ops": "005",
     "fecs-dot-notation": "096",
     "fecs-no-reserved-keys": "094",
