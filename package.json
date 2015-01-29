@@ -1,6 +1,6 @@
 {
   "name": "fecs",
-  "version": "0.2.6",
+  "version": "0.2.7",
   "description": "Front End Code Style Suite",
   "main": "index.js",
   "scripts": {
@@ -43,13 +43,13 @@
     "chalk": "^0.5.1",
     "cssbeautify": "^0.3.1",
     "csscomb": "^3.0.2",
-    "csshint": "~0.0.9",
+    "csshint": "~0.0.11",
     "doctrine2": "^0.6.3",
     "esformatter": "^0.4.3",
     "eslint": "~0.13.0",
     "fixmyjs": "^0.13.6",
     "htmlcomb": "~0.2.0",
-    "htmlcs": "~0.0.3",
+    "htmlcs": "~0.0.4",
     "htmlhint": "^0.9.6",
     "jformatter": "~1.0.2",
     "js-beautify": "^1.5.4",
