@@ -58,7 +58,7 @@
     "no-delete-var": "120", // 119
     "no-label-var": "997",
     "no-shadow-restricted-names": "095",
-    "no-undef": "070",
+    // "no-undef": "070",
     "no-undef-init": "997",
     "no-unused-vars": "997",
     "no-use-before-define": "072",
