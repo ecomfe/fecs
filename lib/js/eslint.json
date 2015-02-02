@@ -40,6 +40,7 @@
         "fecs-space-infix-ops": 2,
         "fecs-dot-notation": [2, {"allowKeywords": true}],
         "fecs-no-reserved-keys": 2,
+        "fecs-properties-quote": 2,
 
         "no-console": 1,
         "no-constant-condition": 1,
