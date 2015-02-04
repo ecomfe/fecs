@@ -10,6 +10,7 @@
         "T": true,
         "$": true,
         "jQuery": true,
+        "goog": true,
         "alert": true,
         "confirm": true,
         "prompt": true,
