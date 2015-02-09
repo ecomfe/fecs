@@ -84,7 +84,7 @@ describe('util', function () {
             var patterns = util.buildPattern();
 
             expect(patterns.length).toEqual(4);
-            expect(patterns[0]).toEqual('lib/**/*.{js,css,html}');
+            expect(patterns[0]).toEqual('lib/**/*.{js,css,less,html}');
         });
 
         it('js only', function () {

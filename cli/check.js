@@ -9,6 +9,7 @@ var util        = require('../lib/util');
 var ignored     = require('../lib/ignored');
 var jschecker   = require('../lib/js/checker');
 var csschecker  = require('../lib/css/checker');
+var lesschecker = require('../lib/less/checker');
 var htmlchecker = require('../lib/html/checker');
 
 /**
@@ -33,6 +34,7 @@ var streams = {
             .pipe(ignored(options, specials))
             .pipe(jschecker(options))
             .pipe(csschecker(options))
+            .pipe(lesschecker(options))
             .pipe(htmlchecker(options));
     },
 
