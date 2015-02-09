@@ -2,7 +2,8 @@
     "env": {
         "browser": true,
         "amd": true,
-        "jasmine": true
+        "jasmine": true,
+        "node": true
     },
 
     "globals": {
