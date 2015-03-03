@@ -78,6 +78,7 @@
     "quotes": "089",
     "semi": "021",
     "space-after-keywords": "007",
+    "space-before-function-parentheses": "007",
     "space-before-blocks": "006",
     // "space-in-brackets": "012",
     "space-in-parens": "011",
