@@ -53,7 +53,7 @@ var streams = {
         return process.stdin
             .pipe(
                 through.obj(function (chunk, enc, cb) {
-                    cb(null, new File({contents: chunk, path: 'current-file.' + type}));
+                    cb(null, new File({contents: chunk, path: 'current-file.' + type, stat: {size: chunk.length}}));
                 }
             ))
             .pipe(handler)
