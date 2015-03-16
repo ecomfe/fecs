@@ -38,17 +38,17 @@ describe('util', function () {
                 throw new Error('foo', 'bar');
             }
             catch (e) {
-                var error = util.parseError({foo: 'bar'}, e);
+                var errorObj = util.parseError({foo: 'bar'}, e);
 
-                expect(error).not.toBeNull();
-                expect(error.foo).toBe('bar');
+                expect(errorObj).not.toBeNull();
+                expect(errorObj.foo).toBe('bar');
 
                 // 行列信息必须对应上面 throw new 的位置
                 //                         ^
                 // 有变化时必须更正以下两个期望值
-                expect(error.line).toBe(38);
-                expect(error.column).toBe(23);
-                expect(error.message).toMatch(/foo\([^\)]+\)/);
+                expect(errorObj.line).toBe(38);
+                expect(errorObj.column).toBe(23);
+                expect(errorObj.message).toMatch(/foo\([^\)]+\)/);
             }
         });
 
