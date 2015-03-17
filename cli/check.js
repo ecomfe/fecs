@@ -78,7 +78,7 @@ exports.run = function (options) {
             console.timeEnd('fecs');
 
             if (options.format) {
-                var formatter = require('../lib/formatter');
+                var formatter = require('../lib/formatter/');
 
                 if (formatter[options.format]) {
                     formatter[options.format](json);
