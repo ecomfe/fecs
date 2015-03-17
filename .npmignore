@@ -5,3 +5,10 @@ node_modules
 *.orig
 .*
 test
+format
+coverage
+out
+output
+lib/reporter/baidu/cover.js
+lib/reporter/baidu/uncover.js
+

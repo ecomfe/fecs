@@ -20,3 +20,5 @@ Thumbs.db
 
 *.orig
 *.log
+
+coverage
