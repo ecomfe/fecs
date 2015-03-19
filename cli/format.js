@@ -31,9 +31,9 @@ var streams = {
 
         return fs.src(patterns, {cwdbase: true})
             .pipe(ignored(options, specials))
-            .pipe(jsformatter(options))
-            .pipe(cssformatter(options))
-            .pipe(htmlformatter(options))
+            .pipe(jsformatter.exec(options))
+            .pipe(cssformatter.exec(options))
+            .pipe(htmlformatter.exec(options))
             .pipe(fs.dest(options.output));
     },
 
@@ -48,7 +48,22 @@ var streams = {
         var File = require('vinyl');
 
         var type = (options.type || 'js').split(',')[0];
-        var handler = type === 'js' ? jsformatter(options) : (type === 'css' ? cssformatter(options) : through());
+        var handlers = {
+            js: function () {
+                return jsformatter.exec(options);
+            },
+            css: function () {
+                return cssformatter.exec(options);
+            },
+            less: function () {
+                return cssformatter.exec(options);
+            },
+            html: function () {
+                return htmlformatter.exec(options);
+            }
+        };
+
+        var handler = handlers[type] || through;
 
         return process.stdin
             .pipe(
@@ -56,7 +71,7 @@ var streams = {
                     cb(null, new File({contents: chunk, path: 'current-file.' + type, stat: {size: chunk.length}}));
                 }
             ))
-            .pipe(handler)
+            .pipe(handler())
             .pipe(
                 through.obj(function (file, enc, cb) {
                     process.stdout.write(file.contents.toString() + '\n');

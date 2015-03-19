@@ -32,10 +32,10 @@ var streams = {
 
         return fs.src(patterns, {cwdbase: true})
             .pipe(ignored(options, specials))
-            .pipe(jschecker(options))
-            .pipe(csschecker(options))
-            .pipe(lesschecker(options))
-            .pipe(htmlchecker(options));
+            .pipe(jschecker.exec(options))
+            .pipe(csschecker.exec(options))
+            .pipe(lesschecker.exec(options))
+            .pipe(htmlchecker.exec(options));
     },
 
     /**
@@ -49,7 +49,22 @@ var streams = {
         var File = require('vinyl');
 
         var type = (options.t || options.type || 'js').split(',')[0];
-        var handler = type === 'js' ? jschecker(options) : (type === 'css' ? csschecker(options) : through());
+        var handlers = {
+            js: function () {
+                return jschecker.exec(options);
+            },
+            css: function () {
+                return csschecker.exec(options);
+            },
+            less: function () {
+                return lesschecker.exec(options);
+            },
+            html: function () {
+                return htmlchecker.exec(options);
+            }
+        };
+
+        var handler = handlers[type] || through;
 
         return process.stdin
             .pipe(
@@ -57,7 +72,7 @@ var streams = {
                     cb(null, new File({contents: chunk, path: 'current-file.' + type, stat: {size: chunk.length}}));
                 }
             ))
-            .pipe(handler);
+            .pipe(handler());
     }
 };
 
