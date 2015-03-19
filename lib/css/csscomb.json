@@ -11,7 +11,7 @@
     "element-case": "lower",
     "eof-newline": true,
     "leading-zero": true,
-    "quotes": "single",
+    "quotes": "double",
     "remove-empty-rulesets": true,
     "space-after-colon": " ",
     "space-after-combinator": " ",
