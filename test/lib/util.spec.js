@@ -102,7 +102,7 @@ describe('util', function () {
         });
 
         it('exists dirs', function () {
-            var patterns = util.buildPattern(['cli', 'lib', 'index.js'], 'js');
+            var patterns = util.buildPattern(['cli', 'lib', 'index.js', 'package.json'], 'js');
 
             expect(patterns.length).toEqual(4);
             expect(patterns[0]).toEqual('cli/**/*.js');
@@ -233,4 +233,65 @@ describe('util', function () {
         expect(util.format(hello, 'world')).toEqual('hello world');
     });
 
+    it('extend', function () {
+        var foo = {foo: 1};
+        var bar = {bar: 1};
+        var baz = {foo: 0, baz: 1};
+
+        var foobar = util.extend(foo, bar);
+
+        expect(foobar.foo).toBe(foo.foo);
+        expect(foobar.bar).toBe(bar.bar);
+
+        var foobaz = util.extend(foo, baz);
+
+        expect(foobaz.foo).toBe(baz.foo);
+        expect(foobaz.baz).toBe(baz.baz);
+    });
+
+    it('mix', function () {
+        var foo = {foo: 1};
+        var bar = {bar: 1};
+        var baz = {foo: 0, baz: 1};
+
+        var foobaz = util.mix(foo, bar, baz, null, undefined);
+
+
+        expect(foobaz.foo).toBe(baz.foo);
+        expect(foobaz.baz).toBe(baz.baz);
+    });
+
+    describe('buildRegExp', function () {
+
+        it('from RegExp', function () {
+            var jsFiles = /\.js$/i;
+            var reg = util.buildRegExp(jsFiles);
+
+            expect(reg).toBe(jsFiles);
+        });
+
+        it('from string', function () {
+            var jsFiles = /\.js$/i;
+            var suffix = 'js';
+            var reg = util.buildRegExp(suffix);
+
+            expect(reg).toEqual(jsFiles);
+        });
+
+        it('from string split by comma', function () {
+            var jsFiles = /\.(js|coffee|ts)$/i;
+            var suffix = 'js,coffee,ts';
+            var reg = util.buildRegExp(suffix);
+
+            expect(reg).toEqual(jsFiles);
+        });
+
+        it('match any files', function () {
+            var reg = util.buildRegExp();
+
+            expect(reg).toEqual(/.*/i);
+        });
+
+
+    });
 });
