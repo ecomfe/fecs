@@ -1,5 +1,5 @@
 {
-    "fecs-indent":  "003",
+    "fecs-indent":  "003,004",
     // "fecs-valid-jsdoc": 0,
     "fecs-max-statements": "102",
     "fecs-disallow-multi-var": "071",
