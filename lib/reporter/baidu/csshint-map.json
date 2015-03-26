@@ -59,5 +59,7 @@
 
     "vendor-prefixes-sort": "046",
 
-    "disallow-expression": "050"
+    "disallow-expression": "050",
+
+    "property-not-existed": "998"
 }

@@ -71,6 +71,8 @@
 
     "vendor-prefixes-sort": true,
 
-    "disallow-expression": true
+    "disallow-expression": true,
+
+    "property-not-existed": true
 }
 
