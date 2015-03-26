@@ -48,7 +48,7 @@
     "esformatter": "^0.4.3",
     "eslint": "~0.17.0",
     "fixmyjs": "^0.13.6",
-    "htmlcs": "~0.0.5",
+    "htmlcs": "~0.0.6",
     "htmlhint": "^0.9.6",
     "jformatter": "~1.0.2",
     "js-beautify": "^1.5.4",
