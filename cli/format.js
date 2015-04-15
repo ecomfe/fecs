@@ -87,10 +87,11 @@ var streams = {
  * @param {Object} options minimist 处理后的 cli 参数
  */
 exports.run = function (options) {
-    console.time('fecs');
+    var name = require('../').leadName;
+    console.time(name);
 
     streams[options.stream ? 'stdin' : 'files'](options)
         .once('end', function () {
-            console.timeEnd('fecs');
+            console.timeEnd(name);
         });
 };

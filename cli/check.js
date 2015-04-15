@@ -82,7 +82,9 @@ var streams = {
  * @param {Object} options minimist 处理后的 cli 参数
  */
 exports.run = function (options) {
-    console.time('fecs');
+    var name = require('../').leadName;
+
+    console.time(name);
 
     var log = require('../lib/log')(options.color);
     var reporter = require('../lib/reporter').get(log, options);
@@ -90,7 +92,7 @@ exports.run = function (options) {
     streams[options.stream ? 'stdin' : 'files'](options)
         .pipe(reporter)
         .once('end', function (success, json) {
-            console.timeEnd('fecs');
+            console.timeEnd(name);
 
             if (options.format) {
                 var formatter = require('../lib/formatter/');

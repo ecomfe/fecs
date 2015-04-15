@@ -20,3 +20,15 @@ fs.readdirSync(dir).forEach(function (file) {
 });
 
 exports.getOptions = require('./lib/cli').getOptions;
+
+var leadName = require('./package').name;
+
+Object.defineProperty(exports, 'leadName', {
+    set: function (value) {
+        leadName = value;
+    },
+
+    get: function () {
+        return leadName;
+    }
+});
