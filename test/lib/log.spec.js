@@ -17,12 +17,12 @@ describe('log', function () {
 
             logger[name]();
             expect(console.log).toHaveBeenCalled();
-            expect(console.log.calls.length).toBe(i * 2 + 1);
-            expect(console.log.mostRecentCall.args[0]).toBe();
+            expect(console.log.calls.count()).toBe(i * 2 + 1);
+            expect(console.log.calls.mostRecent().args[0]).toBe();
 
             logger[name]('foo');
-            expect(console.log.calls.length).toBe((i + 1) * 2);
-            expect(console.log.mostRecentCall.args[0])
+            expect(console.log.calls.count()).toBe((i + 1) * 2);
+            expect(console.log.calls.mostRecent().args[0])
                 .toBe('fecs [' + util.fixWidth(name.toUpperCase(), 5) + '] foo');
         });
         console.log = consoleLog;
@@ -47,12 +47,12 @@ describe('log', function () {
 
             logger[name]();
             expect(console.log).toHaveBeenCalled();
-            expect(console.log.calls.length).toBe(i * 2 + 1);
-            expect(console.log.mostRecentCall.args[0]).toBe();
+            expect(console.log.calls.count()).toBe(i * 2 + 1);
+            expect(console.log.calls.mostRecent().args[0]).toBe();
 
             logger[name]('foo');
-            expect(console.log.calls.length).toBe((i + 1) * 2);
-            expect(console.log.mostRecentCall.args[0])
+            expect(console.log.calls.count()).toBe((i + 1) * 2);
+            expect(console.log.calls.mostRecent().args[0])
                 .toBe('fecs ' + fns[i].color(util.fixWidth(name.toUpperCase(), 5)) + ' foo');
         });
         console.log = consoleLog;
