@@ -80,8 +80,10 @@ var streams = {
  * check 处理入口
  *
  * @param {Object} options minimist 处理后的 cli 参数
+ * @param {Function=} done 处理完成后的回调
+ * @return {Transform} 转换流
  */
-exports.run = function (options) {
+exports.run = function (options, done) {
     var name = require('../').leadName;
 
     console.time(name);
@@ -89,19 +91,21 @@ exports.run = function (options) {
     var log = require('../lib/log')(options.color);
     var reporter = require('../lib/reporter').get(log, options);
 
-    streams[options.stream ? 'stdin' : 'files'](options)
-        .pipe(reporter)
-        .once('end', function (success, json) {
-            console.timeEnd(name);
+    done = done || function (success, json) {
+        console.timeEnd(name);
 
-            if (options.format) {
-                var formatter = require('../lib/formatter/');
+        if (options.format) {
+            var formatter = require('../lib/formatter/');
 
-                if (formatter[options.format]) {
-                    formatter[options.format](json);
-                }
+            if (formatter[options.format]) {
+                formatter[options.format](json);
             }
+        }
 
-            process.exit(success ? 0 : 1);
-        });
+        process.exit(success ? 0 : 1);
+    };
+
+    return streams[options.stream ? 'stdin' : 'files'](options)
+        .pipe(reporter)
+        .once('end', done);
 };
