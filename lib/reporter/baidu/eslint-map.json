@@ -61,7 +61,7 @@
     // "no-undef": "070",
     "no-undef-init": "997",
     "no-unused-vars": "997",
-    "no-use-before-define": "072",
+    "no-use-before-define": "070",
 
     "brace-style": "020",
     "comma-spacing": "010",
