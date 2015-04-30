@@ -60,5 +60,7 @@
     "nonstandard": true,
     "prototypejs": false,
     "rhino": false,
-    "wsh": true
+    "wsh": true,
+
+    "maxerr": 1000
 }

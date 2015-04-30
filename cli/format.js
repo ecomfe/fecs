@@ -25,7 +25,7 @@ var streams = {
      * @return {Transform} 转换流
      */
     files: function (options) {
-        var patterns = util.buildPattern(options._, options.types);
+        var patterns = util.buildPattern(options._, options.type);
         var specials = patterns.specials;
         delete patterns.specials;
 
