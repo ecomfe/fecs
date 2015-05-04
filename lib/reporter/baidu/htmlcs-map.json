@@ -21,5 +21,16 @@
         "025": "033"
     },
     "unique-id": "005",
-    "viewport": "035"
+    "viewport": "035",
+
+    "attr-lowercase": "017",
+    "attr-no-duplication": "997",
+    "attr-unsafe-chars": "998",
+    "attr-value-double-quotes": "018",
+    "id-class-ad-disabled": "998",
+    "space-tab-mixed-disabled": "001",
+    "spec-char-escape": "997",
+    "style-disabled": "028",
+    "tag-pair": "012",
+    "tagname-lowercase": "010"
 }
