@@ -187,7 +187,7 @@ describe('util', function () {
             var maps = {};
             util.readConfigs('lib/html', maps);
 
-            expect(maps.htmlhint).not.toBeUndefined();
+            expect(maps.htmlcs).not.toBeUndefined();
         });
 
         it('from lib/reporter/baidu', function () {
@@ -200,7 +200,7 @@ describe('util', function () {
             expect(maps.html).not.toBeUndefined();
             expect(maps.eslintMap).not.toBeUndefined();
             expect(maps.csshintMap).not.toBeUndefined();
-            expect(maps.htmlhintMap).not.toBeUndefined();
+            expect(maps.htmlcsMap).not.toBeUndefined();
         });
 
         it('from no exists path', function () {
