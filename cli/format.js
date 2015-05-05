@@ -29,6 +29,9 @@ var streams = {
         var specials = patterns.specials;
         delete patterns.specials;
 
+        // ignore output path auto
+        patterns.push(('!**/' + options.output + '/**').replace(/\/\.\//, '\/'));
+
         return fs.src(patterns, {cwdbase: true})
             .pipe(ignored(options, specials))
             .pipe(jsformatter.exec(options))
