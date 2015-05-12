@@ -53,7 +53,7 @@
     "jformatter": "~1.0.8",
     "js-beautify": "^1.5.4",
     "jshint": "^2.7.0",
-    "lesslint": "~0.1.4",
+    "lesslint": "~0.1.5",
     "minimatch": "^2.0.1",
     "minimist": "^1.1.0",
     "msee": "^0.1.1",
