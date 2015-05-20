@@ -4,34 +4,6 @@ describe('util', function () {
 
     describe('parseError', function () {
 
-        it('error from csshint', function () {
-            var csshint = require('csshint');
-            var errors = csshint.checkString('\nbody{}');
-
-            expect(errors.length).toEqual(1);
-
-            var error = util.parseError({foo: 'bar'}, errors[0]);
-
-            expect(error).not.toBeNull();
-            expect(error.foo).toBe('bar');
-            expect(error.line).toBe(2);
-            expect(error.column).toBe(5);
-        });
-
-        it('error from eslint', function () {
-            var eslint = require('eslint').linter;
-            var errors = eslint.verify('\nvar a', {rules: {semi: 2}});
-
-            expect(errors.length).toEqual(1);
-
-            var error = util.parseError({foo: 'bar'}, errors[0]);
-
-            expect(error).not.toBeNull();
-            expect(error.foo).toBe('bar');
-            expect(error.line).toBe(2);
-            expect(error.column).toBe(5);
-        });
-
         it('error from exception', function () {
 
             try {
@@ -46,10 +18,49 @@ describe('util', function () {
                 // 行列信息必须对应上面 throw new 的位置
                 //                         ^
                 // 有变化时必须更正以下两个期望值
-                expect(error.line).toBe(38);
+                expect(error.line).toBe(10);
                 expect(error.column).toBe(23);
                 expect(error.message).toMatch(/foo\([^\)]+\)/);
             }
+        });
+
+        it('error from csshint', function (done) {
+            var success = function (result) {
+                var errors = result[0].messages;
+                expect(errors.length).toEqual(1);
+
+                var error = util.parseError({foo: 'bar'}, errors[0]);
+
+                expect(error).not.toBeNull();
+                expect(error.foo).toBe('bar');
+                expect(error.line).toBe(2);
+                expect(error.column).toBe(5);
+                done();
+            };
+            var fail = function (result) {
+                var errors = result[0].messages;
+                var error = util.parseError({}, errors[0]);
+                expect(error.message).toBe('success');
+                done();
+            };
+
+            var csshint = require('csshint');
+            var config = util.getConfig('csshint');
+            csshint.checkString('\nbody{}', 'path/to/file.css', config).then(success, fail);
+        });
+
+        it('error from eslint', function () {
+            var eslint = require('eslint').linter;
+            var errors = eslint.verify('\nvar a', {rules: {semi: 2}});
+
+            expect(errors.length).toEqual(1);
+
+            var error = util.parseError({foo: 'bar'}, errors[0]);
+
+            expect(error).not.toBeNull();
+            expect(error.foo).toBe('bar');
+            expect(error.line).toBe(2);
+            expect(error.column).toBe(5);
         });
 
     });
