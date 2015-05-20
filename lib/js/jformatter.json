@@ -44,6 +44,8 @@
         "autoSemicolon": true,
         "singleQuotes": true,
         "eqeqeq": true,
-        "invalidConstructor": true
+        "invalidConstructor": true,
+        "addCurly": true,
+        "removeDebugger": true
     }
 }
