@@ -32,7 +32,6 @@
             "requireParamDescription": true
         }],
         "fecs-max-statements": [1, 50, {"ignore": "IIFE"}],
-        // "fecs-disallow-multi-var": 2,
         "fecs-key-spacing": [2, {"beforeColon": false, "afterColon": true, "align": "colon"}],
         "fecs-eol-last": [2, true],
         "fecs-camelcase": 2,
