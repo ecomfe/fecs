@@ -10,6 +10,7 @@
     "fecs-no-reserved-keys": "094",
     "fecs-properties-quote": "093,094",
     "fecs-no-forin-array": "099",
+    "fecs-valid-amd-id": "124",
     "fecs-no-eval": "116",
 
     "no-console": "997",

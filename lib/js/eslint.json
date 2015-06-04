@@ -40,6 +40,7 @@
         "fecs-no-reserved-keys": 2,
         "fecs-properties-quote": 2,
         "fecs-no-forin-array": 2,
+        "fecs-valid-amd-id": 2,
         "fecs-no-eval": 2,
 
         "no-console": 1,
