@@ -9,6 +9,7 @@
     "fecs-dot-notation": "096",
     "fecs-no-reserved-keys": "094",
     "fecs-properties-quote": "093,094",
+    "fecs-no-eval": "116",
 
     "no-console": "997",
     "no-constant-condition": "997",
@@ -35,7 +36,7 @@
     "guard-for-in": "097",
     "no-else-return": "077",
     "no-empty-label": "997",
-    "no-eval": "116",
+    "no-eval": "115",
     "no-extend-native": "095",
     "no-extra-bind": "997",
     "no-implied-eval": "997",
