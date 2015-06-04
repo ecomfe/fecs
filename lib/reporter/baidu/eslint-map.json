@@ -12,6 +12,7 @@
     "fecs-no-forin-array": "099",
     "fecs-valid-amd-id": "124",
     "fecs-no-eval": "116",
+    "fecs-no-global-require": "128",
 
     "no-console": "997",
     "no-constant-condition": "997",
