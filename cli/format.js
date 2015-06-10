@@ -29,15 +29,22 @@ var streams = {
         var specials = patterns.specials;
         delete patterns.specials;
 
+        var output = options.output;
+
+        if (options.replace || /^\.\/?/.test(options.output)) {
+            output = './';
+        }
         // ignore output path auto
-        patterns.push(('!**/' + options.output + '/**').replace(/\/\.\//, '\/'));
+        else {
+            patterns.push(('!./' + output + '/**').replace(/\/\.\//, '\/'));
+        }
 
         return fs.src(patterns, {cwdbase: true})
             .pipe(ignored(options, specials))
             .pipe(jsformatter.exec(options))
             .pipe(cssformatter.exec(options))
             .pipe(htmlformatter.exec(options))
-            .pipe(fs.dest(options.output));
+            .pipe(fs.dest(output));
     },
 
     /**
