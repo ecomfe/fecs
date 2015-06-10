@@ -71,7 +71,7 @@
     "brace-style": "020",
     "comma-spacing": "010",
     "comma-style": "017",
-    "new-cap": "029,030",
+    "new-cap": "027,029,030",
     "new-parens": "997",
     "no-array-constructor": "098",
     "no-new-object": "092",
