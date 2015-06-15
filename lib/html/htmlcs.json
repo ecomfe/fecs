@@ -12,6 +12,7 @@
     "img-src": true,
     "img-title": true,
     "img-width-height": true,
+    "indent-char": "space-4",
     "lowercase-class-with-hyphen": true,
     "lowercase-id-with-hyphen": true,
     "rel-stylesheet": true,
@@ -26,9 +27,11 @@
     "attr-unsafe-chars": true,
     "attr-value-double-quotes": true,
     "id-class-ad-disabled": true,
-    "space-tab-mixed-disabled": true,
     "spec-char-escape": true,
     "style-disabled": true,
     "tag-pair": true,
-    "tagname-lowercase": true
+    "tagname-lowercase": true,
+
+    "script-content": true,
+    "style-content": true
 }
