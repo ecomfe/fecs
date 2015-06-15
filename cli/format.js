@@ -31,7 +31,7 @@ var streams = {
 
         var output = options.output;
 
-        if (options.replace || /^\.\/?/.test(options.output)) {
+        if (options.replace || /^\.\/?$/.test(options.output)) {
             output = './';
         }
         // ignore output path auto
