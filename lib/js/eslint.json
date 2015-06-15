@@ -10,6 +10,7 @@
 
     "globals": {
         "baidu": true,
+        "bds": true,
         "T": true,
         "$": true,
         "jQuery": true,
