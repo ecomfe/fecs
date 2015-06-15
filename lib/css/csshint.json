@@ -13,7 +13,7 @@
 
     "no-bom": true,
 
-    "block-indent": true,
+    "block-indent": ["    ", 0],
 
     "require-before-space": ["{"],
 
