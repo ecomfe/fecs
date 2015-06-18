@@ -44,7 +44,7 @@
     "chalk": "^1.0.0",
     "cssbeautify": "^0.3.1",
     "csscomb": "^3.1.7",
-    "csshint": "~0.1.6",
+    "csshint": "~0.1.7",
     "doctrine": "^0.6.4",
     "esformatter": "~0.7.0",
     "eslint": "~0.22.1",
