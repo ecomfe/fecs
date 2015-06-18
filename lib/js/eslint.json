@@ -107,7 +107,7 @@
         "brace-style": [1, "stroustrup", {}],
         "comma-spacing": [2, {"before": false, "after": true}],
         "comma-style": [2, "last"],
-        "new-cap": [2, {"capIsNewExceptions": ["T"]}],
+        "new-cap": [2, {"capIsNewExceptions": ["T", "AddToFavoritesBar"]}],
         "new-parens": 1,
         "no-array-constructor": 2,
         "no-new-object": 2,
