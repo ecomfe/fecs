@@ -45,7 +45,7 @@
     "cssbeautify": "^0.3.1",
     "csscomb": "^3.1.7",
     "csshint": "~0.1.7",
-    "doctrine": "^0.6.4",
+    "doctrine2": "^0.6.5",
     "esformatter": "~0.7.0",
     "eslint": "~0.23.0",
     "fixmyjs": "^1.0.3",
