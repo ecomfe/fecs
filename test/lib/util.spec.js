@@ -1,3 +1,6 @@
+var path = require('path');
+
+var mock = require('mock-fs');
 var util = require('../../lib/util');
 
 describe('util', function () {
@@ -18,7 +21,7 @@ describe('util', function () {
                 // 行列信息必须对应上面 throw new 的位置
                 //                         ^
                 // 有变化时必须更正以下两个期望值
-                expect(error.line).toBe(10);
+                expect(error.line).toBe(13);
                 expect(error.column).toBe(23);
                 expect(error.message).toMatch(/foo\([^\)]+\)/);
             }
@@ -37,6 +40,7 @@ describe('util', function () {
                 expect(error.column).toBe(5);
                 done();
             };
+
             var fail = function (result) {
                 var errors = result[0].messages;
                 var error = util.parseError({}, errors[0]);
@@ -46,6 +50,7 @@ describe('util', function () {
 
             var csshint = require('csshint');
             var config = util.getConfig('csshint');
+
             csshint.checkString('\nbody{}', 'path/to/file.css', config).then(success, fail);
         });
 
@@ -75,16 +80,52 @@ describe('util', function () {
         });
 
         it('current filepath', function () {
-            var config = util.getConfig('eslint', __dirname);
+            var config = util.getConfig('eslint', __dirname, null, true);
 
             expect(config.rules).toBeDefined();
             expect(config.rules['fecs-valid-jsdoc']).toEqual(0);
         });
 
-        it('not exists path', function () {
+        it('not exists path and key', function () {
             var config = util.getConfig('foo-bar', 'foo/bar');
 
             expect(config).toEqual({});
+        });
+
+        it('use package.json when no .fecsrc', function () {
+            mock({
+                'package.json': '{"fecs":{"test": {"foo": "bar"}}}'
+            });
+
+            var config = util.getConfig('test', './test', null, true);
+            expect(config.foo).toBe('bar');
+            mock.restore();
+        });
+
+        it('use package.json when no .fecsrc', function () {
+            mock({
+                'package.json': '{}'
+            });
+
+            var config = util.getConfig('test', './test', {}, true);
+            expect(config.foo).toBeUndefined();
+            mock.restore();
+        });
+
+        it('no lookup', function () {
+            var config = util.config;
+
+            expect(util.getConfig('eslint', false, {})).toEqual(config.eslint);
+            expect(util.getConfig('esformatter', false, {})).toEqual(config.esformatter);
+            expect(util.getConfig('jformatter', false, {})).toEqual(config.jformatter);
+            expect(util.getConfig('jshint', false, {})).toEqual(config.jshint);
+            expect(util.getConfig('lesslint', false, {})).toEqual(config.lesslint);
+            expect(util.getConfig('htmlcs', false, {})).toEqual(config.htmlcs);
+            expect(util.getConfig('csscomb', false, {})).toEqual(config.csscomb);
+            expect(util.getConfig('csshint', false, {})).toEqual(config.csshint);
+
+            expect(util.getConfig('unknown', false, {})).toEqual({});
+
         });
 
     });
@@ -119,6 +160,41 @@ describe('util', function () {
             expect(patterns[0]).toEqual('cli/**/*.js');
             expect(patterns[1]).toEqual('lib/**/*.js');
             expect(patterns[2]).toEqual('index.js');
+        });
+
+        it('no specify dirs and no .fecsrc, use package.json', function () {
+            mock({
+                'package.json': '{"fecs": {"files": ["foo"]}}'
+            });
+
+            var patterns = util.buildPattern();
+
+            expect(patterns.length).toEqual(2);
+            expect(patterns[0]).toEqual('foo');
+
+            mock.restore();
+        });
+
+        it('no specify dirs and no .fecsrc and package.json', function () {
+            mock({});
+
+            var patterns = util.buildPattern();
+
+            expect(patterns.length).toEqual(2);
+            expect(patterns[0]).toEqual('./**/*.{js,css,less,html,htm}');
+
+            mock.restore();
+        });
+
+        it('invalid files', function () {
+            mock({
+                'test/foo.bar': ''
+            });
+
+            var patterns = util.buildPattern(['test/foo.bar'], 'js');
+            expect(patterns.length).toEqual(0);
+
+            mock.restore();
         });
 
     });
@@ -258,6 +334,16 @@ describe('util', function () {
 
         expect(foobaz.foo).toBe(baz.foo);
         expect(foobaz.baz).toBe(baz.baz);
+    });
+
+    it('extend should ignore property from prototype', function () {
+        var foo = {foo: 1};
+        var bar = Object.create({bar: 1});
+
+        var foobar = util.extend(foo, bar);
+
+        expect(foobar.foo).toBe(foo.foo);
+        expect(foobar.bar).toBeUndefined();
     });
 
     it('mix', function () {
