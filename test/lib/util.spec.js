@@ -1,5 +1,3 @@
-var path = require('path');
-
 var mock = require('mock-fs');
 var util = require('../../lib/util');
 
@@ -21,7 +19,7 @@ describe('util', function () {
                 // 行列信息必须对应上面 throw new 的位置
                 //                         ^
                 // 有变化时必须更正以下两个期望值
-                expect(error.line).toBe(13);
+                expect(error.line).toBe(11);
                 expect(error.column).toBe(23);
                 expect(error.message).toMatch(/foo\([^\)]+\)/);
             }
