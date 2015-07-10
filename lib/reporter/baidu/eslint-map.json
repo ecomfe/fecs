@@ -86,6 +86,7 @@
     "operator-linebreak": "016",
     "quotes": "089",
     "semi": "021",
+    "semi-spacing": "010",
     "space-after-keywords": "007",
     "space-before-function-parentheses": "007,009",
     "space-before-blocks": "006",
