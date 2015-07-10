@@ -52,10 +52,10 @@
 
         "no-console": 1,
         "no-constant-condition": 1,
-        "no-comma-dangle": 2,
+        "comma-dangle": 2,
         "no-debugger": 2,
         "no-dupe-keys": 1,
-        "no-empty-class": 2,
+        "no-empty-character-class": 2,
         "no-ex-assign": 2,
         "no-extra-boolean-cast": 1,
         "no-extra-semi": 2,

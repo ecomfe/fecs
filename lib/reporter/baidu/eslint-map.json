@@ -16,10 +16,10 @@
 
     "no-console": "997",
     "no-constant-condition": "997",
-    "no-comma-dangle": "998",
+    "comma-dangle": "998",
     "no-debugger": "998",
     "no-dupe-keys": "997",
-    "no-empty-class": "998",
+    "no-empty-character-class": "998",
     "no-ex-assign": "998",
     "no-extra-boolean-cast": "997",
     "no-extra-semi": "023",
