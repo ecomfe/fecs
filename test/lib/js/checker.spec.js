@@ -99,5 +99,15 @@ describe('checker', function () {
 
     });
 
+    it('check content with syntax error and catch', function () {
+
+        var options = cli.getOptions([]);
+
+        var errors = checker.check('var foo = [];\nfoo.push(<a href="test">test</a>);', 'path/to/file.js', options);
+        expect(errors.length).toBe(1);
+        expect(errors[0].code).toBe('998');
+
+    });
+
 
 });
