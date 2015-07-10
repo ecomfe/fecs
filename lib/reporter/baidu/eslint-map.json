@@ -96,7 +96,7 @@
     "space-in-parens": "011",
     "space-return-throw-case": "997",
     "space-unary-ops": "997",
-    "spaced-line-comment": "038",
+    "spaced-comment": "038",
     "max-nested-callbacks": "997",
 
     "max-depth": "997",

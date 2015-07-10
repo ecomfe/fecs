@@ -132,7 +132,7 @@
         "space-in-parens": [2, "never"],
         "space-return-throw-case": 1,
         "space-unary-ops": 1,
-        "spaced-line-comment": [2, "always", {"exceptions": ["-", "+", ""]}],
+        "spaced-comment": [2, "always", {"exceptions": ["-", "+", ""]}],
         "max-nested-callbacks": [1, 3],
 
         "max-depth": [1, 6],
