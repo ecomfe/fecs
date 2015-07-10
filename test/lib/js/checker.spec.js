@@ -99,4 +99,27 @@ describe('checker', function () {
 
     });
 
+
+    it('error code should be 998 when throw error in eslint.verify', function () {
+
+        var options = cli.getOptions([]);
+
+        var max = 2;
+        Object.defineProperty(options, 'maxerr', {
+            get: function () {
+                max--;
+                if (!max) {
+                    throw new Error('code 998');
+                }
+                return max;
+            }
+        });
+
+        var errors = checker.check('var foo =', 'path/to/file.js', options);
+
+        expect(errors.length).toBe(1);
+        expect(errors[0].code).toBe('998');
+
+    });
+
 });
