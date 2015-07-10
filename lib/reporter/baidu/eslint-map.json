@@ -61,6 +61,8 @@
     "wrap-iife": "024",
 
     "no-delete-var": "119",
+    "no-dupe-args": "999",
+    "no-duplicate-case": "999",
     "no-label-var": "997",
     "no-shadow-restricted-names": "095",
     "no-undef": "070,997",
