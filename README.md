@@ -64,6 +64,7 @@ console.log(options.command); // 'check'
 function done(success, json) {
     // blablabla
 }
+
 fecs.check(options, done);
 ```
 
