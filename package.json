@@ -47,7 +47,7 @@
     "csshint": "~0.1.7",
     "doctrine2": "^0.6.5",
     "esformatter": "~0.7.0",
-    "eslint": "~0.24.0",
+    "eslint": "~0.24.1",
     "fixmyjs": "^1.0.3",
     "htmlcs": "~0.0.12",
     "jformatter": "~1.0.9",
