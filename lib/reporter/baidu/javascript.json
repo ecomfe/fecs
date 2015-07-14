@@ -509,7 +509,7 @@
     },
     "128": {
         "level": 2,
-        "desc": "[强制] 模块定义中只允许使用 `local require`，不允许使用 `global require`。"
+        "desc": "[强制] 模块定义中只允许使用 `local require`，不允许使用 `global require`（AMD factory 中漏写了 `require` 参数所致）。"
     },
     "129": {
         "level": 2,
