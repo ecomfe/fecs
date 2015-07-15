@@ -27,6 +27,67 @@ FECS 是基于 Node.js 的前端代码风格工具。
 
 更多参数见 wiki: [CLI](https://github.com/ecomfe/fecs/wiki/CLI)
 
+### API
+
+#### fecs.leadName
+
+设置或获取控制台输出信息前的名称，默认值为 `fecs`。
+
+```javascript
+var fecs = require('fecs');
+fecs.leadName = 'edp';
+...
+```
+
+#### fecs.getOptions(Array argv)
+
+获取经 `minimist` 解释后的命令行参数对象，可用于 `fecs.check` 和 `fecs.format` 方法。
+
+```javascript
+var options = fecs.getOptions(process.argv.slice(2));
+
+console.log(options.command); // 'check'
+...
+```
+
+#### fecs.check(Object options[, Function done])
+
+检查文件或输入流的代码规范。
+
+```javascript
+/**
+ * callback after check finish
+ *
+ * @param {boolean} success true as all files ok, or false.
+ * @param {Object} json data for check result.
+ */
+function done(success, json) {
+    // blablabla
+}
+
+fecs.check(options, done);
+```
+
+#### fecs.format(Object options)
+
+格式化、修复文件或输入流的代码。
+
+```javascript
+fecs.check(options);
+```
+
+
+### 工具支持
+
+ - [x] [VIM](https://github.com/hushicai/fecs.vim)
+ - [x] [WebStorm](https://github.com/leeight/Baidu-FE-Code-Style#webstorm)
+ - [ ] Eclipse
+ - [x] Sublime Text 2/3 [Baidu FE Code Style](https://github.com/leeight/Baidu-FE-Code-Style) [Sublime Helper](https://github.com/baidu-lbs-opn-fe/Sublime-fecsHelper)
+ - [x] [Visual Studio Code](https://github.com/21paradox/fecs-visual-studio-code)
+
+ - [x] [Git Hook](https://github.com/cxtom/fecs-git-hooks)
+
+
 ### 常见问题
 
 - <https://github.com/ecomfe/fecs/wiki/FAQ>
