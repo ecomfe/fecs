@@ -49,6 +49,7 @@
         "fecs-valid-amd-id": 2,
         "fecs-no-eval": 2,
         "fecs-no-global-require": 2,
+        "fecs-semi-spacing": [2, {"before": false, "after": true}],
 
         "no-console": 1,
         "no-constant-condition": 1,
@@ -122,7 +123,6 @@
         "operator-linebreak": [2, "before"],
         "quotes": [2, "single"],
         "semi": [2, "always"],
-        "semi-spacing": [2, {"before": false, "after": true}],
         "space-after-keywords": [2, "always"],
         "space-before-function-parentheses": [2, {"anonymous": "always", "named": "never"}],
         "space-before-blocks": [2, "always"],

@@ -13,6 +13,7 @@
     "fecs-valid-amd-id": "124",
     "fecs-no-eval": "116",
     "fecs-no-global-require": "128",
+    "fecs-semi-spacing": "010",
 
     "no-console": "997",
     "no-constant-condition": "997",
@@ -86,7 +87,6 @@
     "operator-linebreak": "016",
     "quotes": "089",
     "semi": "021",
-    "semi-spacing": "010",
     "space-after-keywords": "007",
     "space-before-function-parentheses": "007,009",
     "space-before-blocks": "006",
