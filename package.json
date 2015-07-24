@@ -1,6 +1,6 @@
 {
   "name": "fecs",
-  "version": "0.4.2-beta.1",
+  "version": "0.4.2-beta.2",
   "description": "Front End Code Style Suite",
   "main": "index.js",
   "scripts": {
@@ -53,6 +53,7 @@
     "jformatter": "~1.0.9",
     "jshint": "^2.8.0",
     "lesslint": "~0.1.6",
+    "manis": "^0.1.0",
     "minimatch": "^2.0.8",
     "minimist": "^1.1.0",
     "msee": "^0.1.1",
