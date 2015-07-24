@@ -200,21 +200,21 @@ describe('util', function () {
     describe('parseJSON', function () {
 
         it('invalid file', function () {
-            var json = util.parseJSON('foo.json');
+            var json = util.parseJSON('');
 
             expect(json).toEqual({});
         });
 
 
         it('invalid json', function () {
-            var json = util.parseJSON('.npmignore');
+            var json = util.parseJSON('{a}');
 
             expect(json).toEqual({});
         });
 
         it('invalid json and throw error', function () {
             var read = function () {
-                util.parseJSON('.npmignore');
+                util.parseJSON('');
             };
 
             process.env.DEBUG = true;
@@ -225,22 +225,34 @@ describe('util', function () {
         });
 
         it('json with no comment', function () {
-            var json = util.parseJSON('test/fixture/json-with-nocomment.json');
+            var json = util.parseJSON('{"foo": false, "bar": true}');
 
             expect(json.foo).toBeFalsy();
             expect(json.bar).toBeTruthy();
         });
 
         it('json with comments', function () {
-            var json = util.parseJSON('test/fixture/json-with-comments.json');
+            var json = util.parseJSON(''
+                + '{\n'
+                +   '// for foo\n'
+                +   '"foo": false, // foo too\r\n'
+                +   '"bar": true /* for bar */\n'
+                + '}'
+            );
 
             expect(json.foo).toBeFalsy();
             expect(json.bar).toBeTruthy();
         });
 
-        it('comments have no side effect', function () {
-            var nocommentJSON = util.parseJSON('test/fixture/json-with-nocomment.json');
-            var commentJSON = util.parseJSON('test/fixture/json-with-comments.json');
+        it('comments have no side effects', function () {
+            var nocommentJSON = util.parseJSON('{"foo": false, "bar": true}');
+            var commentJSON = util.parseJSON(''
+                + '{\n'
+                +   '// for foo\r\n'
+                +   '"foo": false, // foo too\n'
+                +   '"bar": true /* for bar */\n'
+                + '}'
+            );
 
             expect(nocommentJSON).toEqual(commentJSON);
         });
