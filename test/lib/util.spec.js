@@ -356,6 +356,23 @@ describe('util', function () {
         expect(foobaz.baz).toBe(baz.baz);
     });
 
+    it('colorize', function () {
+        var chalk = require('chalk');
+
+        var foo = 'foo';
+        var colors = ['black', 'red', 'green', 'yellow', 'blue', 'magenta', 'cyan', 'white', 'gray'];
+
+        var allMatch = colors.every(function (color) {
+            return util.colorize(foo, color) === chalk[color](foo);
+        });
+
+        expect(allMatch).toBeTruthy();
+        expect(util.colorize(foo)).toBe(foo);
+        expect(util.colorize(foo, 'invalidColor')).toBe(foo);
+
+
+    });
+
     describe('buildRegExp', function () {
 
         it('from RegExp', function () {
