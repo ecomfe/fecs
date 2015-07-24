@@ -42,7 +42,7 @@
         "fecs-eol-last": [2, true],
         "fecs-camelcase": 2,
         "fecs-space-infix-ops": 2,
-        "fecs-dot-notation": [2, {"allowKeywords": true}],
+        "fecs-dot-notation": [2, {"allowKeywords": true, "allowPattern": "^catch$"}],
         "fecs-no-reserved-keys": 2,
         "fecs-properties-quote": 2,
         "fecs-no-forin-array": 2,
