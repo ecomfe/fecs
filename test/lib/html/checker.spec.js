@@ -93,10 +93,23 @@ describe('checker', function () {
         var options = cli.getOptions([]);
 
         checker
-            .check('<script>var foo = 1;</script>', 'path/to/file.html', options)
+            .check('<script>\nvar foo = 1;</script>', 'path/to/file.html', options)
             .then(function (errors) {
                 expect(errors.length).toBe(1);
                 expect(errors[0].rule).toBe('no-unused-vars');
+                done();
+            });
+    });
+
+    it('check js content without indent', function (done) {
+
+        var options = cli.getOptions([]);
+
+        checker
+            .check('<script>alert(1);</script>', 'path/to/file.html', options)
+            .then(function (errors) {
+                expect(errors.length).toBe(1);
+                expect(errors[0].rule).toBe('fecs-indent');
                 done();
             });
     });
@@ -106,7 +119,7 @@ describe('checker', function () {
         var options = cli.getOptions([]);
 
         checker
-            .check('<script>require([\'jquery\'], function (jquery) {\n});</script>', 'path/to/file.html', options)
+            .check('<script>\nrequire([\'jquery\'], function (jquery) {\n});</script>', 'path/to/file.html', options)
             .then(function (errors) {
                 expect(errors.length).toBe(0);
                 done();
@@ -127,7 +140,7 @@ describe('checker', function () {
         var options = cli.getOptions([]);
 
         checker
-            .check('<style>\nbody{};</style>', 'path/to/file.html', options)
+            .check('<style>\nbody{}</style>', 'path/to/file.html', options)
             .then(function (errors) {
                 expect(errors.length).toBe(3);
                 expect(errors[0].rule).toBe('css-in-head');
@@ -137,12 +150,27 @@ describe('checker', function () {
             });
     });
 
+    it('check css content without indent', function (done) {
+
+        var options = cli.getOptions([]);
+
+        checker
+            .check('<style>body {}</style>', 'path/to/file.html', options)
+            .then(function (errors) {
+                expect(errors.length).toBe(3);
+                expect(errors[0].rule).toBe('css-in-head');
+                expect(errors[1].rule).toBe('style-disabled');
+                expect(errors[2].rule).toBe('block-indent');
+                done();
+            });
+    });
+
     it('check css content with no error', function (done) {
 
         var options = cli.getOptions([]);
 
         checker
-            .check('<style>\nbody {\n};</style>', 'path/to/file.html', options)
+            .check('<style>\nbody {\n}</style>', 'path/to/file.html', options)
             .then(function (errors) {
                 expect(errors.length).toBe(2);
                 expect(errors[0].rule).toBe('css-in-head');

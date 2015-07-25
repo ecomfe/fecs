@@ -49,7 +49,7 @@
     "esformatter": "~0.7.0",
     "eslint": "~0.24.1",
     "fixmyjs": "^1.0.3",
-    "htmlcs": "~0.0.12",
+    "htmlcs": "~0.1.0",
     "jformatter": "~1.0.9",
     "jshint": "^2.8.0",
     "lesslint": "~0.1.6",
