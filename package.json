@@ -1,6 +1,6 @@
 {
   "name": "fecs",
-  "version": "0.4.2-beta.3",
+  "version": "0.4.2-beta.4",
   "description": "Front End Code Style Suite",
   "main": "index.js",
   "scripts": {
@@ -40,7 +40,7 @@
   },
   "homepage": "https://github.com/ecomfe/fecs",
   "dependencies": {
-    "babel-eslint": "^3.1.15",
+    "babel-eslint": "^4.0.5",
     "chalk": "^1.0.0",
     "cssbeautify": "^0.3.1",
     "csscomb": "^3.1.7",
