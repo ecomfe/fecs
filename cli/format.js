@@ -95,13 +95,16 @@ var streams = {
  * format 处理入口
  *
  * @param {Object} options minimist 处理后的 cli 参数
+ * @param {Function=} done 处理完成后的回调
  */
-exports.run = function (options) {
+exports.run = function (options, done) {
     var name = require('../').leadName;
     console.time(name);
 
+    done = done || function () {
+        console.timeEnd(name);
+    };
+
     streams[options.stream ? 'stdin' : 'files'](options)
-        .once('end', function () {
-            console.timeEnd(name);
-        });
+        .once('end', done);
 };
