@@ -96,6 +96,7 @@ var streams = {
  *
  * @param {Object} options minimist 处理后的 cli 参数
  * @param {Function=} done 处理完成后的回调
+ * @return {Transform} 转换流
  */
 exports.run = function (options, done) {
     var name = require('../').leadName;
@@ -105,6 +106,6 @@ exports.run = function (options, done) {
         console.timeEnd(name);
     };
 
-    streams[options.stream ? 'stdin' : 'files'](options)
+    return streams[options.stream ? 'stdin' : 'files'](options)
         .once('end', done);
 };
