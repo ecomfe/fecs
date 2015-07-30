@@ -39,12 +39,12 @@ var streams = {
             patterns.push(('!./' + output + '/**').replace(/\/\.\//, '\/'));
         }
 
-        return fs.src(patterns, {cwdbase: true})
-            .pipe(ignored(options, specials))
-            .pipe(jsformatter.exec(options))
-            .pipe(cssformatter.exec(options))
-            .pipe(htmlformatter.exec(options))
-            .pipe(fs.dest(output));
+        return this.format(
+            fs
+                .src(patterns, {cwdbase: true})
+                .pipe(ignored(options, specials)),
+            options
+        ).pipe(fs.dest(options.output));
     },
 
     /**
@@ -88,6 +88,38 @@ var streams = {
                     cb(null, file);
                 }
             ));
+    },
+
+    /**
+     * 依次格式化流
+     *
+     * @param {Stream} stream 文件流
+     * @param {Object} options minimist 处理后的 cli 参数
+     * @return {Transform} 转换流
+     */
+    format: function (stream, options) {
+        return stream
+            .pipe(jsformatter.exec(options))
+            .pipe(cssformatter.exec(options))
+            .pipe(htmlformatter.exec(options));
+    },
+
+
+    /**
+     * 根据配置的 options.stream 获取格式化后的流
+     *
+     * @param {Object} options minimist 处理后的 cli 参数
+     * @return {Transform} 转换流
+     */
+    get: function (options) {
+        var stream = options.stream;
+        options.stream = !!stream;
+
+        if (typeof stream === 'boolean') {
+            return this[stream ? 'stdin' : 'files'](options);
+        }
+
+        return this.format(stream, options);
     }
 };
 
@@ -102,7 +134,7 @@ exports.run = function (options, done) {
     var name = require('../').leadName;
     console.time(name);
 
-    return streams[options.stream ? 'stdin' : 'files'](options)
+    return streams.get(options)
         .once('end', function () {
             console.timeEnd(name);
             done && done();
