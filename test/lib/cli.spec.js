@@ -100,4 +100,11 @@ describe('cli', function () {
         check.run = run;
         console.log = log;
     });
+
+    it('default options', function () {
+
+        var options = cli.getOptions([]);
+
+        expect(options).toEqual(cli.getOptions());
+    });
 });
