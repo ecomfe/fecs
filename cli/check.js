@@ -30,12 +30,12 @@ var streams = {
         var specials = patterns.specials;
         delete patterns.specials;
 
-        return fs.src(patterns, {cwdbase: true})
-            .pipe(ignored(options, specials))
-            .pipe(jschecker.exec(options))
-            .pipe(csschecker.exec(options))
-            .pipe(lesschecker.exec(options))
-            .pipe(htmlchecker.exec(options));
+        return this.check(
+            fs
+                .src(patterns, {cwdbase: true})
+                .pipe(ignored(options, specials)),
+            options
+        );
     },
 
     /**
@@ -73,6 +73,39 @@ var streams = {
                 }
             ))
             .pipe(handler());
+    },
+
+    /**
+     * 依次检查流
+     *
+     * @param {Stream} stream 文件流
+     * @param {Object} options minimist 处理后的 cli 参数
+     * @return {Transform} 转换流
+     */
+    check: function (stream, options) {
+        return stream
+            .pipe(jschecker.exec(options))
+            .pipe(csschecker.exec(options))
+            .pipe(lesschecker.exec(options))
+            .pipe(htmlchecker.exec(options));
+    },
+
+
+    /**
+     * 根据配置的 options.stream 获取检查后的流
+     *
+     * @param {Object} options minimist 处理后的 cli 参数
+     * @return {Transform} 转换流
+     */
+    get: function (options) {
+        var stream = options.stream;
+        options.stream = !!stream;
+
+        if (typeof stream === 'boolean') {
+            return this[stream ? 'stdin' : 'files'](options);
+        }
+
+        return this.check(stream, options);
     }
 };
 
@@ -105,7 +138,7 @@ exports.run = function (options, done) {
         process.exit(success ? 0 : 1);
     };
 
-    return streams[options.stream ? 'stdin' : 'files'](options)
+    return streams.get(options)
         .pipe(reporter)
         .once('end', done);
 };
