@@ -45,7 +45,6 @@ var streams = {
      * @return {Transform} 转换流
      */
     stdin: function (options) {
-        var through = require('through2');
         var File = require('vinyl');
 
         var type = (options.type || 'js').split(',')[0];
@@ -64,11 +63,15 @@ var streams = {
             }
         };
 
-        var handler = handlers[type] || through;
+        var handler = handlers[type];
+
+        if (!handler) {
+            return process.stdin;
+        }
 
         return process.stdin
             .pipe(
-                through.obj(function (chunk, enc, cb) {
+                util.through(options.max, function (chunk, enc, cb) {
                     cb(null, new File({contents: chunk, path: 'current-file.' + type, stat: {size: chunk.length}}));
                 }
             ))
@@ -138,7 +141,8 @@ exports.run = function (options, done) {
         process.exit(success ? 0 : 1);
     };
 
-    return streams.get(options)
+    return streams
+        .get(options)
         .pipe(reporter)
-        .once('end', done);
+        .once('done', done);
 };
