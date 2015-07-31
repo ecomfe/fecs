@@ -92,7 +92,7 @@ describe('checker', function () {
 
         fs.src('test/**')
             .pipe(checker.exec({}))
-            .on('end', function () {
+            .on('finish', function () {
                 expect(checker.register).toHaveBeenCalled();
                 checker.register = register;
                 done();
@@ -109,7 +109,7 @@ describe('checker', function () {
 
         fs.src('test/**')
             .pipe(checker.exec({}))
-            .on('end', done);
+            .on('finish', done);
 
     });
 

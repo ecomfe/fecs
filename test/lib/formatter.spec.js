@@ -92,7 +92,7 @@ describe('formatter', function () {
 
         fs.src('test/**')
             .pipe(formatter.exec({}))
-            .on('end', function () {
+            .on('finish', function () {
                 expect(formatter.register).toHaveBeenCalled();
                 formatter.register = register;
                 done();
@@ -109,7 +109,7 @@ describe('formatter', function () {
 
         fs.src('test/**')
             .pipe(formatter.exec({}))
-            .on('end', done);
+            .on('finish', done);
 
     });
 
