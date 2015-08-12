@@ -3,7 +3,7 @@
  * @author chris<wfsr@foxmail.com>
  */
 
-var through = require('through2');
+var util = require('../lib/util');
 
 /**
  * 快速构建的流
@@ -13,9 +13,8 @@ var through = require('through2');
  * @return {module:through2} through2 的转换流
  */
 exports.pass = function (transform, flush) {
-    return through(
-        {objectMode: true},
-        function (file, enc, cb) {
+    return util.mapStream(
+        function (file, cb) {
             transform(file);
             cb(null, file);
         },

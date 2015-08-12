@@ -14,7 +14,6 @@ describe('ignored', function () {
         var specials = ['lib/c.spec.js'];
 
         var checkSpecials = function (file) {
-
             var found = specials.some(function (special) {
                 var filepath = file.relative.replace('\\', '/');
                 return filepath.indexOf(special) > -1;

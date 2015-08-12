@@ -71,10 +71,10 @@ var streams = {
 
         return process.stdin
             .pipe(
-                util.through(options.max, function (chunk, enc, cb) {
+                util.mapStream(function (chunk, cb) {
                     cb(null, new File({contents: chunk, path: 'current-file.' + type, stat: {size: chunk.length}}));
-                }
-            ))
+                })
+            )
             .pipe(handler());
     },
 
