@@ -44,7 +44,7 @@ var streams = {
                 .src(patterns, {cwdbase: true})
                 .pipe(ignored(options, specials)),
             options
-        ).pipe(fs.dest(options.output));
+        ).pipe(fs.dest(output));
     },
 
     /**
