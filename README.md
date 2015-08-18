@@ -81,9 +81,12 @@ fecs.check(options);
 
  - [x] [VIM](https://github.com/hushicai/fecs.vim)
  - [x] [WebStorm](https://github.com/leeight/Baidu-FE-Code-Style#webstorm)
- - [ ] Eclipse
+ - [x] [Eclipse](https://github.com/ecomfe/fecs-eclipse)
  - [x] Sublime Text 2/3 [Baidu FE Code Style](https://github.com/leeight/Baidu-FE-Code-Style) [Sublime Helper](https://github.com/baidu-lbs-opn-fe/Sublime-fecsHelper)
  - [x] [Visual Studio Code](https://github.com/21paradox/fecs-visual-studio-code)
+
+ - [x] [Grunt](https://github.com/ecomfe/fecs-grunt)
+ - [x] [Gulp](https://github.com/ecomfe/fecs-gulp)
 
  - [x] [Git Hook](https://github.com/cxtom/fecs-git-hooks)
 
