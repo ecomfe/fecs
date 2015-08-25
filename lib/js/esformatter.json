@@ -67,7 +67,7 @@
       "ElseStatementOpeningBrace": 0,
       "ElseStatementClosingBrace": ">=1",
       "LogicalExpression": -1,
-      "ObjectExpressionClosingBrace": ">=2",
+      "ObjectExpressionClosingBrace": ">=1",
       "Property": ">=1",
       "ReturnStatement": ">=1",
       "SwitchOpeningBrace": 0,
