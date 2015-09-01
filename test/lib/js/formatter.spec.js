@@ -45,7 +45,7 @@ describe('formatter', function () {
 
     it('format', function () {
 
-        var options = cli.getOptions([]);
+        var options = cli.getOptions();
 
         var formatted = formatter.format('var foo=bar', 'path/to/file.js', options);
 
@@ -55,7 +55,7 @@ describe('formatter', function () {
 
     it('format - low mode', function () {
 
-        var options = cli.getOptions([]);
+        var options = cli.getOptions();
         options.safe = 'low';
 
         var formatted = formatter.format('var foo=bar', 'path/to/file.js', options);
@@ -66,19 +66,19 @@ describe('formatter', function () {
 
     it('format - high mode', function () {
 
-        var options = cli.getOptions([]);
+        var options = cli.getOptions();
         options.safe = 'high';
 
         var formatted = formatter.format('var foo=bar', 'path/to/file.js', options);
 
-        expect(formatted).toEqual('var foo=bar;\n');
+        expect(formatted).toEqual('var foo=bar;');
 
     });
 
 
     it('syntax error', function () {
 
-        var options = cli.getOptions([]);
+        var options = cli.getOptions();
 
         var formatted = formatter.format('var foo=', 'path/to/file.js', options);
 
@@ -89,7 +89,7 @@ describe('formatter', function () {
 
     it('syntax error should be throw in debug', function () {
 
-        var options = cli.getOptions([]);
+        var options = cli.getOptions();
         options.debug = true;
 
         var format = function () {

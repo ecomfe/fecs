@@ -70,6 +70,7 @@
       "ElseStatement": ">=1",
       "ElseStatementOpeningBrace": 0,
       "ElseStatementClosingBrace": 1,
+      "EndOfFile" : 1,
       "LogicalExpression": -1,
       "ObjectExpressionClosingBrace": ">=1",
       "Property": ">=1",
