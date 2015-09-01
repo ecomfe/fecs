@@ -1,6 +1,10 @@
 {
+  "preset" : "default",
+
   "indent": {
     "value": "    ",
+    "alignComments": false,
+
     "ArrayExpression": 1,
     "BinaryExpression": 0,
     "ChainedMemberExpression": 0,
@@ -56,16 +60,16 @@
       "FunctionExpressionClosingBrace": ">=1",
       "FunctionDeclaration": ">=1",
       "FunctionDeclarationOpeningBrace": 0,
-      "FunctionDeclarationClosingBrace": ">=1",
+      "FunctionDeclarationClosingBrace": 1,
       "IfStatement": ">=1",
       "IfStatementOpeningBrace": 0,
-      "IfStatementClosingBrace": ">=1",
+      "IfStatementClosingBrace": 1,
       "ElseIfStatement": ">=1",
       "ElseIfStatementOpeningBrace": 0,
-      "ElseIfStatementClosingBrace": ">=1",
+      "ElseIfStatementClosingBrace": 1,
       "ElseStatement": ">=1",
       "ElseStatementOpeningBrace": 0,
-      "ElseStatementClosingBrace": ">=1",
+      "ElseStatementClosingBrace": 1,
       "LogicalExpression": -1,
       "ObjectExpressionClosingBrace": ">=1",
       "Property": ">=1",
@@ -118,7 +122,7 @@
       "FunctionDeclarationClosingBrace": ">=1",
       "IfStatement": ">=1",
       "IfStatementOpeningBrace": ">=1",
-      "IfStatementClosingBrace": ">=1",
+      "IfStatementClosingBrace": ">=2",
       "ElseIfStatement": ">=1",
       "ElseIfStatementOpeningBrace": ">=1",
       "ElseIfStatementClosingBrace": ">=1",
@@ -145,7 +149,7 @@
 
   "whiteSpace": {
     "value": " ",
-    "removeTrailing": 1,
+    "removeTrailing": ">=1",
 
     "before": {
       "ArrayExpressionOpening": 0,
