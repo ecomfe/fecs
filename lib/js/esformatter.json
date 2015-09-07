@@ -32,7 +32,7 @@
     "before": {
       "AssignmentExpression": ">=1",
       "AssignmentOperator": 0,
-      "BlockStatement": 0,
+      "BlockStatement": "<=1",
       "BlockComment": ">=2",
       "CallExpression": -1,
       "ConditionalExpression": ">=1",
