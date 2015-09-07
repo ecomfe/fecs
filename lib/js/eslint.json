@@ -30,6 +30,8 @@
         "fecs-indent":  [2, "spaces", 4, 0],
         "fecs-valid-jsdoc": [2, {
             "prefer": {
+                "arg": "param",
+                "argument": "param",
                 "returns": "return",
                 "fileoverview": "file"
             },
