@@ -13,7 +13,6 @@
     "fecs-valid-amd-id": "124",
     "fecs-no-eval": "116",
     "fecs-no-global-require": "128",
-    "fecs-semi-spacing": "010",
     "fecs-jsx-var": "070",
 
     "no-console": "997",
@@ -80,7 +79,6 @@
     "no-array-constructor": "098",
     "no-new-object": "092",
     "no-spaced-func": "009",
-    "no-space-before-semi": "010",
     "no-trailing-spaces": "013",
     "no-wrap-func": "024",
     "no-mixed-spaces-and-tabs": "003",
@@ -88,6 +86,7 @@
     "operator-linebreak": "016",
     "quotes": "089",
     "semi": "021",
+    "semi-spacing": "010",
     "space-after-keywords": "007",
     "space-before-function-parentheses": "007,009",
     "space-before-blocks": "006",
