@@ -88,7 +88,7 @@
     "semi": "021",
     "semi-spacing": "010",
     "space-after-keywords": "007",
-    "space-before-function-parentheses": "007,009",
+    "space-before-function-paren": "007,009",
     "space-before-blocks": "006",
     "array-bracket-spacing": "012",
     "computed-property-spacing": "011",

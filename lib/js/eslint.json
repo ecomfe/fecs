@@ -126,7 +126,7 @@
         "semi": [2, "always"],
         "semi-spacing": 2,
         "space-after-keywords": [2, "always"],
-        "space-before-function-parentheses": [2, {"anonymous": "always", "named": "never"}],
+        "space-before-function-paren": [2, {"anonymous": "always", "named": "never"}],
         "space-before-blocks": [2, "always"],
         "array-bracket-spacing": [2, "never"],
         "computed-property-spacing": [2, "never"],
