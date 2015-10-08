@@ -14,6 +14,7 @@
     "fecs-no-eval": "116",
     "fecs-no-global-require": "128",
     "fecs-semi-spacing": "010",
+    "fecs-jsx-var": "070",
 
     "no-console": "997",
     "no-constant-condition": "997",

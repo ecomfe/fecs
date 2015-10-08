@@ -52,6 +52,7 @@
         "fecs-no-eval": 2,
         "fecs-no-global-require": 2,
         "fecs-semi-spacing": [2, {"before": false, "after": true}],
+        "fecs-jsx-var": 2,
 
         "no-console": 1,
         "no-constant-condition": 1,
