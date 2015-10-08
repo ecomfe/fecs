@@ -59,11 +59,10 @@ describe('util', function () {
             expect(errors.length).toEqual(1);
 
             var error = util.parseError({foo: 'bar'}, errors[0]);
-
             expect(error).not.toBeNull();
             expect(error.foo).toBe('bar');
             expect(error.line).toBe(2);
-            expect(error.column).toBe(5);
+            expect(error.column).toBe(6);
         });
 
     });
