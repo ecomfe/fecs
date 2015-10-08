@@ -118,7 +118,7 @@
         "no-new-object": 2,
         "no-spaced-func": 2,
         "no-trailing-spaces": 2,
-        "no-wrap-func": 2,
+        "no-extra-parens": [2, "functions"],
         "no-mixed-spaces-and-tabs": 2,
         "one-var": [2, "never"],
         "operator-linebreak": [2, "before"],

@@ -80,7 +80,7 @@
     "no-new-object": "092",
     "no-spaced-func": "009",
     "no-trailing-spaces": "013",
-    "no-wrap-func": "024",
+    "no-extra-parens": "024",
     "no-mixed-spaces-and-tabs": "003",
     "one-var": "071",
     "operator-linebreak": "016",
