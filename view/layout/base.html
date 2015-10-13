@@ -1,0 +1,13 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <link href="fav.ico" type="image/x-icon" rel=icon>
+    <link href="fav.ico" type="image/x-icon" rel="shortcut icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}</title>
+    <link rel="stylesheet" href="/css/main.css">
+    <script src="/dep/jquery-2.1.4.min.js"></script>
+</head>
+{% block content %}{% endblock %}
+</html>

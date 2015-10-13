@@ -1,0 +1,123 @@
+// animation keyframes
+@keyframes changeOpacity {
+    from {
+        opacity: 0
+    }
+    to {
+        opacity: 1
+    }
+}
+
+@keyframes changeOpacityReverse {
+    from {
+        opacity: 1
+    }
+    to {
+        opacity: 0
+    }
+}
+
+// font
+@font-face {
+    font-family: "fzyxjt"
+    src: url("../font/fzyxjt.eot") /* IE9 */
+    src:
+        url("../font/fzyxjt.eot?#iefix") format("embedded-opentype"),
+        url("../font/fzyxjt.woff") format("woff"),
+        url("../font/fzyxjt.ttf") format("truetype"),
+        url("../font/fzyxjt.svg#fzyxjt") format("svg")
+    font-style: normal
+    font-weight: normal
+}
+
+// comm
+a {
+    text-decoration: none
+
+    &:hover {
+        text-decoration: underline
+    }
+}
+
+html {
+    height: 100%
+}
+
+.top-nav {
+    reset-list()
+    clearfix()
+
+    li {
+        float: left
+
+        a {
+            size(80px, 40px)
+            display: block
+            color: #d2c9d4
+            text-decoration: none
+            line-height: 40px
+            font-size: 14px
+            text-align: center
+
+            &:hover {
+                color: #fff
+            }
+
+            &.cur {
+                background-color: #eb6060
+                color: #fff
+            }
+        }
+    }
+}
+
+.logo {
+    size(160px, 55px)
+    image-2x('../img/sprite_icon@2x.png', 500px, 300px)
+    background: url('../img/sprite_icon.png') 0 0 repeat-x
+
+    a {
+        size(160px, 55px)
+        display: block
+        text-indent: -9999em
+    }
+}
+
+.header {
+    height: 100px
+
+    .header-inner {
+        size(1000px, 100px)
+        margin: 0 auto
+        position: relative
+    }
+
+    .logo {
+        absolute(25px, null, null, 0)
+    }
+
+    .top-nav {
+        absolute(25px, 0, null, null)
+    }
+}
+
+.footer {
+    overflow: hidden
+    background-color: #313046
+    color: #d2c9d4
+
+    .footer-inner {
+        width: 1000px
+        margin: 0 auto
+
+        .copyright {
+            text-align: center
+            padding: 20px 0
+            font-size: 14px
+
+            a {
+                color: #6aa3c9
+            }
+        }
+    }
+}

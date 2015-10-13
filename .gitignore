@@ -1,0 +1,25 @@
+# Node.js
+node_modules
+npm-debug.log
+tmp
+
+# Windows
+Thumbs.db
+
+# Mac
+.DS_Store
+
+# WebStorm
+.idea/
+log/
+*.ipr
+*.iws
+*.iml
+
+# NPM
+*.tgz
+
+*.orig
+*.log
+
+coverage

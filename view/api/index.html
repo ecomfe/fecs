@@ -1,0 +1,55 @@
+{% extends '../layout/base.html' %}
+
+{% block content %}
+<body id="api-body">
+    <div class="api-nav">
+        <h1 class="logo"><a href="{{ site.baseurl }}/">FECS</a></h1>
+        <ul class="api-nav-list">
+            <li>
+                <a class="anchor cur" href="#start">快速开始</a>
+            </li>
+            <li>
+                <a class="anchor" href="#cli">命令参数</a>
+                <dl>
+                    <dd><a class="anchor" href="#cli-options">options</a></dd>
+                    <dd><a class="anchor" href="#cli-check">check</a></dd>
+                    <dd><a class="anchor" href="#cli-format">format</a></dd>
+                </dl>
+            </li>
+            <li>
+                <a class="anchor" href="#api">API</a>
+                <dl>
+                    <dd><a class="anchor" href="#api-lead-name">leadName</a></dd>
+                    <dd><a class="anchor" href="#api-get-options">getOptions</a></dd>
+                    <dd><a class="anchor" href="#api-check">check</a></dd>
+                    <dd><a class="anchor" href="#api-format">format</a></dd>
+                </dl>
+            </li>
+            <li>
+                <a class="more" href="#" onclick="return false;">更多</a>
+                <dl>
+                    <dd><a target="_blank" href="{{ site.wiki }}/FAQ">FAQ</a></dd>
+                    <dd><a target="_blank" href="{{ site.wiki }}/HowToFix">常见错误</a></dd>
+                    <dd><a target="_blank" href="{{ site.wiki }}">Wiki</a></dd>
+                </dl>
+            </li>
+        </ul>
+    </div>
+    <div class="api-content">
+        <ul class="top-nav">
+            <li><a href="/">Home</a></li>
+            <li><a class="cur" href="/api">API</a></li>
+            <li><a href="/demo">Demo</a></li>
+            <li><a href="/plugins">Plugins</a></li>
+            <li><a target="_blank" href="{{ site.wiki }}">Wiki</a></li>
+            <li><a target="_blank" href="{{ site.github }}">Github</a></li>
+        </ul>
+        <div class="api-entry">
+        {{ content|raw }}
+        <div class="copyright">&copy;2015 <a target="_blank" href="">Baidu EFE</a></div>
+        </div>
+    </div>
+    <script src="/dep/jquery.scrollTo.min.js"></script>
+    <script src="/js/api.js"></script>
+<body>
+{% endblock %}

@@ -1,0 +1,70 @@
+#plugin-body {
+    .plugin-container {
+        background-color: #454163
+        background-image: -webkit-radial-gradient(#565378, #37324a)
+        background-image:    -moz-radial-gradient(#565378, #37324a)
+        background-image:     -ms-radial-gradient(#565378, #37324a)
+        background-image:         radial-gradient(#565378, #37324a)
+    }
+
+    .plugin-slogan {
+        margin-top: 70px
+        text-align: center
+        color: #fff
+        font-weight: 400
+        font-family: $font-fzyx
+
+        .slogan-title {
+            font-size: 60px
+            margin-bottom: 10px
+            letter-spacing: 1px
+        }
+
+        .slogan-content {
+            font-size: 36px
+            color: #d2c9d4
+        }
+    }
+
+    .plugin-list {
+        clearfix()
+        reset-list()
+        width: 800px
+        margin: 0 auto
+        padding: 50px 0 100px
+
+        li {
+            size(128px, 160px)
+            float: left
+            margin: 25px 36px
+
+            .plugin-icon {
+                size(128px)
+                display: block
+
+                img {
+                    size(128px)
+                }
+
+                &:active {
+                    opacity: 0.8
+                }
+            }
+
+            .plugin-name {
+                display: block
+                width: 128px
+                color: #fff
+                font-size: 18px
+                text-align: center
+                margin-top: 10px
+                color: #d2c9d4
+                white-space: nowrap
+
+                &:hover {
+                    text-decoration: none
+                }
+            }
+        }
+    }
+}
