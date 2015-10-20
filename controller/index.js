@@ -3,7 +3,7 @@ var marked = require('marked');
 
 marked.setOptions({
   highlight: function (code) {
-      return require('highlight.js').highlightAuto(code).value;
+      return require('highlight.js').highlight('javascript', code).value;
   }
 });
 
@@ -31,10 +31,17 @@ module.exports = {
         yield this.render('index/index', {site: site});
     },
 
-    api: function* () {
-        var content = fs.readFileSync('view/api/index.md', 'utf-8');
-        yield this.render('api/index', {site: site, content: marked(content)});
-    },
+    api: function () {
+        var doc;
+        return function* () {
+            if (!doc) {
+                var content = fs.readFileSync('view/api/index.md', 'utf-8');
+                doc = marked(content);
+            }
+
+            yield this.render('api/index', {site: site, content: doc});
+        }
+    }(),
 
     demo: function* () {
         yield this.render('demo/index', {site: site});
