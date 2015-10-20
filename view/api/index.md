@@ -4,14 +4,17 @@ FECS 是基于 Node.js 的前端代码风格工具套件，包含对 JavaScript�
 
 ### 安装
 
-    $ [sudo] npm install fecs -g
-
+```shell
+$ [sudo] npm install fecs -g
+```
 ### 代码检查
 
-    fecs
-    fecs -v
-    fecs check --help
-    fecs format --help
+```shell
+fecs
+fecs -v
+fecs check --help
+fecs format --help
+```
 
 ------
 
@@ -26,7 +29,9 @@ FECS 是基于 Node.js 的前端代码风格工具套件，包含对 JavaScript�
 
 ## <i id="cli-check"></i>check
 
-    $ fecs [check] [pattern...] [options]
+```shell
+$ fecs [check] [pattern...] [options]
+```
 
 使用 [ESLint]({{ site.wiki }}/ESLint) 检查 `JavaScript` 代码的质量与风格。
 
@@ -58,7 +63,9 @@ FECS 是基于 Node.js 的前端代码风格工具套件，包含对 JavaScript�
 
 ## <i id="cli-format"></i>format
 
-    $ fecs format [pattern...] [options]
+```shell
+$ fecs format [pattern...] [options]
+```
 
 使用 [fixmyjs]({{ site.wiki }}/FixMyJS) 与 [jformatter]({{ site.wiki }}/JFormatter) 修复与格式化 `JavaScript` 代码。
 
@@ -129,6 +136,5 @@ fecs.check(options, done);
 格式化、修复文件或输入流的代码。
 
 ```javascript
-
 fecs.format(options);
 ```
