@@ -16,17 +16,17 @@ app.use(function *(next) {
 });
 
 // log记录
-var Logger = require('mini-logger');
-var logger = Logger({
-    dir: config.logDir,
-    format: 'YYYY-MM-DD-[{category}][.log]'
-});
+// var Logger = require('mini-logger');
+// var logger = Logger({
+//     dir: config.logDir,
+//     format: 'YYYY-MM-DD-[{category}][.log]'
+// });
 
-// router use : this.logger.error(new Error(''))
-app.context.logger = logger;
+// // router use : this.logger.error(new Error(''))
+// app.context.logger = logger;
 
-var onerror = require('koa-onerror');
-onerror(app);
+// var onerror = require('koa-onerror');
+// onerror(app);
 
 // xtemplate对koa的适配
 // var xtplApp = require('xtpl/lib/koa');
