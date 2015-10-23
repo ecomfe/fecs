@@ -10,10 +10,10 @@ $ [sudo] npm install fecs -g
 ### 代码检查
 
 ```shell
-fecs
-fecs -v
-fecs check --help
-fecs format --help
+$ fecs
+$ fecs -v
+$ fecs check --help
+$ fecs format --help
 ```
 
 ------
