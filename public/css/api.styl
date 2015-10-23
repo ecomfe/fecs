@@ -1,9 +1,15 @@
+@import "comm"
+
 // 左侧导航宽度
 $nav-width = 280px
 // 紫色线颜色
 $line-color = #756c8a
 
-#api-body {
+html {
+    height: 100%
+}
+
+body {
     height: 100%
     overflow-x: hidden
     background-color: #454163
@@ -11,194 +17,183 @@ $line-color = #756c8a
     background-image:    -moz-radial-gradient(#565378, #37324a)
     background-image:     -ms-radial-gradient(#565378, #37324a)
     background-image:         radial-gradient(#565378, #37324a)
+}
 
-    .api-nav {
-        absolute(0, null, 0, 0)
-        size($nav-width, 100%)
-        border-right: 1px solid $line-color
-        z-index: 10
+.api-nav {
+    absolute(0, null, 0, 0)
+    size($nav-width, 100%)
+    border-right: 1px solid $line-color
+    z-index: 10
 
-        .logo {
-            margin-top: 25px
-            margin-left: 100px
-        }
-
-        .api-nav-list {
-            reset-list()
-            color: #fff
-            margin-top: 40px
-            margin-left: 100px
-
-            li {
-                a {
-                    transition: all .15s
-                    display: block
-                    color: #fff
-                    font-size: 20px
-                    height: 40px
-                    text-align: right
-                    padding-right: 45px
-                    line-height: 40px
-
-                    &.cur {
-                        background-color: #d46362
-                        color: #fff
-
-                        &:hover {
-                            background-color: #d46362
-                        }
-                    }
-
-                    &:hover {
-                        background-color: rgba(117, 108, 138, .5)
-                        text-decoration: none
-                        color: #fff
-                    }
-
-                    &.more {
-                        &:hover {
-                            background-color: transparent
-                            cursor: default
-                        }
-                    }
-                }
-
-                dl {
-                    dd {
-                        a {
-                            color: #a9a0b1
-                            font-size: 16px
-                            height: 30px
-                            line-height: 30px
-                        }
-                    }
-                }
-            }
-        }
+    .logo {
+        margin-top: 25px
+        margin-left: 100px
     }
 
-    .api-content {
-        position: relative
-        min-width: 800px
-        max-width: 1200px
-        margin-left: $nav-width
-        height: 100%
-        overflow-y: scroll
+    .api-nav-list {
+        reset-list()
+        color: #fff
+        margin-top: 40px
+        margin-left: 100px
 
-        .top-nav {
-            absolute(25px, 100px, null, null)
-        }
-
-        .api-entry {
-            padding: 80px 100px 0 100px
-            color: #fff
-            line-height: 1.5
-            font-size: 16px
-
-            .copyright {
-                border-top: 1px solid $line-color
-                margin-top: 80px
-                padding-top: 20px
-                margin-bottom: 50px
-                color: #d2c9d4
-            }
-
-            h1,
-            h2,
-            h3,
-            h4,
-            h5,
-            p,
-            table,
-            pre {
-                margin-top: .5em
-                margin-bottom: .5em
-            }
-
-            h1,
-            h2,
-            h3,
-            h4,
-            h5 {
-                font-weight: 400
-            }
-
-            h1 {
-                font-size: 48px
-                color: #eb605f
-
-            }
-
-            h2 {
-                font-size: 28px
-                color: #eb605f
-            }
-
-            h3,
-            h4,
-            h5 {
-                font-size: 20px
-                color: #fff
-            }
-
-            p {
-                color: #d2c9d4
-            }
-
+        li {
             a {
-                color: #6aa3c9
-            }
-
-            pre {
-                padding: 1em 2em
-                background-color: rgba(39, 40, 34, .6)
-
-                code {
-                    font-size: 100%
-                    background-color: rgba(0, 0, 0, 0)
-                    border-radius: 0
-                    padding: 0
-                }
-            }
-
-            .highlight pre {
-                background-color: transparent
-            }
-
-            code {
-                font-size: 85%
-                background-color: #756c8a
-                border-radius: 3px
-                padding: .2em .4em
+                transition: all .15s
+                display: block
                 color: #fff
-            }
+                font-size: 20px
+                height: 40px
+                text-align: right
+                padding-right: 45px
+                line-height: 40px
 
-            hr {
-                height: 0
-                line-height: 0
-                border: 0
-                border-bottom: 1px solid $line-color
-                margin-top: 4em
-                margin-bottom: 3em
-            }
+                &.cur {
+                    background-color: #d46362
+                    color: #fff
 
-            table {
-                width: 100%
-
-                td {
-                    color: #d2c9d4
+                    &:hover {
+                        background-color: #d46362
+                    }
                 }
 
-                td,
-                th {
-                    border: 1px solid $line-color
-                    padding: .5em 1em
-                    text-align: left
-                    min-width: 60px
+                &:hover {
+                    background-color: rgba(117, 108, 138, .5)
+                    text-decoration: none
+                    color: #fff
+                }
+
+                &.more {
+                    &:hover {
+                        background-color: transparent
+                        cursor: default
+                    }
+                }
+            }
+
+            dl {
+                dd {
+                    a {
+                        color: #a9a0b1
+                        font-size: 16px
+                        height: 30px
+                        line-height: 30px
+                    }
                 }
             }
         }
     }
 }
 
+.api-content {
+    position: relative
+    min-width: 800px
+    max-width: 1200px
+    margin-left: $nav-width
+    height: 100%
+    overflow-y: scroll
 
+    .top-nav {
+        absolute(25px, 100px, null, null)
+    }
+
+    .api-entry {
+        padding: 80px 100px 0 100px
+        color: #fff
+        line-height: 1.5
+        font-size: 16px
+
+        .copyright {
+            border-top: 1px solid $line-color
+            margin-top: 80px
+            padding-top: 20px
+            margin-bottom: 50px
+            color: #d2c9d4
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        p,
+        table,
+        pre {
+            margin-top: .5em
+            margin-bottom: .5em
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5 {
+            font-weight: 400
+        }
+
+        h1 {
+            font-size: 48px
+            color: #eb605f
+
+        }
+
+        h2 {
+            font-size: 28px
+            color: #eb605f
+        }
+
+        h3,
+        h4,
+        h5 {
+            font-size: 20px
+            color: #fff
+        }
+
+        p {
+            color: #d2c9d4
+        }
+
+        a {
+            color: #6aa3c9
+        }
+
+        pre {
+            code {
+                font-size: 100%
+                display: block
+                background-color: #756c8a
+                border-radius: 0
+                padding: 1em 2em
+                background-color: #272822
+            }
+
+            .lang-javascript {
+                background-color: #272822
+            }
+        }
+
+        hr {
+            height: 0
+            line-height: 0
+            border: 0
+            border-bottom: 1px solid $line-color
+            margin-top: 4em
+            margin-bottom: 3em
+        }
+
+        table {
+            width: 100%
+
+            td {
+                color: #d2c9d4
+            }
+
+            td,
+            th {
+                border: 1px solid $line-color
+                padding: .5em 1em
+                text-align: left
+                min-width: 60px
+            }
+        }
+    }
+}

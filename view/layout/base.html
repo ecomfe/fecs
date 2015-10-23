@@ -1,13 +1,16 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
-    <link href="fav.ico" type="image/x-icon" rel=icon>
-    <link href="fav.ico" type="image/x-icon" rel="shortcut icon">
+    <link rel="icon" href="fav.ico">
+    <link rel="shortcut icon" href="fav.ico">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}</title>
-    <link rel="stylesheet" href="/css/main.css">
+    {% block css %}{% endblock %}
     <script src="/dep/jquery-2.1.4.min.js"></script>
 </head>
+<body>
 {% block content %}{% endblock %}
+{% block js %}{% endblock %}
+</body>
 </html>

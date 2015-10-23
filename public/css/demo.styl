@@ -1,9 +1,119 @@
-#demo-body {
-    height: 100%
-    overflow-x: hidden
+@import "comm"
+@import "highlight"
+
+body {
     background-color: #454163
     background-image: -webkit-radial-gradient(#565378, #37324a)
     background-image:    -moz-radial-gradient(#565378, #37324a)
     background-image:     -ms-radial-gradient(#565378, #37324a)
     background-image:         radial-gradient(#565378, #37324a)
+}
+
+.demo-editor {
+    size(1000px, 500px)
+    margin: 0 auto
+    position: relative
+    font-size: 16px !important
+    background-color: #272822
+    color: #fff
+}
+
+.demo-slogan {
+    margin-top: 70px
+    text-align: center
+    color: #fff
+    font-weight: 400
+    font-family: $font-fzyx
+
+    .slogan-title {
+        font-size: 60px
+        margin-bottom: 10px
+        letter-spacing: 1px
+    }
+
+    .slogan-content {
+        font-size: 36px
+        color: #d2c9d4
+    }
+}
+
+.demo-nav {
+    width: 1000px
+    margin: 60px auto 0
+    font-size: 16px
+    background-color: #1f1f1f
+
+    .nav-list {
+        reset-list()
+        clearfix()
+
+        .nav-item {
+            float: left
+
+            a {
+                display: block
+                color: #909293
+                background-color: #1f1f1f
+                padding: 20px 30px
+            }
+
+            &:hover {
+                a {
+                    text-decoration: none
+                    background-color: #313131
+                }
+            }
+
+            &.cur {
+                a {
+                    text-decoration: none
+                    background-color: #282828
+                }
+
+                &:hover {
+                    a {
+                        background-color: #282828
+                        cursor: default
+                    }
+                }
+            }
+        }
+    }
+}
+
+.demo-console {
+    width: 970px
+    padding: 5px 15px
+    margin: 0 auto 80px
+    background-color: #282828
+    border: 4px solid #232323
+    border-left: 0
+    border-right: 0
+    font-size: 14px
+    color: #909293
+    line-height: 1.4
+
+    .warn {
+        color: #c7c327
+    }
+
+    .err {
+        color: #c71e12
+    }
+
+    .info {
+        color: #00c120
+    }
+}
+
+.demo-info {
+    width: 1000px
+    margin: 0 auto
+    color: #d2c9d4
+    font-size: 14px
+    line-height: 1.8
+
+    a {
+        color: #6aa3c9
+    }
 }

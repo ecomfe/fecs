@@ -1,80 +1,83 @@
 {% extends '../layout/base.html' %}
 
+{% block css %}
+<link rel="stylesheet" href="/css/index.css">
+{% endblock %}
+
 {% block content %}
-<body id="index-body">
-    <div class="header">
-        <div class="header-inner">
-            <h1 class="logo"><a href="{{ site.baseurl }}/">FECS</a></h1>
-            <ul class="top-nav">
-                <li><a class="cur" href="{{ site.baseurl }}/">Home</a></li>
-                <li><a href="/api">API</a></li>
-                <li><a href="/demo">Demo</a></li>
-                <li><a href="/plugins">Plugins</a></li>
-                <li><a target="_blank" href="{{ site.wiki }}">Wiki</a></li>
-                <li><a target="_blank" href="{{ site.github }}">Github</a></li>
+<div class="header">
+    <div class="header-inner">
+        <h1 class="logo"><a href="{{ site.baseurl }}/">FECS</a></h1>
+        <ul class="top-nav">
+            <li><a class="cur" href="{{ site.baseurl }}/">Home</a></li>
+            <li><a href="/api">API</a></li>
+            <li><a href="/demo">Demo</a></li>
+            <li><a href="/plugins">Plugins</a></li>
+            <li><a target="_blank" href="{{ site.wiki }}">Wiki</a></li>
+            <li><a target="_blank" href="{{ site.github }}">Github</a></li>
+        </ul>
+    </div>
+</div>
+<div class="banner">
+    <h2 class="slogan">
+        <p class="slogan-title">FECS</p>
+        <p class="slogan-content">基于Node.js的前端代码风格工具</p>
+    </h2>
+    <div class="banner-bg">
+        <div class="banner-bg-front">
+            <div class="banner-bg-end"></div>
+        </div>
+    </div>
+    <div class="intro">
+        <div class="intro-inner">
+            <ul class="intro-list">
+                <li class="intro-item">
+                    <i class="intro-icon intro-icon-lh"></i>
+                    <h3>灵活</h3>
+                    <p>基于 Nodejs <br>安装配置极其容易</p>
+                </li>
+                <li class="intro-item">
+                    <i class="intro-icon intro-icon-gx"></i>
+                    <h3>高效</h3>
+                    <p>只需一个命令<br>解决所有问题</p>
+                </li>
+                <li class="intro-item">
+                    <i class="intro-icon intro-icon-qq"></i>
+                    <h3>齐全</h3>
+                    <p>包含对 JS、CSS、HTML<br>全方位的检查</p>
+                </li>
             </ul>
         </div>
     </div>
-    <div class="banner">
-        <h2 class="slogan">
-            <p class="slogan-title">FECS</p>
-            <p class="slogan-content">基于Node.js的前端代码风格工具</p>
-        </h2>
-        <div class="banner-bg">
-            <div class="banner-bg-front">
-                <div class="banner-bg-end"></div>
+</div>
+<div class="info">
+    <div class="info-inner">
+        <h2 class="info-title"><i></i> 基于四个工具 <i></i></h2>
+        <ul class="info-list">
+            <li class="info-item first">
+                <i>htmlcs</i>
+                <p>检查、&nbsp;格式化<br>html 代码规范</p>
+            </li>
+            <li class="info-item">
+                <i>csshint</i>
+                <p>检查 CSS 代码规范</p>
+            </li>
+            <li class="info-item">
+                <i>lesslint</i>
+                <p>检查 LESS 代码规范</p>
+            </li>
+            <li class="info-item last">
+                <i>jsformatter</i>
+                <p>修复 js 代码</p>
+            </li>
+        </ul>
+        <div class="how-to-use">
+            <div class="how-to-use-line">
+                <span>安装</span>
+                <code><pre>$ [sudo] npm install fecs -g</pre></code>
             </div>
-        </div>
-        <div class="intro">
-            <div class="intro-inner">
-                <ul class="intro-list">
-                    <li class="intro-item">
-                        <i class="intro-icon intro-icon-lh"></i>
-                        <h3>灵活</h3>
-                        <p>基于 Nodejs <br>安装配置极其容易</p>
-                    </li>
-                    <li class="intro-item">
-                        <i class="intro-icon intro-icon-gx"></i>
-                        <h3>高效</h3>
-                        <p>只需一个命令<br>解决所有问题</p>
-                    </li>
-                    <li class="intro-item">
-                        <i class="intro-icon intro-icon-qq"></i>
-                        <h3>齐全</h3>
-                        <p>包含对 JS、CSS、HTML<br>全方位的检查</p>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
-    <div class="info">
-        <div class="info-inner">
-            <h2 class="info-title"><i></i> 基于四个工具 <i></i></h2>
-            <ul class="info-list">
-                <li class="info-item first">
-                    <i>htmlcs</i>
-                    <p>检查、&nbsp;格式化<br>html 代码规范</p>
-                </li>
-                <li class="info-item">
-                    <i>csshint</i>
-                    <p>检查 CSS 代码规范</p>
-                </li>
-                <li class="info-item">
-                    <i>lesslint</i>
-                    <p>检查 LESS 代码规范</p>
-                </li>
-                <li class="info-item last">
-                    <i>jsformatter</i>
-                    <p>修复 js 代码</p>
-                </li>
-            </ul>
-            <div class="how-to-use">
-                <div class="how-to-use-line">
-                    <span>安装</span>
-                    <code><pre>$ [sudo] npm install fecs -g</pre></code>
-                </div>
-                <div class="how-to-use-line">
-                    <span>使用</span>
+            <div class="how-to-use-line">
+                <span>使用</span>
 <pre>
 <code>fecs
 fecs -v
@@ -82,34 +85,33 @@ fecs check --help
 fecs format --help
 </code>
 </pre>
-                </div>
-            </div>
-            <div class="efe-products">
-                <p>开源的ETpl来自百度EFE的RIA团队。在 <a target="_blank" href="{{ site.efe }}">EFE</a>，我们还有其他开源产品：</p>
-                <ul>
-                    <li><a class="pro-name" target="_blank" href="http://echarts.baidu.com/">ECharts</a>直观，生动，可交互，可高度个性化定制的数据可视化图表。</li>
-                    <li><a class="pro-name" target="_blank" href="https://github.com/ecomfe/esl">ESL</a>比 Require.js 更精简、更高效、更健壮的 AMD Loader。</li>
-                    <li><a class="pro-name" target="_blank" href="https://github.com/ecomfe/edp">EDP</a>提供了前端开发时常用工具：项目管理、包管理、调试、构建、代码生成、代码检测等，并允许用户自定义扩展。</li>
-                    <li><a class="pro-name" target="_blank" href="http://ecomfe.github.io/est">EST</a>基于 Less 的样式工具库，提供了一系列方便快捷的 mixin，只在调用时才输出代码。</li>
-                    <li><a class="pro-name" target="_blank" href="http://ecomfe.github.io/saber">Saber</a>为移动端与现代浏览器设计的，细粒度、模块化的前端应用框架。</li>
-                    <li><a class="pro-name" target="_blank" href="https://github.com/ecomfe/rebas">Rebas</a>与 Saber 搭配使用、基于 Node 的 JavaScript 同构解决方案。</li>
-                    <li><a class="pro-name" target="_blank" href="https://github.com/ecomfe/rider">Rider</a>基于 Stylus 与后处理器，无侵入风格的 CSS 样式工具库。</li>
-                    <li><a class="pro-name" target="_blank" href="https://github.com/ecomfe/er">ER</a>富浏览器端 Web 应用的框架，适用于并能很方便地构建一个整站式的 AJAX Web 应用。</li>
-                    <li><a class="pro-name" target="_blank" href="https://github.com/ecomfe/esui">ESUI</a>一套功能完善，并具有强大扩展机制的 UI 组件库。基于模板、声明式地编程方式让视图更具表达能力。</li>
-                    <li><a class="pro-name" target="_blank" href="http://ecomfe.github.io/etpl">ETpl</a>强复用、灵活、高性能的 JavaScript 模板引擎。</li>
-                    <li><a class="pro-name" target="_blank" href="https://github.com/BE-FE/iSlider">iSlider</a>表现出众，无任何插件依赖的手机平台 JavaScript 滑动组件。</li>
-                    <li><a class="pro-name" target="_blank" href="http://tushuo.baidu.com">图说</a>一个向广大用户提供数据可视化服务平台。</li>
-                    <li><a class="pro-name" target="_blank" href="http://ecomfe.github.io/fontmin">Fontmin</a>首个纯 JavaScript 字体子集化方案</li>
-                </ul>
-                <p>......</p>
-                <p>更多来自百度 <a target="_blank" href="{{ site.efe }}">EFE</a> 的项目与文章。</p>
             </div>
         </div>
-    </div>
-    <div class="footer">
-        <div class="footer-inner">
-            <div class="copyright">&copy;2015 <a target="_blank" href="{{ site.efe }}">Baidu EFE</a></div>
+        <div class="efe-products">
+            <p>开源的ETpl来自百度EFE的RIA团队。在 <a target="_blank" href="{{ site.efe }}">EFE</a>，我们还有其他开源产品：</p>
+            <ul>
+                <li><a class="pro-name" target="_blank" href="http://echarts.baidu.com/">ECharts</a>直观，生动，可交互，可高度个性化定制的数据可视化图表。</li>
+                <li><a class="pro-name" target="_blank" href="https://github.com/ecomfe/esl">ESL</a>比 Require.js 更精简、更高效、更健壮的 AMD Loader。</li>
+                <li><a class="pro-name" target="_blank" href="https://github.com/ecomfe/edp">EDP</a>提供了前端开发时常用工具：项目管理、包管理、调试、构建、代码生成、代码检测等，并允许用户自定义扩展。</li>
+                <li><a class="pro-name" target="_blank" href="http://ecomfe.github.io/est">EST</a>基于 Less 的样式工具库，提供了一系列方便快捷的 mixin，只在调用时才输出代码。</li>
+                <li><a class="pro-name" target="_blank" href="http://ecomfe.github.io/saber">Saber</a>为移动端与现代浏览器设计的，细粒度、模块化的前端应用框架。</li>
+                <li><a class="pro-name" target="_blank" href="https://github.com/ecomfe/rebas">Rebas</a>与 Saber 搭配使用、基于 Node 的 JavaScript 同构解决方案。</li>
+                <li><a class="pro-name" target="_blank" href="https://github.com/ecomfe/rider">Rider</a>基于 Stylus 与后处理器，无侵入风格的 CSS 样式工具库。</li>
+                <li><a class="pro-name" target="_blank" href="https://github.com/ecomfe/er">ER</a>富浏览器端 Web 应用的框架，适用于并能很方便地构建一个整站式的 AJAX Web 应用。</li>
+                <li><a class="pro-name" target="_blank" href="https://github.com/ecomfe/esui">ESUI</a>一套功能完善，并具有强大扩展机制的 UI 组件库。基于模板、声明式地编程方式让视图更具表达能力。</li>
+                <li><a class="pro-name" target="_blank" href="http://ecomfe.github.io/etpl">ETpl</a>强复用、灵活、高性能的 JavaScript 模板引擎。</li>
+                <li><a class="pro-name" target="_blank" href="https://github.com/BE-FE/iSlider">iSlider</a>表现出众，无任何插件依赖的手机平台 JavaScript 滑动组件。</li>
+                <li><a class="pro-name" target="_blank" href="http://tushuo.baidu.com">图说</a>一个向广大用户提供数据可视化服务平台。</li>
+                <li><a class="pro-name" target="_blank" href="http://ecomfe.github.io/fontmin">Fontmin</a>首个纯 JavaScript 字体子集化方案</li>
+            </ul>
+            <p>......</p>
+            <p>更多来自百度 <a target="_blank" href="{{ site.efe }}">EFE</a> 的项目与文章。</p>
         </div>
     </div>
-</body>
+</div>
+<div class="footer">
+    <div class="footer-inner">
+        <div class="copyright">&copy;2015 <a target="_blank" href="{{ site.efe }}">Baidu EFE</a></div>
+    </div>
+</div>
 {% endblock %}

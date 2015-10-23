@@ -66,11 +66,9 @@
         },
         setNavActive: function (navMapItem) {
             navMapItem.nav.addClass('cur');
-            // navMapItem.parentNav.addClass('cur');
         },
         resetNavActive: function (navMapItem) {
             navMapItem.nav.removeClass('cur');
-            // navMapItem.parentNav.removeClass('cur');
         },
         resetAllNavActive: function () {
             var self = this;
@@ -85,14 +83,12 @@
             self.slideWrap.scroll(function () {
                 var currScrollTop = self.slideWrap.scrollTop();
                 var currItem;
-                // var minOffset;
 
                 $.each(self.anchorMap, function (i, item) {
-                    // self.resetNavActive(item);
 
-                    // var currOffset = item.top - currScrollTop
                     if (currScrollTop === 0) {
                         currItem = self.anchorMap[0];
+                        self.resetAllNavActive();
                         self.setNavActive(currItem);
                         return false;
                     }
@@ -106,25 +102,7 @@
                     else {
                         self.resetNavActive(item);
                     }
-
-                    // if (currScrollTop === 0) {
-                    //     currItem = self.anchorMap[0];
-                    //     self.setNavActive(currItem)
-                    //     return false;
-                    // }
-
-                    // if (currOffset >= 0 ) {
-                    //     if (!minOffset) {
-                    //         minOffset = currOffset;
-                    //         currItem = item;
-                    //     }
-                    //     else if ( currOffset < minOffset) {
-                    //         minOffset = currOffset;
-                    //         currItem = item;
-                    //     }
-                    // }
                 });
-                // self.setNavActive(currItem)
             });
 
             // 点击左侧导航，平滑滚动至指定位置
@@ -145,11 +123,6 @@
                             }
                         }
                     );
-
-                    // setTimeout(function () {
-                    //     console.log(item)
-                    //     self.setNavActive(item);
-                    // }, 200);
                 });
             });
         }
