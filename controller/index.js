@@ -1,10 +1,15 @@
+/**
+ * @file 网页控制器
+ * @author chris<wfsr@foxmail.com>
+ */
+
 var fs = require('fs');
 var marked = require('marked');
 
 marked.setOptions({
-  highlight: function (code) {
-      return require('highlight.js').highlight('javascript', code).value;
-  }
+    highlight: function (code) {
+        return require('highlight.js').highlight('javascript', code).value;
+    }
 });
 
 var site = {
@@ -22,7 +27,7 @@ var site = {
     pluginVscode: 'https://github.com/21paradox/fecs-visual-studio-code',
     pluginGrunt: 'https://github.com/ecomfe/fecs-grunt',
     pluginGulp: 'https://github.com/ecomfe/fecs-gulp',
-    pluginGit: 'https://github.com/cxtom/fecs-git-hooks',
+    pluginGit: 'https://github.com/cxtom/fecs-git-hooks'
 };
 
 module.exports = {
@@ -31,7 +36,7 @@ module.exports = {
         yield this.render('index/index', {site: site});
     },
 
-    api: function () {
+    api: (function () {
         var doc;
         return function* () {
             if (!doc) {
@@ -40,8 +45,8 @@ module.exports = {
             }
 
             yield this.render('api/index', {site: site, content: doc});
-        }
-    }(),
+        };
+    })(),
 
     demo: function* () {
         yield this.render('demo/index', {site: site});
