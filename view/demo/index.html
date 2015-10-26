@@ -22,29 +22,35 @@
     <p class="slogan-title">FECS 在线体验</p>
     <p class="slogan-content">代码检查 / 格式化，从未如此简单</p>
 </div>
-<div class="demo-nav">
-    <ul class="nav-list">
-        <li class="nav-item cur" data-for="javascript"><a href="#" onclick="return false;">Javascript</a></li>
-        <li class="nav-item" data-for="css"><a href="#" onclick="return false;">CSS</a></li>
-        <li class="nav-item" data-for="html"><a href="#" onclick="return false;">HTML</a></li>
-        <li class="nav-item" data-for="less"><a href="#" onclick="return false;">LESS</a></li>
-    </ul>
-</div>
-<div class="demo-editor" id="javascript-editor"></div>
-<div class="demo-editor" id="css-editor" style="display:none;"></div>
-<div class="demo-editor" id="html-editor" style="display:none;"></div>
-<div class="demo-editor" id="less-editor" style="display:none;"></div>
-<div class="demo-console" id="javascript-console">
-    <div>fecs <span class="info">INFO</span> Congratulations! Everything is OK!</div>
-</div>
-<div class="demo-console" id="css-console" style="display:none;">
-    <div>fecs <span class="info">INFO</span> Congratulations! Everything is OK!</div>
-</div>
-<div class="demo-console" id="html-console" style="display:none;">
-    <div>fecs <span class="info">INFO</span> Congratulations! Everything is OK!</div>
-</div>
-<div class="demo-console" id="less-console" style="display:none;">
-    <div>fecs <span class="info">INFO</span> Congratulations! Everything is OK!</div>
+<div class="demo-editor-wrap">
+    <div class="demo-nav">
+        <ul class="nav-list">
+            <li class="nav-btn first"><a class="full-screen-btn" href="#" onclick="return false;"></a></li>
+            <li class="nav-item cur" data-for="javascript"><a href="#" onclick="return false;">Javascript</a></li>
+            <li class="nav-item" data-for="css"><a href="#" onclick="return false;">CSS</a></li>
+            <li class="nav-item" data-for="html"><a href="#" onclick="return false;">HTML</a></li>
+            <li class="nav-item" data-for="less"><a href="#" onclick="return false;">LESS</a></li>
+            <li class="nav-btn last"><a class="format-btn" href="#" onclick="return false;">FECS format</a></li>
+        </ul>
+    </div>
+    <div class="demo-editor" id="javascript-editor"></div>
+    <div class="demo-editor" id="css-editor" style="display:none;"></div>
+    <div class="demo-editor" id="html-editor" style="display:none;"></div>
+    <div class="demo-editor" id="less-editor" style="display:none;"></div>
+    <div class="demo-console-wrap">
+        <div class="demo-console" id="javascript-console">
+            <div>fecs <span class="info">INFO</span> Congratulations! Everything is OK!</div>
+        </div>
+        <div class="demo-console" id="css-console" style="display:none;">
+            <div>fecs <span class="info">INFO</span> Congratulations! Everything is OK!</div>
+        </div>
+        <div class="demo-console" id="html-console" style="display:none;">
+            <div>fecs <span class="info">INFO</span> Congratulations! Everything is OK!</div>
+        </div>
+        <div class="demo-console" id="less-console" style="display:none;">
+            <div>fecs <span class="info">INFO</span> Congratulations! Everything is OK!</div>
+        </div>
+    </div>
 </div>
 <div class="footer">
     <div class="footer-inner">

@@ -1,5 +1,6 @@
 @import "comm"
-@import "highlight"
+
+$nav-height = 50px
 
 body {
     background-color: #454163
@@ -9,13 +10,26 @@ body {
     background-image:         radial-gradient(#565378, #37324a)
 }
 
+
 .demo-editor {
     size(1000px, 500px)
     margin: 0 auto
     position: relative
-    font-size: 16px !important
+    font-size: 14px !important
     background-color: #272822
     color: #fff
+
+    .ace_active-line {
+        background-color: transparent !important
+    }
+
+    .ace_gutter {
+        background-color: #272822 !important
+    }
+
+    .ace_gutter-active-line {
+        background-color: #3e3d32 !important
+    }
 }
 
 .demo-slogan {
@@ -37,15 +51,48 @@ body {
     }
 }
 
-.demo-nav {
+.demo-editor-wrap {
+    margin: 60px auto 80px
     width: 1000px
-    margin: 60px auto 0
-    font-size: 16px
+
+    &.full {
+        fixed(0, 0, 0, 0)
+        size(100%)
+        overflow: hidden
+        margin: 0
+
+        .demo-editor {
+            width: 100%
+        }
+
+        .demo-console-wrap {
+            absolute(null, 0, 0, 0)
+            height: 92px
+            overflow-y: auto
+            overflow-x: hidden
+            z-index: 99
+        }
+    }
+}
+
+.demo-nav {
+    relative()
+    font-size: 14px
     background-color: #1f1f1f
 
     .nav-list {
         reset-list()
         clearfix()
+
+        .nav-btn {
+            &.first {
+                float: left
+            }
+
+            &.last {
+                absolute(0, 0, null, null)
+            }
+        }
 
         .nav-item {
             float: left
@@ -54,7 +101,9 @@ body {
                 display: block
                 color: #909293
                 background-color: #1f1f1f
-                padding: 20px 30px
+                padding: 0 30px
+                height: $nav-height
+                line-height: $nav-height
             }
 
             &:hover {
@@ -81,15 +130,16 @@ body {
     }
 }
 
-.demo-console {
-    width: 970px
-    padding: 5px 15px
-    margin: 0 auto 80px
+.demo-console-wrap {
     background-color: #282828
     border: 4px solid #232323
     border-left: 0
     border-right: 0
-    font-size: 14px
+}
+
+.demo-console {
+    padding: 5px 15px
+    font-size: 12px
     color: #909293
     line-height: 1.4
 
@@ -106,14 +156,38 @@ body {
     }
 }
 
-.demo-info {
-    width: 1000px
-    margin: 0 auto
-    color: #d2c9d4
-    font-size: 14px
-    line-height: 1.8
+.format-btn {
+    transition(background-color, .1s)
+    display: block
+    height: $nav-height
+    padding: 0 20px
+    line-height: $nav-height
+    text-align: center
+    color: #fff
+    background-color: #2891d3
 
-    a {
-        color: #6aa3c9
+    &:hover {
+        text-decoration: none
+        background-color: #2085c5
+    }
+}
+
+.full-screen-btn {
+    size($nav-height)
+    image-2x('../img/icon_editor@2x.png', 100px, 100px)
+    background: url(../img/icon_editor.png) 0 0 no-repeat
+    display: block
+
+    &:hover {
+        background-color: #313131
+        background-position: 0 -50px
+    }
+
+    &.full {
+        background-position: -50px 0
+
+        &:hover {
+            background-position: -50px -50px
+        }
     }
 }
