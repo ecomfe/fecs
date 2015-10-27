@@ -30,6 +30,22 @@ body {
     .ace_gutter-active-line {
         background-color: #3e3d32 !important
     }
+
+    .ace_tooltip {
+        animation(changeOpacity .2s);
+        background-color: #282828
+        border: 2px solid #414141
+        color: #787878
+        border-radius: 0
+        box-shadow: none
+        padding: 5px 15px
+        max-width: 800px
+    }
+
+    .ace_gutter-cell.ace_error {
+        image-2x('../img/icon_editor@2x.png', 150px, 100px)
+        background: url(../img/icon_editor.png) -97px 3px no-repeat
+    }
 }
 
 .demo-slogan {
@@ -54,6 +70,7 @@ body {
 .demo-editor-wrap {
     margin: 60px auto 80px
     width: 1000px
+    overflow: hidden
 
     &.full {
         fixed(0, 0, 0, 0)
@@ -174,7 +191,7 @@ body {
 
 .full-screen-btn {
     size($nav-height)
-    image-2x('../img/icon_editor@2x.png', 100px, 100px)
+    image-2x('../img/icon_editor@2x.png', 150px, 100px)
     background: url(../img/icon_editor.png) 0 0 no-repeat
     display: block
 

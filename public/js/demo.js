@@ -13,13 +13,21 @@
      */
     var URL = {
         // 检测js地址
-        CHECK_JS: '/check/js/baidu',
+        CHECK_JS: '/check/js/default',
         // 检测css地址
-        CHECK_CSS: '/check/css/baidu',
+        CHECK_CSS: '/check/css/default',
         // 检测html地址
-        CHECK_HTML: '/check/html/baidu',
+        CHECK_HTML: '/check/html/default',
         // 检测less地址
-        CHECK_LESS: '/check/less/baidu',
+        CHECK_LESS: '/check/less/default',
+        // 检测js地址（使用baidu规范）
+        CHECK_JS_BAIDU: '/check/js/baidu',
+        // 检测css地址（使用baidu规范）
+        CHECK_CSS_BAIDU: '/check/css/baidu',
+        // 检测html地址（使用baidu规范）
+        CHECK_HTML_BAIDU: '/check/html/baidu',
+        // 检测less地址（使用baidu规范）
+        CHECK_LESS_BAIDU: '/check/less/baidu',
         // 格式化js地址
         FORMAT_JS: '/format/js',
         // 格式化css地址
@@ -56,7 +64,7 @@
      */
     var CODE = {
         // js 初始化代码
-        CODE_JS: [
+        JS: [
             '/**',
             ' * @file FECS test file',
             ' * @author cgzero(cgzero@cgzero.com)',
@@ -73,7 +81,7 @@
             ''
         ],
         // css 初始化代码
-        CODE_CSS: [
+        CSS: [
             'body {',
             '    margin: 0;',
             '    padding: 0;',
@@ -81,7 +89,7 @@
             ''
         ],
         // html 初始化代码
-        CODE_HTML: [
+        HTML: [
             '<!DOCTYPE html>',
             '<html lang="zh-CN">',
             '<head>',
@@ -96,7 +104,7 @@
             '</html>'
         ],
         // less 初始化代码
-        CODE_LESS: [
+        LESS: [
             '@zero: 0;',
             '',
             'body {',
@@ -129,6 +137,15 @@
     var CHECK_DELAY_TIME = 500;
 
     /**
+     * 检测代码所使用的 reporter
+     * 1: default
+     * 2: baidu
+     *
+     * @type {Number}
+     */
+    var currCheckType = 1;
+
+    /**
      * ace编辑器
      *
      * @type {Object}
@@ -136,18 +153,74 @@
     var ace = window.ace;
 
     /**
-     * 为checkCode增加防抖功能
+     * 为 checkCode 增加防抖功能
      *
      * @type {Function}
      */
     var checkCodeDebounce = debounce(CHECK_DELAY_TIME, checkCode);
 
     /**
-     * 存放编辑器实例的列表
+     * 编辑器实例表
      *
      * @type {Object}
      */
     var editorMap = {};
+
+    /**
+     * 语言类型信息对应表
+     *
+     * @type {Object}
+     */
+    var typeMap = {
+        javascript: {
+            checkUrl: function () {
+                if (currCheckType === 1) {
+                    return URL.CHECK_JS;
+                }
+                else if (currCheckType === 2) {
+                    return URL.CHECK_JS_BAIDU;
+                }
+            },
+            formatUrl: URL.FORMAT_JS,
+            codeTxt: CODE.JS.join('\n')
+        },
+        css: {
+            checkUrl: function () {
+                if (currCheckType === 1) {
+                    return URL.CHECK_CSS;
+                }
+                else if (currCheckType === 2) {
+                    return URL.CHECK_CSS_BAIDU;
+                }
+            },
+            formatUrl: URL.FORMAT_CSS,
+            codeTxt: CODE.CSS.join('\n')
+        },
+        html: {
+            checkUrl: function () {
+                if (currCheckType === 1) {
+                    return URL.CHECK_HTML;
+                }
+                else if (currCheckType === 2) {
+                    return URL.CHECK_HTML_BAIDU;
+                }
+            },
+            formatUrl: URL.FORMAT_HTML,
+            codeTxt: CODE.HTML.join('\n')
+        },
+        less: {
+            checkUrl: function () {
+                if (currCheckType === 1) {
+                    return URL.CHECK_LESS;
+                }
+                else if (currCheckType === 2) {
+                    return URL.CHECK_LESS_BAIDU;
+                }
+            },
+            formatUrl: URL.FORMAT_LESS,
+            codeTxt: CODE.LESS.join('\n')
+        }
+    };
 
     /**
      * 字符串格式化
@@ -202,41 +275,52 @@
      * @param {string} type 代码类型
      */
     function initAceEditor(type) {
-        var codeTxt = '';
-        var url = '';
-
-        switch (type) {
-            case 'javascript':
-                codeTxt = CODE.CODE_JS.join('\n');
-                url = URL.CHECK_JS;
-                break;
-            case 'css':
-                codeTxt = CODE.CODE_CSS.join('\n');
-                url = URL.CHECK_CSS;
-                break;
-            case 'html':
-                codeTxt = CODE.CODE_HTML.join('\n');
-                url = URL.CHECK_HTML;
-                break;
-            case 'less':
-                codeTxt = CODE.CODE_LESS.join('\n');
-                url = URL.CHECK_LESS;
-                break;
-        }
-
+        var codeTxt = typeMap[type].codeTxt;
         var editor = ace.edit(type + '-editor');
+
         editor.$blockScrolling = Infinity;
         editor.setTheme('ace/theme/monokai');
+
         editor.getSession().setUseWorker(false);
         editor.getSession().setMode('ace/mode/' + type);
         editor.getSession().setValue(codeTxt);
+
         editor.setOption('wrap', false);
-        checkCode(editor.getSession().getValue(), type, url);
+        editor.setOption('highlightActiveLine', false);
+
+        var codeVal = editor.getSession().getValue();
+
+        editor.commands.removeCommand('find');
+        editor.commands.addCommand({
+            name: 'format',
+            bindKey: {
+                win: 'Ctrl-Shift-F',
+                mac: 'Command-Shift-F'
+            },
+            exec: function (editor, line) {
+                formatCode(codeVal, type, function (data) {
+                    editor.getSession().setValue(data.code);
+                });
+            },
+            readOnly: true
+        });
+
+        checkCode(codeVal, type);
         editor.on('change', function (evt) {
-            checkCodeDebounce(editor.getValue(), type, url);
+            checkCodeDebounce(editor.getValue(), type);
         });
 
         editorMap[type] = editor;
+    }
+
+    /**
+     * 获取当前展示的编辑器类型
+     *
+     * @inner
+     * @return {string} 编辑器类型
+     */
+    function getCurrEditerType() {
+        return $('.nav-item.cur').attr('data-for');
     }
 
     /**
@@ -245,6 +329,7 @@
      * @inner
      */
     function initEditorEvent() {
+        // nav点击切换
         $('.nav-item').on('click', function () {
             var self = $(this);
 
@@ -259,32 +344,18 @@
             $('#' + dataFor + '-console').show();
         });
 
+        // 格式化代码
         $('.format-btn').on('click', function (event) {
-            var type = $('.nav-item.cur').attr('data-for');
+            var type = getCurrEditerType();
             var currEditer = editorMap[type];
             var code = currEditer.getSession().getValue();
-            var url;
 
-            switch (type) {
-                case 'javascript':
-                    url = URL.FORMAT_JS;
-                    break;
-                case 'css':
-                    url = URL.FORMAT_CSS;
-                    break;
-                case 'html':
-                    url = URL.FORMAT_HTML;
-                    break;
-                case 'less':
-                    url = URL.FORMAT_LESS;
-                    break;
-            }
-
-            formatCode(code, type, url, function (data) {
+            formatCode(code, type, function (data) {
                 currEditer.getSession().setValue(data.code);
             });
         });
 
+        // 窗口尺寸变化时的处理函数
         var resizeEditor = function () {
             if ($('.demo-editor-wrap').hasClass('full')) {
                 $('.demo-editor').height($(window).height() - 150);
@@ -298,6 +369,10 @@
             });
         };
 
+        // 窗口尺寸改变时绑定事件
+        $(window).resize(resizeEditor);
+
+        // 最大最小化按钮
         $('.full-screen-btn').on('click', function () {
             var self = $(this);
             if (!self.hasClass('full')) {
@@ -308,12 +383,10 @@
             else {
                 $('.demo-editor-wrap').removeClass('full');
                 self.removeClass('full');
+                // 定位到编辑器头部的位置
+                $(window).scrollTop($('.demo-nav').offset().top);
                 resizeEditor();
             }
-        });
-
-        $(window).resize(function(event) {
-            resizeEditor();
         });
     }
 
@@ -339,6 +412,8 @@
      */
     function showConsole(data, type) {
         var consoleTpl = '';
+        var errList = [];
+
         if (!data.length) {
             consoleTpl = TPL.CONSOLE_OK;
         }
@@ -350,10 +425,29 @@
                     col: item.colum,
                     msg: item.message
                 });
+
+                var severityType;
+                switch (item.severity) {
+                    case 1:
+                        severityType = 'warning';
+                        break;
+                    case 2:
+                        severityType = 'error';
+                        break;
+                }
+
+                errList.push({
+                    row: item.line - 1,
+                    column: item.colum,
+                    text: $.trim(item.message),
+                    type: severityType
+                });
             });
         }
 
         $('#' + type + '-console').html(consoleTpl);
+
+        editorMap[getCurrEditerType()].getSession().setAnnotations(errList);
     }
 
     /**
@@ -362,12 +456,27 @@
      * @inner
      * @param {string} code 代码片段
      * @param {string} type 代码类型
-     * @param {string} url 请求路径
      */
-    function checkCode(code, type, url) {
+    function checkCode(code, type) {
         var params = {
             code: code
         };
+        var url;
+
+        switch (type) {
+            case 'javascript':
+                url = URL.CHECK_JS;
+                break;
+            case 'css':
+                url = URL.CHECK_CSS;
+                break;
+            case 'html':
+                url = URL.CHECK_HTML;
+                break;
+            case 'less':
+                url = URL.CHECK_LESS;
+                break;
+        }
 
         $.ajax({
             type: 'POST',
@@ -391,13 +500,28 @@
      * @inner
      * @param {string} code 代码片段
      * @param {string} type 代码类型
-     * @param {string} url 请求路径
      * @param {Function} callback 回调函数
      */
-    function formatCode(code, type, url, callback) {
+    function formatCode(code, type, callback) {
         var params = {
             code: code
         };
+        var url;
+
+        switch (type) {
+            case 'javascript':
+                url = URL.FORMAT_JS;
+                break;
+            case 'css':
+                url = URL.FORMAT_CSS;
+                break;
+            case 'html':
+                url = URL.FORMAT_HTML;
+                break;
+            case 'less':
+                url = URL.FORMAT_LESS;
+                break;
+        }
 
         $.ajax({
             type: 'POST',
