@@ -1,6 +1,9 @@
 @import "comm"
 
 $nav-height = 50px
+$editor-menu-hover-bg = #313131
+$editor-menu-hover-bg-light = #2891d3
+$editor-menu-width = 220px
 
 body {
     background-color: #454163
@@ -32,7 +35,7 @@ body {
     }
 
     .ace_tooltip {
-        animation(changeOpacity .2s);
+        animation(changeOpacity .2s)
         background-color: #282828
         border: 2px solid #414141
         color: #787878
@@ -43,7 +46,7 @@ body {
     }
 
     .ace_gutter-cell.ace_error {
-        image-2x('../img/icon_editor@2x.png', 150px, 100px)
+        image-2x('../img/icon_editor@2x.png', 200px, 100px)
         background: url(../img/icon_editor.png) -97px 3px no-repeat
     }
 }
@@ -104,6 +107,7 @@ body {
         .nav-btn {
             &.first {
                 float: left
+                position: relative
             }
 
             &.last {
@@ -115,8 +119,9 @@ body {
             float: left
 
             a {
+                transition(all, .1s)
                 display: block
-                color: #909293
+                color: #999
                 background-color: #1f1f1f
                 padding: 0 30px
                 height: $nav-height
@@ -126,7 +131,8 @@ body {
             &:hover {
                 a {
                     text-decoration: none
-                    background-color: #313131
+                    background-color: $editor-menu-hover-bg
+                    color: #fff
                 }
             }
 
@@ -134,6 +140,7 @@ body {
                 a {
                     text-decoration: none
                     background-color: #282828
+                    color: #fff
                 }
 
                 &:hover {
@@ -141,6 +148,85 @@ body {
                         background-color: #282828
                         cursor: default
                     }
+                }
+            }
+        }
+    }
+
+    .menu-list {
+        absolute(50px, null, null, 0)
+        animation(changeOpacity .2s)
+        reset-list()
+        width: $editor-menu-width
+        background-color: #1f1f1f
+        z-index: 100
+        display: none
+
+        hover() {
+            transition(all, .1s)
+            background-color: $editor-menu-hover-bg-light
+            color: #fff
+
+            span {
+                color: #a9dbfa
+            }
+
+            .arrow-right {
+                opacity: 1
+            }
+        }
+
+        .menu-item {
+            position: relative
+
+            &:hover,
+            &.cur {
+                .menu-link {
+                    hover()
+                }
+            }
+
+            a {
+                display: block
+                height: 50px
+                line-height: 50px
+                padding: 0 20px 0 25px
+                color: #999
+                text-decoration: none
+                position: relative
+
+                span {
+                    float: right
+                    color: #666
+                }
+
+                .arrow-right {
+                    size(10px)
+                    image-2x('../img/icon_editor@2x.png', 200px, 100px)
+                    opacity: .4
+                    background: url(../img/icon_editor.png) -125px -25px no-repeat
+                    absolute(20px, 15px, null, null)
+
+                }
+
+                &.select .check {
+                    size(14px)
+                    image-2x('../img/icon_editor@2x.png', 200px, 100px)
+                    opacity: .4
+                    background: url(../img/icon_editor.png) -125px -50px no-repeat
+                    absolute(21px, null, null, 7px)
+                }
+            }
+
+            .menu-sub-list {
+                animation(changeOpacity .2s)
+                absolute(0, null, null, $editor-menu-width)
+                background-color: #1f1f1f
+                display: none
+                min-width: 100px
+
+                .menu-sub-link:hover {
+                    hover()
                 }
             }
         }
@@ -157,7 +243,7 @@ body {
 .demo-console {
     padding: 5px 15px
     font-size: 12px
-    color: #909293
+    color: #999
     line-height: 1.4
 
     .warn {
@@ -173,37 +259,54 @@ body {
     }
 }
 
-.format-btn {
+.menu-btn {
     transition(background-color, .1s)
+    size($nav-height)
     display: block
-    height: $nav-height
-    padding: 0 20px
-    line-height: $nav-height
-    text-align: center
-    color: #fff
-    background-color: #2891d3
 
-    &:hover {
-        text-decoration: none
-        background-color: #2085c5
+    i {
+        transition(opacity, .1s)
+        size($nav-height)
+        image-2x('../img/icon_editor@2x.png', 200px, 100px)
+        display: block
+        opacity: .2
+        background: url(../img/icon_editor.png) -150px -50px no-repeat
+    }
+
+    &:hover,
+    &.cur {
+        background-color: $editor-menu-hover-bg-light
+
+        i {
+            opacity: 1
+        }
     }
 }
 
 .full-screen-btn {
     size($nav-height)
-    image-2x('../img/icon_editor@2x.png', 150px, 100px)
-    background: url(../img/icon_editor.png) 0 0 no-repeat
+    transition(background-color, .1s)
     display: block
 
+    i {
+        size($nav-height)
+        transition(opacity, .1s)
+        image-2x('../img/icon_editor@2x.png', 200px, 100px)
+        background: url(../img/icon_editor.png) 0 -50px no-repeat
+        opacity: .3
+        display: block
+    }
+
     &:hover {
-        background-color: #313131
-        background-position: 0 -50px
+        background-color: $editor-menu-hover-bg
+
+        i {
+            opacity: .5
+        }
     }
 
     &.full {
-        background-position: -50px 0
-
-        &:hover {
+        i {
             background-position: -50px -50px
         }
     }

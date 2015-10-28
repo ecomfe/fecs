@@ -25,12 +25,32 @@
 <div class="demo-editor-wrap" id="editor">
     <div class="demo-nav">
         <ul class="nav-list">
-            <li class="nav-btn first"><a class="full-screen-btn" href="#" onclick="return false;"></a></li>
+            <li class="nav-btn nav-btn-menu first">
+                <a class="menu-btn" href="#" onclick="return false;" title="menu"><i></i></a>
+                <dl class="menu-list">
+                    <dd class="menu-item">
+                        <a class="menu-link format-btn" href="#" onclick="return false;">Format<span>Ctrl Shift F</span></a>
+                    </dd>
+                    <dd class="menu-item">
+                        <a class="menu-link" href="#" onclick="return false;">Change Reporter<i class="arrow-right"></i></a>
+                        <dl class="menu-sub-list">
+                            <dd class="menu-sub-item">
+                                <a class="select menu-sub-link reporter-btn" href="#" onclick="return false;" data-type="1"><i class="check"></i>Default</a>
+                            </dd>
+                            <dd class="menu-sub-item">
+                                <a class="menu-sub-link reporter-btn" href="#" onclick="return false;" data-type="2"><i class="check"></i>Baidu</a>
+                            </dd>
+                        </dl>
+                    </dd>
+                </dl>
+            </li>
             <li class="nav-item cur" data-for="javascript"><a href="#" onclick="return false;">Javascript</a></li>
             <li class="nav-item" data-for="css"><a href="#" onclick="return false;">CSS</a></li>
             <li class="nav-item" data-for="html"><a href="#" onclick="return false;">HTML</a></li>
             <li class="nav-item" data-for="less"><a href="#" onclick="return false;">LESS</a></li>
-            <li class="nav-btn last"><a class="format-btn" href="#" onclick="return false;" title="格式化（Ctrl + Shift + F）">格式化</a></li>
+            <li class="nav-btn last">
+                <a class="full-screen-btn" href="#" onclick="return false;" title="full screen"><i></i></a>
+            </li>
         </ul>
     </div>
     <div class="demo-editor" id="javascript-editor"></div>

@@ -143,7 +143,7 @@
      *
      * @type {Number}
      */
-    var currCheckType = 1;
+    var currReporterType = 1;
 
     /**
      * ace编辑器
@@ -171,13 +171,13 @@
      *
      * @type {Object}
      */
-    var typeMap = {
+    var langTypeMap = {
         javascript: {
             checkUrl: function () {
-                if (currCheckType === 1) {
+                if (currReporterType === 1) {
                     return URL.CHECK_JS;
                 }
-                else if (currCheckType === 2) {
+                else if (currReporterType === 2) {
                     return URL.CHECK_JS_BAIDU;
                 }
             },
@@ -186,10 +186,10 @@
         },
         css: {
             checkUrl: function () {
-                if (currCheckType === 1) {
+                if (currReporterType === 1) {
                     return URL.CHECK_CSS;
                 }
-                else if (currCheckType === 2) {
+                else if (currReporterType === 2) {
                     return URL.CHECK_CSS_BAIDU;
                 }
             },
@@ -198,10 +198,10 @@
         },
         html: {
             checkUrl: function () {
-                if (currCheckType === 1) {
+                if (currReporterType === 1) {
                     return URL.CHECK_HTML;
                 }
-                else if (currCheckType === 2) {
+                else if (currReporterType === 2) {
                     return URL.CHECK_HTML_BAIDU;
                 }
             },
@@ -210,10 +210,10 @@
         },
         less: {
             checkUrl: function () {
-                if (currCheckType === 1) {
+                if (currReporterType === 1) {
                     return URL.CHECK_LESS;
                 }
-                else if (currCheckType === 2) {
+                else if (currReporterType === 2) {
                     return URL.CHECK_LESS_BAIDU;
                 }
             },
@@ -221,6 +221,30 @@
             codeTxt: CODE.LESS.join('\n')
         }
     };
+
+    /**
+     * 编辑器menu
+     *
+     * @return {Object} 暴露的方法
+     */
+    var editerMenu = (function () {
+        var state = 0;
+        return {
+            getState: function () {
+                return state;
+            },
+            show: function () {
+                $('.menu-btn').addClass('cur');
+                $('.menu-list').show();
+                state = 1;
+            },
+            hide: function () {
+                $('.menu-btn').removeClass('cur');
+                $('.menu-list').hide();
+                state = 0;
+            }
+        };
+    })();
 
     /**
      * 字符串格式化
@@ -275,7 +299,7 @@
      * @param {string} type 代码类型
      */
     function initAceEditor(type) {
-        var codeTxt = typeMap[type].codeTxt;
+        var codeTxt = langTypeMap[type].codeTxt;
         var editor = ace.edit(type + '-editor');
 
         editor.$blockScrolling = Infinity;
@@ -352,6 +376,7 @@
 
             formatCode(code, type, function (data) {
                 currEditer.getSession().setValue(data.code);
+                editerMenu.hide();
             });
         });
 
@@ -387,6 +412,58 @@
                 $(window).scrollTop($('.demo-nav').offset().top);
                 resizeEditor();
             }
+        });
+
+        // 点击展开、隐藏菜单
+        $('.menu-btn').on('click', function (evt) {
+            // 如果菜单已经展开
+            if (editerMenu.getState()) {
+                return;
+            }
+
+            evt.stopPropagation();
+            editerMenu.show();
+        });
+        $('body').on('click', function (evt) {
+            // 如果菜单没有展开
+            if (!editerMenu.getState()) {
+                return;
+            }
+
+            // 如果点击了菜单里的区域
+            if ($(evt.target).parents('.menu-list').size()) {
+                return;
+            }
+
+            editerMenu.hide();
+        });
+
+        // menu hover 展开 submenu
+        $('.menu-item').hover(
+            function () {
+                $(this)
+                    .addClass('cur')
+                    .find('.menu-sub-list').show();
+            },
+            function () {
+                $(this)
+                    .removeClass('cur')
+                    .find('.menu-sub-list').hide();
+            }
+        );
+
+        $('.reporter-btn').on('click', function (evt) {
+            var self = $(this);
+
+            var reporterType = parseInt(self.attr('data-type'), 10);
+            $('.reporter-btn').removeClass('select');
+            self.addClass('select');
+            currReporterType = reporterType;
+            editerMenu.hide();
+
+            // 强制触发检测
+            var currType = getCurrEditerType();
+            checkCode(editorMap[currType].getSession().getValue(), currType);
         });
     }
 
@@ -461,22 +538,7 @@
         var params = {
             code: code
         };
-        var url;
-
-        switch (type) {
-            case 'javascript':
-                url = URL.CHECK_JS;
-                break;
-            case 'css':
-                url = URL.CHECK_CSS;
-                break;
-            case 'html':
-                url = URL.CHECK_HTML;
-                break;
-            case 'less':
-                url = URL.CHECK_LESS;
-                break;
-        }
+        var url = langTypeMap[type].checkUrl();
 
         $.ajax({
             type: 'POST',
@@ -506,22 +568,7 @@
         var params = {
             code: code
         };
-        var url;
-
-        switch (type) {
-            case 'javascript':
-                url = URL.FORMAT_JS;
-                break;
-            case 'css':
-                url = URL.FORMAT_CSS;
-                break;
-            case 'html':
-                url = URL.FORMAT_HTML;
-                break;
-            case 'less':
-                url = URL.FORMAT_LESS;
-                break;
-        }
+        var url = langTypeMap[type].formatUrl();
 
         $.ajax({
             type: 'POST',
