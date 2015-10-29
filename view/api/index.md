@@ -1,6 +1,6 @@
 # <i id="start"></i>快速开始
 
-FECS 是基于 Node.js 的前端代码风格工具套件，包含对 JavaScript、CSS 与 HTML 的检查及格式化。
+FECS 是基于 Node.js 的前端代码风格工具套件，包含对 JavaScript、CSS 与 HTML 的检查、修复及格式化。
 
 ### 安装
 
