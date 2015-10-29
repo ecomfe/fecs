@@ -173,7 +173,7 @@
      */
     var langTypeMap = {
         javascript: {
-            checkUrl: function () {
+            getCheckUrl: function () {
                 if (currReporterType === 1) {
                     return URL.CHECK_JS;
                 }
@@ -185,7 +185,7 @@
             codeTxt: CODE.JS.join('\n')
         },
         css: {
-            checkUrl: function () {
+            getCheckUrl: function () {
                 if (currReporterType === 1) {
                     return URL.CHECK_CSS;
                 }
@@ -197,7 +197,7 @@
             codeTxt: CODE.CSS.join('\n')
         },
         html: {
-            checkUrl: function () {
+            getCheckUrl: function () {
                 if (currReporterType === 1) {
                     return URL.CHECK_HTML;
                 }
@@ -209,7 +209,7 @@
             codeTxt: CODE.HTML.join('\n')
         },
         less: {
-            checkUrl: function () {
+            getCheckUrl: function () {
                 if (currReporterType === 1) {
                     return URL.CHECK_LESS;
                 }
@@ -376,8 +376,9 @@
 
             formatCode(code, type, function (data) {
                 currEditer.getSession().setValue(data.code);
-                editerMenu.hide();
             });
+
+            editerMenu.hide();
         });
 
         // 窗口尺寸变化时的处理函数
@@ -463,7 +464,10 @@
 
             // 强制触发检测
             var currType = getCurrEditerType();
-            checkCode(editorMap[currType].getSession().getValue(), currType);
+            $.each(editorMap, function(key, editor) {
+                checkCode(editor.getSession().getValue(), key);
+            });
+
         });
     }
 
@@ -538,7 +542,7 @@
         var params = {
             code: code
         };
-        var url = langTypeMap[type].checkUrl();
+        var url = langTypeMap[type].getCheckUrl();
 
         $.ajax({
             type: 'POST',
@@ -568,7 +572,7 @@
         var params = {
             code: code
         };
-        var url = langTypeMap[type].formatUrl();
+        var url = langTypeMap[type].formatUrl;
 
         $.ajax({
             type: 'POST',

@@ -49,6 +49,14 @@ body {
         image-2x('../img/icon_editor@2x.png', 200px, 100px)
         background: url(../img/icon_editor.png) -97px 3px no-repeat
     }
+
+    .ace_layer {
+        min-width: 50px
+    }
+
+    .ace_gutter-cell {
+        padding-left: 10px
+    }
 }
 
 .demo-slogan {
@@ -163,7 +171,6 @@ body {
         display: none
 
         hover() {
-            transition(all, .1s)
             background-color: $editor-menu-hover-bg-light
             color: #fff
 
@@ -172,6 +179,10 @@ body {
             }
 
             .arrow-right {
+                opacity: 1
+            }
+
+            &.select .check {
                 opacity: 1
             }
         }
@@ -187,6 +198,7 @@ body {
             }
 
             a {
+                transition(all, .1s)
                 display: block
                 height: 50px
                 line-height: 50px
@@ -196,12 +208,14 @@ body {
                 position: relative
 
                 span {
+                    transition(color, .1s)
                     float: right
                     color: #666
                 }
 
                 .arrow-right {
                     size(10px)
+                    transition(opacity, .1s)
                     image-2x('../img/icon_editor@2x.png', 200px, 100px)
                     opacity: .4
                     background: url(../img/icon_editor.png) -125px -25px no-repeat
@@ -211,6 +225,7 @@ body {
 
                 &.select .check {
                     size(14px)
+                    transition(opacity, .1s)
                     image-2x('../img/icon_editor@2x.png', 200px, 100px)
                     opacity: .4
                     background: url(../img/icon_editor.png) -125px -50px no-repeat
