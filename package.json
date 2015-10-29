@@ -42,31 +42,31 @@
   "homepage": "https://github.com/ecomfe/fecs",
   "dependencies": {
     "babel-eslint": "^4.1.3",
-    "chalk": "^1.0.0",
+    "chalk": "^1.1.1",
     "cssbeautify": "^0.3.1",
     "csscomb": "^3.1.7",
     "csshint": "^0.2.0",
     "doctrine2": "^0.6.6",
-    "esformatter": "~0.7.0",
-    "eslint": "^1.7.2",
+    "esformatter": "~0.8.1",
+    "eslint": "^1.7.3",
     "fixmyjs": "^1.0.3",
-    "htmlcs": "^0.1.2",
+    "htmlcs": "^0.1.4",
     "jformatter": "~1.0.11",
     "jshint": "^2.8.0",
-    "lesslint": "~0.1.6",
-    "manis": "^0.1.0",
+    "lesslint": "~0.1.7",
+    "manis": "^0.2.3",
     "map-stream": "0.0.6",
-    "minimatch": "^2.0.8",
+    "minimatch": "^3.0.0",
     "minimist": "^1.1.0",
-    "msee": "^0.1.1",
+    "msee": "^0.1.2",
     "q": "^1.4.1",
-    "vinyl": "^0.5.0",
-    "vinyl-fs": "0.2.0"
+    "vinyl": "^0.5.3",
+    "vinyl-fs": "2.2.1"
   },
   "devDependencies": {
-    "coveralls": "^2.11.2",
-    "istanbul": "^0.3.15",
+    "coveralls": "^2.11.4",
+    "istanbul": "^0.3.22",
     "jasmine-node": "^2.0.0",
-    "mock-fs": "^3.0.0"
+    "mock-fs": "^3.4.0"
   }
 }
