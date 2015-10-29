@@ -71,13 +71,15 @@
             ' */',
             '',
             '/**',
-            ' * say Hello',
+            ' * Say Hello',
+            ' *',
+            ' * @param {string} fecs the name to say hi',
             ' */',
-            'function hello() {',
-            '    alert(\'Hello FECS\');',
+            'function hello(name){',
+            '    alert(\'Hello \' + name); ',
             '}',
             '',
-            'hello();',
+            'hello(\'FECS\')',
             ''
         ],
         // css 初始化代码
@@ -100,6 +102,9 @@
             '</head>',
             '<body>',
             '    Hello FECS',
+            '<script>',
+            '    alert(\'Hello FECS\')',
+            '</script>',
             '</body>',
             '</html>'
         ],
@@ -108,8 +113,8 @@
             '@zero: 0;',
             '',
             'body {',
-            '    margin: $zero;',
-            '    padding: $zero;',
+            '    margin: @zero;',
+            '    padding: @zero;',
             '}',
             ''
         ]
@@ -477,10 +482,10 @@
      * @inner
      */
     function initEditor() {
-        initAceEditor('javascript');
         initAceEditor('css');
         initAceEditor('html');
         initAceEditor('less');
+        initAceEditor('javascript');
         initEditorEvent();
 
         if (navigator.userAgent.indexOf('Mac OS X') != -1) {
