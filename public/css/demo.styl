@@ -20,7 +20,7 @@ body {
     position: relative
     font-size: 14px !important
     background-color: #272822
-    color: #fff
+    color: #272822
 
     .ace_active-line {
         background-color: transparent !important
@@ -45,17 +45,16 @@ body {
         max-width: 800px
     }
 
-    .ace_gutter-cell.ace_error {
-        image-2x('../img/icon_editor@2x.png', 200px, 100px)
-        background: url(../img/icon_editor.png) -97px 3px no-repeat
-    }
-
-    .ace_layer {
-        min-width: 50px
-    }
-
     .ace_gutter-cell {
-        padding-left: 10px
+        &.ace_error {
+            image-2x('../img/icon_editor@2x.png', 200px, 100px)
+            background: url(../img/icon_editor.png) -97px 3px no-repeat
+        }
+
+        &.ace_warning {
+            image-2x('../img/icon_editor@2x.png', 200px, 100px)
+            background: url(../img/icon_editor.png) -97px -73px no-repeat
+        }
     }
 }
 

@@ -57,70 +57,6 @@
     };
 
     /**
-     * 初始化的代码片段
-     *
-     * @const
-     * @type {Object}
-     */
-    var CODE = {
-        // js 初始化代码
-        JS: [
-            '/**',
-            ' * @file FECS test file',
-            ' * @author cgzero(cgzero@cgzero.com)',
-            ' */',
-            '',
-            '/**',
-            ' * Say Hello',
-            ' *',
-            ' * @param {string} fecs the name to say hi',
-            ' */',
-            'function hello(name){',
-            '    alert(\'Hello \' + name); ',
-            '}',
-            '',
-            'hello(\'FECS\')',
-            ''
-        ],
-        // css 初始化代码
-        CSS: [
-            'body {',
-            '    margin: 0;',
-            '    padding: 0;',
-            '}',
-            ''
-        ],
-        // html 初始化代码
-        HTML: [
-            '<!DOCTYPE html>',
-            '<html lang="zh-CN">',
-            '<head>',
-            '    <meta charset="UTF-8">',
-            '    <title>Hello FECS</title>',
-            '    <meta http-equiv="X-UA-Compatible" content="IE=Edge">',
-            '    <meta name="viewport" content="width=device-width, initial-scale=1">',
-            '</head>',
-            '<body>',
-            '    Hello FECS',
-            '<script>',
-            '    alert(\'Hello FECS\')',
-            '</script>',
-            '</body>',
-            '</html>'
-        ],
-        // less 初始化代码
-        LESS: [
-            '@zero: 0;',
-            '',
-            'body {',
-            '    margin: @zero;',
-            '    padding: @zero;',
-            '}',
-            ''
-        ]
-    };
-
-    /**
      * 各种文字提示信息
      *
      * @const
@@ -186,8 +122,7 @@
                     return URL.CHECK_JS_BAIDU;
                 }
             },
-            formatUrl: URL.FORMAT_JS,
-            codeTxt: CODE.JS.join('\n')
+            formatUrl: URL.FORMAT_JS
         },
         css: {
             getCheckUrl: function () {
@@ -198,8 +133,7 @@
                     return URL.CHECK_CSS_BAIDU;
                 }
             },
-            formatUrl: URL.FORMAT_CSS,
-            codeTxt: CODE.CSS.join('\n')
+            formatUrl: URL.FORMAT_CSS
         },
         html: {
             getCheckUrl: function () {
@@ -210,8 +144,7 @@
                     return URL.CHECK_HTML_BAIDU;
                 }
             },
-            formatUrl: URL.FORMAT_HTML,
-            codeTxt: CODE.HTML.join('\n')
+            formatUrl: URL.FORMAT_HTML
         },
         less: {
             getCheckUrl: function () {
@@ -222,8 +155,7 @@
                     return URL.CHECK_LESS_BAIDU;
                 }
             },
-            formatUrl: URL.FORMAT_LESS,
-            codeTxt: CODE.LESS.join('\n')
+            formatUrl: URL.FORMAT_LESS
         }
     };
 
@@ -304,7 +236,6 @@
      * @param {string} type 代码类型
      */
     function initAceEditor(type) {
-        var codeTxt = langTypeMap[type].codeTxt;
         var editor = ace.edit(type + '-editor');
 
         editor.$blockScrolling = Infinity;
@@ -312,7 +243,6 @@
 
         editor.getSession().setUseWorker(false);
         editor.getSession().setMode('ace/mode/' + type);
-        editor.getSession().setValue(codeTxt);
 
         editor.setOption('wrap', false);
         editor.setOption('highlightActiveLine', false);
@@ -537,7 +467,7 @@
 
         $('#' + type + '-console').html(consoleTpl);
 
-        editorMap[getCurrEditerType()].getSession().setAnnotations(errList);
+        editorMap[type].getSession().setAnnotations(errList);
     }
 
     /**
