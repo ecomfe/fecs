@@ -1,246 +1,248 @@
-#index-body {
+@import "comm"
+
+body {
     min-width: 1000px
+}
 
-    .header {
-        absolute(0, 0, null, 0)
-        z-index: 100
+.header {
+    absolute(0, 0, null, 0)
+    z-index: 100
+}
+
+.slogan {
+    margin-top: 170px
+    text-align: center
+    color: #fff
+    font-weight: 400
+    font-family: $font-fzyx
+
+    .slogan-title {
+        font-size: 70px
+        margin-bottom: 10px
+        letter-spacing: 1px
     }
 
-    .slogan {
-        margin-top: 170px
-        text-align: center
-        color: #fff
-        font-weight: 400
-        font-family: $font-fzyx
-
-        .slogan-title {
-            font-size: 70px
-            margin-bottom: 10px
-            letter-spacing: 1px
-        }
-
-        .slogan-content {
-            font-size: 40px
-            color: #d2c9d4
-        }
-    }
-
-    .banner {
-        overflow: hidden
-        height: 1068px
-        position: relative
-        background-color: #454163
-        background-image: -webkit-radial-gradient(#565378, #37324a)
-        background-image:    -moz-radial-gradient(#565378, #37324a)
-        background-image:     -ms-radial-gradient(#565378, #37324a)
-        background-image:         radial-gradient(#565378, #37324a)
-
-        .banner-bg,
-        .banner-bg-front,
-        .banner-bg-end {
-            size(100%, 710px)
-        }
-
-        .banner-bg {
-            absolute(360px, 0, null 0)
-            image-2x('../img/banner_bg@2x.png', 1920px, 710px)
-            background: url(../img/banner_bg.png) 50% 0 no-repeat
-        }
-
-        .banner-bg-front {
-            image-2x('../img/banner_bg_front@2x.png', 1920px, 710px)
-            animation(changeOpacity 2s 0s linear infinite alternate)
-            background: url(../img/banner_bg_front.png) 50% 0 no-repeat
-        }
-
-        .banner-bg-end {
-            image-2x('../img/banner_bg_end@2x.png', 1920px, 710px)
-            animation(changeOpacityReverse 4s 0s linear infinite alternate)
-            background: url(../img/banner_bg_end.png) 50% 0 no-repeat
-        }
-    }
-
-    .intro {
-        $intro-height: 380px
-
-        absolute(null, 0, 0, 0)
-        size(100%, $intro-height)
-        background-color: rgba(0, 0, 0, .4)
-
-        .intro-inner {
-            size(1000px, $intro-height)
-            width: 1000px
-            margin: 0 auto
-        }
-
-        .intro-list {
-            reset-list()
-            clearfix()
-            height: $intro-height
-
-            .intro-item {
-                size(333px, $intro-height)
-                float: left
-                text-align: center
-
-                .intro-icon {
-                    size(132px)
-                    image-2x('../img/sprite_icon@2x.png', 500px, 300px)
-                    margin-top: 60px
-                    display: inline-block
-                    background: url(../img/sprite_icon.png) 0 -100px no-repeat
-
-                    &.intro-icon-gx {
-                        background-position: -150px -100px
-                    }
-
-                    &.intro-icon-qq {
-                        background-position: -300px -100px
-                    }
-                }
-
-                h3 {
-                    color: #fff
-                    font-size: 28px
-                    margin-top: 30px
-                    font-family: $font-fzyx
-                }
-
-                p {
-                    font-size: 20px
-                    color: #c8c8db
-                    padding: 10px 50px
-                    text-align: center
-                    line-height: 1.4
-                }
-            }
-        }
-    }
-
-    .info {
-        color: #fff
-        background-color: #454163
-        background-image: -webkit-radial-gradient(#565378, #37324a)
-        background-image:    -moz-radial-gradient(#565378, #37324a)
-        background-image:     -ms-radial-gradient(#565378, #37324a)
-        background-image:         radial-gradient(#565378, #37324a)
-
-        .info-inner {
-            clearfix()
-            width: 1000px
-            margin: 0 auto
-
-            .info-title {
-                font-size: 28px
-                padding: 60px 0
-                height: 28px
-                line-height: 28px
-                text-align: center
-                font-weight: 400
-                font-family: $font-fzyx
-
-                i {
-                    size(60px, 28px)
-                    display: inline-block
-                    border-top: 1px solid #fff
-                    position: relative
-                    bottom: -20px
-                }
-            }
-
-            .info-list {
-                reset-list()
-                clearfix()
-                border-bottom: 1px solid #685f7b
-                padding-bottom: 50px
-            }
-
-            .info-item {
-                float: left
-                text-align: center
-                padding: 0 52px
-                width: 170px
-
-                &.first {
-                    padding-left: 0
-                }
-
-                &.last {
-                    padding-right: 0
-                }
-
-                i {
-                    display: block
-                    height: 50px
-                    line-height: 50px
-                    font-style: normal
-                    font-size: 24px
-                    border: 1px solid #756c8a
-                    margin-bottom: 17px
-                    font-family: $font-fzyx
-                }
-
-                p {
-                    font-size: 18px
-                    line-height: 1.2
-                    color: #d2c9d4
-                }
-            }
-        }
-    }
-
-    .how-to-use {
-        margin: 50px 0
-        padding-bottom: 40px
-        border-bottom: 1px solid #685f7b
-
-        .how-to-use-line {
-            clearfix()
-            margin-bottom: 20px
-
-            span {
-                width: 100px
-                float: left
-                font-size: 28px
-                height: 60px
-                line-height: 60px
-                font-family: $font-fzyx
-            }
-
-            code {
-                width: 800px
-                background-color: #756c8a
-                float: right
-                font-size: 20px
-                padding: 20px 40px
-            }
-        }
-    }
-
-    .efe-products {
-        font-size: 14px
+    .slogan-content {
+        font-size: 40px
         color: #d2c9d4
-        margin: 50px 0
+    }
+}
 
-        a {
-            color: #6aa3c9
-        }
+.banner {
+    overflow: hidden
+    height: 1068px
+    position: relative
+    background-color: #454163
+    background-image: -webkit-radial-gradient(#565378, #37324a)
+    background-image:    -moz-radial-gradient(#565378, #37324a)
+    background-image:     -ms-radial-gradient(#565378, #37324a)
+    background-image:         radial-gradient(#565378, #37324a)
 
-        p,
-        ul {
-            margin-bottom: 30px
-        }
+    .banner-bg,
+    .banner-bg-front,
+    .banner-bg-end {
+        size(100%, 710px)
+    }
 
-        ul {
-            reset-list()
-            line-height: 1.8
+    .banner-bg {
+        absolute(360px, 0, null 0)
+        image-2x('../img/banner_bg@2x.png', 1920px, 710px)
+        background: url(../img/banner_bg.png) 50% 0 no-repeat
+    }
 
-            li .pro-name {
+    .banner-bg-front {
+        image-2x('../img/banner_bg_front@2x.png', 1920px, 710px)
+        animation(changeOpacity 2s 0s linear 9 alternate)
+        transform(translateZ(0))
+        background: url(../img/banner_bg_front.png) 50% 0 no-repeat
+    }
+
+    .banner-bg-end {
+        image-2x('../img/banner_bg_end@2x.png', 1920px, 710px)
+        animation(changeOpacityReverse 4s 0s linear 4 alternate)
+        transform(translateZ(0))
+        background: url(../img/banner_bg_end.png) 50% 0 no-repeat
+    }
+}
+
+.intro {
+    $intro-height = 380px
+
+    absolute(null, 0, 0, 0)
+    size(100%, $intro-height)
+    background-color: rgba(0, 0, 0, .4)
+
+    .intro-inner {
+        size(1000px, $intro-height)
+        width: 1000px
+        margin: 0 auto
+    }
+
+    .intro-list {
+        reset-list()
+        clearfix()
+        height: $intro-height
+
+        .intro-item {
+            size(333px, $intro-height)
+            float: left
+            text-align: center
+
+            .intro-icon {
+                size(132px)
+                image-2x('../img/sprite_icon@2x.png', 500px, 300px)
+                margin-top: 60px
                 display: inline-block
-                width: 70px
+                background: url(../img/sprite_icon.png) 0 -100px no-repeat
+
+                &.intro-icon-gx {
+                    background-position: -150px -100px
+                }
+
+                &.intro-icon-qq {
+                    background-position: -300px -100px
+                }
+            }
+
+            h3 {
+                color: #fff
+                font-size: 28px
+                margin-top: 30px
+                font-family: $font-fzyx
+            }
+
+            p {
+                font-size: 20px
+                color: #c8c8db
+                padding: 10px 50px
+                text-align: center
+                line-height: 1.4
             }
         }
     }
 }
 
+.info {
+    color: #fff
+    background-color: #454163
+    background-image: -webkit-radial-gradient(#565378, #37324a)
+    background-image:    -moz-radial-gradient(#565378, #37324a)
+    background-image:     -ms-radial-gradient(#565378, #37324a)
+    background-image:         radial-gradient(#565378, #37324a)
 
+    .info-inner {
+        clearfix()
+        width: 1000px
+        margin: 0 auto
+
+        .info-title {
+            font-size: 28px
+            padding: 60px 0
+            height: 28px
+            line-height: 28px
+            text-align: center
+            font-weight: 400
+            font-family: $font-fzyx
+
+            i {
+                size(60px, 28px)
+                display: inline-block
+                border-top: 1px solid #fff
+                position: relative
+                bottom: -20px
+            }
+        }
+
+        .info-list {
+            reset-list()
+            clearfix()
+            border-bottom: 1px solid #685f7b
+            padding-bottom: 50px
+        }
+
+        .info-item {
+            float: left
+            text-align: center
+            padding: 0 52px
+            width: 170px
+
+            &.first {
+                padding-left: 0
+            }
+
+            &.last {
+                padding-right: 0
+            }
+
+            i {
+                display: block
+                height: 50px
+                line-height: 50px
+                font-style: normal
+                font-size: 24px
+                border: 1px solid #756c8a
+                margin-bottom: 17px
+                font-family: $font-fzyx
+            }
+
+            p {
+                font-size: 18px
+                line-height: 1.2
+                color: #d2c9d4
+            }
+        }
+    }
+}
+
+.how-to-use {
+    margin: 50px 0
+    padding-bottom: 40px
+    border-bottom: 1px solid #685f7b
+
+    .how-to-use-line {
+        clearfix()
+        margin-bottom: 20px
+
+        span {
+            width: 100px
+            float: left
+            font-size: 28px
+            height: 60px
+            line-height: 60px
+            font-family: $font-fzyx
+        }
+
+        code {
+            width: 800px
+            background-color: #756c8a
+            float: right
+            font-size: 20px
+            padding: 20px 40px
+        }
+    }
+}
+
+.efe-products {
+    font-size: 14px
+    color: #d2c9d4
+    margin: 50px 0
+
+    a {
+        color: #6aa3c9
+    }
+
+    p,
+    ul {
+        margin-bottom: 30px
+    }
+
+    ul {
+        reset-list()
+        line-height: 1.8
+
+        li .pro-name {
+            display: inline-block
+            width: 70px
+        }
+    }
+}

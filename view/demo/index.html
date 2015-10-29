@@ -1,24 +1,90 @@
 {% extends '../layout/base.html' %}
 
+{% block css %}
+<link rel="stylesheet" href="/css/demo.css">
+{% endblock %}
+
 {% block content %}
-<body id="demo-body">
-    <div class="header">
-        <div class="header-inner">
-            <h1 class="logo"><a href="{{ site.baseurl }}/">FECS</a></h1>
-            <ul class="top-nav">
-                <li><a href="{{ site.baseurl }}/">Home</a></li>
-                <li><a href="{{ site.baseurl }}/api">API</a></li>
-                <li><a class="cur" href="{{ site.baseurl }}/demo">Demo</a></li>
-                <li><a href="{{ site.baseurl }}/plugins">Plugins</a></li>
-                <li><a target="_blank" href="{{ site.wiki }}">Wiki</a></li>
-                <li><a target="_blank" href="{{ site.github }}">Github</a></li>
-            </ul>
+<div class="header">
+    <div class="header-inner">
+        <h1 class="logo"><a href="{{ site.baseurl }}/">FECS</a></h1>
+        <ul class="top-nav">
+            <li><a href="{{ site.baseurl }}/">Home</a></li>
+            <li><a href="{{ site.baseurl }}/api">API</a></li>
+            <li><a class="cur" href="{{ site.baseurl }}/demo">Demo</a></li>
+            <li><a href="{{ site.baseurl }}/plugins">Plugins</a></li>
+            <li><a target="_blank" href="{{ site.wiki }}">Wiki</a></li>
+            <li><a target="_blank" href="{{ site.github }}">Github</a></li>
+        </ul>
+    </div>
+</div>
+<div class="demo-slogan">
+    <p class="slogan-title">FECS 在线体验</p>
+    <p class="slogan-content">代码检查 / 格式化，从未如此简单</p>
+</div>
+<div class="demo-editor-wrap" id="editor">
+    <div class="demo-nav">
+        <ul class="nav-list">
+            <li class="nav-btn nav-btn-menu first">
+                <a class="menu-btn" href="#" onclick="return false;" title="menu"><i></i></a>
+                <dl class="menu-list">
+                    <dd class="menu-item">
+                        <a class="menu-link format-btn" href="#" onclick="return false;">Format<span>Ctrl Shift F</span></a>
+                    </dd>
+                    <dd class="menu-item">
+                        <a class="menu-link" href="#" onclick="return false;">Change Reporter<i class="arrow-right"></i></a>
+                        <dl class="menu-sub-list">
+                            <dd class="menu-sub-item">
+                                <a class="select menu-sub-link reporter-btn" href="#" onclick="return false;" data-type="1"><i class="check"></i>Default</a>
+                            </dd>
+                            <dd class="menu-sub-item">
+                                <a class="menu-sub-link reporter-btn" href="#" onclick="return false;" data-type="2"><i class="check"></i>Baidu</a>
+                            </dd>
+                        </dl>
+                    </dd>
+                </dl>
+            </li>
+            <li class="nav-item cur" data-for="javascript"><a href="#" onclick="return false;">Javascript</a></li>
+            <li class="nav-item" data-for="css"><a href="#" onclick="return false;">CSS</a></li>
+            <li class="nav-item" data-for="html"><a href="#" onclick="return false;">HTML</a></li>
+            <li class="nav-item" data-for="less"><a href="#" onclick="return false;">LESS</a></li>
+            <li class="nav-btn last">
+                <a class="full-screen-btn" href="#" onclick="return false;" title="full screen"><i></i></a>
+            </li>
+        </ul>
+    </div>
+    <div class="demo-editor" id="javascript-editor"></div>
+    <div class="demo-editor" id="css-editor" style="display:none;"></div>
+    <div class="demo-editor" id="html-editor" style="display:none;"></div>
+    <div class="demo-editor" id="less-editor" style="display:none;"></div>
+    <div class="demo-console-wrap">
+        <div class="demo-console" id="javascript-console">
+            <div>fecs <span class="info">INFO</span> Congratulations! Everything is OK!</div>
+        </div>
+        <div class="demo-console" id="css-console" style="display:none;">
+            <div>fecs <span class="info">INFO</span> Congratulations! Everything is OK!</div>
+        </div>
+        <div class="demo-console" id="html-console" style="display:none;">
+            <div>fecs <span class="info">INFO</span> Congratulations! Everything is OK!</div>
+        </div>
+        <div class="demo-console" id="less-console" style="display:none;">
+            <div>fecs <span class="info">INFO</span> Congratulations! Everything is OK!</div>
         </div>
     </div>
-    <div class="footer">
-        <div class="footer-inner">
-            <div class="copyright">&copy;2015 <a target="_blank" href="{{ site.efe }}">Baidu EFE</a></div>
-        </div>
+</div>
+<div class="footer">
+    <div class="footer-inner">
+        <div class="copyright">&copy;2015 <a target="_blank" href="{{ site.efe }}">Baidu EFE</a></div>
     </div>
-</body>
+</div>
+{% endblock %}
+
+{% block js %}
+<script src="/dep/ace/ace.min.js"></script>
+<script src="/dep/ace/theme-monokai.js"></script>
+<script src="/dep/ace/mode-javascript.js"></script>
+<script src="/dep/ace/mode-css.js"></script>
+<script src="/dep/ace/mode-html.js"></script>
+<script src="/dep/ace/mode-less.js"></script>
+<script src="/js/demo.js"></script>
 {% endblock %}
