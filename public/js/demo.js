@@ -73,11 +73,11 @@
             '/**',
             ' * say Hello',
             ' */',
-            'function sayHello() {',
+            'function hello() {',
             '    alert(\'Hello FECS\');',
             '}',
             '',
-            'sayHello();',
+            'hello();',
             ''
         ],
         // css 初始化代码
@@ -482,6 +482,10 @@
         initAceEditor('html');
         initAceEditor('less');
         initEditorEvent();
+
+        if (navigator.userAgent.indexOf('Mac OS X') != -1) {
+            $('.format-btn span').html('Cmd Shit F');
+        }
     }
 
     /**
