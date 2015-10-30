@@ -53,11 +53,51 @@
             </li>
         </ul>
     </div>
-    <div class="demo-editor" id="javascript-editor"></div>
-    <div class="demo-editor" id="css-editor" style="display:none;"></div>
-    <div class="demo-editor" id="html-editor" style="display:none;"></div>
-    <div class="demo-editor" id="less-editor" style="display:none;"></div>
-    <div class="demo-console-wrap">
+<div class="demo-editor" id="javascript-editor">/**
+ * @file FECS test file
+ * @author cgzero(cgzero@cgzero.com)
+ */
+
+/**
+ * Say Hello
+ *
+ * @param {string} name fecs the name to say hi
+ */
+function hello(name) {
+    alert('Hello ' + name);
+}
+
+hello('FECS');
+</div>
+<div class="demo-editor" id="css-editor" style="display:none;">body {
+    margin: 0;
+    padding: 0;
+}
+</div>
+<div class="demo-editor" id="html-editor" style="display:none;">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Hello FECS&lt;/title&gt;
+    &lt;meta http-equiv="X-UA-Compatible" content="IE=Edge"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    Hello FECS
+&lt;script&gt;
+    alert('Hello FECS');
+&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</div>
+<div class="demo-editor" id="less-editor" style="display:none;">@zero: 0;
+
+body {
+    margin: @zero;
+    padding: @zero;
+}
+</div>
+<div class="demo-console-wrap">
         <div class="demo-console" id="javascript-console">
             <div>fecs <span class="info">INFO</span> Congratulations! Everything is OK!</div>
         </div>
