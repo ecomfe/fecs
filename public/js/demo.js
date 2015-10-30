@@ -46,9 +46,9 @@
      */
     var TPL = {
         // fecs检查通过的信息
-        CONSOLE_OK: '<div>fecs <span class="info">INFO</span> Congratulations! Everything is OK!</div>',
+        CONSOLE_OK: '<pre>fecs <span class="info">INFO</span> Congratulations! Everything is OK!</pre>',
         // fecs检查出错的信息
-        CONSOLE_WRAN: '<div>fecs ${serverity} → line ${line}, col ${col}: ${msg}</div>',
+        CONSOLE_WRAN: '<pre>fecs ${serverity} → line ${line}, col ${col}: ${msg}</pre>',
         // 代码检查时，每种类型错误所对应的模板
         SERVERITY: {
             1: '<span class="warn">&nbsp;WARN</span>',
