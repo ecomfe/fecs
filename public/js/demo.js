@@ -442,7 +442,7 @@
                 consoleTpl += stringFormat(TPL.CONSOLE_WRAN, {
                     serverity: TPL.SERVERITY[item.severity],
                     line: item.line,
-                    col: item.colum,
+                    col: item.column,
                     msg: item.message
                 });
 
