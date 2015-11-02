@@ -232,17 +232,22 @@ body {
     }
 
     p,
-    ul {
+    dl {
         margin-bottom: 30px
     }
 
-    ul {
-        reset-list()
+    dl {
+        clearfix()
         line-height: 1.8
+    }
 
-        li .pro-name {
-            display: inline-block
-            width: 70px
-        }
+    dt,
+    dd {
+        float: left
+    }
+
+    dt {
+        clear: left
+        width: 70px
     }
 }
