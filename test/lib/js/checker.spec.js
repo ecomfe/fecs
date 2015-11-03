@@ -14,7 +14,7 @@ describe('checker', function () {
         expect(options.name).toBe('eslint');
         expect(options.type).toBe('js');
         expect(options.suffix).toBe('js,es6');
-        expect(options.ignore).toBe('m.js,min.js');
+        expect(options.ignore).toBe('m.js,min.js,mock.js,mockup.js');
 
     });
 
@@ -22,6 +22,8 @@ describe('checker', function () {
         var invalidFiles = [
             new File({contents: new Buffer(''), path: 'test/a.m.js'}),
             new File({contents: new Buffer(''), path: 'test/b.min.js'}),
+            new File({contents: new Buffer(''), path: 'test/c.mock.js'}),
+            new File({contents: new Buffer(''), path: 'test/d.mockup.js'}),
             new File({contents: new Buffer(''), path: 'test/baz.x'})
         ];
 
