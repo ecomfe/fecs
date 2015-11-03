@@ -55,13 +55,23 @@ console.log(options.command); // 'check'
 检查文件或输入流的代码规范。
 
 ```javascript
+// 设置检查的文件路径
+options._ = ['/path/to/check'];
+
+// 或者设置为 stream
+// options.stream = yourReadableStream;
+
+// 设置文件类型
+// options.type = 'js,css';
+
+
 /**
  * callback after check finish
  *
  * @param {boolean} success true as all files ok, or false.
- * @param {Object} json data for check result.
+ * @param {Object[]} errors data for check result.
  */
-function done(success, json) {
+function done(success, errors) {
     // blablabla
 }
 
