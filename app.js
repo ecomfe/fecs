@@ -22,7 +22,9 @@ app.use(function *(next) {
 
 // swig
 var render = require('koa-swig');
-app.context.render = render({
+var markd = require('./lib/markd');
+
+app.context.render = render(markd({
     root: config.viewDir,
     autoescape: true,
     cache: false, // 'memory',
@@ -31,7 +33,7 @@ app.context.render = render({
     // filters: filters,
     // tags: tags,
     // extensions: extensions
-});
+}));
 
 
 var session = require('koa-session');
