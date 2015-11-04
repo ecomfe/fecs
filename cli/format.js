@@ -41,7 +41,7 @@ var streams = {
 
         return this.format(
             fs
-                .src(patterns, {cwdbase: true})
+                .src(patterns, {cwdbase: true, allowEmpty: true})
                 .pipe(ignored(options, specials)),
             options
         ).pipe(fs.dest(output));

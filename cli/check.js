@@ -32,7 +32,7 @@ var streams = {
 
         return this.check(
             fs
-                .src(patterns, {cwdbase: true})
+                .src(patterns, {cwdbase: true, allowEmpty: true})
                 .pipe(ignored(options, specials)),
             options
         );
