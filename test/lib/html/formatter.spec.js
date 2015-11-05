@@ -65,7 +65,7 @@ describe('formatter', function () {
 
         var formatted = formatter.format('<script>var foo=1</script>', 'path/to/file.html', options);
 
-        expect(formatted).toEqual('<script>\n    var foo = 1;\n</script>');
+        expect(formatted).toEqual('<script>\nvar foo = 1;\n</script>');
 
     });
 
@@ -79,7 +79,7 @@ describe('formatter', function () {
             options
         );
 
-        expect(formatted).toEqual('<script>\n    var foo = 1;\n</script>');
+        expect(formatted).toEqual('<script>\nvar foo = 1;\n</script>');
 
     });
 
@@ -88,12 +88,12 @@ describe('formatter', function () {
         var options = cli.getOptions([]);
 
         var formatted = formatter.format(
-            '<script type="text/tpl">var foo=1</script>',
+            '<script type="text/tpl">  var foo=1</script>',
             'path/to/file.html',
             options
         );
 
-        expect(formatted).toEqual('<script type="text/tpl">\nvar foo=1\n</script>');
+        expect(formatted).toEqual('<script type="text/tpl">\n  var foo=1\n</script>');
 
     });
 
@@ -103,7 +103,7 @@ describe('formatter', function () {
 
         var formatted = formatter.format('<style>body{height:0px}</style>', 'path/to/file.html', options);
 
-        expect(formatted).toEqual('<style>\n    body {\n        height: 0;\n    }\n</style>');
+        expect(formatted).toEqual('<style>\nbody {\n    height: 0;\n}\n</style>');
 
     });
 
@@ -117,7 +117,7 @@ describe('formatter', function () {
             options
         );
 
-        expect(formatted).toEqual('<style>\n    body {\n        height: 0;\n    }\n</style>');
+        expect(formatted).toEqual('<style>\nbody {\n    height: 0;\n}\n</style>');
 
     });
 
@@ -126,12 +126,12 @@ describe('formatter', function () {
         var options = cli.getOptions([]);
 
         var formatted = formatter.format(
-            '<style type="text/less">body{height:0px}</style>',
+            '<style type="text/less">  body{height:0px}</style>',
             'path/to/file.html',
             options
         );
 
-        expect(formatted).toEqual('<style type="text/less">\nbody{height:0px}\n</style>');
+        expect(formatted).toEqual('<style type="text/less">\n  body{height:0px}\n</style>');
 
     });
 
