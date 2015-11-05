@@ -48,7 +48,7 @@
         // fecs检查通过的信息
         CONSOLE_OK: '<div>fecs <span class="info">INFO</span> Congratulations! Everything is OK!</div>',
         // fecs检查出错的信息
-        CONSOLE_WRAN: '<div>fecs ${serverity} → line ${line}, col ${col}: ${msg}</div>',
+        CONSOLE_WRAN: '<div>fecs ${serverity} ${info}</div>',
         // 代码检查时，每种类型错误所对应的模板
         SERVERITY: {
             1: '<span class="warn">&nbsp;WARN</span>',
@@ -443,7 +443,8 @@
                     serverity: TPL.SERVERITY[item.severity],
                     line: item.line,
                     col: item.column,
-                    msg: item.message
+                    msg: item.message,
+                    info: item.info
                 });
 
                 var severityType;

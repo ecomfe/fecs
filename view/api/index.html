@@ -10,6 +10,11 @@
     <ul class="api-nav-list">
         <li>
             <a class="anchor cur" href="#start">快速开始</a>
+            <dl>
+                <dd><a class="anchor" href="#cmd-install">安装</a></dd>
+                <dd><a class="anchor" href="#cmd-check">代码检查</a></dd>
+                <dd><a class="anchor" href="#cmd-format">代码修复</a></dd>
+            </dl>
         </li>
         <li>
             <a class="anchor" href="#cli">命令参数</a>
@@ -48,7 +53,9 @@
         <li><a target="_blank" href="{{ site.github }}">Github</a></li>
     </ul>
     <div class="api-entry">
-    {{ content|raw }}
+    {% marked %}
+    {% include "./index.md" %}
+    {% endmarked %}
     {% include "../partial/copyright.html" %}
     </div>
 </div>

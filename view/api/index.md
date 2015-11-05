@@ -2,17 +2,24 @@
 
 FECS 是基于 Node.js 的前端代码风格工具套件，包含对 JavaScript、CSS 与 HTML 的检查、修复及格式化。
 
-### 安装
+### <i id="cmd-install"></i>安装
 
 ```shell
 $ [sudo] npm install fecs -g
 ```
-### 代码检查
+### <i id="cmd-check"></i>代码检查
 
 ```shell
 $ fecs
-$ fecs -v
+$ fecs path
+$ fecs path/to/file
 $ fecs check --help
+```
+### <i id="cmd-format"></i>代码修复
+
+```shell
+$ fecs format src --output=fixed
+$ fecs format src --replace
 $ fecs format --help
 ```
 
@@ -118,13 +125,23 @@ console.log(options.command); // 'check'
 检查文件或输入流的代码规范。
 
 ```javascript
+// 设置检查的文件路径
+options._ = ['/path/to/check'];
+
+// 或者设置为 stream
+// options.stream = yourReadableStream;
+
+// 设置文件类型
+// options.type = 'js,css';
+
+
 /**
  * callback after check finish
  *
  * @param {boolean} success true as all files ok, or false.
- * @param {Object} json data for check result.
+ * @param {Object[]} errors data for check result.
  */
-function done(success, json) {
+function done(success, errors) {
     // blablabla
 }
 

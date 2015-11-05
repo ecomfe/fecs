@@ -4,13 +4,6 @@
  */
 
 var fs = require('fs');
-var marked = require('marked');
-
-marked.setOptions({
-    highlight: function (code) {
-        return require('highlight.js').highlight('javascript', code).value;
-    }
-});
 
 var site = {
     title: 'FECS - Front End Code Style Suite',
@@ -36,17 +29,9 @@ module.exports = {
         yield this.render('index/index', {site: site});
     },
 
-    api: (function () {
-        var doc;
-        return function* () {
-            if (!doc) {
-                var content = fs.readFileSync('view/api/index.md', 'utf-8');
-                doc = marked(content);
-            }
-
-            yield this.render('api/index', {site: site, content: doc});
-        };
-    })(),
+    api: function* () {
+        yield this.render('api/index', {site: site});
+    },
 
     demo: function* () {
         yield this.render('demo/index', {site: site});
