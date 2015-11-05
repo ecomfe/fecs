@@ -8,14 +8,7 @@
 <div class="header">
     <div class="header-inner">
         <h1 class="logo"><a href="{{ site.baseurl }}/">FECS</a></h1>
-        <ul class="top-nav">
-            <li><a href="{{ site.baseurl }}/">Home</a></li>
-            <li><a href="{{ site.baseurl }}/api">API</a></li>
-            <li><a href="{{ site.baseurl }}/demo">Demo</a></li>
-            <li><a class="cur" href="{{ site.baseurl }}/plugins">Plugins</a></li>
-            <li><a target="_blank" href="{{ site.wiki }}">Wiki</a></li>
-            <li><a target="_blank" href="{{ site.github }}">Github</a></li>
-        </ul>
+        {% include "../partial/nav.html" %}
     </div>
 </div>
 <div class="plugin-slogan">

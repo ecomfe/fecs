@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}</title>
-    <link rel="icon" href="fav.ico">
-    <link rel="shortcut icon" href="fav.ico">
+    <link rel="icon" href="/fav.ico">
+    <link rel="shortcut icon" href="/fav.ico">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
     {% block css %}{% endblock %}
@@ -12,6 +12,11 @@
 <body>
 {% block content %}{% endblock %}
 <script src="/dep/jquery-2.1.4.min.js"></script>
+<script>
+$(function () {
+    $('.top-nav a[href^="' + location.pathname.replace(/\b\/$/, '').toLowerCase() + '"]').eq(0).addClass('cur');
+});
+</script>
 {% block js %}{% endblock %}
 </body>
 </html>

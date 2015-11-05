@@ -44,14 +44,7 @@
     </ul>
 </div>
 <div class="api-content">
-    <ul class="top-nav">
-        <li><a href="/">Home</a></li>
-        <li><a class="cur" href="/api">API</a></li>
-        <li><a href="/demo">Demo</a></li>
-        <li><a href="/plugins">Plugins</a></li>
-        <li><a target="_blank" href="{{ site.wiki }}">Wiki</a></li>
-        <li><a target="_blank" href="{{ site.github }}">Github</a></li>
-    </ul>
+    {% include "../partial/nav.html" %}
     <div class="api-entry">
     {% marked %}
     {% include "./index.md" %}
