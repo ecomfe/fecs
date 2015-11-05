@@ -102,7 +102,7 @@ var streams = {
      */
     get: function (options) {
         var stream = options.stream;
-        options.stream = !!stream;
+        stream = !!stream;
 
         if (typeof stream === 'boolean') {
             return this[stream ? 'stdin' : 'files'](options);
