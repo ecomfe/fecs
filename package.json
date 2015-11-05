@@ -61,7 +61,8 @@
     "msee": "^0.1.2",
     "q": "^1.4.1",
     "vinyl": "^0.5.3",
-    "vinyl-fs": "2.2.1"
+    "vinyl-fs": "2.2.1",
+    "loophole": "^1.1.0"
   },
   "devDependencies": {
     "coveralls": "^2.11.4",
