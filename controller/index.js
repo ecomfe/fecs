@@ -3,8 +3,6 @@
  * @author chris<wfsr@foxmail.com>
  */
 
-var fs = require('fs');
-
 var site = {
     title: 'FECS - Front End Code Style Suite',
     baseurl: '',
