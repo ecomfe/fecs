@@ -94,6 +94,7 @@ fecs.check(options);
  - [x] [Eclipse](https://github.com/ecomfe/fecs-eclipse)
  - [x] Sublime Text 2/3 [Baidu FE Code Style](https://github.com/leeight/Baidu-FE-Code-Style) [Sublime Helper](https://github.com/baidu-lbs-opn-fe/Sublime-fecsHelper)
  - [x] [Visual Studio Code](https://github.com/21paradox/fecs-visual-studio-code)
+ - [x] [Atom](https://github.com/8427003/atom-fecs)
 
  - [x] [Grunt](https://github.com/ecomfe/fecs-grunt)
  - [x] [Gulp](https://github.com/ecomfe/fecs-gulp)
