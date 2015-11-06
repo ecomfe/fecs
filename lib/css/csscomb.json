@@ -22,6 +22,7 @@
     "space-before-combinator": " ",
     "space-before-opening-brace": 1,
     "space-before-selector-delimiter": "",
+    "space-between-declarations": "\n",
     "strip-spaces": true,
     "unitless-zero": true,
     "vendor-prefix-align": true,
