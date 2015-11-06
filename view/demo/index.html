@@ -66,6 +66,13 @@ hello('FECS')
     margin: 0px;
     padding:0
 }
+
+a{
+    -webkit-box-shadow: 0 0 1px 0 #333;
+    box-shadow: 0 0 1px 0 #333;
+    -moz-box-shadow: 0 0 1px 0 #333;
+}
+
 </div>
 <div class="demo-editor" id="html-editor" style="display:none;">
 &lt;html lang="zh-CN"&gt;
@@ -92,11 +99,11 @@ hello('FECS')
 <div class="demo-editor" id="less-editor" style="display:none;">@zero: 0;
 
 body{
-    margin: @zero;
+    margin:@zero;
     padding: @zero;
 
      a {
-       text-decoration: none;
+       text-decoration:none;
      }
 }
 </div>
