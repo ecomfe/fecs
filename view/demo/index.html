@@ -8,14 +8,7 @@
 <div class="header">
     <div class="header-inner">
         <h1 class="logo"><a href="{{ site.baseurl }}/">FECS</a></h1>
-        <ul class="top-nav">
-            <li><a href="{{ site.baseurl }}/">Home</a></li>
-            <li><a href="{{ site.baseurl }}/api">API</a></li>
-            <li><a class="cur" href="{{ site.baseurl }}/demo">Demo</a></li>
-            <li><a href="{{ site.baseurl }}/plugins">Plugins</a></li>
-            <li><a target="_blank" href="{{ site.wiki }}">Wiki</a></li>
-            <li><a target="_blank" href="{{ site.github }}">Github</a></li>
-        </ul>
+        {% include "../partial/nav.html" %}
     </div>
 </div>
 <div class="demo-slogan">
@@ -74,6 +67,13 @@ hello('FECS')
     margin: 0px;
     padding:0
 }
+
+a{
+    -webkit-box-shadow: 0 0 1px 0 #333;
+    box-shadow: 0 0 1px 0 #333;
+    -moz-box-shadow: 0 0 1px 0 #333;
+}
+
 </div>
 <div class="demo-editor" id="html-editor" style="display:none;">
 &lt;html lang="zh-CN"&gt;
@@ -99,9 +99,13 @@ hello('FECS')
 </div>
 <div class="demo-editor" id="less-editor" style="display:none;">@zero: 0;
 
-body {
-    margin: @zero;
+body{
+    margin:@zero;
     padding: @zero;
+
+     a {
+       text-decoration:none;
+     }
 }
 </div>
 

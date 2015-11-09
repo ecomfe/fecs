@@ -398,8 +398,7 @@
             editerMenu.hide();
 
             // 强制触发检测
-            var currType = getCurrEditerType();
-            $.each(editorMap, function(key, editor) {
+            $.each(editorMap, function (key, editor) {
                 checkCode(editor.getSession().getValue(), key);
             });
 
@@ -418,7 +417,7 @@
         initAceEditor('javascript');
         initEditorEvent();
 
-        if (navigator.userAgent.indexOf('Mac OS X') != -1) {
+        if (navigator.platform === 'MacIntel') {
             $('.format-btn span').html('Cmd Shit F');
         }
     }
