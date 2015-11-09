@@ -49,7 +49,7 @@ describe('checker', function () {
         var options = cli.getOptions([]);
 
         checker
-            .check('\np {\n    height:0px;\n}', 'path/to/file.less', options)
+            .check('\np {\n    height: 0px;\n}', 'path/to/file.less', options)
             .then(function (errors) {
                 expect(errors.length).toBe(1);
 
