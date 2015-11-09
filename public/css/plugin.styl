@@ -68,3 +68,94 @@ body {
         }
     }
 }
+
+@media screen and (max-width: 900px) {
+    .plugin-slogan {
+        .slogan-title {
+            font-size: 56px
+        }
+        .slogan-content {
+            font-size: 30px
+        }
+    }
+    .plugin-list {
+        width: 600px
+        padding-top: 20px
+        padding-bottom: 40px
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .plugin-slogan {
+        margin-top: 40px
+
+        .slogan-title {
+            font-size: 42px
+        }
+        .slogan-content {
+            font-size: 20px
+        }
+    }
+    .plugin-list {
+        width: 520px
+        padding-top: 30px
+        padding-bottom: 30px
+
+        li {
+            size(130px)
+            margin: 0 0 20px 0
+
+            .plugin-icon {
+                size(90px)
+                margin: 0 auto
+
+                img {
+                    size(90px)
+                }
+            }
+
+            .plugin-name {
+                font-size: 14px
+                width: 100%
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .plugin-list {
+        width: 390px
+    }
+}
+
+@media screen and (max-width: 420px) {
+    .plugin-slogan {
+        .slogan-title {
+            font-size: 32px
+        }
+        .slogan-content {
+            font-size: 15px
+        }
+    }
+    .plugin-list {
+        width: 300px
+
+        li {
+            size(100px, 110px)
+            margin: 0 0 20px 0
+
+            .plugin-icon {
+                size(70px)
+                margin: 0 auto
+
+                img {
+                    size(70px)
+                }
+            }
+
+            .plugin-name {
+                font-size: 12px
+            }
+        }
+    }
+}
