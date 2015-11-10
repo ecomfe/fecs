@@ -69,10 +69,13 @@ a {
             }
         }
 
-        iframe {
-            width: 100px
-            height: 20px
-            margin: 10px auto
+        &.git-star {
+            padding-left: 10px
+            iframe {
+                width: 100px
+                height: 20px
+                margin: 10px auto
+            }
         }
     }
 }
@@ -154,7 +157,7 @@ a {
     }
 }
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 720px) {
     .header {
         .header-inner {
             .logo {
@@ -197,16 +200,15 @@ a {
     }
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 630px) {
     .header {
-
         .header-inner {
             margin: 0
             overflow: hidden
 
             .logo {
                 position: static
-                margin: 20px 0 10px 20px
+                margin: 20px 0 10px 15px
             }
             .top-nav {
                 position: static
@@ -220,7 +222,7 @@ a {
                     }
 
                     &.git-star {
-                        absolute(20px, 10px, null, null)
+                        absolute(20px, 5px, null, null)
                     }
                 }
             }

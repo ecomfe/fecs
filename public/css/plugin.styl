@@ -69,7 +69,7 @@ body {
     }
 }
 
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 800px) {
     .plugin-slogan {
         .slogan-title {
             font-size: 56px
@@ -80,7 +80,7 @@ body {
     }
     .plugin-list {
         width: 600px
-        padding-top: 20px
+        padding-top: 40px
         padding-bottom: 40px
     }
 }
@@ -96,13 +96,12 @@ body {
             font-size: 20px
         }
     }
+
     .plugin-list {
-        width: 520px
-        padding-top: 30px
-        padding-bottom: 30px
+        width: 90%
 
         li {
-            size(130px)
+            size(25%, 130px)
             margin: 0 0 20px 0
 
             .plugin-icon {
@@ -124,7 +123,9 @@ body {
 
 @media screen and (max-width: 600px) {
     .plugin-list {
-        width: 390px
+        li {
+            size(33%, 130px)
+        }
     }
 }
 
@@ -138,10 +139,8 @@ body {
         }
     }
     .plugin-list {
-        width: 300px
-
         li {
-            size(100px, 110px)
+            height: 110px
             margin: 0 0 20px 0
 
             .plugin-icon {

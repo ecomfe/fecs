@@ -1,9 +1,5 @@
 @import "comm"
 
-body {
-    min-width: 1000px
-}
-
 .header {
     absolute(0, 0, null, 0)
     z-index: 100
@@ -45,7 +41,7 @@ body {
     }
 
     .banner-bg {
-        absolute(360px, 0, null 0)
+        absolute(360px, 0, null, 0)
         image-2x('../img/banner_bg@2x.png', 1920px, 710px)
         background: url(../img/banner_bg.png) 50% 0 no-repeat
     }
@@ -114,7 +110,7 @@ body {
             p {
                 font-size: 20px
                 color: #c8c8db
-                padding: 10px 50px
+                padding: 10px
                 text-align: center
                 line-height: 1.4
             }
@@ -123,6 +119,7 @@ body {
 }
 
 .info {
+    overflow: hidden
     color: #fff
     background-color: #454163
     background-image: -webkit-radial-gradient(#565378, #37324a)
@@ -214,12 +211,16 @@ body {
             font-family: $font-fzyx
         }
 
-        code {
-            width: 800px
-            background-color: #756c8a
+        pre {
+            width: 880px
             float: right
+            background-color: #756c8a
             font-size: 20px
-            padding: 20px 40px
+
+            code {
+                display: block
+                padding: 20px 40px
+            }
         }
     }
 }
@@ -251,5 +252,415 @@ body {
     dt {
         clear: left
         width: 70px
+    }
+}
+
+@media screen and (max-width: 1050px) {
+    .intro {
+        .intro-inner {
+            width: 900px
+            margin: 0 auto
+
+            .intro-list {
+                .intro-item {
+                    width: 300px
+                }
+            }
+        }
+    }
+
+    .info {
+        .info-inner {
+            width: 95%
+
+            .info-title {
+                padding: 50px 0
+            }
+
+            .info-list {
+                display: flex
+                width: 100%
+                margin: 0 auto
+
+                .info-item {
+                    flex: 1
+                    padding: 10px
+
+                    &.first {
+                        padding-left: 0
+                    }
+
+                    &.last {
+                        padding-right: 0
+                    }
+                }
+            }
+
+            .how-to-use {
+                margin: 50px 0
+
+                .how-to-use-line {
+                    span {
+                        float: none
+                    }
+
+                    pre {
+                        float: none
+                        width: 100%
+                        font-size: 18px
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .slogan {
+        margin-top: 150px
+
+        .slogan-title {
+            font-size: 60px
+        }
+
+        .slogan-content {
+            font-size: 30px
+        }
+    }
+
+    .banner {
+        height: 850px
+
+        .banner-bg {
+            top: 340px
+        }
+
+        .banner-bg,
+        .banner-bg-front,
+        .banner-bg-end {
+            background-size: 1400px
+        }
+    }
+
+    .intro {
+        height: 310px
+
+        .intro-inner {
+            size(95%, 310px)
+            margin: 0 auto
+            left: 0
+
+            .intro-list {
+                display: flex
+                height: 310px
+
+                .intro-item {
+                    width: auto
+                    flex: 1
+                    height: 310px
+
+                    .intro-icon {
+                        transform(scale(.8, .8))
+                        margin-top: 40px
+                    }
+
+                    h3 {
+                        font-size: 24px
+                        margin-top: 20px
+                    }
+
+                    p {
+                        font-size: 16px
+                    }
+                }
+            }
+        }
+    }
+
+    .info {
+        .info-inner {
+            .info-title {
+                padding: 50px 0
+            }
+
+            .info-list {
+                padding-bottom: 40px
+
+                .info-item {
+                    flex: 1
+                    padding: 10px
+
+                    &.first {
+                        padding-left: 0
+                    }
+
+                    &.last {
+                        padding-right: 0
+                    }
+                }
+            }
+
+            .how-to-use {
+                margin-top: 40px
+
+                .how-to-use-line {
+                    pre {
+                        font-size: 16px
+                    }
+                }
+            }
+
+            .efe-products {
+                dl {
+                    line-height: 1.4
+                    dt {
+                        width: 15%
+                    }
+
+                    dd {
+                        width: 85%
+                        margin-bottom: 7px
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .info {
+        .info-inner {
+            .info-title {
+                font-size: 24px
+            }
+
+            .info-list {
+                .info-item {
+                    i {
+                        font-size: 20px
+                    }
+
+                    p {
+                        font-size: 16px
+                    }
+                }
+            }
+
+            .how-to-use {
+                margin-top: 40px
+
+                .how-to-use-line {
+                    span {
+                        font-size: 24px
+                    }
+
+                    code {
+                        padding: 15px 30px
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 630px) {
+    .slogan {
+        margin-top: 150px
+
+        .slogan-title {
+            font-size: 50px
+        }
+
+        .slogan-content {
+            font-size: 24px
+        }
+    }
+
+    .banner {
+        height: 650px
+
+        .banner-bg {
+            top: 282px
+        }
+
+        .banner-bg,
+        .banner-bg-front,
+        .banner-bg-end {
+            background-size: 1000px
+        }
+    }
+
+    .intro {
+        height: 225px
+        .intro-inner {
+            height: 225px
+
+            .intro-list {
+                height: 225px
+
+                .intro-item {
+                    height: 225px
+
+                    .intro-icon {
+                        transform(scale(.6, .6))
+                        margin-top: 10px
+                    }
+
+                    h3 {
+                        font-size: 20px
+                        margin-top: -10px
+                    }
+
+                    p {
+                        font-size: 12px
+                        padding-top: 5px
+                    }
+                }
+            }
+
+            .how-to-use {
+                .how-to-use-line {
+                    pre {
+                        font-size: 16px
+                    }
+                }
+            }
+        }
+    }
+
+    .info {
+        .info-inner {
+            .info-title {
+                font-size: 20px
+                padding: 35px 0
+            }
+            .info-list {
+                padding-bottom: 30px
+
+                .info-item {
+                    i {
+                        font-size: 16px
+                        margin-bottom: 10px
+                    }
+
+                    p {
+                        font-size: 12px
+                    }
+                }
+            }
+
+            .how-to-use {
+                margin-top: 25px
+                padding-bottom: 30px
+
+                .how-to-use-line {
+                    span {
+                        font-size: 20px
+                        line-height: 2
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .slogan {
+        .slogan-title {
+            font-size: 44px
+        }
+
+        .slogan-content {
+            font-size: 18px
+        }
+    }
+    .intro {
+        .intro-inner {
+            width: 100%
+
+            .intro-list {
+                .intro-item {
+                    position: relative
+                    .intro-icon {
+                        transform(scale(.5, .5))
+                        absolute(-5px, null, null, 50%)
+                        margin-left: -66px
+                    }
+
+                    h3 {
+                        font-size: 20px
+                        margin-top: 120px
+                    }
+
+                    p {
+                        font-size: 12px
+                        padding-top: 5px
+                    }
+                }
+            }
+        }
+    }
+
+    .info {
+        .info-inner {
+            .info-title {
+                padding: 20px 0
+            }
+
+            .info-list {
+                padding-bottom: 20px
+
+                .info-item {
+                    i {
+                        font-size: 13px
+                        margin-bottom: 10px
+                        height: 35px
+                        line-height: 35px
+                    }
+
+                    p {
+                        font-size: 12px
+                    }
+                }
+            }
+
+            .how-to-use {
+                margin: 20px 0 30px 0
+                padding-bottom: 20px
+
+                .how-to-use-line {
+                    pre {
+                        font-size: 13px
+
+                        code {
+                            padding: 10px 20px
+                        }
+                    }
+                }
+            }
+
+            .efe-products {
+                margin-top: 30px
+                margin-bottom: 30px
+
+                p {
+                    font-size: 12px
+                    margin-bottom: 20px
+                }
+
+                dl {
+                    line-height: 1.4
+                    font-size: 12px
+                    dt {
+                        width: 15%
+                    }
+
+                    dd {
+                        width: 85%
+                        margin-bottom: 7px
+                    }
+                }
+            }
+        }
     }
 }
