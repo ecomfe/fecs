@@ -319,7 +319,14 @@
         // 窗口尺寸变化时的处理函数
         var resizeEditor = function () {
             if ($('.demo-editor-wrap').hasClass('full')) {
-                $('.demo-editor').height($(window).height() - 150);
+                var restOfHeight = 150;
+
+                if ($(window).width() < 700) {
+                    restOfHeight = 140;
+                }
+
+                $('.demo-editor').height($(window).height() - restOfHeight);
+
             }
             else {
                 $('.demo-editor').height(500);
