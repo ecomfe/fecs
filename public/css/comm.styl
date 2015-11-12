@@ -69,10 +69,13 @@ a {
             }
         }
 
-        iframe {
-            width: 100px
-            height: 20px
-            margin: 10px auto
+        &.git-star {
+            padding-left: 10px
+            iframe {
+                width: 100px
+                height: 20px
+                margin: 10px auto
+            }
         }
     }
 }
@@ -93,7 +96,8 @@ a {
     height: 100px
 
     .header-inner {
-        size(1000px, 100px)
+        max-width: 1000px
+        height: 100px
         margin: 0 auto
         position: relative
     }
@@ -136,5 +140,92 @@ a {
     a {
         color: @color
         text-decoration: underline
+    }
+}
+
+@media screen and (max-width: 1100px) {
+    .header {
+        .header-inner {
+            margin: 0 20px
+        }
+    }
+
+    .footer {
+        .footer-inner {
+            width: 100%
+        }
+    }
+}
+
+@media screen and (max-width: 720px) {
+    .header {
+        .header-inner {
+            .logo {
+                size(120px, 40px)
+                background-size: 400px
+
+                a {
+                    size(120px, 40px)
+                }
+            }
+
+            .top-nav {
+                li {
+                    a {
+                        size(70px, 30px)
+                        line-height: 30px
+                        font-size: 12px
+                    }
+
+                    iframe {
+                        width: 100px
+                        height: 20px
+                        margin: 5px auto
+                    }
+                }
+            }
+        }
+    }
+    .footer {
+        .footer-inner {
+            .copyright {
+                font-size: 12px
+                padding: 10px 0;
+            }
+
+            #power-by {
+                margin-left: 1em
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 630px) {
+    .header {
+        .header-inner {
+            margin: 0
+            overflow: hidden
+
+            .logo {
+                position: static
+                margin: 20px 0 10px 15px
+            }
+            .top-nav {
+                position: static
+                display: flex
+                background-color: rgba(101, 96, 134, .6)
+
+                li {
+                    flex: 1
+                    a {
+                        width: 100%
+                    }
+
+                    &.git-star {
+                        absolute(20px, 5px, null, null)
+                    }
+                }
+            }
+        }
     }
 }

@@ -87,7 +87,6 @@ body {
 
 .api-content {
     position: relative
-    min-width: 800px
     max-width: 1200px
     margin-left: $nav-width
     height: 100%
@@ -95,6 +94,10 @@ body {
 
     .top-nav {
         absolute(25px, 100px, null, null)
+    }
+
+    .logo {
+        display: none
     }
 
     .api-entry {
@@ -158,13 +161,12 @@ body {
         }
 
         pre {
+            background-color: #272822
+            padding: 1em 2em
+
             code {
                 font-size: 100%
-                display: block
-                background-color: #756c8a
                 border-radius: 0
-                padding: 1em 2em
-                background-color: #272822
             }
         }
 
@@ -190,6 +192,203 @@ body {
                 padding: .5em 1em
                 text-align: left
                 min-width: 60px
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    .api-nav {
+        width: 200px
+
+        .logo {
+            margin-left: 20px
+        }
+
+        .api-nav-list {
+            margin-left: 0
+        }
+    }
+
+    .api-content {
+        margin-left: 200px
+    }
+}
+
+@media screen and (max-width: 1100px) {
+    .api-content {
+
+        .top-nav {
+            right: 40px
+        }
+
+        .api-entry {
+            padding: 80px 40px 0 40px
+        }
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    body {
+        height: auto
+        background-image: none
+    }
+
+    .api-nav {
+        display: none
+    }
+
+    .api-content {
+        margin-left: 0
+        height: auto
+        overflow-x: hidden
+
+        .logo {
+            display: block
+            margin: 25px 0 0 20px
+        }
+
+        .top-nav {
+            right: 20px
+        }
+
+        .api-entry {
+            padding-top: 0
+
+            .copyright {
+                margin-top: 50px
+                margin-bottom: 20px
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 720px) {
+    .api-content {
+        .logo {
+            size(120px, 40px)
+            display: block
+            background-size: 400px
+
+            a {
+                size(120px, 40px)
+            }
+        }
+
+        .top-nav {
+
+            li {
+                a {
+                    size(70px, 30px)
+                    line-height: 30px
+                    font-size: 12px
+                }
+
+                iframe {
+                    width: 100px
+                    height: 20px
+                    margin: 5px auto
+                }
+            }
+        }
+
+        .api-entry {
+            font-size: 14px
+            padding: 10px 20px 0 20px
+
+            .copyright {
+                margin-top: 30px
+                margin-bottom: 10px
+                padding-top: 10px
+            }
+
+            h1 {
+                font-size: 28px
+
+            }
+
+            h2 {
+                font-size: 20px
+            }
+
+            h3,
+            h4,
+            h5 {
+                font-size: 20px
+            }
+
+            pre {
+                overflow-x: auto
+            }
+
+            hr {
+                margin-top: 2.5em
+                margin-bottom: 2em
+            }
+
+            table {
+                td,
+                th {
+                    padding: .3em .5em
+                    text-align: left
+                    min-width: 60px
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 630px) {
+    .api-content {
+        .logo {
+            margin: 20px 0 10px 15px
+        }
+
+        .top-nav {
+            position: static
+            display: flex
+            background-color: rgba(101, 96, 134, .6)
+
+            li {
+                flex: 1
+                a {
+                    width: 100%
+                }
+
+                &.git-star {
+                    absolute(20px, 5px, null, null)
+                }
+            }
+        }
+
+        .api-entry {
+            font-size: 12px
+
+            h1 {
+                font-size: 20px
+
+            }
+
+            h2 {
+                font-size: 16px
+            }
+
+            h3,
+            h4,
+            h5 {
+                font-size: 14px
+            }
+
+            pre {
+                padding: .5em 1em
+            }
+
+            table {
+                td,
+                th {
+                    padding: .2em .3em
+                    min-width: auto
+                }
             }
         }
     }

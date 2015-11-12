@@ -319,7 +319,14 @@
         // 窗口尺寸变化时的处理函数
         var resizeEditor = function () {
             if ($('.demo-editor-wrap').hasClass('full')) {
-                $('.demo-editor').height($(window).height() - 150);
+                var restOfHeight = 150;
+
+                if ($(window).width() < 700) {
+                    restOfHeight = 140;
+                }
+
+                $('.demo-editor').height($(window).height() - restOfHeight);
+
             }
             else {
                 $('.demo-editor').height(500);
@@ -388,6 +395,7 @@
             }
         );
 
+        // 更换 reporter
         $('.reporter-btn').on('click', function (evt) {
             var self = $(this);
 
@@ -458,7 +466,7 @@
 
                 errList.push({
                     row: item.line - 1,
-                    column: item.colum,
+                    column: item.column,
                     text: $.trim(item.message),
                     type: severityType
                 });

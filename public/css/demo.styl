@@ -97,13 +97,14 @@ body {
             height: 92px
             overflow-y: auto
             overflow-x: hidden
+            -webkit-overflow-scrolling: touch
             z-index: 99
         }
     }
 }
 
 .demo-nav {
-    relative()
+    position: relative
     font-size: 14px
     background-color: #1f1f1f
 
@@ -323,6 +324,114 @@ body {
     &.full {
         i {
             background-position: -50px -50px
+        }
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    body {
+        background-image: none
+    }
+
+    .demo-editor-wrap {
+        width: 100%
+        margin-bottom: 0
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .demo-slogan {
+        .slogan-title {
+            font-size: 56px
+        }
+
+        .slogan-content {
+            font-size: 30px
+        }
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .demo-slogan {
+        margin-top: 10px
+
+        .slogan-title {
+            font-size: 42px
+        }
+
+        .slogan-content {
+            font-size: 20px
+        }
+    }
+
+    .demo-editor-wrap {
+        margin-top: 40px
+    }
+
+    .demo-nav {
+        font-size: 12px
+
+        .nav-list {
+            .nav-item {
+                a {
+                    height: 40px
+                    line-height: 40px
+                    padding: 0 15px
+                }
+            }
+
+            .menu-list {
+                top: 40px
+                width: 180px
+
+                .menu-item {
+                    a {
+                        height: 40px
+                        line-height: 40px
+                    }
+
+                    .menu-sub-list {
+                        left: 180px
+                    }
+                }
+            }
+        }
+    }
+
+    .demo-editor {
+        font-size: 12px !important
+    }
+
+    .menu-btn,
+    .full-screen-btn {
+        size(40px)
+        i {
+            transform(scale(.8, .8))
+            absolute(-5px, null, null, -5px)
+        }
+    }
+
+    .demo-editor-wrap {
+        &.full .demo-console-wrap,
+        .demo-console-wrap {
+            overflow-x: auto
+        }
+    }
+}
+
+@media screen and (max-width: 630px) {
+    .demo-slogan {
+        margin-top: 40px
+    }
+}
+
+@media screen and (max-width: 420px) {
+    .demo-slogan {
+        .slogan-title {
+            font-size: 32px
+        }
+        .slogan-content {
+            font-size: 15px
         }
     }
 }
