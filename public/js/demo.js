@@ -395,6 +395,7 @@
             }
         );
 
+        // 更换 reporter
         $('.reporter-btn').on('click', function (evt) {
             var self = $(this);
 
@@ -465,7 +466,7 @@
 
                 errList.push({
                     row: item.line - 1,
-                    column: item.colum,
+                    column: item.column,
                     text: $.trim(item.message),
                     type: severityType
                 });

@@ -411,8 +411,11 @@ body {
         }
     }
 
-    .demo-console-wrap {
-        overflow-x: auto
+    .demo-editor-wrap {
+        &.full .demo-console-wrap,
+        .demo-console-wrap {
+            overflow-x: auto
+        }
     }
 }
 
