@@ -30,6 +30,7 @@
     "attr-value-double-quotes": "018",
     "id-class-ad-disabled": "998",
     "spec-char-escape": "997",
+    "self-close": "011",
     "style-disabled": "028",
     "tag-pair": "012",
     "tagname-lowercase": "010"

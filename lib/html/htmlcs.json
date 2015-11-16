@@ -28,6 +28,7 @@
     "attr-value-double-quotes": true,
     "id-class-ad-disabled": true,
     "spec-char-escape": true,
+    "self-close": "no-close",
     "style-disabled": true,
     "tag-pair": true,
     "tagname-lowercase": true,
