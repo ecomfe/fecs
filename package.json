@@ -49,6 +49,7 @@
     "esformatter": "~0.8.1",
     "eslint": "^1.7.3",
     "fixmyjs": "^1.0.3",
+    "gonzales-pe": "^3.2.1",
     "htmlcs": "^0.1.7",
     "jformatter": "~1.0.13",
     "jshint": "^2.8.0",
