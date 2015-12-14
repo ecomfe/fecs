@@ -11,7 +11,7 @@ describe('formatter', function () {
 
         expect(options.name).toBe('jformatter');
         expect(options.type).toBe('js');
-        expect(options.suffix).toBe('js');
+        expect(options.suffix).toBe('js,es,es6');
 
     });
 

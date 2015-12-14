@@ -13,8 +13,8 @@ describe('checker', function () {
 
         expect(options.name).toBe('eslint');
         expect(options.type).toBe('js');
-        expect(options.suffix).toBe('js,es6');
-        expect(options.ignore).toBe('m.js,min.js,mock.js,mockup.js');
+        expect(options.suffix).toBe('js,es,es6');
+        expect(options.ignore).toEqual(/\.(m|min|mock|mockup)\.(js|es|es6)$/);
 
     });
 

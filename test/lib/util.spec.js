@@ -133,14 +133,21 @@ describe('util', function () {
             var patterns = util.buildPattern();
 
             expect(patterns.length).toEqual(4);
-            expect(patterns[0]).toEqual('lib/**/*.{js,css,less,html,htm}');
+            expect(patterns[0]).toEqual('lib/**/*.{js,es,es6,css,less,htm,html}');
         });
 
         it('js only', function () {
             var patterns = util.buildPattern([], 'js');
 
             expect(patterns.length).toEqual(4);
-            expect(patterns[0]).toEqual('lib/**/*.js');
+            expect(patterns[0]).toEqual('lib/**/*.{js,es,es6}');
+        });
+
+        it('es only', function () {
+            var patterns = util.buildPattern([], 'es');
+
+            expect(patterns.length).toEqual(4);
+            expect(patterns[0]).toEqual('lib/**/*.es');
         });
 
         it('not exists dirs', function () {
@@ -154,8 +161,8 @@ describe('util', function () {
             var patterns = util.buildPattern(['cli', 'lib', 'index.js', 'package.json'], 'js');
 
             expect(patterns.length).toEqual(4);
-            expect(patterns[0]).toEqual('cli/**/*.js');
-            expect(patterns[1]).toEqual('lib/**/*.js');
+            expect(patterns[0]).toEqual('cli/**/*.{js,es,es6}');
+            expect(patterns[1]).toEqual('lib/**/*.{js,es,es6}');
             expect(patterns[2]).toEqual('index.js');
         });
 
@@ -178,7 +185,7 @@ describe('util', function () {
             var patterns = util.buildPattern();
 
             expect(patterns.length).toEqual(2);
-            expect(patterns[0]).toEqual('./**/*.{js,css,less,html,htm}');
+            expect(patterns[0]).toEqual('./**/*.{js,es,es6,css,less,htm,html}');
 
             mock.restore();
         });
