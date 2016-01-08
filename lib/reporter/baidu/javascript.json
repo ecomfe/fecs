@@ -173,7 +173,7 @@
     },
     "044": {
         "level": 2,
-        "desc": "[强制] 对于基本类型 {string}, {number}, {boolean}，首字母必须小写。"
+        "desc": "[强制] 对于基本类型 {string}, {number}, {boolean}，首字母必须小写。（%s）"
     },
     "045": {
         "level": 2,
