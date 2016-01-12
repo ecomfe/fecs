@@ -101,5 +101,18 @@
 
     "max-depth": "997",
     "max-len": "015",
-    "max-params": "104"
+    "max-params": "104",
+
+    "arrow-parens": "609",
+    "arrow-spacing": "997",
+    "constructor-super": "999",
+    "generator-star-spacing": "604",
+    "no-arrow-condition": "997",
+    "no-class-assign": "997",
+    "no-const-assign": "999",
+    "no-dupe-class-members": "997",
+    "no-this-before-super": "998",
+    "no-var": "613",
+    "object-shorthand": "623,624"
+
 }
