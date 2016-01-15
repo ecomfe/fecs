@@ -29,7 +29,7 @@ describe('esnext', function () {
     });
 
 
-    it('next', function () {
+    it('es-next', function () {
         var sourceCode = esnext.parse('class foo {}', config);
 
         expect(sourceCode.text).toBeDefined();
