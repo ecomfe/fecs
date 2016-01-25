@@ -112,7 +112,6 @@
     "no-const-assign": "999",
     "no-dupe-class-members": "997",
     "no-this-before-super": "998",
-    "no-var": "613",
-    "object-shorthand": "623,624"
+    "no-var": "613"
 
 }
