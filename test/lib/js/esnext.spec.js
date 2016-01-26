@@ -2,20 +2,53 @@
 var util = require('../../../lib/util');
 var esnext = require('../../../lib/js/esnext');
 
+var getValue = function (actual) {
+    return typeof actual === 'number' ? actual : actual[0];
+};
+
+var matchers = {
+    toBeOpen: function () {
+        return {
+            compare: function (actual) {
+                var value = getValue(actual);
+                return {
+                    pass: value > 0,
+                    message: 'Expected ' + value + ' greater then 0.'
+                };
+            }
+        };
+    },
+    toBeClose: function () {
+        return {
+            compare: function (actual) {
+                var value = getValue(actual);
+                return {
+                    pass: value === 0,
+                    message: 'Expected ' + value + ' equal 0.'
+                };
+            }
+        };
+    }
+};
+
 describe('esnext', function () {
+
+    beforeEach(function() {
+        jasmine.addMatchers(matchers);
+    });
 
     var config = util.getConfig('eslint');
     var ESNEXT_RULES = [
         'fecs-jsx-var', 'arrow-parens', 'arrow-spacing', 'constructor-super', 'generator-star-spacing',
         'no-arrow-condition', 'no-class-assign', 'no-const-assign', 'no-dupe-class-members', 'no-this-before-super',
-        'no-var', 'object-shorthand'
+        'no-var'
     ];
 
     var isOpen = function (option) {
         return (typeof option === 'number' ? option : option[0]) > 0
     };
 
-    it('basic parse', function () {
+    it('es6-', function () {
         var sourceCode = esnext.parse('var foo = true', config);
 
         expect(sourceCode.text).toBeDefined();
@@ -23,7 +56,7 @@ describe('esnext', function () {
 
         ESNEXT_RULES.forEach(function (name) {
             if (name in config.rules) {
-                expect(isOpen(config.rules[name])).toBe(false);
+                expect(config.rules[name]).toBeClose();
             }
         });
     });
@@ -37,11 +70,117 @@ describe('esnext', function () {
 
         ESNEXT_RULES.forEach(function (name) {
             if (name in config.rules) {
-                expect(isOpen(config.rules[name])).toBe(true);
+                expect(config.rules[name]).toBeOpen();
             }
         });
 
         expect(config).toBeDefined();
+    });
+
+    describe('env.es6', function () {
+
+        it('es6-', function () {
+            var options = util.mix(config, {env: {es6: false}});
+            var sourceCode = esnext.parse('class foo {}', options);
+
+            expect(sourceCode.text).toBeDefined();
+            expect(sourceCode.ast).toBeDefined();
+
+            ESNEXT_RULES.forEach(function (name) {
+                if (name in config.rules) {
+                    expect(config.rules[name]).toBeClose();
+                }
+            });
+
+            expect(config).toBeDefined();
+        });
+
+        it('es-next', function () {
+            var options = util.mix(config, {env: {es6: true}});
+            var sourceCode = esnext.parse('var foo = true', options);
+
+            expect(sourceCode.text).toBeDefined();
+            expect(sourceCode.ast).toBeDefined();
+
+            ESNEXT_RULES.forEach(function (name) {
+                if (name in config.rules) {
+                    expect(config.rules[name]).toBeOpen();
+                }
+            });
+
+            expect(config).toBeDefined();
+        });
+
+    });
+
+    describe('ecmaFeatures', function () {
+
+        it('es6- when none field', function () {
+            var options = util.mix(config, {ecmaFeatures: {}});
+            var sourceCode = esnext.parse('class foo {}', options);
+
+            expect(sourceCode.text).toBeDefined();
+            expect(sourceCode.ast).toBeDefined();
+
+            ESNEXT_RULES.forEach(function (name) {
+                if (name in config.rules) {
+                    expect(config.rules[name]).toBeClose();
+                }
+            });
+
+            expect(config).toBeDefined();
+        });
+
+        it('es6- when no true field', function () {
+            var options = util.mix(
+                config,
+                {
+                    ecmaFeatures: {
+                        classes: false,
+                        spread: false,
+                        newTarget: false
+                    }
+                }
+            );
+            var sourceCode = esnext.parse('class foo {}', options);
+
+            expect(sourceCode.text).toBeDefined();
+            expect(sourceCode.ast).toBeDefined();
+
+            ESNEXT_RULES.forEach(function (name) {
+                if (name in config.rules) {
+                    expect(config.rules[name]).toBeClose();
+                }
+            });
+
+            expect(config).toBeDefined();
+        });
+
+        it('es-next', function () {
+            var options = util.mix(
+                config,
+                {
+                    ecmaFeatures: {
+                        classes: true,
+                        spread: false,
+                        newTarget: false
+                    }
+                }
+            );
+            var sourceCode = esnext.parse('var foo = true', options);
+
+            expect(sourceCode.text).toBeDefined();
+            expect(sourceCode.ast).toBeDefined();
+
+            ESNEXT_RULES.forEach(function (name) {
+                if (name in config.rules) {
+                    expect(config.rules[name]).toBeOpen();
+                }
+            });
+
+            expect(config).toBeDefined();
+        });
+
     });
 
 });
