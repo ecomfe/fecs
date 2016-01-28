@@ -44,9 +44,24 @@ describe('esnext', function () {
         'no-var'
     ];
 
-    var isOpen = function (option) {
-        return (typeof option === 'number' ? option : option[0]) > 0
-    };
+    it('remove shebang', function () {
+        var sourceCode = esnext.parse('#!/path/to/bin command', config);
+
+        expect(sourceCode.text).toBeDefined();
+        expect(sourceCode.ast).toBeDefined();
+
+        expect(sourceCode.ast.body.length).toBe(0);
+    });
+
+    it('remove shebang', function () {
+        var sourceCode = esnext.parse('#!/path/to/bin command\nvar foo = true;', config);
+
+        expect(sourceCode.text).toBeDefined();
+        expect(sourceCode.ast).toBeDefined();
+
+        expect(sourceCode.ast.comments.length).toBe(0);
+        expect(sourceCode.ast.body[0].leadingComments.length).toBe(0);
+    });
 
     it('es6-', function () {
         var sourceCode = esnext.parse('var foo = true', config);
