@@ -88,8 +88,20 @@ describe('esnext', function () {
                 expect(config.rules[name]).toBeOpen();
             }
         });
+    });
 
-        expect(config).toBeDefined();
+
+    it('es-next by file extension', function () {
+        var sourceCode = esnext.parse('var foo = true', config, '/path/to/file.es');
+
+        expect(sourceCode.text).toBeDefined();
+        expect(sourceCode.ast).toBeDefined();
+
+        ESNEXT_RULES.forEach(function (name) {
+            if (name in config.rules) {
+                expect(config.rules[name]).toBeOpen();
+            }
+        });
     });
 
     describe('env.es6', function () {
@@ -106,8 +118,6 @@ describe('esnext', function () {
                     expect(config.rules[name]).toBeClose();
                 }
             });
-
-            expect(config).toBeDefined();
         });
 
         it('es-next', function () {
@@ -122,8 +132,6 @@ describe('esnext', function () {
                     expect(config.rules[name]).toBeOpen();
                 }
             });
-
-            expect(config).toBeDefined();
         });
 
     });
@@ -142,8 +150,6 @@ describe('esnext', function () {
                     expect(config.rules[name]).toBeClose();
                 }
             });
-
-            expect(config).toBeDefined();
         });
 
         it('es6- when no true field', function () {
@@ -167,8 +173,6 @@ describe('esnext', function () {
                     expect(config.rules[name]).toBeClose();
                 }
             });
-
-            expect(config).toBeDefined();
         });
 
         it('es-next', function () {
@@ -192,8 +196,6 @@ describe('esnext', function () {
                     expect(config.rules[name]).toBeOpen();
                 }
             });
-
-            expect(config).toBeDefined();
         });
 
     });

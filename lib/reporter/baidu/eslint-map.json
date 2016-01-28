@@ -14,6 +14,7 @@
     "fecs-no-eval": "116",
     "fecs-no-global-require": "128",
     "fecs-jsx-var": "070",
+    "fecs-esnext-ext": "602",
 
     "no-console": "997",
     "no-constant-condition": "997",

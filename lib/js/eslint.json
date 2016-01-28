@@ -52,6 +52,7 @@
         "fecs-no-eval": 2,
         "fecs-no-global-require": 2,
         "fecs-jsx-var": 2,
+        "fecs-esnext-ext": [2, ["js", "es"]],
 
         "no-console": 1,
         "no-constant-condition": 1,
