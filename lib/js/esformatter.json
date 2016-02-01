@@ -197,6 +197,7 @@
       "FunctionDeclarationClosingBrace": 1,
       "FunctionExpressionOpeningBrace": 1,
       "FunctionExpressionClosingBrace": 1,
+      "FunctionGeneratorAsterisk": 0,
       "IfStatementConditionalOpening": 1,
       "IfStatementConditionalClosing": 0,
       "IfStatementOpeningBrace": 1,

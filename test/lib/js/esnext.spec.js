@@ -104,6 +104,20 @@ describe('esnext', function () {
         });
     });
 
+
+    it('es-next with generator', function () {
+        var sourceCode = esnext.parse('function* foo() {}', config, '/path/to/file.js');
+
+        expect(sourceCode.text).toBeDefined();
+        expect(sourceCode.ast).toBeDefined();
+
+        ESNEXT_RULES.forEach(function (name) {
+            if (name in config.rules) {
+                expect(config.rules[name]).toBeOpen();
+            }
+        });
+    });
+
     describe('env.es6', function () {
 
         it('es6-', function () {
