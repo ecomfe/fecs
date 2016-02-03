@@ -53,6 +53,7 @@
         "fecs-no-global-require": 2,
         "fecs-jsx-var": 2,
         "fecs-esnext-ext": [2, ["js", "es"]],
+        "fecs-no-extra-semi": 2,
 
         "no-console": 1,
         "no-constant-condition": 1,
@@ -62,7 +63,6 @@
         "no-empty-character-class": 2,
         "no-ex-assign": 2,
         "no-extra-boolean-cast": 1,
-        "no-extra-semi": 2,
         "no-func-assign": 1,
         "no-inner-declarations": 1,
         "no-invalid-regexp": 2,
