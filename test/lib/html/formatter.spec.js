@@ -50,7 +50,7 @@ describe('formatter', function () {
 
     it('format', function () {
 
-        var options = cli.getOptions([]);
+        var options = cli.getOptions();
 
         var formatted = formatter.format('<html></html>', 'path/to/file.html', options);
 
@@ -60,7 +60,7 @@ describe('formatter', function () {
 
     it('format js in html', function () {
 
-        var options = cli.getOptions([]);
+        var options = cli.getOptions();
         options.lookup = false;
 
         var formatted = formatter.format('<script>var foo=1</script>', 'path/to/file.html', options);
@@ -71,7 +71,7 @@ describe('formatter', function () {
 
     it('format js in html - specify type', function () {
 
-        var options = cli.getOptions([]);
+        var options = cli.getOptions();
 
         var formatted = formatter.format(
             '<script type="text/javascript">var foo=1</script>',
@@ -85,7 +85,7 @@ describe('formatter', function () {
 
     it('format js in html - specify unknown type', function () {
 
-        var options = cli.getOptions([]);
+        var options = cli.getOptions();
 
         var formatted = formatter.format(
             '<script type="text/tpl">  var foo=1</script>',
@@ -99,7 +99,7 @@ describe('formatter', function () {
 
     it('format css in html', function () {
 
-        var options = cli.getOptions([]);
+        var options = cli.getOptions();
 
         var formatted = formatter.format('<style>body{height:0px}</style>', 'path/to/file.html', options);
 
@@ -109,7 +109,7 @@ describe('formatter', function () {
 
     it('format css in html - specify type', function () {
 
-        var options = cli.getOptions([]);
+        var options = cli.getOptions();
 
         var formatted = formatter.format(
             '<style type="text/css">body{height:0px}</style>',
@@ -123,7 +123,7 @@ describe('formatter', function () {
 
     it('format css in html - specify unknown type', function () {
 
-        var options = cli.getOptions([]);
+        var options = cli.getOptions();
 
         var formatted = formatter.format(
             '<style type="text/less">  body{height:0px}</style>',

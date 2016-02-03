@@ -46,7 +46,7 @@ describe('formatter', function () {
 
     it('format', function () {
 
-        var options = cli.getOptions([]);
+        var options = cli.getOptions();
 
         var formatted = formatter.format('p{\nheight:0px}', 'path/to/file.css', options);
 
@@ -56,7 +56,7 @@ describe('formatter', function () {
 
     it('html files should be take as css', function () {
 
-        var options = cli.getOptions([]);
+        var options = cli.getOptions();
 
         var formatted = formatter.format('p{\nheight:0px}', 'path/to/file.html', options);
 
@@ -66,7 +66,7 @@ describe('formatter', function () {
 
     it('one empty rule should be ignore', function () {
 
-        var options = cli.getOptions([]);
+        var options = cli.getOptions();
 
         var formatted = formatter.format('a{}', 'path/to/file.css', options);
 
@@ -76,7 +76,7 @@ describe('formatter', function () {
 
     it('one empty rule should be throw in debug', function () {
 
-        var options = cli.getOptions([]);
+        var options = cli.getOptions();
         options.debug = true;
 
         var format = function () {

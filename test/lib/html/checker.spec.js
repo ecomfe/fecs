@@ -2,6 +2,7 @@ var File = require('vinyl');
 
 var checker = require('../../../lib/html/checker');
 var cli = require('../../../lib/cli');
+var util = require('../../../lib/util');
 
 checker.register();
 
@@ -76,7 +77,7 @@ describe('checker', function () {
 
     it('check invalid content', function (done) {
 
-        var options = cli.getOptions([]);
+        var options = cli.getOptions();
 
         checker
             .check('<html></html>', 'path/to/file.html', options)
@@ -90,7 +91,7 @@ describe('checker', function () {
 
     it('check js content', function (done) {
 
-        var options = cli.getOptions([]);
+        var options = cli.getOptions();
 
         checker
             .check('<script>\nvar foo = 1;</script>', 'path/to/file.html', options)
@@ -103,7 +104,7 @@ describe('checker', function () {
 
     it('check js content without indent', function (done) {
 
-        var options = cli.getOptions([]);
+        var options = cli.getOptions();
 
         checker
             .check('<script>alert(1);</script>', 'path/to/file.html', options)
@@ -116,7 +117,7 @@ describe('checker', function () {
 
     it('check js content with no error', function (done) {
 
-        var options = cli.getOptions([]);
+        var options = cli.getOptions();
 
         checker
             .check('<script>\nrequire([\'jquery\'], function (jquery) {\n});</script>', 'path/to/file.html', options)
@@ -126,18 +127,23 @@ describe('checker', function () {
             });
     });
 
-    it('do not check js content when --type=html', function () {
+    it('do check js content when --type=html', function (done) {
 
-        var options = cli.getOptions([]);
+        var options = cli.getOptions();
         options.type = 'html';
 
-        var errors = checker.check('<script>var foo = 1;</script>', 'path/to/file.html', options);
-        expect(errors.length).toBe(0);
+        checker
+            .check('<script>\nvar foo = 1;</script>', 'path/to/file.html', options)
+            .then(function (errors) {
+                expect(errors.length).toBe(1);
+                expect(errors[0].rule).toBe('no-unused-vars');
+                done();
+            });
     });
 
     it('check css content', function (done) {
 
-        var options = cli.getOptions([]);
+        var options = cli.getOptions();
 
         checker
             .check('<style>\nbody{}</style>', 'path/to/file.html', options)
@@ -152,7 +158,7 @@ describe('checker', function () {
 
     it('check css content without indent', function (done) {
 
-        var options = cli.getOptions([]);
+        var options = cli.getOptions();
 
         checker
             .check('<style>body {}</style>', 'path/to/file.html', options)
@@ -167,7 +173,7 @@ describe('checker', function () {
 
     it('check css content with no error', function (done) {
 
-        var options = cli.getOptions([]);
+        var options = cli.getOptions();
 
         checker
             .check('<style>\nbody {\n}</style>', 'path/to/file.html', options)
@@ -177,6 +183,35 @@ describe('checker', function () {
                 expect(errors[1].rule).toBe('style-disabled');
                 done();
             });
+    });
+
+    it('do not check js or css content', function () {
+        var getConfig = util.getConfig;
+        util.getConfig = function (key) {
+            var config = getConfig.apply(util, arguments);
+            if (key === 'htmlcs') {
+                config = util.mix(config, {
+                    'script-content': false,
+                    'style-content': false
+                });
+            }
+
+            return config;
+        };
+
+        var options = cli.getOptions();
+
+        var errors = checker.check(
+            '<style>\nbody {\n}</style><script>\nvar foo = 1;</script>',
+            'path/to/file.html',
+            options
+        );
+
+        expect(errors.length).toBe(2);
+        expect(errors[0].rule).toBe('css-in-head');
+        expect(errors[1].rule).toBe('style-disabled');
+        util.getConfig = getConfig;
+
     });
 
 

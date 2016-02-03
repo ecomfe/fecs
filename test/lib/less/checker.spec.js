@@ -46,7 +46,7 @@ describe('checker', function () {
 
     it('check with promise', function (done) {
 
-        var options = cli.getOptions([]);
+        var options = cli.getOptions();
 
         checker
             .check('\np {\n    height: 0px;\n}', 'path/to/file.less', options)
@@ -63,7 +63,7 @@ describe('checker', function () {
 
     it('check with invalid content', function (done) {
 
-        var options = cli.getOptions([]);
+        var options = cli.getOptions();
 
         checker
             .check('body{', 'path/to/file.less', options)

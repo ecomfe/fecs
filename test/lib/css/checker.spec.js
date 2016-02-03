@@ -65,7 +65,7 @@ describe('checker', function () {
 
     it('check with promise', function (done) {
 
-        var options = cli.getOptions([]);
+        var options = cli.getOptions();
 
         checker
             .check('\nbody{}', 'path/to/file.css', options)
@@ -83,7 +83,7 @@ describe('checker', function () {
 
     it('check with invalid content', function (done) {
 
-        var options = cli.getOptions([]);
+        var options = cli.getOptions();
 
         checker
             .check('body{', 'path/to/file.css', options)

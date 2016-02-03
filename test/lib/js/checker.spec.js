@@ -68,7 +68,7 @@ describe('checker', function () {
 
     it('check invalid content', function () {
 
-        var options = cli.getOptions([]);
+        var options = cli.getOptions();
 
         var errors = checker.check('var foo = 1;\n', 'path/to/file.js', options);
         expect(errors.length).toBe(3);
@@ -80,7 +80,7 @@ describe('checker', function () {
 
     it('use maxerr to limit errors count', function () {
 
-        var options = cli.getOptions([]);
+        var options = cli.getOptions();
         options.maxerr = 2;
 
         var errors = checker.check('var foo = 1;\n', 'path/to/file.js', options);
@@ -92,7 +92,7 @@ describe('checker', function () {
 
     it('check content with syntax error', function () {
 
-        var options = cli.getOptions([]);
+        var options = cli.getOptions();
 
         var errors = checker.check('var foo =', 'path/to/file.js', options);
         expect(errors.length).toBe(1);
@@ -104,7 +104,7 @@ describe('checker', function () {
 
     it('error code should be 998 when throw error in eslint.verify', function () {
 
-        var options = cli.getOptions([]);
+        var options = cli.getOptions();
 
         var max = 2;
         Object.defineProperty(options, 'maxerr', {
