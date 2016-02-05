@@ -41,7 +41,8 @@ describe('esnext', function () {
     var ESNEXT_RULES = [
         'fecs-jsx-var', 'arrow-parens', 'arrow-spacing', 'constructor-super', 'generator-star-spacing',
         'no-arrow-condition', 'no-class-assign', 'no-const-assign', 'no-dupe-class-members', 'no-this-before-super',
-        'no-var'
+        'no-var',
+        'fecs-esnext-ext', 'fecs-no-arguments', 'fecs-use-method-definition', 'fecs-use-property-shorthand'
     ];
 
     it('remove shebang', function () {
