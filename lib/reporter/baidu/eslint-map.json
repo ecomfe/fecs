@@ -17,6 +17,7 @@
     "fecs-esnext-ext": "602",
     "fecs-no-extra-semi": "023,605,606,997",
     "fecs-no-arguments": "621",
+    "fecs-use-method-definition": "624",
 
     "no-console": "997",
     "no-constant-condition": "997",

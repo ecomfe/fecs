@@ -55,6 +55,7 @@
         "fecs-esnext-ext": [2, ["js", "es"]],
         "fecs-no-extra-semi": 2,
         "fecs-no-arguments": 2,
+        "fecs-use-method-definition": 2,
 
         "no-console": 1,
         "no-constant-condition": 1,
