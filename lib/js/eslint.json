@@ -54,6 +54,7 @@
         "fecs-jsx-var": 2,
         "fecs-esnext-ext": [2, ["js", "es"]],
         "fecs-no-extra-semi": 2,
+        "fecs-no-arguments": 2,
 
         "no-console": 1,
         "no-constant-condition": 1,
