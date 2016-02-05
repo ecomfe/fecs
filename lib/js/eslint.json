@@ -56,6 +56,10 @@
         "fecs-no-extra-semi": 2,
         "fecs-no-arguments": 2,
         "fecs-use-method-definition": 2,
+        "fecs-use-property-shorthand": [
+            1,
+            {"spread": true, "get": false, "set": false, "method": false, "computed": false}
+        ],
 
         "no-console": 1,
         "no-constant-condition": 1,

@@ -18,6 +18,7 @@
     "fecs-no-extra-semi": "023,605,606,997",
     "fecs-no-arguments": "621",
     "fecs-use-method-definition": "624",
+    "fecs-use-property-shorthand": "623",
 
     "no-console": "997",
     "no-constant-condition": "997",
