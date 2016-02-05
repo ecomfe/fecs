@@ -118,6 +118,49 @@ describe('esnext', function () {
         });
     });
 
+    describe('es-next special properties', function () {
+
+        it('shorthand', function () {
+            var sourceCode = esnext.parse('let x = 1;\nlet foo = {x};', config);
+
+            expect(sourceCode.text).toBeDefined();
+            expect(sourceCode.ast).toBeDefined();
+
+            ESNEXT_RULES.forEach(function (name) {
+                if (name in config.rules) {
+                    expect(config.rules[name]).toBeOpen();
+                }
+            });
+        });
+
+        it('computed', function () {
+            var sourceCode = esnext.parse('let x = 1;\nlet foo = {[x+1]: 2};', config);
+
+            expect(sourceCode.text).toBeDefined();
+            expect(sourceCode.ast).toBeDefined();
+
+            ESNEXT_RULES.forEach(function (name) {
+                if (name in config.rules) {
+                    expect(config.rules[name]).toBeOpen();
+                }
+            });
+        });
+
+        it('method', function () {
+            var sourceCode = esnext.parse('let foo = {bar(){}};', config);
+
+            expect(sourceCode.text).toBeDefined();
+            expect(sourceCode.ast).toBeDefined();
+
+            ESNEXT_RULES.forEach(function (name) {
+                if (name in config.rules) {
+                    expect(config.rules[name]).toBeOpen();
+                }
+            });
+        });
+
+    });
+
     describe('env.es6', function () {
 
         it('es6-', function () {
