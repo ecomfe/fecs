@@ -46,7 +46,10 @@
         "fecs-space-infix-ops": 2,
         "fecs-dot-notation": [2, {"allowKeywords": true, "allowPattern": "^catch$"}],
         "fecs-no-reserved-keys": 2,
-        "fecs-properties-quote": 2,
+        "fecs-properties-quote": [
+            2,
+            {"spread": true, "get": false, "set": false, "method": true, "computed": true}
+        ],
         "fecs-no-forin-array": 2,
         "fecs-valid-amd-id": 2,
         "fecs-no-eval": 2,
