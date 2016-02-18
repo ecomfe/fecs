@@ -64,6 +64,7 @@
             {"spread": true, "get": false, "set": false, "method": false, "computed": false}
         ],
         "fecs-prefer-class": 2,
+        "fecs-prefer-super": 2,
 
         "no-console": 1,
         "no-constant-condition": 1,

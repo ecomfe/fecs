@@ -20,6 +20,7 @@
     "fecs-use-method-definition": "624",
     "fecs-use-property-shorthand": "623",
     "fecs-prefer-class": "628",
+    "fecs-prefer-super": "629",
 
     "no-console": "997",
     "no-constant-condition": "997",
