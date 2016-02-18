@@ -65,6 +65,7 @@
         ],
         "fecs-prefer-class": 2,
         "fecs-prefer-super": 2,
+        "fecs-export-on-declare": 2,
 
         "no-console": 1,
         "no-constant-condition": 1,

@@ -21,6 +21,7 @@
     "fecs-use-property-shorthand": "623",
     "fecs-prefer-class": "628",
     "fecs-prefer-super": "629",
+    "fecs-export-on-declare": "630",
 
     "no-console": "997",
     "no-constant-condition": "997",
