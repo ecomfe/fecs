@@ -22,6 +22,7 @@
     "fecs-prefer-class": "628",
     "fecs-prefer-super": "629",
     "fecs-export-on-declare": "630",
+    "fecs-imports-on-top": "632",
 
     "no-console": "997",
     "no-constant-condition": "997",

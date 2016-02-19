@@ -38,12 +38,7 @@ describe('esnext', function () {
     });
 
     var config = util.getConfig('eslint');
-    var ESNEXT_RULES = [
-        'fecs-jsx-var', 'arrow-parens', 'arrow-spacing', 'constructor-super', 'generator-star-spacing',
-        'no-arrow-condition', 'no-class-assign', 'no-const-assign', 'no-dupe-class-members', 'no-this-before-super',
-        'no-var',
-        'fecs-esnext-ext', 'fecs-no-arguments', 'fecs-use-method-definition', 'fecs-use-property-shorthand'
-    ];
+    var ESNEXT_RULES = esnext.ESNEXT_RULES;
 
     it('remove shebang', function () {
         var sourceCode = esnext.parse('#!/path/to/bin command', config);
@@ -62,6 +57,24 @@ describe('esnext', function () {
 
         expect(sourceCode.ast.comments.length).toBe(0);
         expect(sourceCode.ast.body[0].leadingComments.length).toBe(0);
+    });
+
+    it('hack for `fecs-import-on-top`', function () {
+        var parse = function () {
+            esnext.parse(
+                'function foo() {\n    import bar from \'bar\';\n    return bar;\n}',
+                config
+            );
+        };
+
+        expect(parse).toThrow();
+
+        try {
+            parse();
+        }
+        catch (e) {
+            expect(e.rule).toBe('fecs-import-on-top');
+        }
     });
 
     it('es6-', function () {
