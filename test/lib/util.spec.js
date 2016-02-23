@@ -160,10 +160,12 @@ describe('util', function () {
         it('exists dirs', function () {
             var patterns = util.buildPattern(['cli', 'lib', 'index.js', 'package.json'], 'js');
 
-            expect(patterns.length).toEqual(4);
+            expect(patterns.length).toEqual(5);
             expect(patterns[0]).toEqual('cli/**/*.{js,es,es6}');
             expect(patterns[1]).toEqual('lib/**/*.{js,es,es6}');
             expect(patterns[2]).toEqual('index.js');
+            expect(patterns[3]).toEqual('package.json');
+            expect(patterns[4]).toEqual('!**/{node_modules,bower_components}/**');
         });
 
         it('no specify dirs and no .fecsrc, use package.json', function () {
@@ -196,7 +198,7 @@ describe('util', function () {
             });
 
             var patterns = util.buildPattern(['test/foo.bar'], 'js');
-            expect(patterns.length).toEqual(0);
+            expect(patterns.length).toEqual(2);
 
             mock.restore();
         });
