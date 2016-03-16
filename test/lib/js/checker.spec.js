@@ -97,7 +97,7 @@ describe('checker', function () {
         var errors = checker.check('var foo =', 'path/to/file.js', options);
         expect(errors.length).toBe(1);
         expect(errors[0].code).toBe('998');
-        expect(errors[0].rule).toBeUndefined();
+        expect(errors[0].rule).toBe('syntax');
 
     });
 

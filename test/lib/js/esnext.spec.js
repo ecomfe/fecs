@@ -31,6 +31,25 @@ var matchers = {
     }
 };
 
+var check = function (code, config, path) {
+    var parser = require(config.parser);
+
+    var ast = parser.parse(
+        code.replace(/^#!([^\r\n]+)/, '//$1'),
+        {
+            loc: true,
+            range: true,
+            raw: true,
+            tokens: true,
+            comment: true,
+            attachComment: true,
+            ecmaFeatures: config.ecmaFeatures
+        }
+    );
+
+    esnext.detect(ast, config, path);
+}
+
 describe('esnext', function () {
 
     beforeEach(function() {
@@ -40,48 +59,8 @@ describe('esnext', function () {
     var config = util.getConfig('eslint');
     var ESNEXT_RULES = esnext.ESNEXT_RULES;
 
-    it('remove shebang', function () {
-        var sourceCode = esnext.parse('#!/path/to/bin command', config);
-
-        expect(sourceCode.text).toBeDefined();
-        expect(sourceCode.ast).toBeDefined();
-
-        expect(sourceCode.ast.body.length).toBe(0);
-    });
-
-    it('remove shebang', function () {
-        var sourceCode = esnext.parse('#!/path/to/bin command\nvar foo = true;', config);
-
-        expect(sourceCode.text).toBeDefined();
-        expect(sourceCode.ast).toBeDefined();
-
-        expect(sourceCode.ast.comments.length).toBe(0);
-        expect(sourceCode.ast.body[0].leadingComments.length).toBe(0);
-    });
-
-    it('hack for `fecs-import-on-top`', function () {
-        var parse = function () {
-            esnext.parse(
-                'function foo() {\n    import bar from \'bar\';\n    return bar;\n}',
-                config
-            );
-        };
-
-        expect(parse).toThrow();
-
-        try {
-            parse();
-        }
-        catch (e) {
-            expect(e.rule).toBe('fecs-import-on-top');
-        }
-    });
-
     it('es6-', function () {
-        var sourceCode = esnext.parse('var foo = true', config);
-
-        expect(sourceCode.text).toBeDefined();
-        expect(sourceCode.ast).toBeDefined();
+        check('var foo = true', config);
 
         ESNEXT_RULES.forEach(function (name) {
             if (name in config.rules) {
@@ -92,10 +71,7 @@ describe('esnext', function () {
 
 
     it('es-next', function () {
-        var sourceCode = esnext.parse('class foo {}', config);
-
-        expect(sourceCode.text).toBeDefined();
-        expect(sourceCode.ast).toBeDefined();
+        check('class foo {}', config);
 
         ESNEXT_RULES.forEach(function (name) {
             if (name in config.rules) {
@@ -106,10 +82,7 @@ describe('esnext', function () {
 
 
     it('es-next by file extension', function () {
-        var sourceCode = esnext.parse('var foo = true', config, '/path/to/file.es');
-
-        expect(sourceCode.text).toBeDefined();
-        expect(sourceCode.ast).toBeDefined();
+        check('var foo = true', config, '/path/to/file.es');
 
         ESNEXT_RULES.forEach(function (name) {
             if (name in config.rules) {
@@ -120,10 +93,7 @@ describe('esnext', function () {
 
 
     it('es-next with generator', function () {
-        var sourceCode = esnext.parse('function* foo() {}', config, '/path/to/file.js');
-
-        expect(sourceCode.text).toBeDefined();
-        expect(sourceCode.ast).toBeDefined();
+        check('function* foo() {}', config, '/path/to/file.js');
 
         ESNEXT_RULES.forEach(function (name) {
             if (name in config.rules) {
@@ -135,10 +105,7 @@ describe('esnext', function () {
     describe('es-next special properties', function () {
 
         it('shorthand', function () {
-            var sourceCode = esnext.parse('let x = 1;\nlet foo = {x};', config);
-
-            expect(sourceCode.text).toBeDefined();
-            expect(sourceCode.ast).toBeDefined();
+            check('let x = 1;\nlet foo = {x};', config);
 
             ESNEXT_RULES.forEach(function (name) {
                 if (name in config.rules) {
@@ -148,10 +115,7 @@ describe('esnext', function () {
         });
 
         it('computed', function () {
-            var sourceCode = esnext.parse('let x = 1;\nlet foo = {[x+1]: 2};', config);
-
-            expect(sourceCode.text).toBeDefined();
-            expect(sourceCode.ast).toBeDefined();
+            check('let x = 1;\nlet foo = {[x+1]: 2};', config);
 
             ESNEXT_RULES.forEach(function (name) {
                 if (name in config.rules) {
@@ -161,10 +125,7 @@ describe('esnext', function () {
         });
 
         it('method', function () {
-            var sourceCode = esnext.parse('let foo = {bar(){}};', config);
-
-            expect(sourceCode.text).toBeDefined();
-            expect(sourceCode.ast).toBeDefined();
+            check('let foo = {bar(){}};', config);
 
             ESNEXT_RULES.forEach(function (name) {
                 if (name in config.rules) {
@@ -179,10 +140,7 @@ describe('esnext', function () {
 
         it('es6-', function () {
             var options = util.mix(config, {env: {es6: false}});
-            var sourceCode = esnext.parse('class foo {}', options);
-
-            expect(sourceCode.text).toBeDefined();
-            expect(sourceCode.ast).toBeDefined();
+            check('class foo {}', options);
 
             ESNEXT_RULES.forEach(function (name) {
                 if (name in config.rules) {
@@ -193,10 +151,7 @@ describe('esnext', function () {
 
         it('es-next', function () {
             var options = util.mix(config, {env: {es6: true}});
-            var sourceCode = esnext.parse('var foo = true', options);
-
-            expect(sourceCode.text).toBeDefined();
-            expect(sourceCode.ast).toBeDefined();
+            check('var foo = true', options);
 
             ESNEXT_RULES.forEach(function (name) {
                 if (name in config.rules) {
@@ -211,10 +166,7 @@ describe('esnext', function () {
 
         it('es6- when none field', function () {
             var options = util.mix(config, {ecmaFeatures: {}});
-            var sourceCode = esnext.parse('class foo {}', options);
-
-            expect(sourceCode.text).toBeDefined();
-            expect(sourceCode.ast).toBeDefined();
+            check('class foo {}', options);
 
             ESNEXT_RULES.forEach(function (name) {
                 if (name in config.rules) {
@@ -234,10 +186,7 @@ describe('esnext', function () {
                     }
                 }
             );
-            var sourceCode = esnext.parse('class foo {}', options);
-
-            expect(sourceCode.text).toBeDefined();
-            expect(sourceCode.ast).toBeDefined();
+            check('class foo {}', options);
 
             ESNEXT_RULES.forEach(function (name) {
                 if (name in config.rules) {
@@ -257,10 +206,7 @@ describe('esnext', function () {
                     }
                 }
             );
-            var sourceCode = esnext.parse('var foo = true', options);
-
-            expect(sourceCode.text).toBeDefined();
-            expect(sourceCode.ast).toBeDefined();
+            check('var foo = true', options);
 
             ESNEXT_RULES.forEach(function (name) {
                 if (name in config.rules) {
