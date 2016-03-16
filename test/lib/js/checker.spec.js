@@ -124,4 +124,24 @@ describe('checker', function () {
 
     });
 
+    it('assign es with 5', function () {
+
+        var options = cli.getOptions(['--es', '5']);
+        var esnext = require('../../../lib/js/esnext');
+        var verify = esnext.verify;
+
+        esnext.verify = function (code, config) {
+            expect(config.parser).toBe('espree');
+            expect(config.env.es6).toBe(false);
+            expect(config.parserOptions.ecmaVersion).toBe(5);
+        };
+
+        checker.check('var foo = true;',  'path/to/file.js', options);
+
+        expect(options.es).toBe(5);
+
+        esnext.verify = verify;
+
+    });
+
 });
