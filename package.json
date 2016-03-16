@@ -7,7 +7,8 @@
     "lint": "./bin/fecs lib cli test/**/*.spec.js --type=js",
     "coverage": "istanbul cover jasmine-node -x index.js -x \"{lib/js/rules,cli,lib/css/rules}/*.js\" --captureExceptions test/**/*.spec.js test/lib/**/*.spec.js",
     "test": "npm run lint && npm run coverage",
-    "coveralls": "cat ./coverage/lcov.info | coveralls"
+    "coveralls": "cat ./coverage/lcov.info | coveralls",
+    "postinstall": "node scripts/install.js"
   },
   "bin": {
     "fecs": "./bin/fecs"
