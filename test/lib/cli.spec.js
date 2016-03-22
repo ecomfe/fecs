@@ -27,6 +27,13 @@ describe('cli', function () {
         expect(console.log.calls.count()).toEqual(2);
         expect(console.log.calls.mostRecent().args).toEqual(['%s %s', pkg.name, pkg.version]);
 
+        process.argv = ['node', 'fecs', '-v', 'eslint'];
+        cli.parse();
+
+        var eslint = require('eslint/package.json');
+        expect(console.log.calls.count()).toEqual(4);
+        expect(console.log.calls.mostRecent().args).toEqual(['    %s@%s', eslint.name, eslint.version]);
+
         console.log = log;
     });
 
