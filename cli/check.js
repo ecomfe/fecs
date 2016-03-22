@@ -120,7 +120,8 @@ var streams = {
  * @return {Transform} 转换流
  */
 exports.run = function (options, done) {
-    var name = require('../').leadName;
+    var pkg = require('../package');
+    var name = util.format('%s@%s', require('../').leadName, pkg.version);
 
     console.time(name);
 
