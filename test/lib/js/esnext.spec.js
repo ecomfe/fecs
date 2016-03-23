@@ -48,11 +48,11 @@ var check = function (code, config, path) {
     );
 
     esnext.detect(ast, config, path);
-}
+};
 
 describe('esnext', function () {
 
-    beforeEach(function() {
+    beforeEach(function () {
         jasmine.addMatchers(matchers);
     });
 
