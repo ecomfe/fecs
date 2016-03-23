@@ -164,18 +164,18 @@ describe('esnext', function () {
 
     describe('ecmaFeatures', function () {
 
-        it('es6- when none field', function () {
+        it('detect es6 by code when none field', function () {
             var options = util.mix(config, {ecmaFeatures: {}});
             check('class foo {}', options);
 
             ESNEXT_RULES.forEach(function (name) {
                 if (name in config.rules) {
-                    expect(config.rules[name]).toBeClose();
+                    expect(config.rules[name]).toBeOpen();
                 }
             });
         });
 
-        it('es6- when no true field', function () {
+        it('detect es6 by code when no true field', function () {
             var options = util.mix(
                 config,
                 {
@@ -190,7 +190,7 @@ describe('esnext', function () {
 
             ESNEXT_RULES.forEach(function (name) {
                 if (name in config.rules) {
-                    expect(config.rules[name]).toBeClose();
+                    expect(config.rules[name]).toBeOpen();
                 }
             });
         });
