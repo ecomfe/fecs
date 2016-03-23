@@ -23,4 +23,4 @@ test_script:
   - npm test
 
 matrix:
-  fast_finish: false    # set this flag to immediately finish build once one of the jobs fails.
+  fast_finish: true    # set this flag to immediately finish build once one of the jobs fails.
