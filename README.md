@@ -4,7 +4,7 @@ FECS
 FECS 是基于 Node.js 的前端代码风格工具。
 
 [![Build Status](https://img.shields.io/travis/ecomfe/fecs.svg?style=flat)](http://travis-ci.org/ecomfe/fecs)
-[![Build Status](https://img.shields.io/appveyor/ci/ecomfe/fecs.svg?style=flat)](https://ci.appveyor.com/project/ecomfe/fecs/branch/master)
+[![Build Status](https://img.shields.io/appveyor/ci/chriswong/fecs.svg?style=flat)](https://ci.appveyor.com/project/chriswong/fecs)
 [![NPM version](https://img.shields.io/npm/v/fecs.svg?style=flat)](https://www.npmjs.com/package/fecs)
 [![Coverage Status](https://img.shields.io/coveralls/ecomfe/fecs.svg?style=flat)](https://coveralls.io/r/ecomfe/fecs)
 [![Dependencies](https://img.shields.io/david/ecomfe/fecs.svg?style=flat)](https://david-dm.org/ecomfe/fecs)
