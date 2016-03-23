@@ -1,6 +1,6 @@
 {
   "name": "fecs",
-  "version": "0.6.4",
+  "version": "0.6.5-beta.1",
   "description": "Front End Code Style Suite",
   "main": "index.js",
   "scripts": {
