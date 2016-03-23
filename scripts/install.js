@@ -20,7 +20,8 @@ else {
 
     fs.renameSync(eslintPath, eslintBackup);
 
-    var injectCode = 'require("fecs/lib/js/esnext").detect(ast, config, currentFilename);';
+    var esnextPath = path.join(__dirname, '..', 'lib/js/esnext').replace(/\\/g, '\\\\');
+    var injectCode = 'require("' + esnextPath + '").detect(ast, config, currentFilename);';
 
     code = code.replace(/(\s*)(sourceCode = new SourceCode\(text, ast\);)/, '$1$2$1' + injectCode);
 
