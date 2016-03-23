@@ -130,7 +130,7 @@ describe('util', function () {
     describe('buildPattern', function () {
 
         var matchers = {
-            toBePath:  function () {
+            toBePath: function () {
                 return {
                     compare: function (actual, expected) {
                         var value = actual.replace(/\\/g, '/');
@@ -142,7 +142,8 @@ describe('util', function () {
                     }
                 };
             }
-        }
+        };
+
         beforeEach(function () {
             jasmine.addMatchers(matchers);
         });
