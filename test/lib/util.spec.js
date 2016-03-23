@@ -129,25 +129,43 @@ describe('util', function () {
 
     describe('buildPattern', function () {
 
+        var matchers = {
+            toBePath:  function () {
+                return {
+                    compare: function (actual, expected) {
+                        var value = actual.replace(/\\/g, '/');
+
+                        return {
+                            pass: value === expected,
+                            message: 'Expected ' + expected + ' but saw ' + value + '.'
+                        };
+                    }
+                };
+            }
+        }
+        beforeEach(function () {
+            jasmine.addMatchers(matchers);
+        });
+
         it('default options', function () {
             var patterns = util.buildPattern();
 
             expect(patterns.length).toEqual(4);
-            expect(patterns[0]).toEqual('lib/**/*.{js,es,es6,css,less,htm,html}');
+            expect(patterns[0]).toBePath('lib/**/*.{js,es,es6,css,less,htm,html}');
         });
 
         it('js only', function () {
             var patterns = util.buildPattern([], 'js');
 
             expect(patterns.length).toEqual(4);
-            expect(patterns[0]).toEqual('lib/**/*.{js,es,es6}');
+            expect(patterns[0]).toBePath('lib/**/*.{js,es,es6}');
         });
 
         it('es only', function () {
             var patterns = util.buildPattern([], 'es');
 
             expect(patterns.length).toEqual(4);
-            expect(patterns[0]).toEqual('lib/**/*.es');
+            expect(patterns[0]).toBePath('lib/**/*.es');
         });
 
         it('not exists dirs', function () {
@@ -161,11 +179,11 @@ describe('util', function () {
             var patterns = util.buildPattern(['cli', 'lib', 'index.js', 'package.json'], 'js');
 
             expect(patterns.length).toEqual(5);
-            expect(patterns[0]).toEqual('cli/**/*.{js,es,es6}');
-            expect(patterns[1]).toEqual('lib/**/*.{js,es,es6}');
+            expect(patterns[0]).toBePath('cli/**/*.{js,es,es6}');
+            expect(patterns[1]).toBePath('lib/**/*.{js,es,es6}');
             expect(patterns[2]).toEqual('index.js');
             expect(patterns[3]).toEqual('package.json');
-            expect(patterns[4]).toEqual('!**/{node_modules,bower_components}/**');
+            expect(patterns[4]).toBePath('!**/{node_modules,bower_components}/**');
         });
 
         it('no specify dirs and no .fecsrc, use package.json', function () {
@@ -187,7 +205,7 @@ describe('util', function () {
             var patterns = util.buildPattern();
 
             expect(patterns.length).toEqual(2);
-            expect(patterns[0]).toEqual('./**/*.{js,es,es6,css,less,htm,html}');
+            expect(patterns[0]).toBePath('./**/*.{js,es,es6,css,less,htm,html}');
 
             mock.restore();
         });
