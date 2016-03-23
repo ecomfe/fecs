@@ -6,7 +6,8 @@
 var fs = require('fs');
 var path = require('path');
 
-var eslintPath = './node_modules/eslint/lib/eslint.js';
+var npm2 = fs.existsSync(path.join(__dirname, '../node_modules/eslint/'))
+var eslintPath = path.join(__dirname, '..', npm2 ? 'node_modules' : '..', 'eslint/lib/eslint.js');
 var eslintBackup = eslintPath + '.bak';
 
 if (fs.existsSync(eslintBackup)) {
@@ -19,7 +20,7 @@ else {
 
     fs.renameSync(eslintPath, eslintBackup);
 
-    var injectCode = 'require("' + path.join(__dirname, '../lib/js/esnext') + '").detect(ast, config, currentFilename);';
+    var injectCode = 'require("fecs/lib/js/esnext").detect(ast, config, currentFilename);';
 
     code = code.replace(/(\s*)(sourceCode = new SourceCode\(text, ast\);)/, '$1$2$1' + injectCode);
 
