@@ -1,6 +1,6 @@
 {
   "name": "fecs",
-  "version": "0.6.5-beta.5",
+  "version": "0.6.5-beta.6",
   "description": "Front End Code Style Suite",
   "main": "index.js",
   "scripts": {
@@ -42,7 +42,7 @@
   },
   "homepage": "https://github.com/ecomfe/fecs",
   "dependencies": {
-    "babel-eslint": "^4.1.8",
+    "babel-eslint": "^5.0.0",
     "chalk": "^1.1.1",
     "csscomb": "^3.1.7",
     "csshint": "^0.2.4",
@@ -57,17 +57,17 @@
     "lesslint": "^0.2.1",
     "loophole": "^1.1.0",
     "manis": "^0.2.3",
-    "map-stream": "0.0.6",
+    "map-stream": "^0.1.0",
     "minimatch": "^3.0.0",
     "minimist": "^1.1.0",
-    "msee": "^0.1.2",
+    "msee": "^0.3.1",
     "q": "^1.4.1",
-    "vinyl": "^0.5.3",
-    "vinyl-fs": "2.2.1"
+    "vinyl": "^1.1.1",
+    "vinyl-fs": "2.4.2"
   },
   "devDependencies": {
-    "coveralls": "^2.11.4",
-    "istanbul": "^0.3.22",
+    "coveralls": "^2.11.8",
+    "istanbul": "^0.4.2",
     "jasmine-node": "^2.0.0",
     "mock-fs": "^3.4.0"
   }
