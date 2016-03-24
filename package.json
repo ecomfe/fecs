@@ -5,9 +5,9 @@
   "main": "index.js",
   "scripts": {
     "lint": "node ./bin/fecs lib cli test/**/*.spec.js --type=js",
-    "coverage": "istanbul cover ./node_modules/jasmine-node/bin/jasmine-node -x index.js -x \"{lib/js/rules,cli,lib/css/rules}/*.js\" --captureExceptions test/",
+    "coverage": "istanbul cover ./node_modules/jasmine-node/bin/jasmine-node -x \"{lib/js/rules,cli,lib/css/rules}/*.js\" --captureExceptions test/",
     "test": "npm run lint && npm run coverage",
-    "coveralls": "cat ./coverage/lcov.info | coveralls",
+  "coveralls": "cat ./coverage/lcov.info | coveralls",
     "postinstall": "node scripts/install.js"
   },
   "bin": {
