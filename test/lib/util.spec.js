@@ -224,68 +224,6 @@ describe('util', function () {
 
     });
 
-    describe('parseJSON', function () {
-
-        it('invalid file', function () {
-            var json = util.parseJSON('');
-
-            expect(json).toEqual({});
-        });
-
-
-        it('invalid json', function () {
-            var json = util.parseJSON('{a}');
-
-            expect(json).toEqual({});
-        });
-
-        it('invalid json and throw error', function () {
-            var read = function () {
-                util.parseJSON('');
-            };
-
-            process.env.DEBUG = true;
-
-            expect(read).toThrow();
-
-            process.env.DEBUG = false;
-        });
-
-        it('json with no comment', function () {
-            var json = util.parseJSON('{"foo": false, "bar": true}');
-
-            expect(json.foo).toBeFalsy();
-            expect(json.bar).toBeTruthy();
-        });
-
-        it('json with comments', function () {
-            var json = util.parseJSON(''
-                + '{\n'
-                +   '// for foo\n'
-                +   '"foo": false, // foo too\r\n'
-                +   '"bar": true /* for bar */\n'
-                + '}'
-            );
-
-            expect(json.foo).toBeFalsy();
-            expect(json.bar).toBeTruthy();
-        });
-
-        it('comments have no side effects', function () {
-            var nocommentJSON = util.parseJSON('{"foo": false, "bar": true}');
-            var commentJSON = util.parseJSON(''
-                + '{\n'
-                +   '// for foo\r\n'
-                +   '"foo": false, // foo too\n'
-                +   '"bar": true /* for bar */\n'
-                + '}'
-            );
-
-            expect(nocommentJSON).toEqual(commentJSON);
-        });
-
-    });
-
     describe('readConfigs', function () {
 
         it('from lib/css', function () {

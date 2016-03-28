@@ -4,7 +4,7 @@
   "description": "Front End Code Style Suite",
   "main": "index.js",
   "scripts": {
-    "lint": "node ./bin/fecs lib cli test/**/*.spec.js --type=js",
+    "lint": "node ./bin/fecs --type=js",
     "coverage": "istanbul cover ./node_modules/jasmine-node/bin/jasmine-node -x \"{lib/js/rules,cli,lib/css/rules}/*.js\" --captureExceptions test/",
     "test": "npm run lint && npm run coverage",
   "coveralls": "cat ./coverage/lcov.info | coveralls",
@@ -56,7 +56,7 @@
     "jshint": "^2.8.0",
     "lesslint": "^0.2.1",
     "loophole": "^1.1.0",
-    "manis": "^0.2.3",
+    "manis": "^0.3.0",
     "map-stream": "^0.1.0",
     "minimatch": "^3.0.0",
     "minimist": "^1.1.0",

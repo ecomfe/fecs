@@ -1,0 +1,42 @@
+lineSeparator: "\n"
+maxLength: 120
+wrapIfLong: false
+indent: 4
+useTabIndent: false
+spaces:
+  around:
+    unaryOperators: false
+    binaryOperators: true
+    ternaryOperators: true
+  before:
+    functionDeclarationParentheses: true
+    functionExpressionParentheses: true
+    parentheses: true
+    leftBrace: true
+    keywords: true
+  within:
+    parentheses: false
+  other:
+    beforePropertyNameValueSeparator: false
+    afterPropertyNameValueSeparator: true
+bracesPlacement:
+  functionDeclaration: 1
+  other: 1
+blankLines:
+  keepMaxBlankLines: 1
+other:
+  keepArraySingleLine: false
+fix:
+  prefixSpaceToLineComment: true
+  alterCommonBlockCommentToLineComment: false
+  singleVariableDeclarator: true
+  fixInvalidTypeof: true
+  removeEmptyStatement: true
+  autoSemicolon: true
+  singleQuotes: true
+  eqeqeq: true
+  invalidConstructor: true
+  addCurly: true
+  removeDebugger: true
+  noElseReturn: true
+

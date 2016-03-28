@@ -1,26 +1,16 @@
-{
-    "files": [
-        "lib",
-        "cli",
-        "test/**/*.spec.js"
-    ],
-
-    "eslint": {
-        "env": {
-            "node": true
-        },
-
-        "rules": {
-            "no-console": 0,
-            "fecs-camelcase": [2, {"ignore": ["/-/"]}]
-        }
-    },
-
-    "csshint": {
-
-    },
-
-    "htmlcs": {
-
-    }
-}
+files:
+  - "lib"
+  - "cli"
+  - "test/**/*.spec.js"
+eslint:
+  env:
+    node: true
+  rules:
+    no-console: 0
+    fecs-camelcase:
+      - 2
+      -
+        ignore:
+          - "/-/"
+csshint: {}
+htmlcs: {}

@@ -1,0 +1,163 @@
+601:
+  level: 1
+  desc: "[建议] ESNext 语法的 JavaScript 文件使用 `.js` 扩展名。"
+602:
+  level: 2
+  desc: "[强制] 当文件无法使用 `.js` 扩展名时，使用 `.es` 扩展名。"
+603:
+  level: 1
+  desc: "[建议] 使用多行模板字符串时遵循缩进原则。当空行与空白字符敏感时，不使用多行模板字符串。"
+604:
+  level: 2
+  desc: "[强制] 使用 `generator` 时，`*` 前面不允许有空格，`*` 后面必须有一个空格。"
+605:
+  level: 2
+  desc: "[强制] 类声明结束不允许添加分号。"
+606:
+  level: 2
+  desc: "[强制] 类成员定义中，方法定义后不允许添加分号，成员属性定义后必须添加分号。"
+607:
+  level: 2
+  desc: "[强制] `export` 语句后，不允许出现表示空语句的分号。"
+608:
+  level: 2
+  desc: "[强制] 属性装饰器后，可以不加分号的场景，不允许加分号。"
+609:
+  level: 2
+  desc: "[强制] 箭头函数的参数只有一个，并且不包含解构时，参数部分的括号必须省略。"
+610:
+  level: 1
+  desc: "[建议] 箭头函数的函数体只有一个非 `Object Literal` 的单行表达式语句，且作为返回值时，省略 `{}` 和 `return`。"
+611:
+  level: 2
+  desc: "[强制] 箭头函数的函数体只有一个 `Object Literal`，且作为返回值时，不得省略 `{}` 和 `return`。"
+612:
+  level: 2
+  desc: "[强制] 解构多个变量时，如果超过行长度限制，每个解构的变量必须单独一行。"
+613:
+  level: 2
+  desc: "[强制] 使用 `let` 和 `const` 定义变量，不使用 `var`。"
+614:
+  level: 2
+  desc: "[强制] 不要使用3层及以上的解构。"
+615:
+  level: 1
+  desc: "[建议] 使用解构减少中间变量。"
+616:
+  level: 2
+  desc: "[强制] 仅定义一个变量时不允许使用解构。"
+617:
+  level: 2
+  desc: "[强制] 如果不节省编写时产生的中间变量，解构表达式 `=` 号右边不允许是 `ObjectLiteral` 和 `ArrayLiteral`。"
+618:
+  level: 2
+  desc: "[强制] 使用剩余运算符时，剩余运算符之前的所有元素必需具名。"
+619:
+  level: 2
+  desc: "[强制] 字符串内变量替换时，不要使用 `2` 次及以上的函数调用。"
+620:
+  level: 1
+  desc: "[建议] 使用变量默认语法代替基于条件判断的默认值声明。"
+621:
+  level: 2
+  desc: "[强制] 不要使用 `arguments` 对象，应使用 `...args` 代替。"
+622:
+  level: 2
+  desc: "[强制] 一个函数被设计为需要 `call` 和 `apply` 的时候，不能是箭头函数。"
+623:
+  level: 1
+  desc: "[建议] 定义对象时，如果所有键均指向同名变量，则所有键都使用缩写；如果有一个键无法指向同名变量，则所有键都不使用缩写。"
+624:
+  level: 2
+  desc: "[强制] 定义方法时使用 `MethodDefinition` 语法，不使用 `PropertyName: FunctionExpression` 语法。"
+625:
+  level: 1
+  desc: "[建议] 使用 `Object.keys` 进行对象遍历。"
+626:
+  level: 1
+  desc: "[建议] 定义对象的方法不应使用箭头函数。"
+627:
+  level: 1
+  desc: "[建议] 尽量使用计算属性键在一个完整的字面量中完整地定义一个对象，避免对象定义后直接增加对象属性。"
+628:
+  level: 2
+  desc: "[强制] 使用 `class` 关键字定义一个类。"
+629:
+  level: 2
+  desc: "[强制] 使用 `super` 访问父类成员，而非父类的 `prototype`。"
+630:
+  level: 2
+  desc: "[强制] `export` 与内容定义放在一起。"
+631:
+  level: 1
+  desc: "[建议] 相互之间无关联的内容使用命名导出。"
+632:
+  level: 2
+  desc: "[强制] 所有 `import` 语句写在模块开始处。"
+633:
+  level: 1
+  desc: "[建议] 对数组进行连接操作时，使用数组展开语法。"
+634:
+  level: 1
+  desc: "[建议] 不要使用数组展开进行数组的复制操作。"
+635:
+  level: 1
+  desc: "[建议] 尽可能使用 `for .. of` 进行遍历。"
+636:
+  level: 2
+  desc: "[强制] 当键值有可能不是字符串时，必须使用 `Map`；当元素有可能不是字符串时，必须使用 `Set`。"
+637:
+  level: 1
+  desc: "[建议] 需要一个不可重复的集合时，应使用 `Set`。"
+638:
+  level: 1
+  desc: "[建议] 当需要遍历功能时，使用 `Map` 和 `Set`。"
+639:
+  level: 1
+  desc: "[建议] 程序运行过程中有添加或移除元素的操作时，使用 `Map` 和 `Set`。"
+640:
+  level: 2
+  desc: "[强制] 回调函数的嵌套不得超过3层。"
+641:
+  level: 1
+  desc: "[建议] 使用 `Promise` 代替 `callback`。"
+642:
+  level: 2
+  desc: "[强制] 使用标准的 `Promise` API。"
+643:
+  level: 2
+  desc: "[强制] 不允许直接扩展 `Promise` 对象的 `prototype`。"
+644:
+  level: 2
+  desc: "[强制] 不得为了编写的方便，将可以并行的IO过程串行化。"
+645:
+  level: 1
+  desc: "[建议] 使用 `async/await` 代替 `generator` + `co`。"
+646:
+  level: 1
+  desc: "[建议] 持续跟进与关注运行环境对语言特性的支持程度。"
+647:
+  level: 2
+  desc: "[强制] 在运行环境中没有 `Promise` 时，将 `Promise` 的实现 `shim` 到 `global` 中。"
+648:
+  level: 1
+  desc: "[建议] 使用 `babel` 做为预编译工具时，建议使用 `5.x` 版本。"
+649:
+  level: 1
+  desc: "[建议] 使用 `babel` 做为预编译工具时，通过 `external-helpers` 减少生成文件的大小。"
+650:
+  level: 1
+  desc: "[建议] 使用 `TypeScript` 做为预编译工具时，建议使用 `1.6+` 版本。"
+651:
+  level: 1
+  desc: "[建议] 使用 `TypeScript` 做为预编译工具时，不使用 `tsc` 命令。"
+652:
+  level: 1
+  desc: "[建议] 生成的代码在浏览器环境运行时，应生成 AMD 模块化代码。"
+653:
+  level: 1
+  desc: "[建议] 浏览器端项目中如果 ESNext 代码和 ES3/5 代码混合，不要使用 `TypeScript` 做为预编译工具。"
+654:
+  level: 1
+  desc: "[建议] AMD/CommonJS 模块依赖 ESNext 模块时，AMD/CommonJS 模块对 default export 的 require 需要改造。"
+

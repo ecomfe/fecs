@@ -1,0 +1,64 @@
+indent: 4
+parseint: true
+debugger: true
+bitwise: false
+camelcase: true
+curly: true
+eqeqeq: true
+forin: true
+freeze: true
+immed: true
+latedef: "nofunc"
+newcap: true
+noarg: false
+noempty: false
+nonbsp: true
+nonew: false
+plusplus: false
+quotmark: "single"
+undef: true
+predef:
+  - "define"
+  - "require"
+  - "baidu"
+  - "T"
+unused: "vars"
+strict: false
+maxparams: 6
+maxstatements: 50
+asi: false
+boss: true
+debug: false
+eqnull: true
+esnext: true
+evil: false
+expr: true
+funcscope: false
+globalstrict: false
+iterator: false
+lastsemic: false
+laxbreak: true
+laxcomma: false
+loopfunc: true
+multistr: false
+notypeof: false
+proto: false
+scripturl: true
+shadow: true
+sub: true
+supernew: true
+validthis: true
+browser: true
+jasmine: true
+couch: false
+devel: true
+dojo: false
+jquery: true
+mootools: false
+node: true
+nonstandard: true
+prototypejs: false
+rhino: false
+wsh: true
+maxerr: 1000
+
