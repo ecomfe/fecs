@@ -52,13 +52,6 @@ rules:
     - 2
     - true
   fecs-camelcase: 2
-  fecs-space-infix-ops: 2
-  fecs-dot-notation:
-    - 2
-    -
-      allowKeywords: true
-      allowPattern: "^catch$"
-  fecs-no-reserved-keys: 2
   fecs-properties-quote:
     - 2
     -
@@ -245,6 +238,14 @@ rules:
   max-params:
     - 1
     - 6
+
+  space-infix-ops: 2
+  dot-notation:
+    - 2
+    -
+      allowKeywords: true
+      allowPattern: "^catch$"
+
   arrow-parens:
     - 2
     - "as-needed"
