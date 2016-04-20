@@ -100,15 +100,14 @@ describe('checker', function () {
             });
     });
 
-    it('check js content without indent', function (done) {
+    it('ignore fecs-indent when only one statement', function (done) {
 
         var options = cli.getOptions();
 
         checker
             .check('<script>alert(1);</script>', 'path/to/file.html', options)
             .then(function (errors) {
-                expect(errors.length).toBe(1);
-                expect(errors[0].rule).toBe('fecs-indent');
+                expect(errors.length).toBe(0);
                 done();
             });
     });
@@ -135,6 +134,22 @@ describe('checker', function () {
             .then(function (errors) {
                 expect(errors.length).toBe(1);
                 expect(errors[0].rule).toBe('no-unused-vars');
+                done();
+            });
+    });
+
+
+    it('do not ignore fecs-indent when more then one statement', function (done) {
+
+        var options = cli.getOptions();
+        options.type = 'html';
+
+        checker
+            .check('<script>var foo = 1;alert(foo);</script>', 'path/to/file.html', options)
+            .then(function (errors) {
+                expect(errors.length).toBe(2);
+                expect(errors[0].rule).toBe('fecs-indent');
+                expect(errors[1].rule).toBe('semi-spacing');
                 done();
             });
     });
