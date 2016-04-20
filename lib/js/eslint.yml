@@ -42,12 +42,6 @@ rules:
     - 50
     -
       ignore: "IIFE"
-  fecs-key-spacing:
-    - 2
-    -
-      beforeColon: false
-      afterColon: true
-      align: "colon"
   fecs-eol-last:
     - 2
     - true
@@ -193,6 +187,11 @@ rules:
     - "always"
   semi-spacing: 2
   keyword-spacing: 2
+  key-spacing:
+    - 2
+    -
+      beforeColon: false
+      afterColon: true
   space-before-function-paren:
     - 2
     -
