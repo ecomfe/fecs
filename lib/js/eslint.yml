@@ -261,4 +261,5 @@ rules:
   no-dupe-class-members: 1
   no-this-before-super: 1
   no-var: 1
+  no-duplicate-imports: 1
 

@@ -111,4 +111,5 @@ no-const-assign: "999"
 no-dupe-class-members: "997"
 no-this-before-super: "998"
 no-var: "613"
+no-duplicate-imports: "997"
 
