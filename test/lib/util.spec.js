@@ -1,4 +1,5 @@
 var mock = require('mock-fs');
+var fs = require('vinyl-fs');
 var util = require('../../lib/util');
 
 describe('util', function () {
@@ -19,7 +20,7 @@ describe('util', function () {
                 // 行列信息必须对应上面 throw new 的位置
                 //                         ^
                 // 有变化时必须更正以下两个期望值
-                expect(error.line).toBe(11);
+                expect(error.line).toBe(12);
                 expect(error.column).toBe(23);
                 expect(error.message).toMatch(/foo\([^\)]+\)/);
             }
@@ -382,5 +383,35 @@ describe('util', function () {
         });
 
 
+    });
+
+    describe('mapStrem', function () {
+        beforeEach(function () {
+            mock({'/test/foo': 'foo', '/test/bar': 'bar'});
+        });
+
+        afterEach(function () {
+            mock.restore();
+        });
+
+        it('transform & flush', function (done) {
+            var count = 0;
+            fs.src(['/test/**'], {allowEmpty: true})
+                .pipe(util.mapStream(function (file, cb) {
+                    file.foobar = true;
+                    count++;
+                    cb(null, file);
+                }))
+                .pipe(util.mapStream(function (file, cb) {
+                    expect(file.foobar).toBeTruthy();
+                    cb(null, file);
+                }, function () {
+                    expect(count).toBe(3);
+                }))
+                .on('end', function () {
+                    expect(count).toBe(3);
+                    done();
+                });
+        });
     });
 });
