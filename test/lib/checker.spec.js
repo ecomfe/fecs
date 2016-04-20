@@ -116,4 +116,23 @@ describe('checker', function () {
             );
     });
 
+    it('check sync', function (done) {
+
+        checker.check = function (contents, path, cliOptions) {
+            return [true];
+        };
+
+        fs.src('test/**')
+            .pipe(checker.exec({}))
+            .pipe(helper.pass(
+                function (file) {
+                    if (!file.errors) {
+                        return;
+                    }
+
+                    expect(file.errors[0]).toBeTruthy();
+                }, done)
+            );
+    });
+
 });
