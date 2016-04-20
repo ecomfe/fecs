@@ -82,24 +82,6 @@ describe('checker', function () {
         expect(checker.check).toThrow();
     });
 
-    it('register should be call when exec', function (done) {
-        var register = checker.register;
-        spyOn(checker, 'register').and.callThrough();
-
-        checker.check = function (contents, path, cliOptions) {
-            return [];
-        };
-
-        fs.src('test/**')
-            .pipe(checker.exec({}))
-            .on('end', function () {
-                expect(checker.register).toHaveBeenCalled();
-                checker.register = register;
-                done();
-            });
-
-    });
-
     it('check with callback', function (done) {
 
         checker.check = function (contents, path, cliOptions, callback) {

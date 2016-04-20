@@ -4,8 +4,6 @@ var checker = require('../../../lib/html/checker');
 var cli = require('../../../lib/cli');
 var util = require('../../../lib/util');
 
-checker.register();
-
 describe('checker', function () {
 
 

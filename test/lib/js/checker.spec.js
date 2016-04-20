@@ -3,8 +3,6 @@ var File = require('vinyl');
 var checker = require('../../../lib/js/checker');
 var cli = require('../../../lib/cli');
 
-checker.register();
-
 describe('checker', function () {
 
 
