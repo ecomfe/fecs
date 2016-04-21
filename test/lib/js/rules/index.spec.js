@@ -5,7 +5,8 @@
 'use strict';
 
 var path = require('path');
-var mock = require('mock-fs');
+var mockFS = require('mock-fs');
+var mockRequire = require('mock-require');
 
 var eslintRules = require('eslint/lib/rules');
 var eslintPlugins = require('eslint/lib/config/plugins');
@@ -26,14 +27,19 @@ describe('fecs rules for eslint', function () {
                 'fooBaz.js': 'exports.foo = true;',
                 'foobar.json': '{"foo": true}'
             };
-            mock(files);
+            mockFS(files);
+
+            Object.keys(files[ruleDir]).forEach(function (file) {
+                mockRequire(path.join(ruleDir, file), {foo: true});
+            });
 
             eslintRules.testClear();
         });
 
         afterEach(function () {
-            mock.restore();
+            mockFS.restore();
             eslintRules.testReset();
+            mockRequire.stopAll();
         });
 
         it('only js file in dir', function () {
@@ -66,13 +72,16 @@ describe('fecs rules for eslint', function () {
             files[path.join(dir, 'eslint-plugin-foo')] = 'exports.rules = {}';
             files[path.join(dir, 'eslint-plugin-bar')] = 'exports.rules = {}';
 
-            mock(files);
+            mockFS(files);
+            mockRequire('eslint-plugin-foo', {rules: {}});
+            mockRequire('eslint-plugin-bar', {rules: {}});
 
             eslintRules.testClear();
         });
 
         afterEach(function () {
-            mock.restore();
+            mockFS.restore();
+            mockRequire.stopAll();
             eslintRules.testReset();
             eslintPlugins.testReset();
         });

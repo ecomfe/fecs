@@ -7,7 +7,7 @@
     "lint": "node ./bin/fecs --type=js --rule",
     "coverage": "istanbul cover ./node_modules/jasmine-node/bin/jasmine-node -x \"{cli,lib/css/rules}/*.js\" --captureExceptions test/",
     "test": "npm run lint && npm run coverage",
-  "coveralls": "cat ./coverage/lcov.info | coveralls",
+    "coveralls": "cat ./coverage/lcov.info | coveralls",
     "postinstall": "node scripts/install.js"
   },
   "bin": {
@@ -63,12 +63,13 @@
     "msee": "^0.3.1",
     "q": "^1.4.1",
     "vinyl": "^1.1.1",
-    "vinyl-fs": "2.4.2"
+    "vinyl-fs": "2.4.3"
   },
   "devDependencies": {
     "coveralls": "^2.11.8",
     "istanbul": "^0.4.2",
     "jasmine-node": "^2.0.0",
-    "mock-fs": "^3.4.0"
+    "mock-fs": "^3.4.0",
+    "mock-require": "^1.2.1"
   }
 }
