@@ -35,9 +35,28 @@ rules:
         argument: "param"
         returns: "return"
         fileoverview: "file"
+      preferType:
+        String: "string"
+        Boolean: "boolean"
+        Number: "number"
+        int: "number"
+        Int: "number"
+        array: "Array"
+        function: "Function"
+        date: "Date"
+        object: "Object"
+        regexp: "RegExp"
+        promise: "Promise"
       requireReturn: false
-      requireReturnDescription: false
+      requireAuthor: true
+      requireDescription: true
+      requireFileDescription: true
       requireParamDescription: true
+      requireReturnType: true
+      requireReturnDescription: false
+      requireBlankLineAfterDescription: true
+      requireEmptyLineBeforeComment: true
+      requireObjectPatternParamBranchName: true
   fecs-max-statements:
     - 1
     - 50
