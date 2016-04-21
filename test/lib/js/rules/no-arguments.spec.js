@@ -21,7 +21,9 @@ ruleTester.run('no-arguments', rule, {
     valid: [
         'function foo(...bar) {}',
         'array.map((...args) => args[0])',
-        'var foo = function (fooo, ...bar) {}'
+        'var foo = function (fooo, ...bar) {}',
+        'foo.arguments()',
+        'foo.arguments.bar()'
     ],
 
     invalid: [
@@ -34,6 +36,20 @@ ruleTester.run('no-arguments', rule, {
         },
         {
             code: 'function foo() {arguments;}',
+            errors: [{
+                message: 'Expected `...args` but found `arguments`.',
+                type: 'Identifier'
+            }]
+        },
+        {
+            code: 'function foo() {arguments.length;}',
+            errors: [{
+                message: 'Expected `...args` but found `arguments`.',
+                type: 'Identifier'
+            }]
+        },
+        {
+            code: 'function foo() {[].slice.call(arguments);}',
             errors: [{
                 message: 'Expected `...args` but found `arguments`.',
                 type: 'Identifier'
