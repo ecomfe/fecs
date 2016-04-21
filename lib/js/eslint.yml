@@ -61,7 +61,9 @@ rules:
     - 1
     - 50
     -
-      ignore: "IIFE"
+      ignore:
+          AMD: true
+          IIFE: true
   fecs-eol-last:
     - 2
     - true
