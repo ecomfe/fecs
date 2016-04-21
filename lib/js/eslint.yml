@@ -23,9 +23,10 @@ globals:
 rules:
   fecs-indent:
     - 2
-    - "spaces"
+    - "space"
     - 4
     - 0
+    - true
   fecs-valid-jsdoc:
     - 2
     -
