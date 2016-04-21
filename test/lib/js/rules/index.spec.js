@@ -14,6 +14,8 @@ var eslintPlugins = require('eslint/lib/config/plugins');
 var ruleDir = path.join(__dirname, '../../../../lib/js/rules');
 var rules = require(ruleDir);
 
+var isNewer = process.versions.node.split('.')[0] >= 4;
+
 describe('fecs rules for eslint', function () {
 
     describe('register', function () {
@@ -29,9 +31,11 @@ describe('fecs rules for eslint', function () {
             };
             mockFS(files);
 
-            Object.keys(files[ruleDir]).forEach(function (file) {
-                mockRequire(path.join(ruleDir, file), {foo: true});
-            });
+            if (isNewer) {
+                Object.keys(files[ruleDir]).forEach(function (file) {
+                    mockRequire(path.join(ruleDir, file), {foo: true});
+                });
+            }
 
             eslintRules.testClear();
         });
@@ -39,7 +43,10 @@ describe('fecs rules for eslint', function () {
         afterEach(function () {
             mockFS.restore();
             eslintRules.testReset();
-            mockRequire.stopAll();
+
+            if (isNewer) {
+                mockRequire.stopAll();
+            }
         });
 
         it('only js file in dir', function () {
