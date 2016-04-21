@@ -80,9 +80,10 @@ describe('checker', function () {
         checker
             .check('<html></html>', 'path/to/file.html', options)
             .then(function (errors) {
-                expect(errors.length).toBe(2);
+                expect(errors.length).toBe(3);
                 expect(errors[0].rule).toBe('doctype');
                 expect(errors[1].rule).toBe('html-lang');
+                expect(errors[2].rule).toBe('nest');
                 done();
             });
     });
