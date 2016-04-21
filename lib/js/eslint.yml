@@ -68,14 +68,7 @@ rules:
     - 2
     - true
   fecs-camelcase: 2
-  fecs-properties-quote:
-    - 2
-    -
-      spread: true
-      get: false
-      set: false
-      method: true
-      computed: true
+  fecs-properties-quote: 1
   fecs-no-forin-array: 2
   fecs-valid-amd-id: 2
   fecs-no-eval: 2
