@@ -196,12 +196,15 @@
      * @return {string} 格式化后的字符串
      */
     function stringFormat(tpl, data) {
-        return tpl.replace(
-            /\$\{([-a-z0-9_]+)\}/ig,
-            function (all, name) {
-                return data[name] || '';
-            }
-        );
+        return tpl
+            .replace(
+                /\$\{([-a-z0-9_]+)\}/ig,
+                function (all, name) {
+                    return data[name] || '';
+                }
+            )
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;');
     }
 
     /**
