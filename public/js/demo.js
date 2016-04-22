@@ -465,7 +465,7 @@
                     line: item.line,
                     col: item.column,
                     msg: htmlEncode(item.message),
-                    info: item.info
+                    info: htmlEncode(item.info)
                 });
 
                 var severityType;
@@ -481,7 +481,7 @@
                 errList.push({
                     row: item.line - 1,
                     column: item.column,
-                    text: $.trim(htmlEncode(item.message)),
+                    text: $.trim(item.message),
                     type: severityType
                 });
             });
