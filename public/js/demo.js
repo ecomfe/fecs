@@ -202,7 +202,18 @@
                 function (all, name) {
                     return data[name] || '';
                 }
-            )
+            );
+    }
+
+    /**
+     * HTML 编码
+     *
+     * @inner
+     * @param {string} html 模板
+     * @return {string} 编码后的字符串
+     */
+    function htmlEncode(html) {
+        return html
             .replace(/</g, '&lt;')
             .replace(/>/g, '&gt;');
     }
@@ -453,7 +464,7 @@
                     serverity: TPL.SERVERITY[item.severity],
                     line: item.line,
                     col: item.column,
-                    msg: item.message,
+                    msg: htmlEncode(item.message),
                     info: item.info
                 });
 
@@ -470,7 +481,7 @@
                 errList.push({
                     row: item.line - 1,
                     column: item.column,
-                    text: $.trim(item.message),
+                    text: $.trim(htmlEncode(item.message)),
                     type: severityType
                 });
             });
