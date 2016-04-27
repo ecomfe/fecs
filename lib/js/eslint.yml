@@ -80,7 +80,6 @@ rules:
       - "js"
       - "es"
   fecs-no-extra-semi: 2
-  fecs-no-arguments: 2
   fecs-use-method-definition: 2
   fecs-use-property-shorthand:
     - 1
@@ -285,4 +284,5 @@ rules:
   no-this-before-super: 1
   no-var: 1
   no-duplicate-imports: 1
+  prefer-rest-params: 2
 
