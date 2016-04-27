@@ -95,6 +95,11 @@ rules:
   fecs-export-on-declare: 2
   fecs-imports-on-top: 2
   fecs-valid-super: 2
+  fecs-arrow-body-style:
+    - 2
+    - "as-needed"
+    -
+      ObjectExpression: true
   no-console: 1
   no-constant-condition: 1
   comma-dangle: 2
@@ -270,7 +275,10 @@ rules:
     -
       before: false
       after: true
-  no-confusing-arrow: 2
+  no-confusing-arrow:
+    - 2
+    -
+      allowParens: true
   no-class-assign: 1
   no-const-assign: 2
   no-dupe-class-members: 1
