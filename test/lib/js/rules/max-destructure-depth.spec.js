@@ -17,7 +17,7 @@ var RuleTester = require('eslint').RuleTester;
 
 var ruleTester = new RuleTester({parser: 'babel-eslint'});
 
-ruleTester.run('max-destructure-dept', rule, {
+ruleTester.run('max-destructure-depth', rule, {
     valid: [
         'let {a} = b;',
         'let {a, b} = c;',
