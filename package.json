@@ -50,7 +50,6 @@
     "esformatter": "^0.9.0",
     "eslint": "^2.8.0",
     "fixmyjs": "^1.0.3",
-    "gonzales-pe": "3.2.1",
     "htmlcs": "stable",
     "jformatter": "stable",
     "jshint": "^2.8.0",
@@ -63,7 +62,7 @@
     "msee": "^0.3.1",
     "q": "^1.4.1",
     "vinyl": "^1.1.1",
-    "vinyl-fs": "2.4.3"
+    "vinyl-fs": "^2.4.3"
   },
   "devDependencies": {
     "coveralls": "^2.11.8",
