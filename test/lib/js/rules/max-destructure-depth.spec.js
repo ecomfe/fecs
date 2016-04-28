@@ -17,7 +17,7 @@ var RuleTester = require('eslint').RuleTester;
 
 var ruleTester = new RuleTester({parser: 'babel-eslint'});
 
-ruleTester.run('arrow-body-style', rule, {
+ruleTester.run('max-destructure-dept', rule, {
     valid: [
         'let {a} = b;',
         'let {a, b} = c;',
