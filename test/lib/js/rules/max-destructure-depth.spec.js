@@ -1,6 +1,6 @@
 /**
- * @fileoverview Tests for max-destructure-depth
- * @author Alberto Rodríguez
+ * @file Tests for max-destructure-depth
+ * @author chris<wfsr@foxmail.com>
  */
 'use strict';
 
@@ -19,6 +19,12 @@ var ruleTester = new RuleTester({parser: 'babel-eslint'});
 
 ruleTester.run('max-destructure-depth', rule, {
     valid: [
+        'let [a] = b;',
+        'let [a, b] = c;',
+        'let {a: [b]} = c;',
+        'let [a, b, c] = d;',
+        'let [a, [b], [c]] = d;',
+        'let [a, [b], {c}] = d;',
         'let {a} = b;',
         'let {a, b} = c;',
         'let {a, b, c} = d;',
@@ -46,6 +52,17 @@ ruleTester.run('max-destructure-depth', rule, {
     ],
     invalid: [
         {
+            code: 'let {a: [b]} = c;',
+            options: [1],
+            errors: [
+                {
+                    line: 1,
+                    type: 'ArrayPattern',
+                    message: 'Too many nested destructure (2). Maximum allowed is 1.'
+                }
+            ]
+        },
+        {
             code: 'let {a: {b}} = c;',
             options: [1],
             errors: [
@@ -57,12 +74,23 @@ ruleTester.run('max-destructure-depth', rule, {
             ]
         },
         {
-            code: 'let {a: {b}, c: {d: {e}}} = f;',
+            code: 'let {a: [{b}]} = c;',
             options: [2],
             errors: [
                 {
                     line: 1,
                     type: 'ObjectPattern',
+                    message: 'Too many nested destructure (3). Maximum allowed is 2.'
+                }
+            ]
+        },
+        {
+            code: 'let {a: {b}, c: {d: [e]}} = f;',
+            options: [2],
+            errors: [
+                {
+                    line: 1,
+                    type: 'ArrayPattern',
                     message: 'Too many nested destructure (3). Maximum allowed is 2.'
                 }
             ]
