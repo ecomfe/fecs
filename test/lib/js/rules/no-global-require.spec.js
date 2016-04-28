@@ -22,6 +22,8 @@ ruleTester.run('no-global-require', rule, {
         'var foo = require("foo");',
         'require(["foo"], (foo) => {});',
         'function define(require) {var foo = require("foo");}',
+        'function foo() {try {throw new Error("foo");} catch(e) {require("foo")}}',
+        'function* foo() {with (Math) {require("foo")}}',
         '() => {var foo = require("foo");}',
         'define(function () {var require = String,foo = require("foo");})',
         'define(function (require) {var foo = require("foo");})',
