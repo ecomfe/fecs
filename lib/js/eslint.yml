@@ -102,6 +102,9 @@ rules:
   fecs-max-destructure-depth:
     - 2
     - 2
+  fecs-min-vars-per-destructure:
+    - 2
+    - 2
   no-console: 1
   no-constant-condition: 1
   comma-dangle: 2
