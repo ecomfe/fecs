@@ -106,6 +106,7 @@ rules:
     - 2
     - 2
   fecs-one-var-per-line: 2
+  fecs-no-anonymous-before-rest: 2
   no-console: 1
   no-constant-condition: 1
   comma-dangle: 2
