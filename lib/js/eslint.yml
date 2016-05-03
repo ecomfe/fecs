@@ -105,6 +105,7 @@ rules:
   fecs-min-vars-per-destructure:
     - 2
     - 2
+  fecs-one-var-per-line: 2
   no-console: 1
   no-constant-condition: 1
   comma-dangle: 2
