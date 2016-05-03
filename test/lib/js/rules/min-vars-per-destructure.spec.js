@@ -20,6 +20,7 @@ var ruleTester = new RuleTester({parser: 'babel-eslint'});
 ruleTester.run('min-vars-per-destructure', rule, {
     valid: [
         'let [a, b] = c;',
+        'let [a,,, ...b] = c;',
         'let [a, b, c] = d;',
         'let {a, b} = c;',
         'let {a, b, c} = d;',
