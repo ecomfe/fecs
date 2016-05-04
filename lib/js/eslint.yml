@@ -20,6 +20,7 @@ globals:
   ActiveXObject: true
   unescape: true
   escape: true
+  Promise: true
 rules:
   fecs-indent:
     - 2
@@ -108,6 +109,7 @@ rules:
   fecs-one-var-per-line: 2
   fecs-no-anonymous-before-rest: 2
   fecs-max-calls-in-template: 2
+  fecs-no-extra-destructure: 2
   no-console: 1
   no-constant-condition: 1
   comma-dangle: 2
