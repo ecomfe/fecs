@@ -19,12 +19,14 @@ var ruleTester = new RuleTester({parser: 'babel-eslint'});
 
 ruleTester.run('max-destructure-depth', rule, {
     valid: [
+        '[a] = b;',
         'let [a] = b;',
         'let [a, b] = c;',
         'let {a: [b]} = c;',
         'let [a, b, c] = d;',
         'let [a, [b], [c]] = d;',
         'let [a, [b], {c}] = d;',
+        '({a} = b);',
         'let {a} = b;',
         'let {a, b} = c;',
         'let {a, b, c} = d;',
