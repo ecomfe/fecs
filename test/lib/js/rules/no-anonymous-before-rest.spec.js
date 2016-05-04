@@ -20,7 +20,8 @@ var ruleTester = new RuleTester({parser: 'babel-eslint'});
 ruleTester.run('no-anonymous-before-rest', rule, {
     valid: [
         'let [a, ...b] = c;',
-        'let [a, b, ...c] = d;'
+        'let [a, b, ...c] = d;',
+        'function foo(a, ...b) {}'
     ],
     invalid: [
         {
