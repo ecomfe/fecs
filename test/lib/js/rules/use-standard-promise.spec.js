@@ -19,9 +19,13 @@ var ruleTester = new RuleTester({parser: 'babel-eslint'});
 
 ruleTester.run('use-standard-promise', rule, {
     valid: [
+        'let defer = defer();',
+        'let defer = new Deferred();',
+        'let defer = window.jQuery.Deferred();',
         'let p = Promise.all([p1, p2, p3]);',
+        'let p = Promise["all"]([p1, p2, p3]);',
         'let p = Promise.race([p1, p2, p3]);',
-        'let p = promise.any([p1, p2, p3]);',
+        'let p = promise["race"]([p1, p2, p3]);',
         {
             code: 'let p = Promise.any([p1, p2, p3]);',
             options: [{any: true}]
@@ -30,6 +34,46 @@ ruleTester.run('use-standard-promise', rule, {
     invalid: [
         {
             code: 'let p = Promise.any([p1, p2, p3]);',
+            errors: [
+                {
+                    line: 1,
+                    type: 'Identifier',
+                    message: 'Expected to use standard Promise APIs.'
+                }
+            ]
+        },
+        {
+            code: 'let p = Promise["any"]([p1, p2, p3]);',
+            errors: [
+                {
+                    line: 1,
+                    type: 'Literal',
+                    message: 'Expected to use standard Promise APIs.'
+                }
+            ]
+        },
+        {
+            code: 'let defer = Q.defer();',
+            errors: [
+                {
+                    line: 1,
+                    type: 'Identifier',
+                    message: 'Expected to use standard Promise APIs.'
+                }
+            ]
+        },
+        {
+            code: 'let defer = $.Deferred();',
+            errors: [
+                {
+                    line: 1,
+                    type: 'Identifier',
+                    message: 'Expected to use standard Promise APIs.'
+                }
+            ]
+        },
+        {
+            code: 'let defer = new jQuery.Deferred();',
             errors: [
                 {
                     line: 1,
