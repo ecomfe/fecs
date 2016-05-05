@@ -142,4 +142,22 @@ describe('checker', function () {
 
     });
 
+    it('assign es with 7', function () {
+
+        var options = cli.getOptions(['--es', '7']);
+        var esnext = require('../../../lib/js/esnext');
+        var verify = esnext.verify;
+
+        esnext.verify = function (code, config) {
+            expect(config.env.es6).toBe(true);
+        };
+
+        checker.check('var foo = true;',  'path/to/file.js', options);
+
+        expect(options.es).toBe(7);
+
+        esnext.verify = verify;
+
+    });
+
 });
