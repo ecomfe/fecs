@@ -24,16 +24,6 @@ ruleTester.run('esnext-ext', rule, {
         {
             code: 'var a = 123;',
             filename: 'foo/bar.js'
-        },
-        {
-            code: 'var a = 123;',
-            filename: 'foo/bar.ts',
-            options: ['ts']
-        },
-        {
-            code: 'var a = 123;',
-            filename: 'foo/bar.ts',
-            options: [['ts']]
         }
     ],
 
@@ -42,13 +32,41 @@ ruleTester.run('esnext-ext', rule, {
             code: 'var a = 123;',
             filename: 'foo/bar.es',
             options: ['js'],
-            errors: [{message: 'Expected file extension `js` but found `es`.', type: 'Program'}]
+            errors: [
+                {message: 'Expected file extension `js` but found `es`.baidu602', type: 'Program'}
+            ]
         },
         {
             code: 'var a = 123;',
             filename: 'foo/bar.ts',
             options: [['js', 'es']],
-            errors: [{message: 'Expected file extension `js` or `es` but found `ts`.', type: 'Program'}]
+            errors: [
+                {message: 'Expected file extension `js` or `es` but found `ts`.baidu602', type: 'Program'}
+            ]
+        },
+        {
+            code: 'var a = 123;',
+            filename: 'foo/bar.es',
+            options: [['js', 'es']],
+            errors: [
+                {message: 'Expected file extension `js` but found `es`.baidu601', type: 'Program'}
+            ]
+        },
+        {
+            code: 'var a = 123;',
+            filename: 'foo/bar.ts',
+            options: ['ts'],
+            errors: [
+                {message: 'Expected file extension `js` but found `ts`.baidu601', type: 'Program'}
+            ]
+        },
+        {
+            code: 'var a = 123;',
+            filename: 'foo/bar.ts',
+            options: [['ts']],
+            errors: [
+                {message: 'Expected file extension `js` but found `ts`.baidu601', type: 'Program'}
+            ]
         }
     ]
 });
