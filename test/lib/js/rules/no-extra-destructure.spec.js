@@ -19,6 +19,9 @@ var ruleTester = new RuleTester({parser: 'babel-eslint'});
 
 ruleTester.run('no-extra-destructure', rule, {
     valid: [
+        'let a;',
+        'for (let a in b) {};',
+        'for (let a of b) {};',
         '[a] = b;',
         '[a, b] = c;',
         'let [a] = b;',
