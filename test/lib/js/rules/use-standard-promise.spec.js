@@ -26,12 +26,36 @@ ruleTester.run('use-standard-promise', rule, {
         'let p = Promise["all"]([p1, p2, p3]);',
         'let p = Promise.race([p1, p2, p3]);',
         'let p = promise["race"]([p1, p2, p3]);',
+        'let p = promise.resolve();',
+        'let p = promise.reject();',
+        'let p = promise.then(resolve);',
+        'let p = promise.catch(reason);',
         {
             code: 'let p = Promise.any([p1, p2, p3]);',
             options: [{any: true}]
         }
     ],
     invalid: [
+        {
+            code: 'promise.done();',
+            errors: [
+                {
+                    line: 1,
+                    type: 'Identifier',
+                    message: 'Expected to use standard Promise APIs.'
+                }
+            ]
+        },
+        {
+            code: 'promise.finally(callback);',
+            errors: [
+                {
+                    line: 1,
+                    type: 'Identifier',
+                    message: 'Expected to use standard Promise APIs.'
+                }
+            ]
+        },
         {
             code: 'let p = Promise.any([p1, p2, p3]);',
             errors: [
