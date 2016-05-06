@@ -29,17 +29,24 @@ ruleTester.run('use-method-definition', rule, {
 
     invalid: [
         {
+            code: 'let foo = {bar: () => {}}',
+            errors: [{
+                message: 'Expected MethodDefinition but saw ArrowFunctionExpression.',
+                type: 'ArrowFunctionExpression'
+            }]
+        },
+        {
             code: 'let foo = {bar: function () {}}',
             errors: [{
                 message: 'Expected MethodDefinition but saw FunctionExpression.',
-                type: 'Property'
+                type: 'FunctionExpression'
             }]
         },
         {
             code: 'Foo.prototype = {bar: function () {}}',
             errors: [{
                 message: 'Expected MethodDefinition but saw FunctionExpression.',
-                type: 'Property'
+                type: 'FunctionExpression'
             }]
         }
     ]
