@@ -112,6 +112,7 @@ rules:
   fecs-no-extra-destructure: 2
   fecs-use-standard-promise: 2
   fecs-use-for-of: 1
+  fecs-prefer-spread-element: 1
   no-console: 1
   no-constant-condition: 1
   comma-dangle: 2
