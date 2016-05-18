@@ -68,7 +68,7 @@
     "coveralls": "^2.11.8",
     "istanbul": "^0.4.2",
     "jasmine-node": "^2.0.0",
-    "mock-fs": "^3.4.0",
+    "mock-fs": "^3.9.0",
     "mock-require": "^1.2.1"
   }
 }
