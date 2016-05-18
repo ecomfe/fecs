@@ -23,6 +23,7 @@ ruleTester.run('min-vars-per-destructure', rule, {
         'let [a,,, ...b] = c;',
         'let [a, b, c] = d;',
         'let {a, b} = c;',
+        'let {a, b = 1} = c;',
         'let {a, b, c} = d;',
         'let {a: {b}, c: [d]} = e;',
         'let {a: {b}, c: [{d}, e, {f}]} = g;',
