@@ -27,6 +27,7 @@ ruleTester.run('one-var-per-line', rule, {
         'let {a, b, c} = d;',
         'let {a: {b}, c: [d]} = e;',
         'let {a: {b}, c: [{d}, e, {f}]} = g;',
+        'let {\n    a,\n    // comment for b\n    b,\n    c\n} = d;',
         'let {\n    a,\n    b,\n    c\n} = d;',
         'let [\n    a,\n    b,\n    c\n] = d;',
         'let [\n    a,\n    b,\n    ...c\n] = d;',
