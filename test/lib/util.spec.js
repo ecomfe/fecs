@@ -414,4 +414,233 @@ describe('util', function () {
                 });
         });
     });
+
+    describe('AST Helper', function () {
+        var eslint = require('eslint').linter;
+        var config = {parser: 'babel-eslint'};
+        var filename = 'test.js';
+
+        describe('isArrayNode', function () {
+
+            afterEach(function () {
+                eslint.reset();
+            });
+
+            var isArray = util.isArrayNode(eslint);
+
+            it('ArrayExpression', function () {
+                var code = 'let a = [];';
+
+                eslint.on('ArrayExpression', function (node) {
+                    expect(isArray(node)).toBeTruthy();
+                });
+
+                eslint.verify(code, config, filename, true);
+            });
+
+            it('NewExpression and callee name end with `Array`', function () {
+                var code = ''
+                    + 'let a = new Array();'
+                    + 'let b = new Int8Array();'
+                    + 'let c = new Float32Array();';
+
+                eslint.on('NewExpression', function (node) {
+                    expect(isArray(node)).toBeTruthy();
+                });
+
+                eslint.verify(code, config, filename, true);
+            });
+
+            it('CallExpression truthy case', function () {
+                var code = ''
+                    + 'let a = Array();'
+                    + 'let b = Array.from(foo);'
+                    + 'let c = Array.of(1, 2, 3);'
+                    + 'let d = c.slice();'
+                    + 'let e = Array . prototype.slice.call([1, 2, 3]);'
+                    + 'let f = Array.apply(null, [1, 2, 3]);'
+                    + 'let f = [1, 2].map(map);';
+
+                eslint.on('CallExpression', function (node) {
+                    expect(isArray(node)).toBeTruthy();
+                });
+
+                eslint.verify(code, config, filename, true);
+            });
+
+            it('CallExpression falsy case', function () {
+                var code = ''
+                    + 'let a = Object("Array.of(1,2)");'
+                    + 'let b = [1,2].indexOf(1);'
+                    + 'let c = foo();';
+
+                eslint.on('CallExpression', function (node) {
+                    expect(isArray(node)).toBeFalsy();
+                });
+
+                eslint.verify(code, config, filename, true);
+            });
+
+
+            it('Identifier truthy case', function () {
+                var code = ''
+                    + 'let a = [1, 2, 3];'
+                    + 'let b = a;'
+                    + 'let [, ...c] = a;';
+
+                eslint.on('Identifier', function (node) {
+                    expect(isArray(node)).toBeTruthy();
+                });
+
+                eslint.verify(code, config, filename, true);
+            });
+
+
+            it('Identifier undefined should be falsy', function () {
+                var code = ''
+                    + 'let a = b;'
+                    + 'let c = a;';
+
+                eslint.on('Identifier', function (node) {
+                    expect(isArray(node)).toBeFalsy();
+                });
+
+                eslint.verify(code, config, filename, true);
+            });
+
+
+            it('Dismatch case should be falsy', function () {
+                var code = ''
+                    + 'let a = function () {};'
+                    + 'let c = a;'
+                    + 'let d = Array.prototype;'
+                    + 'let [e] = [1]';
+
+                eslint.on('FunctionExpression', function (node) {
+                    expect(isArray(node)).toBeFalsy();
+                });
+
+                eslint.on('Identifier', function (node) {
+                    expect(isArray(node)).toBeFalsy();
+                });
+
+                eslint.on('MemberExpression', function (node) {
+                    expect(isArray(node)).toBeFalsy();
+                });
+
+                eslint.verify(code, config, filename, true);
+            });
+
+
+        });
+
+        describe('isObjectNode', function () {
+            afterEach(function () {
+                eslint.reset();
+            });
+
+            var isObject = util.isObjectNode(eslint);
+
+            it('ObjectExpression', function () {
+                var code = 'let a = [];';
+
+                eslint.on('ObjectExpression', function (node) {
+                    expect(isObject(node)).toBeTruthy();
+                });
+
+                eslint.verify(code, config, filename, true);
+            });
+
+            it('NewExpression and callee name not end with `Array`', function () {
+                var code = ''
+                    + 'let a = new Object();'
+                    + 'let b = new String("foo");'
+                    + 'let c = new HelloWorld();';
+
+                eslint.on('NewExpression', function (node) {
+                    expect(isObject(node)).toBeTruthy();
+                });
+
+                eslint.verify(code, config, filename, true);
+            });
+
+            it('CallExpression truthy case', function () {
+                var code = ''
+                    + 'let a = Object();'
+                    + 'let b = Object.create(foo);'
+                    + 'let c = Object.assign(foo, bar);';
+
+                eslint.on('CallExpression', function (node) {
+                    expect(isObject(node)).toBeTruthy();
+                });
+
+                eslint.verify(code, config, filename, true);
+            });
+
+            it('CallExpression falsy case', function () {
+                var code = ''
+                    + 'let a = Object.keys(Number.prototype);'
+                    + 'let b = Object.values(Number.prototype);'
+                    + 'let c = foo();';
+
+                eslint.on('CallExpression', function (node) {
+                    expect(isObject(node)).toBeFalsy();
+                });
+
+                eslint.verify(code, config, filename, true);
+            });
+
+
+            it('Identifier truthy case', function () {
+                var code = ''
+                    + 'let a = {};'
+                    + 'let b = a;'
+                    + 'let {...c} = a;';
+
+                eslint.on('Identifier', function (node) {
+                    expect(isObject(node)).toBeTruthy();
+                });
+
+                eslint.verify(code, config, filename, true);
+            });
+
+
+            it('Identifier undefined should be falsy', function () {
+                var code = ''
+                    + 'let a = b;'
+                    + 'let c = a;'
+                    + 'let {d} = a;';
+
+                eslint.on('Identifier', function (node) {
+                    expect(isObject(node)).toBeFalsy();
+                });
+
+                eslint.verify(code, config, filename, true);
+            });
+
+
+            it('Dismatch case should be falsy', function () {
+                var code = ''
+                    + 'let a = function () {};'
+                    + 'let c = a;'
+                    + 'let d = Object.prototype.toString;'
+                    + 'let {e} = {e: 1}';
+
+                eslint.on('FunctionExpression', function (node) {
+                    expect(isObject(node)).toBeFalsy();
+                });
+
+                eslint.on('Identifier', function (node) {
+                    expect(isObject(node)).toBeFalsy();
+                });
+
+                eslint.on('MemberExpression', function (node) {
+                    expect(isObject(node)).toBeFalsy();
+                });
+
+                eslint.verify(code, config, filename, true);
+            });
+        });
+
+    });
 });
