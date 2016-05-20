@@ -33,7 +33,7 @@ ruleTester.run('min-vars-per-destructure', rule, {
     ],
     invalid: [
         {
-            code: 'let {a: {b}} = c;',
+            code: 'let {a: {b = 1}} = c;',
             options: [2],
             errors: [
                 {

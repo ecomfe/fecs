@@ -19,10 +19,11 @@ var ruleTester = new RuleTester({parser: 'babel-eslint'});
 
 ruleTester.run('use-for-of', rule, {
     valid: [
+        'for (let key of "foo") {}',
         'Object.keys(foo).forEach(bar);',
         'for (var key of Object.keys(foo)) {}',
         'for (let key of Object.keys(foo)) {}',
-        'for (let key of foo) {}'
+        'let foo = [];\nfor (let key of foo) {}'
     ],
     invalid: [
         {
@@ -32,9 +33,44 @@ ruleTester.run('use-for-of', rule, {
                     line: 1,
                     type: 'ForInStatement',
                     message: 'Unexpected for-in, use for-of instead.'
+                }
+            ]
+        },
+        {
+            code: 'for (var key in "foo") {}',
+            errors: [
+                {
+                    line: 1,
+                    type: 'ForInStatement',
+                    message: 'Unexpected for-in, use for-of instead.'
+                }
+            ]
+        },
+        {
+            code: 'for (var key in Object.create(null)) {}',
+            errors: [
+                {
+                    line: 1,
+                    type: 'ForInStatement',
+                    message: 'Unexpected for-in, use for-of instead.'
                 },
                 {
                     line: 1,
+                    type: 'CallExpression',
+                    message: 'Expected to use Object.keys.'
+                }
+            ]
+        },
+        {
+            code: 'let foo = Object.assign(a, b);\nfor (var key in foo) {}',
+            errors: [
+                {
+                    line: 2,
+                    type: 'ForInStatement',
+                    message: 'Unexpected for-in, use for-of instead.'
+                },
+                {
+                    line: 2,
                     type: 'Identifier',
                     message: 'Expected to use Object.keys.'
                 }
@@ -82,10 +118,20 @@ ruleTester.run('use-for-of', rule, {
                     line: 1,
                     type: 'ForInStatement',
                     message: 'Unexpected for-in, use for-of instead.'
+                }
+            ]
+        },
+        {
+            code: 'for (var key in new Foo) {}',
+            errors: [
+                {
+                    line: 1,
+                    type: 'ForInStatement',
+                    message: 'Unexpected for-in, use for-of instead.'
                 },
                 {
                     line: 1,
-                    type: 'CallExpression',
+                    type: 'NewExpression',
                     message: 'Expected to use Object.keys.'
                 }
             ]

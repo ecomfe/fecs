@@ -23,6 +23,7 @@ ruleTester.run('prefer-spread-element', rule, {
         'let foo = [...foo, ...bar];',
         'let otherArr = Array.from(arr);',
         'let foo = foo.concat(1);',
+        'let foo = foo.concat(bar);',
         'let foo = foo.concat(bar());',
         {
             code: 'let otherArr = [...arr];',
@@ -31,10 +32,12 @@ ruleTester.run('prefer-spread-element', rule, {
     ],
     invalid: [
         {
-            code: 'let foo = foo.concat(newValue);',
+            code: ''
+                + 'let newValue = [1,2,3];\n'
+                + 'let foo = foo.concat(newValue);',
             errors: [
                 {
-                    line: 1,
+                    line: 2,
                     type: 'CallExpression',
                     message: 'Expected to use SpreadElement to concat Array.'
                 }
@@ -45,6 +48,23 @@ ruleTester.run('prefer-spread-element', rule, {
             errors: [
                 {
                     line: 1,
+                    type: 'CallExpression',
+                    message: 'Expected to use SpreadElement to concat Array.'
+                }
+            ]
+        },
+        {
+            code: 'let foo = foo.concat([].concat([1,2]));',
+            errors: [
+                {
+                    line: 1,
+                    column: 11,
+                    type: 'CallExpression',
+                    message: 'Expected to use SpreadElement to concat Array.'
+                },
+                {
+                    line: 1,
+                    column: 22,
                     type: 'CallExpression',
                     message: 'Expected to use SpreadElement to concat Array.'
                 }
@@ -71,10 +91,30 @@ ruleTester.run('prefer-spread-element', rule, {
             ]
         },
         {
+            code: 'let foo = foo.concat(Array.of(1,2,3));',
+            errors: [
+                {
+                    line: 1,
+                    type: 'CallExpression',
+                    message: 'Expected to use SpreadElement to concat Array.'
+                }
+            ]
+        },
+        {
             code: 'let foo = foo.concat(new Array(1,2,3));',
             errors: [
                 {
                     line: 1,
+                    type: 'CallExpression',
+                    message: 'Expected to use SpreadElement to concat Array.'
+                }
+            ]
+        },
+        {
+            code: 'let f = [].fill(1);\nlet foo = foo.concat(f.slice(0));',
+            errors: [
+                {
+                    line: 2,
                     type: 'CallExpression',
                     message: 'Expected to use SpreadElement to concat Array.'
                 }
