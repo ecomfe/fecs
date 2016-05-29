@@ -43,7 +43,9 @@ ruleTester.run('no-extra-semi', rule, {
         ';(function () {}());',
 
         // Decorator
-        'class A {@deco;["a"]() {}}'
+        'class A {@deco()\na() {}}',
+        'class A {@deco()\nget a() {}}',
+        'class A {@deco();["a"]() {}}'
     ],
     invalid: [
         {
@@ -121,10 +123,10 @@ ruleTester.run('no-extra-semi', rule, {
                 {message: 'Unnecessary semicolon.', type: 'MethodDefinition', column: 26}
             ]
         },
-        // {
-        //     code: 'class A {\n@deco;\na() {}}',
-        //     errors: [{message: 'Unnecessary semicolon.', type: 'Decorator', column: 17}]
-        // },
+        {
+            code: 'class A {\n@deco();\na() {}}',
+            errors: [{message: 'Unnecessary semicolon.', type: 'Decorator', line: 2, column: 8}]
+        },
         {
             code: 'class A { a() {}; get b() {} }',
             errors: [{message: 'Unnecessary semicolon.', type: 'MethodDefinition', column: 17}]
