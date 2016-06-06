@@ -420,6 +420,39 @@ describe('util', function () {
         var config = {parser: 'babel-eslint'};
         var filename = 'test.js';
 
+        describe('variablesInScope', function () {
+            afterEach(function () {
+                eslint.reset();
+            });
+
+            var variablesInScope = util.variablesInScope;
+
+            it('ObjectExpression', function () {
+                var code = 'let a = [];function foo(){a.push(2);}';
+
+                eslint.on('CallExpression', function (node) {
+                    expect(node.callee.type).toBe('MemberExpression');
+                    expect(node.callee.object.name).toBe('a');
+                    expect(node.callee.property.name).toBe('push');
+                    expect(node.arguments.length).toBe(1);
+                    expect(node.arguments[0].value).toBe(2);
+
+                    var finder = function (variable) {
+                        return variable.name === 'a';
+                    };
+
+                    var noA = !eslint.getScope().variables.some(finder);
+                    var hasA = variablesInScope(eslint).some(finder);
+
+                    expect(noA).toBeTruthy();
+                    expect(hasA).toBeTruthy();
+                });
+
+                eslint.verify(code, config, filename, true);
+            });
+
+        });
+
         describe('isArrayNode', function () {
 
             afterEach(function () {
