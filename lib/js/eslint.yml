@@ -116,6 +116,8 @@ rules:
   fecs-prefer-async-await: 2
   fecs-shim-promise: 2
   fecs-no-this-arrow: 2
+  fecs-valid-map-set: 2
+
   no-console: 1
   no-constant-condition: 1
   comma-dangle: 2
