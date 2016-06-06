@@ -21,6 +21,8 @@ globals:
   unescape: true
   escape: true
   Promise: true
+plugins:
+  - babel
 rules:
   fecs-indent:
     - 2
@@ -118,6 +120,28 @@ rules:
   fecs-no-this-arrow: 2
   fecs-valid-map-set: 2
 
+  babel/generator-star-spacing:
+    - 2
+    -
+      before: false
+      after: true
+  babel/new-cap:
+    - 2
+    -
+      capIsNewExceptions:
+        - "T"
+        - "AddToFavoritesBar"
+  babel/array-bracket-spacing:
+    - 2
+    - "never"
+  babel/object-curly-spacing:
+    - 2
+    - "never"
+  babel/arrow-parens:
+    - 2
+    - "as-needed"
+
+
   no-console: 1
   no-constant-condition: 1
   comma-dangle: 2
@@ -196,12 +220,6 @@ rules:
   comma-style:
     - 2
     - "last"
-  new-cap:
-    - 2
-    -
-      capIsNewExceptions:
-        - "T"
-        - "AddToFavoritesBar"
   new-parens: 1
   no-array-constructor: 2
   no-new-object: 2
@@ -238,13 +256,7 @@ rules:
   space-before-blocks:
     - 2
     - "always"
-  array-bracket-spacing:
-    - 2
-    - "never"
   computed-property-spacing:
-    - 2
-    - "never"
-  object-curly-spacing:
     - 2
     - "never"
   space-in-parens:
@@ -283,16 +295,8 @@ rules:
       allowKeywords: true
       allowPattern: "^catch$"
 
-  arrow-parens:
-    - 2
-    - "as-needed"
   arrow-spacing: 2
   constructor-super: 2
-  generator-star-spacing:
-    - 2
-    -
-      before: false
-      after: true
   no-confusing-arrow:
     - 2
     -
