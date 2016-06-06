@@ -427,7 +427,7 @@ describe('util', function () {
 
             var variablesInScope = util.variablesInScope;
 
-            it('ObjectExpression', function () {
+            it('In upper scope', function () {
                 var code = 'let a = [];function foo(){a.push(2);}';
 
                 eslint.on('CallExpression', function (node) {
@@ -437,8 +437,12 @@ describe('util', function () {
                     expect(node.arguments.length).toBe(1);
                     expect(node.arguments[0].value).toBe(2);
 
-                    var finder = function (variable) {
-                        return variable.name === 'a';
+                    var variable;
+                    var finder = function (item) {
+                        if (item.name === 'a') {
+                            variable = item;
+                        }
+                        return variable;
                     };
 
                     var noA = !eslint.getScope().variables.some(finder);
@@ -446,6 +450,36 @@ describe('util', function () {
 
                     expect(noA).toBeTruthy();
                     expect(hasA).toBeTruthy();
+                    expect(variable.scope.type).toBe('module');
+                });
+
+                eslint.verify(code, config, filename, true);
+            });
+
+            it('In current scope', function () {
+                var code = 'let a = {};\nfunction foo(){\nlet a = [];\na.push(2);\n}';
+
+                eslint.on('CallExpression', function (node) {
+                    expect(node.callee.type).toBe('MemberExpression');
+                    expect(node.callee.object.name).toBe('a');
+                    expect(node.callee.property.name).toBe('push');
+                    expect(node.arguments.length).toBe(1);
+                    expect(node.arguments[0].value).toBe(2);
+
+                    var variable;
+                    var finder = function (item) {
+                        if (item.name === 'a') {
+                            variable = item;
+                        }
+                        return variable;
+                    };
+
+                    variablesInScope(eslint).some(finder);
+
+                    expect(!!variable).toBeTruthy();
+                    expect(variable.scope.type).toBe('function');
+                    expect(variable.defs[0].node.loc.start.line).toBe(3);
+                    expect(variable.defs[0].node.init.type).toBe('ArrayExpression');
                 });
 
                 eslint.verify(code, config, filename, true);
