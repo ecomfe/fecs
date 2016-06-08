@@ -6,7 +6,7 @@ describe('util', function () {
 
     describe('parseError', function () {
 
-        it('error from exception', function () {
+        it('error from active exception', function () {
 
             try {
                 throw new Error('foo', 'bar');
@@ -24,6 +24,40 @@ describe('util', function () {
                 expect(error.column).toBe(23);
                 expect(error.message).toMatch(/foo\([^\)]+\)/);
             }
+        });
+
+        it('error from syntax error', function () {
+
+            var error = util.parseError(
+                {foo: 'bar'},
+                {
+                    stack: 'path/to/file.js:123\nSyntaxError: Unexpected token return'
+                }
+            );
+
+            expect(error).not.toBeNull();
+            expect(error.foo).toBe('bar');
+
+            expect(error.line).toBe(123);
+            expect(error.message.indexOf('SyntaxError: Unexpected token return') > -1).toBe(true);
+        });
+
+        it('error from error', function () {
+
+            var error = util.parseError(
+                {foo: 'bar'},
+                {
+                    message: 'To be or not to be',
+                    stack: 'path/to/file.js:12:3\n'
+                }
+            );
+
+            expect(error).not.toBeNull();
+            expect(error.foo).toBe('bar');
+
+            expect(error.line).toBe(12);
+            expect(error.column).toBe(3);
+            expect(error.message.indexOf('To be or not to be') > -1).toBe(true);
         });
 
         it('error from csshint', function (done) {
