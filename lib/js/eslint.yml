@@ -119,6 +119,7 @@ rules:
   fecs-shim-promise: 2
   fecs-no-this-arrow: 2
   fecs-valid-map-set: 2
+  fecs-prefer-destructure: 1
 
   babel/generator-star-spacing:
     - 2
