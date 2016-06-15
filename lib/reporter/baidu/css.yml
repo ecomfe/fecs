@@ -107,7 +107,7 @@
   level: 2
   desc: "[强制] `font-family` 不区分大小写，但在同一个项目中，同样的 `Family Name` 大小写必须统一。"
 "037":
-  level: 2
+  level: 1
   desc: "[强制] 需要在 Windows 平台显示的中文内容，其字号应不小于 `12px`。"
 "038":
   level: 1
