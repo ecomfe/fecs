@@ -20,6 +20,8 @@ ruleTester.run('export-on-declare', rule, {
 
     valid: [
         'export function foo() {}',
+        'import foo from "./foo";export {foo}',
+        'import * as foo from "./foo";export {foo}',
         'let bar = true;export default function foo() {}',
         'export const foo = 1;',
         'export default function () {}',
