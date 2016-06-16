@@ -24,6 +24,8 @@ ruleTester.run('arrow-body-style', rule, {
         'var foo = (retv, name) => {\nretv[name] = true;\nreturn retv;\n};',
         'var foo = () => { bar(); };',
         'var foo = () => { b = a };',
+        'let foo = () => {};',
+        'var foo = () => { /* do nothing */ };',
         {
             code: 'var foo = () => { return {}; };',
             options: [
@@ -43,36 +45,6 @@ ruleTester.run('arrow-body-style', rule, {
         }
     ],
     invalid: [
-        {
-            code: 'var foo = () => {};',
-            errors: [
-                {
-                    line: 1,
-                    type: 'ArrowFunctionExpression',
-                    message: 'Expected block statement surrounding arrow body.'
-                }
-            ]
-        },
-        {
-            code: 'var foo = () => { /* do nothing */ };',
-            errors: [
-                {
-                    line: 1,
-                    type: 'ArrowFunctionExpression',
-                    message: 'Expected block statement surrounding arrow body.'
-                }
-            ]
-        },
-        {
-            code: 'var foo = () => {\n /* do nothing */ \n};',
-            errors: [
-                {
-                    line: 1,
-                    type: 'ArrowFunctionExpression',
-                    message: 'Expected block statement surrounding arrow body.'
-                }
-            ]
-        },
         {
             code: 'var foo = () => ({});',
             options: ['always'],
