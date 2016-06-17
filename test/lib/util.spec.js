@@ -346,6 +346,24 @@ describe('util', function () {
         expect(foobaz.baz).toBe(baz.baz);
     });
 
+    it('extend - deep copy', function () {
+        var foo = {foo: 1, bar: {b: 1}, baz: {a: 1}};
+        var bar = {foo: {bar: 2, baz: 3}, bar: {a: 1}, baz: 1};
+
+        var foobar = util.extend(foo, bar);
+
+        expect(foobar.foo.bar).toBe(bar.foo.bar);
+        expect(foobar.foo.baz).toBe(bar.foo.baz);
+
+        expect(foobar.bar.a).toBe(bar.bar.a);
+        expect(foobar.bar.b).toBe(foo.bar.b);
+
+        expect(foobar.baz.a).toBe(foo.baz.a);
+
+        bar.foo.bar++;
+        expect(foobar.foo.bar).toBe(bar.foo.bar - 1);
+    });
+
     it('extend should ignore property from prototype', function () {
         var foo = {foo: 1};
         var bar = Object.create({bar: 1});
