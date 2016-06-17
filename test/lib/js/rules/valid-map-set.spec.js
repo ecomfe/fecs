@@ -34,7 +34,8 @@ ruleTester.run('valid-map-set', rule, {
         'let foo = new Object();let a = new String("a");foo[a] = 0;',
         'let foo = new Object();bar[d] = 0',
         'let foo = {a: 1, b: 2, c: "foo"};foo.d = 0',
-        'let foo = new Object({a: 1, b: 2, c: "foo"});foo.d = 0'
+        'let foo = new Object({a: 1, b: 2, c: "foo"});foo.d = 0',
+        'let o = {};let n = 123;let key = `${n}456`;o[key] = 789;'
     ],
     invalid: [
         {
