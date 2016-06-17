@@ -51,12 +51,12 @@ var check = function (code, config, path) {
 };
 
 describe('esnext', function () {
-
+    var config;
     beforeEach(function () {
+        config = util.mix(util.getConfig('eslint'));
         jasmine.addMatchers(matchers);
     });
 
-    var config = util.getConfig('eslint');
     var ESNEXT_RULES = esnext.ESNEXT_RULES;
 
     it('es6-', function () {
@@ -71,7 +71,7 @@ describe('esnext', function () {
 
 
     it('es-next', function () {
-        check('class foo {}', config);
+        check('class Foo {}', config);
 
         ESNEXT_RULES.forEach(function (name) {
             if (name in config.rules) {
@@ -140,22 +140,48 @@ describe('esnext', function () {
 
         it('es6-', function () {
             var options = util.mix(config, {env: {es6: false}});
-            check('class foo {}', options);
+
+            // open all rules
+            ESNEXT_RULES.forEach(function (name) {
+                if (name in options.rules) {
+                    if (typeof options.rules[name] === 'number') {
+                        options.rules[name] = 2;
+                    }
+                    else {
+                        options.rules[name][0] = 2;
+                    }
+                }
+            });
+
+            check('class Foo {}', options);
 
             ESNEXT_RULES.forEach(function (name) {
-                if (name in config.rules) {
-                    expect(config.rules[name]).toBeClose();
+                if (name in options.rules) {
+                    expect(options.rules[name]).toBeClose();
                 }
             });
         });
 
         it('es-next', function () {
             var options = util.mix(config, {env: {es6: true}});
+
+            // close all rules
+            ESNEXT_RULES.forEach(function (name) {
+                if (name in options.rules) {
+                    if (typeof options.rules[name] === 'number') {
+                        options.rules[name] = 0;
+                    }
+                    else {
+                        options.rules[name][0] = 0;
+                    }
+                }
+            });
+
             check('var foo = true', options);
 
             ESNEXT_RULES.forEach(function (name) {
-                if (name in config.rules) {
-                    expect(config.rules[name]).toBeOpen();
+                if (name in options.rules) {
+                    expect(options.rules[name]).toBeOpen();
                 }
             });
         });
@@ -166,11 +192,11 @@ describe('esnext', function () {
 
         it('detect es6 by code when none field', function () {
             var options = util.mix(config, {ecmaFeatures: {}});
-            check('class foo {}', options);
+            check('class Foo {}', options);
 
             ESNEXT_RULES.forEach(function (name) {
-                if (name in config.rules) {
-                    expect(config.rules[name]).toBeOpen();
+                if (name in options.rules) {
+                    expect(options.rules[name]).toBeOpen();
                 }
             });
         });
@@ -186,11 +212,11 @@ describe('esnext', function () {
                     }
                 }
             );
-            check('class foo {}', options);
+            check('class Foo {}', options);
 
             ESNEXT_RULES.forEach(function (name) {
-                if (name in config.rules) {
-                    expect(config.rules[name]).toBeOpen();
+                if (name in options.rules) {
+                    expect(options.rules[name]).toBeOpen();
                 }
             });
         });
@@ -209,8 +235,8 @@ describe('esnext', function () {
             check('var foo = true', options);
 
             ESNEXT_RULES.forEach(function (name) {
-                if (name in config.rules) {
-                    expect(config.rules[name]).toBeOpen();
+                if (name in options.rules) {
+                    expect(options.rules[name]).toBeOpen();
                 }
             });
         });
