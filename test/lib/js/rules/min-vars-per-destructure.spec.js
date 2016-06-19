@@ -19,10 +19,12 @@ var ruleTester = new RuleTester({parser: 'babel-eslint'});
 
 ruleTester.run('min-vars-per-destructure', rule, {
     valid: [
+        'let {a = 1} = b;',
         'let [a, b] = c;',
         'let [a,,, ...b] = c;',
         'let [a, b, c] = d;',
         'let {a, b} = c;',
+        'let {a: {b = 1}} = c;',
         'let {a, b = 1} = c;',
         'let {a, b, c} = d;',
         'let {a: {b}, c: [d]} = e;',
@@ -34,12 +36,12 @@ ruleTester.run('min-vars-per-destructure', rule, {
     invalid: [
         {
             code: 'let {a: {b = 1}} = c;',
-            options: [2],
+            options: [3],
             errors: [
                 {
                     line: 1,
                     type: 'VariableDeclarator',
-                    message: 'Not enough variables declared during destructuring (1). Minimum allowed is 2.'
+                    message: 'Not enough variables declared during destructuring (2). Minimum allowed is 3.'
                 }
             ]
         },
