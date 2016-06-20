@@ -118,7 +118,7 @@ rules:
   fecs-prefer-async-await: 2
   fecs-shim-promise: 2
   fecs-no-this-arrow: 2
-  fecs-valid-map-set: 2
+  fecs-valid-map-set: 1
   fecs-prefer-destructure: 1
   fecs-prefer-assign-pattern: 1
   fecs-use-computed-property: 1

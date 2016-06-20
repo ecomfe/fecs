@@ -35,26 +35,60 @@ ruleTester.run('valid-map-set', rule, {
         'let foo = new Object();bar[d] = 0',
         'let foo = {a: 1, b: 2, c: "foo"};foo.d = 0',
         'let foo = new Object({a: 1, b: 2, c: "foo"});foo.d = 0',
-        'let o = {};let n = 123;let key = `${n}456`;o[key] = 789;'
+        'let o = {};let n = 123;let key = `${n}456`;o[key] = 789;',
+        'for (let a in b) {}',
+        'let foo = {a: 1, b: {c: 2}};typeof foo.a;delete foo.b.c;',
+        'let foo = {a: 1, b: 1, c: "c"};',
+        'function foo(name) {let a = {};a[name] = 1;}'
     ],
     invalid: [
+        {
+            code: 'let foo = {a: true, b: true, c: 1};',
+            errors: [
+                {
+                    line: 1,
+                    type: 'ObjectExpression',
+                    message: 'Expected to use Set if you need an identify collection.'
+                }
+            ]
+        },
+        {
+            code: 'let foo = {a: 1, b: 2};\ndelete foo.a;',
+            errors: [
+                {
+                    line: 2,
+                    type: 'UnaryExpression',
+                    message: 'Expected to use Map or Set if you need to add or remove items.'
+                }
+            ]
+        },
+        {
+            code: 'for (var a in {}) {}',
+            errors: [
+                {
+                    line: 1,
+                    type: 'ForInStatement',
+                    message: 'Expected to use Map or Set with interation.'
+                }
+            ]
+        },
         {
             code: 'let foo = {};bar = {};foo[bar] = "foobar"',
             errors: [
                 {
                     line: 1,
-                    type: 'ObjectExpression',
-                    message: 'Exprected to use Map but found Object.'
+                    type: 'AssignmentExpression',
+                    message: 'Expected to use Map but found Object.'
                 }
             ]
         },
         {
-            code: 'let foo = Object({});bar = {};foo[bar] = "foobar"',
+            code: 'let foo = Object({}),bar = {};foo[bar] = "foobar"',
             errors: [
                 {
                     line: 1,
-                    type: 'CallExpression',
-                    message: 'Exprected to use Map but found Object.'
+                    type: 'AssignmentExpression',
+                    message: 'Expected to use Map but found Object.'
                 }
             ]
         },
@@ -63,8 +97,8 @@ ruleTester.run('valid-map-set', rule, {
             errors: [
                 {
                     line: 1,
-                    type: 'CallExpression',
-                    message: 'Exprected to use Map but found Object.'
+                    type: 'AssignmentExpression',
+                    message: 'Expected to use Map but found Object.'
                 }
             ]
         },
@@ -73,8 +107,8 @@ ruleTester.run('valid-map-set', rule, {
             errors: [
                 {
                     line: 1,
-                    type: 'CallExpression',
-                    message: 'Exprected to use Map but found Object.'
+                    type: 'AssignmentExpression',
+                    message: 'Expected to use Map but found Object.'
                 }
             ]
         },
@@ -83,8 +117,8 @@ ruleTester.run('valid-map-set', rule, {
             errors: [
                 {
                     line: 1,
-                    type: 'NewExpression',
-                    message: 'Exprected to use Map but found Object.'
+                    type: 'AssignmentExpression',
+                    message: 'Expected to use Map but found Object.'
                 }
             ]
         },
@@ -93,8 +127,8 @@ ruleTester.run('valid-map-set', rule, {
             errors: [
                 {
                     line: 1,
-                    type: 'ObjectExpression',
-                    message: 'Exprected to use Map but found Object.'
+                    type: 'AssignmentExpression',
+                    message: 'Expected to use Map but found Object.'
                 }
             ]
         },
@@ -103,8 +137,8 @@ ruleTester.run('valid-map-set', rule, {
             errors: [
                 {
                     line: 1,
-                    type: 'ObjectExpression',
-                    message: 'Exprected to use Map but found Object.'
+                    type: 'AssignmentExpression',
+                    message: 'Expected to use Map but found Object.'
                 }
             ]
         },
@@ -113,8 +147,8 @@ ruleTester.run('valid-map-set', rule, {
             errors: [
                 {
                     line: 1,
-                    type: 'ObjectExpression',
-                    message: 'Exprected to use Set but found Object.'
+                    type: 'AssignmentExpression',
+                    message: 'Expected to use Set but found Object.'
                 }
             ]
         },
@@ -123,8 +157,8 @@ ruleTester.run('valid-map-set', rule, {
             errors: [
                 {
                     line: 1,
-                    type: 'ObjectExpression',
-                    message: 'Exprected to use Set but found Object.'
+                    type: 'AssignmentExpression',
+                    message: 'Expected to use Set but found Object.'
                 }
             ]
         },
@@ -133,8 +167,8 @@ ruleTester.run('valid-map-set', rule, {
             errors: [
                 {
                     line: 1,
-                    type: 'ObjectExpression',
-                    message: 'Exprected to use Set but found Object.'
+                    type: 'AssignmentExpression',
+                    message: 'Expected to use Set but found Object.'
                 }
             ]
         }
