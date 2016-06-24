@@ -24,7 +24,8 @@ ruleTester.run('prefer-destructure', rule, {
         'let foobar = function () {let foo = 1, bar = 2;}',
         'foo((x, y) => x = y + 1);',
         'let temp = x;y = temp;x = 1;',
-        'let temp = x;y = temp;x = temp;'
+        'let temp = x;y = temp;x = temp;',
+        'let foo = {bar: 1, baz: 2};export let bar = foo.bar;export let baz = foo.baz;'
     ],
     invalid: [
         {
