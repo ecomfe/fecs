@@ -42,6 +42,7 @@ ruleTester.run('valid-map-set', rule, {
         'let foo = {a: 1};',
         'let foo = {a: 1, ...bar};',
         'let foo = {a: 1, b: 1, c: "c"};',
+        'let foo = bar({a: 1, b: 1});',
         'function foo(name) {let a = {};a[name] = 1;}'
     ],
     invalid: [
