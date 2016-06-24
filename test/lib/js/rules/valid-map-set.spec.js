@@ -38,6 +38,9 @@ ruleTester.run('valid-map-set', rule, {
         'let o = {};let n = 123;let key = `${n}456`;o[key] = 789;',
         'for (let a in b) {}',
         'let foo = {a: 1, b: {c: 2}};typeof foo.a;delete foo.b.c;',
+        'this.foo = true;this.bar = true;',
+        'let foo = {a: 1};',
+        'let foo = {a: 1, ...bar};',
         'let foo = {a: 1, b: 1, c: "c"};',
         'function foo(name) {let a = {};a[name] = 1;}'
     ],
