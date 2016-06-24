@@ -77,7 +77,17 @@ ruleTester.run('valid-map-set', rule, {
             ]
         },
         {
-            code: 'let foo = {};bar = {};foo[bar] = "foobar"',
+            code: 'let foo = {};bar = /bar/;foo[bar] = "foobar"',
+            errors: [
+                {
+                    line: 1,
+                    type: 'AssignmentExpression',
+                    message: 'Expected to use Map but found Object.'
+                }
+            ]
+        },
+        {
+            code: 'let foo = {};bar = [1];foo[bar] = "foobar"',
             errors: [
                 {
                     line: 1,
