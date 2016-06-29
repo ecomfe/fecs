@@ -29,7 +29,7 @@ ruleTester.run('prefer-assign-pattern', rule, {
         'let foo = {};if (foo) {foo = 1}',
         'let foo = {};if (foo) {foo.bar = 1}',
         'function foo(a) {a = a < 0 ? 0 : a;}',
-        'function foo(a) {a = 1;}',
+        'function foo(a) {if(foobar) a = 1;}',
         'function foo(a) {a = b && 0;}',
         'function foo(a) {a = b || 0;}',
         'a = a || "foo"',
@@ -37,9 +37,24 @@ ruleTester.run('prefer-assign-pattern', rule, {
         'let {foo: {a}} = b;if (!!a) {a = "foo";}',
         'let {foo: {a}} = b;if (true) {a = "foo";}',
         'let {foo: {a}} = b;if(foo.a) {a = "bar"} if (!a) {a = "foo";}',
-        'let {foo: {a}} = b;while (true) {a = "foo";break;}'
+        'let {foo: {a}} = b;while (true) {a = "foo";break;}',
+        'function foo(a) { if (!a) a = `1${bar}`;}',
+        'function foo(a) { if (!a) a = Object.create(bar);}',
+        'function foo(a) { if (!a) a = new Array(bar);}',
+        'function foo(a) { if (!a) a = [bar];}',
+        'function foo(a) { a = [bar];}'
     ],
     invalid: [
+        {
+            code: 'function foo(a) { a = "foo";}',
+            errors: [
+                {
+                    line: 1,
+                    type: 'AssignmentExpression',
+                    message: 'Enforce to use AssignmentPattern for `a`.'
+                }
+            ]
+        },
         {
             code: 'function foo(a) { a = a || "foo";}',
             errors: [
@@ -141,7 +156,7 @@ ruleTester.run('prefer-assign-pattern', rule, {
             ]
         },
         {
-            code: 'let {foo: {a}} = b;if (!a) a = "foo";',
+            code: 'let {foo: {a}} = b;if (!a) a = {foo: "foo"};',
             errors: [
                 {
                     line: 1,
@@ -151,7 +166,7 @@ ruleTester.run('prefer-assign-pattern', rule, {
             ]
         },
         {
-            code: 'let {foo: {a}} = b;if (!a) {a = "foo";}',
+            code: 'let {foo: {a}} = b;if (!a) {a = ["foo"];}',
             errors: [
                 {
                     line: 1,
