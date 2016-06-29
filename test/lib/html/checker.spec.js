@@ -148,9 +148,10 @@ describe('checker', function () {
         checker
             .check('<script>var foo = 1;alert(foo);</script>', 'path/to/file.html', options)
             .then(function (errors) {
-                expect(errors.length).toBe(2);
+                expect(errors.length).toBe(3);
                 expect(errors[0].rule).toBe('fecs-indent');
                 expect(errors[1].rule).toBe('semi-spacing');
+                expect(errors[2].rule).toBe('max-statements-per-line');
                 done();
             });
     });

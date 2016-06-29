@@ -311,4 +311,7 @@ rules:
   no-var: 1
   no-duplicate-imports: 1
   prefer-rest-params: 2
+  unicode-bom: 1
+  max-statements-per-line: 2
+
 
