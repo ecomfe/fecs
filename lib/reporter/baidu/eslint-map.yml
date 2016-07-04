@@ -35,6 +35,8 @@ fecs-prefer-destructure: "615"
 fecs-prefer-assign-pattern: "620"
 fecs-use-computed-property: "627"
 
+fecs-valid-var-jsdoc: "026,031,032,060"
+
 babel/generator-star-spacing: "604"
 babel/new-cap: "027,029,030"
 babel/array-bracket-spacing: "012"

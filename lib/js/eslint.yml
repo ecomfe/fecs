@@ -83,7 +83,7 @@ rules:
       - "js"
       - "es"
   fecs-no-extra-semi: 2
-  fecs-use-method-definition: 2
+  fecs-use-method-definition: 1
   fecs-use-property-shorthand:
     - 1
     -
@@ -122,6 +122,8 @@ rules:
   fecs-prefer-destructure: 1
   fecs-prefer-assign-pattern: 1
   fecs-use-computed-property: 1
+
+  fecs-valid-var-jsdoc: 1
 
   babel/generator-star-spacing:
     - 2

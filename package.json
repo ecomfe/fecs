@@ -59,7 +59,7 @@
     "manis": "^0.3.0",
     "map-stream": "^0.1.0",
     "minimatch": "^3.0.2",
-    "minimist": "^1.1.0",
+    "minimist": "^1.2.0",
     "msee": "^0.3.1",
     "q": "^1.4.1",
     "vinyl": "^1.1.1",
