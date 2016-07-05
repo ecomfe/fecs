@@ -37,6 +37,32 @@ ruleTester.run('valid-jsdoc', rule, {
                 }
             ]
         },
+        {
+            code: [
+                '/*foo-bar*/',
+                'function foo(bar) {}'
+            ].join('\n'),
+            options: [
+                {
+                    ignore: 'foo-bar'
+                }
+            ]
+        },
+        {
+            code: [
+                '/* foo-bar */',
+                'function foo(bar) {}'
+            ].join('\n'),
+            options: [
+                {
+                    ignore: ['/\\s*foo-bar\\s*/']
+                }
+            ]
+        },
+        '// comment here\nvar foo;',
+        '/* jshint max-len: 80 */\nvar foo;',
+        '/* istanbul ignore */\nvar foo;',
+        '/* eslint-disable max-len */\nvar foo;',
         '/**\n* Description\n * @param {Object[]} screenings Array of screenings.\n * @param {number} screenings.timestamp its a time stamp \n @return {void} */\nfunction foo(){}',
         '/**\n* Description\n */\nvar x = new Foo(function foo(){})',
         '/**\n* Description\n* @returns {void} */\nfunction foo(){}',
@@ -652,6 +678,52 @@ ruleTester.run('valid-jsdoc', rule, {
 
     invalid: [
         {
+            code: [
+                '/*',
+                ' * foo desc',
+                ' *',
+                ' * @param {string} bar desc',
+                ' */',
+                'function foo(bar) {}'
+            ].join('\n'),
+            errors: [
+                {
+                    message: 'JSDoc opent tag should be `/**`, not `/*`.baidu040',
+                    line: 1,
+                    type: 'Block'
+                }
+            ]
+        },
+        {
+            code: [
+                '/*',
+                ' * foo desc',
+                ' *',
+                ' */',
+                'function foo(bar) {}'
+            ].join('\n'),
+            errors: [
+                {
+                    message: 'Expected to use LineComment but saw BlockComment.baidu039',
+                    line: 1,
+                    type: 'Block'
+                }
+            ]
+        },
+        {
+            code: [
+                '/*foo-bar*/',
+                'function foo(bar) {}'
+            ].join('\n'),
+            errors: [
+                {
+                    message: 'Expected to use LineComment but saw BlockComment.baidu039',
+                    line: 1,
+                    type: 'Block'
+                }
+            ]
+        },
+        {
             code: '/**\nfoo\n * @constructor\n * @returns {Object} bar\n */\nfunction Foo() {}',
             options: [
                 {
@@ -690,6 +762,11 @@ ruleTester.run('valid-jsdoc', rule, {
                     message: 'Missing JSDoc @author.baidu046',
                     line: 1,
                     type: 'Program'
+                },
+                {
+                    message: 'Expected to use LineComment but saw BlockComment.baidu039',
+                    line: 1,
+                    type: 'Block'
                 }
             ]
         },

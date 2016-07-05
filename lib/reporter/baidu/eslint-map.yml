@@ -1,5 +1,5 @@
 fecs-indent: "003,004"
-fecs-valid-jsdoc: "041,043,044,045,046,048,052,053,998"
+fecs-valid-jsdoc: "039,040,041,043,044,045,046,048,052,053,998"
 fecs-max-statements: "103"
 fecs-eol-last: "002"
 fecs-camelcase: "025,027,028,030"
