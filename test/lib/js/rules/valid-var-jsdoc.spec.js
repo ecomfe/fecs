@@ -23,6 +23,10 @@ ruleTester.run('valid-var-jsdoc', rule, {
         'var [foo] = bar;',
         'const foo = 1;',
         'var foo = 1;',
+        'var isFoo = true;',
+        'var hasFoo = false;',
+        '/**\n * isFoo\n * @type {boolean}\n */\nvar isFoo = true;',
+        '/**\n * hasFoo\n * @type {boolean}\n */\nvar hasFoo = false;',
         'var FOO = 1;',
         'var Foo = {BAR: 1, BAZ: 2}',
         'var Foo = function () {}',
@@ -33,6 +37,13 @@ ruleTester.run('valid-var-jsdoc', rule, {
     ],
 
     invalid: [
+        {
+            code: '/**\n * Validate result\n * @type {boolean}\n */\nvar valid = validate()',
+            errors: [{
+                message: 'Expected boolean variables with `is` or `has` prefix.baidu036',
+                type: 'Identifier'
+            }]
+        },
         {
             code: '/**\n * Foo\n * @enum {number}\n */\nvar foo = {BAR: 1, BAZ: 2}',
             errors: [{
