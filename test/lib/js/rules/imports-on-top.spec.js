@@ -19,10 +19,7 @@ var ruleTester = new RuleTester({parser: 'babel-eslint'});
 ruleTester.run('imports-on-top', rule, {
 
     valid: [
-        {
-            code: '"use strict";\nimport React from "react"',
-            parserOptions: {sourceType: 'module'}
-        },
+        '"use strict";\nimport React from "react"',
         'import React from "react"',
         '\nimport React from "react"\n',
         '\n   \nimport React from "react"',
