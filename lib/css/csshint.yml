@@ -18,9 +18,9 @@ require-after-space:
   - ":"
   - ","
 max-length: 120
-require-after-linebreak:
-  - " "
-  - ","
+#require-after-linebreak:
+#  - " "
+#  - ","
 require-newline:
   - "selector"
   - "property"
@@ -38,7 +38,7 @@ max-selector-nesting-level: 3
 shorthand:
   - "property"
   - "color"
-group-properties: true
+#group-properties: true
 disallow-important: true
 leading-zero: true
 disallow-quotes-in-url: true
@@ -48,8 +48,8 @@ hex-color: true
 disallow-named-color: true
 unifying-color-case-sensitive: true
 horizontal-vertical-position: true
-font-family-space-in-quotes: true
-font-family-sort: true
+#font-family-space-in-quotes: true
+#font-family-sort: true
 unifying-font-family-case-sensitive: true
 min-font-size: 12
 require-number:
