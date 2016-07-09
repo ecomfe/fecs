@@ -23,6 +23,9 @@ ruleTester.run('valid-var-jsdoc', rule, {
         'var [foo] = bar;',
         'const foo = 1;',
         'var foo = 1;',
+        'const FOO = 1;',
+        'const FOO_BAR = 1;',
+        'const F3_BAR = 1;',
         'var isFoo = true;',
         'var hasFoo = false;',
         '/**\n * isFoo\n * @type {boolean}\n */\nvar isFoo = true;',
@@ -33,7 +36,10 @@ ruleTester.run('valid-var-jsdoc', rule, {
         '/**\n * foo\n * @const {number}\n */\nconst FOO = 1;',
         '/**\n * foo\n * @namespace\n */\nvar foo = {};',
         '/**\n * fooBar\n * @namespace\n */\nvar fooBar = {};',
-        '/**\n * Foo\n * @enum {number}\n */\nconst Foo = {BAR: 1, BAZ: 2};'
+        '/**\n * Foo\n * @enum {number}\n */\nconst Foo = {BAR: 1, BAZ: 2};',
+
+        // error from valid-jsdoc, not valid-var-jsdoc
+        '/**\n * foo\n * @const\n * @type {number\n */\nconst FOO = 1;'
     ],
 
     invalid: [
@@ -59,13 +65,6 @@ ruleTester.run('valid-var-jsdoc', rule, {
             }]
         },
         {
-            code: '/**\n * foo\n * @const\n * @type {number\n */\nconst FOO = 1;',
-            errors: [{
-                message: 'Constant variables should be tagged with description, @const and @type.baidu060',
-                type: 'Identifier'
-            }]
-        },
-        {
             code: '/**\n * foo\n * @namespace\n */\nvar Foo = {};',
             errors: [{
                 message: 'Namespace should be named as `Camel`.baidu032',
@@ -80,14 +79,7 @@ ruleTester.run('valid-var-jsdoc', rule, {
             }]
         },
         {
-            code: 'const FOO = 1;',
-            errors: [{
-                message: 'Constant variables should be tagged with description, @const and @type.baidu060',
-                type: 'Identifier'
-            }]
-        },
-        {
-            code: '/**\n * foo\n * @const\n */\nconst FOOBAR = 1;',
+            code: '/**\n * foo\n * @const\n */\nconst F2_B_OOBAR = 1;',
             errors: [{
                 message: 'Constant variables should be tagged with description, @const and @type.baidu060',
                 type: 'Identifier'
