@@ -19,7 +19,9 @@ rel-stylesheet: true
 script-in-tail: true
 title-required: true
 unique-id: true
+no-duplication-id-and-name: true
 viewport: true
+label-for-input: true
 max-len: 120
 attr-lowercase: true
 attr-no-duplication: true
