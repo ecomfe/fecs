@@ -125,6 +125,7 @@ rules:
 
   fecs-valid-var-jsdoc: 1
   fecs-valid-class-jsdoc: 1
+  fecs-valid-constructor: 1
 
   babel/generator-star-spacing:
     - 2
