@@ -124,6 +124,7 @@ rules:
   fecs-use-computed-property: 1
 
   fecs-valid-var-jsdoc: 1
+  fecs-valid-class-jsdoc: 1
 
   babel/generator-star-spacing:
     - 2
