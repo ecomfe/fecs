@@ -196,12 +196,26 @@
      * @return {string} 格式化后的字符串
      */
     function stringFormat(tpl, data) {
-        return tpl.replace(
-            /\$\{([-a-z0-9_]+)\}/ig,
-            function (all, name) {
-                return data[name] || '';
-            }
-        );
+        return tpl
+            .replace(
+                /\$\{([-a-z0-9_]+)\}/ig,
+                function (all, name) {
+                    return data[name] || '';
+                }
+            );
+    }
+
+    /**
+     * HTML 编码
+     *
+     * @inner
+     * @param {string} html 模板
+     * @return {string} 编码后的字符串
+     */
+    function htmlEncode(html) {
+        return html
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;');
     }
 
     /**
@@ -450,8 +464,8 @@
                     serverity: TPL.SERVERITY[item.severity],
                     line: item.line,
                     col: item.column,
-                    msg: item.message,
-                    info: item.info
+                    msg: htmlEncode(item.message),
+                    info: htmlEncode(item.info)
                 });
 
                 var severityType;

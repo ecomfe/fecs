@@ -292,7 +292,7 @@
             bgStyle.text = menuItem.text;
             bgStyle.font = FONT;
             ctx.font = FONT;
-            var width = Math.max(ctx.measureText(bgStyle.text).width + 10, 60);
+            var width = Math.max(ctx.measureText(bgStyle.text).width + 30, 60);
             var rect = new graphic.Rect({
                 shape: {
                     height: 30,
