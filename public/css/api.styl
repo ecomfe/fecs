@@ -14,10 +14,10 @@ body {
     height: 100%
     overflow-x: hidden
     background-color: #454163
-    background-image: -webkit-radial-gradient(#565378, #37324a)
-    background-image:    -moz-radial-gradient(#565378, #37324a)
-    background-image:     -ms-radial-gradient(#565378, #37324a)
-    background-image:         radial-gradient(#565378, #37324a)
+    // background-image: -webkit-radial-gradient(#565378, #37324a)
+    // background-image:    -moz-radial-gradient(#565378, #37324a)
+    // background-image:     -ms-radial-gradient(#565378, #37324a)
+    // background-image:         radial-gradient(#565378, #37324a)
 }
 
 .api-nav {
@@ -39,7 +39,7 @@ body {
 
         li {
             a {
-                transition: all .15s
+                transition: background-color .15s, color .15s
                 display: block
                 color: #fff
                 font-size: 16px
@@ -91,6 +91,7 @@ body {
     margin-left: $nav-width
     height: 100%
     overflow-y: scroll
+    -webkit-overflow-scrolling: touch;
 
     .top-nav {
         absolute(25px, 100px, null, null)
@@ -111,7 +112,16 @@ body {
             margin-top: 80px
             padding-top: 20px
             margin-bottom: 50px
-            color: #d2c9d4
+            color: #807b91
+
+            a {
+                color: #807b91
+
+                &:hover {
+                    color: #69a1c7
+                    text-decoration: none
+                }
+            }
         }
 
         h1,
@@ -122,7 +132,7 @@ body {
         p,
         table,
         pre {
-            margin-top: .5em
+            margin-top: 1em
             margin-bottom: .5em
         }
 

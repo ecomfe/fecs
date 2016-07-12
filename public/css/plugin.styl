@@ -2,29 +2,51 @@
 
 body {
     background-color: #454163
-    background-image: -webkit-radial-gradient(#565378, #37324a)
-    background-image:    -moz-radial-gradient(#565378, #37324a)
-    background-image:     -ms-radial-gradient(#565378, #37324a)
-    background-image:         radial-gradient(#565378, #37324a)
+    // background-image: -webkit-radial-gradient(#565378, #37324a)
+    // background-image:    -moz-radial-gradient(#565378, #37324a)
+    // background-image:     -ms-radial-gradient(#565378, #37324a)
+    // background-image:         radial-gradient(#565378, #37324a)
 }
 
 .plugin-slogan {
-    margin-top: 20px
+    margin-top: 30px
     text-align: center
     color: #fff
     font-weight: 400
     font-family: $font-fzyx
 
     .slogan-title {
-        font-size: 60px
+        font-size: 50px
         margin-bottom: 10px
         letter-spacing: 1px
     }
 
     .slogan-content {
-        font-size: 36px
+        font-size: 30px
         color: #d2c9d4
     }
+}
+
+.mac-mockup {
+    margin: 60px auto 40px
+    height: 550px
+    image-2x('../img/mac_mockup@2x.png', 950px, 550px)
+    background: url('../img/mac_mockup.png') 50% 0 no-repeat
+    position: relative
+
+    .mac-screen {
+        size(704px, 453px)
+        image-2x('../img/mac_bg@2x.png', 71px, 41px)
+        background: #474344 url('../img/mac_bg.png') 0 0
+        absolute(31px, null, null, 50%)
+        margin-left: -352px
+    }
+}
+
+#plugins {
+    size(800px, 700px)
+    absolute(-100px, null, null, 50%)
+    margin-left: -400px
 }
 
 .plugin-list {
@@ -33,6 +55,7 @@ body {
     width: 800px
     margin: 0 auto
     padding: 50px 0 100px
+    display: none;
 
     li {
         size(128px, 160px)
@@ -70,14 +93,6 @@ body {
 }
 
 @media screen and (max-width: 800px) {
-    .plugin-slogan {
-        .slogan-title {
-            font-size: 56px
-        }
-        .slogan-content {
-            font-size: 30px
-        }
-    }
     .plugin-list {
         width: 600px
         padding-top: 40px
