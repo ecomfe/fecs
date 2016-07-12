@@ -166,5 +166,5 @@ ruleTester.run('valid-class-jsdoc', rule, {
                 }
             ]
         }
-   ]
+    ]
 });

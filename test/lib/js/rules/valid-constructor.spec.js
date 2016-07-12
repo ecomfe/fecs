@@ -60,7 +60,7 @@ ruleTester.run('valid-constructor', rule, {
             code: [
                 'var F = new Function();',
                 'F.prototype = superClass.prototype;',
-                'subClass.prototype = new F();',
+                'subClass.prototype = new F();'
             ].join('\n'),
             errors: [{
                 message: 'Expected to fix up `constructor` after override `prototype`.baidu110',
@@ -79,5 +79,5 @@ ruleTester.run('valid-constructor', rule, {
                 type: 'ObjectExpression'
             }]
         }
-   ]
+    ]
 });
