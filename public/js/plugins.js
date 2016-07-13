@@ -3,22 +3,61 @@
  * @author cgzero(cgzero@cgzero.com)
  * @date 2016-07-06
  */
+
+/* globals echarts */
 (function () {
 
-    var chart = echarts.init(document.getElementById('plugins'));
-    var ctx = document.createElement('canvas').getContext('2d');
+    var FONT = 'Helvetica Neue';
 
-    var graphic = echarts.graphic;
-    var zr = chart.getZr();
+    // 当前设备
+    var currDevice;
 
-    var ROOT_LAYER_ITEM_SIZE = 100;
-    var FIRST_LAYER_ITEM_SIZE = 70;
-    var SECOND_LAYER_ITEM_SIZE = 40;
-    var MENU_ITEM_PADDING = 8;
-    var FIRST_LAYER_DISTANCE = 160;
-    var SECOND_LAYER_DISTANCE = 120;
-
-    var FONT = '14px Helvetica Neue';
+    var deviceSizeMap = {
+        pc: {
+            rootSize: 100,
+            firstSize: 70,
+            secondSize: 40,
+            itemPadding: 8,
+            firstDistance: 160,
+            secondDistance: 120,
+            fontSize: 14,
+            lineHeight: 30,
+            fontPadding: 30
+        },
+        pad: {
+            rootSize: 80,
+            firstSize: 56,
+            secondSize: 32,
+            itemPadding: 6,
+            firstDistance: 128,
+            secondDistance: 96,
+            fontSize: 14,
+            lineHeight: 30,
+            fontPadding: 30
+        },
+        note: {
+            rootSize: 60,
+            firstSize: 42,
+            secondSize: 24,
+            itemPadding: 4,
+            firstDistance: 96,
+            secondDistance: 72,
+            fontSize: 13,
+            lineHeight: 25,
+            fontPadding: 25
+        },
+        phone: {
+            rootSize: 40,
+            firstSize: 28,
+            secondSize: 16,
+            itemPadding: 3,
+            firstDistance: 64,
+            secondDistance: 48,
+            fontSize: 11,
+            lineHeight: 20,
+            fontPadding: 20
+        }
+    };
 
     var menu = {
         name: 'FECS',
@@ -100,9 +139,68 @@
         ]
     };
 
-    draw();
+    var ctx = document.createElement('canvas').getContext('2d');
+    var graphic = echarts.graphic;
+
+    var drawDebounce = debounce(500, draw);
+
+    init();
+
+    function init() {
+        window.onresize = function () {
+            echarts.dispose(document.getElementById('plugins'));
+            drawDebounce();
+        };
+
+        draw();
+    }
+
+    function getDevice() {
+        var browserWidth = parseInt(document.body.clientWidth, 10);
+
+        if (browserWidth > 800) {
+            currDevice = 'pc';
+        }
+        else if (browserWidth > 700) {
+            currDevice = 'pad';
+        }
+        else if (browserWidth > 420) {
+            currDevice = 'note';
+        }
+        else {
+            currDevice = 'phone';
+        }
+    }
+
+    /**
+     * 对指定的函数进行包装，返回一个在指定的时间内一次的函数
+     *
+     * @inner
+     * @param {number} wait 时间范围
+     * @param {Function} fn 待包装函数
+     * @return {Function} 包装后的函数
+     */
+    function debounce(wait, fn) {
+        var timer;
+        return function () {
+            var ctx = this;
+            var args = arguments;
+
+            clearTimeout(timer);
+
+            timer = setTimeout(
+                function () {
+                    fn.apply(ctx, args);
+                },
+                wait
+            );
+        };
+    }
 
     function draw() {
+        getDevice();
+        var zr = echarts.init(document.getElementById('plugins')).getZr();
+
         var root = new graphic.Group({
             position: [
                 zr.getWidth() / 2,
@@ -111,7 +209,7 @@
         });
         zr.add(root);
 
-        var gFecs = drawMenuItem(menu, ROOT_LAYER_ITEM_SIZE, 20);
+        var gFecs = drawMenuItem(menu, deviceSizeMap[currDevice].rootSize, 20);
         root.add(gFecs);
         gFecs.scale = [
             0,
@@ -127,7 +225,7 @@
         // Adjust image position
         gFecs.childAt(1).position[1] = 2;
 
-        drawLevel(menu, root, 0, Math.PI * 2, FIRST_LAYER_DISTANCE, FIRST_LAYER_ITEM_SIZE);
+        drawLevel(menu, root, 0, Math.PI * 2, deviceSizeMap[currDevice].firstDistance, deviceSizeMap[currDevice].firstSize);
 
         var pause = false;
 
@@ -208,7 +306,7 @@
                     }
 
                     removeSubmenu();
-                    drawLevel(childItem, itemGroup, radian - radianStep / 1.3, radian + radianStep / 1.3, SECOND_LAYER_DISTANCE, SECOND_LAYER_ITEM_SIZE);
+                    drawLevel(childItem, itemGroup, radian - radianStep / 1.3, radian + radianStep / 1.3, deviceSizeMap[currDevice].secondDistance, deviceSizeMap[currDevice].secondSize);
                 };
 
                 connector.on('mouseover', showSecondLevel).on('mouseout', function () {
@@ -290,12 +388,15 @@
             bgStyle.shadowBlur = 3;
             bgStyle.shadowOffsetY = 2;
             bgStyle.text = menuItem.text;
-            bgStyle.font = FONT;
-            ctx.font = FONT;
-            var width = Math.max(ctx.measureText(bgStyle.text).width + 30, 60);
+
+            var font = deviceSizeMap[currDevice].fontSize + 'px ' + FONT;
+
+            bgStyle.font = font;
+            ctx.font = font;
+            var width = Math.max(ctx.measureText(bgStyle.text).width + deviceSizeMap[currDevice].fontPadding, 60);
             var rect = new graphic.Rect({
                 shape: {
-                    height: 30,
+                    height: deviceSizeMap[currDevice].lineHeight,
                     width: width,
                     x: -width / 2,
                     y: -15,
@@ -317,10 +418,10 @@
             var image = new graphic.Image({
                 style: {
                     image: menuItem.image,
-                    width: itemSize - MENU_ITEM_PADDING * 2,
-                    height: itemSize - MENU_ITEM_PADDING * 2,
-                    x: -itemSize / 2 + MENU_ITEM_PADDING,
-                    y: -itemSize / 2 + MENU_ITEM_PADDING
+                    width: itemSize - deviceSizeMap[currDevice].itemPadding * 2,
+                    height: itemSize - deviceSizeMap[currDevice].itemPadding * 2,
+                    x: -itemSize / 2 + deviceSizeMap[currDevice].itemPadding,
+                    y: -itemSize / 2 + deviceSizeMap[currDevice].itemPadding
                 },
                 z: z || 0
             });

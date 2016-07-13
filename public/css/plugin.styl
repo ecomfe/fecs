@@ -37,7 +37,7 @@ body {
     .mac-screen {
         size(704px, 453px)
         image-2x('../img/mac_bg@2x.png', 71px, 41px)
-        background: #474344 url('../img/mac_bg.png') 0 0
+        background: #474344 url('../img/mac_bg.png') 50% 0
         absolute(31px, null, null, 50%)
         margin-left: -352px
     }
@@ -98,11 +98,28 @@ body {
         padding-top: 40px
         padding-bottom: 40px
     }
+
+    .mac-mockup {
+        background-size: 760px
+        height: 440px
+
+        .mac-screen {
+            size(562px, 363px)
+            absolute(24px, null, null, 50%)
+            margin-left: -(562px / 2)
+        }
+    }
+
+    #plugins {
+        size(700px, 560px)
+        absolute(-75px, null, null, 50%)
+        margin-left: -(700px / 2)
+    }
 }
 
 @media screen and (max-width: 700px) {
     .plugin-slogan {
-        margin-top: 40px
+        margin-top: 0
 
         .slogan-title {
             font-size: 42px
@@ -133,6 +150,29 @@ body {
                 width: 100%
             }
         }
+    }
+
+    .mac-mockup {
+        background-size: 570px
+        height: 330px
+
+        .mac-screen {
+            size(420px, 272px)
+            absolute(18px, null, null, 50%)
+            margin-left: -(420px / 2)
+        }
+    }
+
+    #plugins {
+        size(600px, 450px)
+        absolute(-75px, null, null, 50%)
+        margin-left: -(600px / 2)
+    }
+}
+
+@media screen and (max-width: 630px) {
+    .plugin-slogan {
+        margin-top: 40px
     }
 }
 
@@ -171,5 +211,23 @@ body {
                 font-size: 12px
             }
         }
+    }
+    .mac-mockup {
+        margin-top: 40px
+        margin-bottom: 20px
+        height: 220px
+        background-size: 380px
+
+        .mac-screen {
+            size(280px, 181px)
+            absolute(12px, null, null, 50%)
+            margin-left: -(280px / 2)
+        }
+    }
+
+    #plugins {
+        size(420px, 300px)
+        absolute(-53px, null, null, 50%)
+        margin-left: -(420px / 2)
     }
 }

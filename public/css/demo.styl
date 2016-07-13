@@ -127,18 +127,18 @@ body {
             float: left
 
             a {
-                transition(all, .1s)
+                transition: background-color .1s, color .1s
                 display: block
                 color: #999
                 background-color: #1f1f1f
                 padding: 0 30px
                 height: $nav-height
                 line-height: $nav-height
+                text-decoration: none
             }
 
             &:hover {
                 a {
-                    text-decoration: none
                     background-color: $editor-menu-hover-bg
                     color: #fff
                 }
@@ -146,7 +146,6 @@ body {
 
             &.cur {
                 a {
-                    text-decoration: none
                     background-color: #282828
                     color: #fff
                 }
