@@ -26,7 +26,38 @@ ruleTester.run('prefer-destructure', rule, {
         'let temp = x;y = temp;x = 1;',
         'let temp = x;y = temp;x = temp;',
         'let {a, b} = c.d',
-        'let foo = {bar: 1, baz: 2};export let bar = foo.bar;export let baz = foo.baz;'
+        'let foo = {bar: 1, baz: 2};export let bar = foo.bar;export let baz = foo.baz;',
+        {
+            code: [
+                'function getXY(element) {',
+                '    let x = 0;',
+                '    let y = 0;',
+                '    while (element.offsetParent) {',
+                '        y += element.offsetTop;',
+                '        x += element.offsetLeft;',
+                '        element = element.offsetParent;',
+                '    }',
+                '    return {x, y};',
+                '}'
+            ].join('\n')
+        },
+        {
+            code: [
+                'function remove(node, keepChildren) {',
+                '    let parent = node.parentNode;',
+                '    let child;',
+                '    if (parent) {',
+                '        if (keepChildren && node.hasChildNodes()) {',
+                '            while (child = node.firstChild) {',
+                '                parent.insertBefore(child, node);',
+                '            }',
+                '        }',
+                '        parent.removeChild(node);',
+                '    }',
+                '    return node;',
+                '}'
+            ].join('\n')
+        }
     ],
     invalid: [
         {
