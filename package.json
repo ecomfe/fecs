@@ -1,6 +1,6 @@
 {
   "name": "fecs",
-  "version": "0.8.4-beta.3",
+  "version": "0.8.4-beta.4",
   "description": "Front End Code Style Suite",
   "main": "index.js",
   "scripts": {
@@ -69,7 +69,7 @@
     "coveralls": "^2.11.8",
     "istanbul": "^0.4.2",
     "jasmine-node": "^2.0.0",
-    "mock-fs": "^3.9.0",
-    "mock-require": "^1.2.1"
+    "mock-fs": "3.9.0",
+    "mock-require": "^1.3.0"
   }
 }
