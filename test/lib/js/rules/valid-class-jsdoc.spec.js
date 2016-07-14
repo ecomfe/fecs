@@ -77,6 +77,24 @@ ruleTester.run('valid-class-jsdoc', rule, {
         },
         {
             code: [
+                '/**',
+                ' * Foo',
+                ' * @class',
+                ' */',
+                'class Foo {',
+                '   /**',
+                '    * bar',
+                '    * @static',
+                '    */',
+                '   static bar() {',
+                '   }',
+                '   static baz() {',
+                '   }',
+                '}'
+            ].join('\n')
+        },
+        {
+            code: [
                 'function Foo() {}',
                 'util.doSomething(',
                 '    Foo.prototype,',
