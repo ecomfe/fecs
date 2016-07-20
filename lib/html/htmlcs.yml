@@ -20,6 +20,10 @@ script-in-tail: true
 title-required: true
 unique-id: true
 no-duplication-id-and-name: true
+no-meta-css:
+  threshold: 4
+  minlen: 4
+no-bom: true
 viewport: true
 label-for-input: true
 max-len: 120
