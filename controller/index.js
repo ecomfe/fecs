@@ -10,15 +10,8 @@ var site = {
     github: 'https://github.com/ecomfe/fecs',
     wiki: 'https://github.com/ecomfe/fecs/wiki',
     efe: 'http://efe.baidu.com',
-
-    pluginVim: 'https://github.com/hushicai/fecs.vim',
-    pluginWebstorm: 'https://github.com/leeight/Baidu-FE-Code-Style#webstorm',
-    pluginSublime: 'https://github.com/leeight/Baidu-FE-Code-Style',
-    pluginEclipse: 'https://github.com/ecomfe/fecs-eclipse',
-    pluginVscode: 'https://github.com/21paradox/fecs-visual-studio-code',
-    pluginGrunt: 'https://github.com/ecomfe/fecs-grunt',
-    pluginGulp: 'https://github.com/ecomfe/fecs-gulp',
-    pluginGit: 'https://github.com/cxtom/fecs-git-hooks'
+    bce: 'http://bce.baidu.com',
+    dep: 'http://s1.bdstatic.com/r/www/cache/biz/ecom/fecs'
 };
 
 module.exports = {
