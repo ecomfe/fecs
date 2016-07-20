@@ -11,7 +11,7 @@
 </head>
 <body>
 {% block content %}{% endblock %}
-<script src="/dep/jquery-2.1.4.min.js"></script>
+<script src="{{ site.dep }}/jquery-2.1.4.min.js"></script>
 <script>
 $(function () {
     $('.top-nav a[href^="' + location.pathname.replace(/\b\/$/, '').toLowerCase() + '"]').eq(0).addClass('cur');
