@@ -15,6 +15,10 @@
     <p class="slogan-title">FECS&nbsp;Plugins</p>
     <p class="slogan-content">支持众多编辑器 / 工具，规范无处不在</p>
 </div>
+<div class="mac-mockup">
+    <div class="mac-screen"></div>
+    <div id="plugins"></div>
+</div>
 <ul class="plugin-list">
     <li>
         <a target="_blank" class="plugin-icon" href="{{ site.pluginVim }}">
@@ -70,4 +74,9 @@
     {% include "../partial/copyright.html" %}
     </div>
 </div>
+{% endblock %}
+
+{% block js %}
+<script src="/dep/echarts-3.1.10.simple.min.js"></script>
+<script src="/js/plugins.js"></script>
 {% endblock %}

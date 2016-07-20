@@ -2,6 +2,8 @@
 @import "reset"
 @import "mixin"
 
+$footer-text-color = #807b91
+
 // animation keyframes
 @keyframes changeOpacity {
     from {
@@ -72,8 +74,8 @@ a {
         &.git-star {
             padding-left: 10px
             iframe {
-                width: 100px
-                height: 20px
+                // 为了对其，宽度暂时改成90px，如果star超过1000，务必加大宽度
+                size(90px, 20px)
                 margin: 10px auto
             }
         }
@@ -111,10 +113,12 @@ a {
     }
 }
 
+
+
 .footer {
     overflow: hidden
     background-color: #313046
-    color: #d2c9d4
+    color: $footer-text-color
 
     .footer-inner {
         width: 1000px
@@ -126,21 +130,22 @@ a {
             font-size: 14px
 
             a {
-                color: #6aa3c9
+                transition(color .15s)
+                color: $footer-text-color
+
+                &:hover {
+                    color: #69a1c7
+                    text-decoration: none
+                }
             }
         }
     }
 }
 
-
 #power-by {
-    color: rgba(169, 160, 177, 0.5)
-    margin-left: 2em
-
-    a {
-        color: @color
-        text-decoration: underline
-    }
+    margin-left: 1em
+    padding-left: 1em
+    border-left: 1px solid #6b677a
 }
 
 @media screen and (max-width: 1100px) {
@@ -190,7 +195,7 @@ a {
         .footer-inner {
             .copyright {
                 font-size: 12px
-                padding: 10px 0;
+                padding: 10px 0
             }
 
             #power-by {
