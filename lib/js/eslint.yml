@@ -127,6 +127,7 @@ rules:
   fecs-valid-class-jsdoc: 1
   fecs-valid-constructor: 1
   fecs-valid-dom-style: 1
+  fecs-use-async-require: 0
 
   babel/generator-star-spacing:
     - 2
