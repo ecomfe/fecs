@@ -38,6 +38,7 @@ fecs-use-computed-property: "627"
 fecs-valid-var-jsdoc: "026,031,032,036,060"
 fecs-valid-class-jsdoc: "048,049,050,051"
 fecs-valid-constructor: "110,111"
+fecs-valid-dom-style: "137,138"
 
 babel/generator-star-spacing: "604"
 babel/new-cap: "027,029,030"
