@@ -141,6 +141,8 @@
 
     var ctx = document.createElement('canvas').getContext('2d');
     var graphic = echarts.graphic;
+    var zr;
+
 
     var drawDebounce = debounce(500, draw);
 
@@ -148,7 +150,8 @@
 
     function init() {
         window.onresize = function () {
-            echarts.dispose(document.getElementById('plugins'));
+            zr && zr.dispose();
+            zr = null;
             drawDebounce();
         };
 
@@ -198,8 +201,8 @@
     }
 
     function draw() {
+        zr = echarts.init(document.getElementById('plugins')).getZr();
         getDevice();
-        var zr = echarts.init(document.getElementById('plugins')).getZr();
 
         var root = new graphic.Group({
             position: [
