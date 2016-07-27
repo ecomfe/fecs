@@ -50,6 +50,16 @@ ruleTester.run('valid-class-jsdoc', rule, {
         {
             code: [
                 '/**',
+                ' * Fooo',
+                ' * @class',
+                ' * @extends Foo',
+                ' */',
+                'export default class Foo extends Foo {}'
+            ].join('\n')
+        },
+        {
+            code: [
+                '/**',
                 ' * Foo',
                 ' * @class',
                 ' */',
