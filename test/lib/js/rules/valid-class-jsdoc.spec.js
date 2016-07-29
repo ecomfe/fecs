@@ -34,6 +34,51 @@ ruleTester.run('valid-class-jsdoc', rule, {
                 ' * Foo',
                 ' * @class',
                 ' */',
+                'function Foo() {}'
+            ].join('\n')
+        },
+        {
+            code: [
+                '/**',
+                ' * Foo',
+                ' * @class',
+                ' */',
+                'export function Foo() {}'
+            ].join('\n')
+        },
+        {
+            code: [
+                '/**',
+                ' * Foo',
+                ' * @class',
+                ' */',
+                'var Foo = function () {}'
+            ].join('\n')
+        },
+        {
+            code: [
+                '/**',
+                ' * Foo',
+                ' * @class',
+                ' */',
+                'export var Foo = function () {}'
+            ].join('\n')
+        },
+        {
+            code: [
+                '/**',
+                ' * Foo',
+                ' * @constructor',
+                ' */',
+                'var Foo = function () {}'
+            ].join('\n')
+        },
+        {
+            code: [
+                '/**',
+                ' * Foo',
+                ' * @class',
+                ' */',
                 'class Foo extends null {}'
             ].join('\n')
         },
@@ -105,6 +150,10 @@ ruleTester.run('valid-class-jsdoc', rule, {
         },
         {
             code: [
+                '/**',
+                ' * Foo',
+                ' * @class',
+                ' */',
                 'function Foo() {}',
                 'util.doSomething(',
                 '    Foo.prototype,',
@@ -115,6 +164,10 @@ ruleTester.run('valid-class-jsdoc', rule, {
         },
         {
             code: [
+                '/**',
+                ' * Foo',
+                ' * @class',
+                ' */',
                 'function Foo() {}',
                 'util.extend(',
                 '    Foo.prototype,',
@@ -139,10 +192,38 @@ ruleTester.run('valid-class-jsdoc', rule, {
             }]
         },
         {
+            code: '/**\n * Foo\n * @class\n * @param {number\n */\nfunction Foo() {}',
+            errors: [{
+                message: 'Expected to user `@class` to tag a class.baidu048',
+                type: 'FunctionDeclaration'
+            }]
+        },
+        {
+            code: '/**\n * Foo\n * @class\n * @param {number\n */\nvar Foo = function () {}',
+            errors: [{
+                message: 'Expected to user `@class` to tag a class.baidu048',
+                type: 'VariableDeclaration'
+            }]
+        },
+        {
             code: 'class Foo {}',
             errors: [{
                 message: 'Expected to user `@class` to tag a class.baidu048',
                 type: 'ClassDeclaration'
+            }]
+        },
+        {
+            code: 'function Foo() {}',
+            errors: [{
+                message: 'Expected to user `@class` to tag a class.baidu048',
+                type: 'FunctionDeclaration'
+            }]
+        },
+        {
+            code: 'var Foo = function () {}',
+            errors: [{
+                message: 'Expected to user `@class` to tag a class.baidu048',
+                type: 'VariableDeclaration'
             }]
         },
         {
@@ -181,6 +262,10 @@ ruleTester.run('valid-class-jsdoc', rule, {
         },
         {
             code: [
+                '/**',
+                ' * Foo',
+                ' * @class',
+                ' */',
                 'function Foo() {}',
                 'util.extend(',
                 '    Foo.prototype,',
