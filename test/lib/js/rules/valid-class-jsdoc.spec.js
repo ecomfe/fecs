@@ -107,6 +107,23 @@ ruleTester.run('valid-class-jsdoc', rule, {
                 '/**',
                 ' * Foo',
                 ' * @class',
+                ' * @extends Fo',
+                ' */',
+                'class Foo extends Fo {',
+                '   /**',
+                '    * bar',
+                '    * @override',
+                '    */',
+                '   bar() {',
+                '   }',
+                '}'
+            ].join('\n')
+        },
+        {
+            code: [
+                '/**',
+                ' * Foo',
+                ' * @class',
                 ' */',
                 'class Foo {',
                 '   /**',
@@ -236,6 +253,31 @@ ruleTester.run('valid-class-jsdoc', rule, {
                 {
                     message: 'Expected to use `@extends` to tag a class extends.baidu049',
                     type: 'ClassDeclaration'
+                }
+            ]
+        },
+        {
+            code: [
+                '/**',
+                ' * Foo',
+                ' * @class',
+                ' */',
+                'class Foo {',
+                '   /**',
+                '    * bar',
+                '    * @override',
+                '    */',
+                '   bar() {',
+                '   }',
+                '}'
+            ].join('\n'),
+            errors: [
+                {
+                    message: ''
+                        + 'Expected to use '
+                        + '`@public`, `@protected` or `@private` '
+                        + 'to tag the property or method.baidu051',
+                    type: 'MethodDefinition'
                 }
             ]
         },
