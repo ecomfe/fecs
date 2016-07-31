@@ -23,6 +23,9 @@ no-duplication-id-and-name: true
 no-meta-css:
   threshold: 4
   minlen: 4
+no-hook-class:
+  keys:
+    - "/[-_#](?:js|hook)[-_#]/"
 no-bom: true
 viewport: true
 label-for-input: true
