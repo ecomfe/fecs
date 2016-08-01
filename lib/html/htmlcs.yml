@@ -26,10 +26,10 @@ no-meta-css:
 no-hook-class:
   keys:
     - "/[-_#](?:js|hook)[-_#]/"
+max-len: 80
 no-bom: true
 viewport: true
 label-for-input: true
-max-len: 120
 attr-lowercase: true
 attr-no-duplication: true
 attr-unsafe-chars: true
