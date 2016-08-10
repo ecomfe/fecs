@@ -38,6 +38,9 @@ ruleTester.run('valid-var-jsdoc', rule, {
         '/**\n * fooBar\n * @namespace\n */\nvar fooBar = {};',
         '/**\n * Foo\n * @enum {number}\n */\nconst Foo = {BAR: 1, BAZ: 2};',
 
+        // more then one blank line before statement
+        '/**\n * foo\n * @const\n */\n\nconst F2_B_OOBAR = 1;',
+
         // error from valid-jsdoc, not valid-var-jsdoc
         '/**\n * foo\n * @const\n * @type {number\n */\nconst FOO = 1;'
     ],
