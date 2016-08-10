@@ -70,6 +70,19 @@ describe('esnext', function () {
     });
 
 
+    it('es6- when es6+ code after 10 traveser', function () {
+        var code = new Array((esnext.MAX_TRAVERSE_TIMES / 2) | 0).join('var foo = 1;\n');
+
+        check(code + '\nclass Foo {}', config);
+
+        ESNEXT_RULES.forEach(function (name) {
+            if (name in config.rules) {
+                expect(config.rules[name]).toBeClose();
+            }
+        });
+    });
+
+
     it('es-next', function () {
         check('class Foo {}', config);
 
@@ -239,6 +252,18 @@ describe('esnext', function () {
                     expect(options.rules[name]).toBeOpen();
                 }
             });
+        });
+
+    });
+
+    describe('verify proxy', function () {
+        var eslint = require('eslint').linter;
+
+        it('esnext.verify should be proxy as eslint.verify', function () {
+            var esnextResult = esnext.verify('class Foo {}', config);
+            var eslintResult = eslint.verify('class Foo {}', config);
+
+            expect(esnextResult).toEqual(eslintResult);
         });
 
     });
