@@ -25,6 +25,7 @@ ruleTester.run('prefer-spread-element', rule, {
         'let foo = foo.concat(1);',
         'let foo = foo.concat(bar);',
         'let foo = foo.concat(bar());',
+        'Buffer.concat([a, b]);',
         {
             code: 'let otherArr = [...arr];',
             options: [{copy: true}]
