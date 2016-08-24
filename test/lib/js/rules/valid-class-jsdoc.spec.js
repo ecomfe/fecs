@@ -20,6 +20,59 @@ ruleTester.run('valid-class-jsdoc', rule, {
 
     valid: [
         {
+            code: 'foo = true;',
+            options: [{privilege: true}]
+        },
+        {
+            code: 'foo.bar = true;',
+            options: [{privilege: true}]
+        },
+        {
+            code: 'foo.bar = function () {};',
+            options: [{privilege: true}]
+        },
+        {
+            code: 'class Foo {}',
+            options: [{classNode: false}]
+        },
+        {
+            code: 'class Foo extends Fo {}',
+            options: [{classNode: false}]
+        },
+        {
+            code: [
+                '/**',
+                ' * bar',
+                ' * @protected',
+                ' */',
+                'Foo.prototype.bar = function () {}'
+            ].join('\n'),
+            options: [{privilege: true}]
+        },
+        {
+            code: [
+                'Foo.prototype = {',
+                '    /**',
+                '     * bar',
+                '     * @protected',
+                '     */',
+                '    bar: function () {},',
+                '    /**',
+                '     * baz',
+                '     * @private',
+                '     */',
+                '    baz: {}',
+                '};'
+            ].join('\n'),
+            options: [{privilege: true}]
+        },
+        {
+            code: [
+                'Foo.prototype = bar;'
+            ].join('\n'),
+            options: [{privilege: true}]
+        },
+        {
             code: [
                 '/**',
                 ' * Foo',
@@ -80,7 +133,8 @@ ruleTester.run('valid-class-jsdoc', rule, {
                 ' * @class',
                 ' */',
                 'class Foo extends null {}'
-            ].join('\n')
+            ].join('\n'),
+            options: [{classNode: true}]
         },
         {
             code: [
@@ -197,12 +251,36 @@ ruleTester.run('valid-class-jsdoc', rule, {
             code: [
                 'Foo.prototype = {};'
             ].join('\n')
+        },
+        {
+            code: [
+                '/**',
+                ' * Foo',
+                ' * @class',
+                ' */',
+                'function Foo() {}',
+                'util.extend(',
+                '    Foo.prototype,',
+                '    /**',
+                '     * @lends Foo.prototype',
+                '     */',
+                '    {',
+                '        /**',
+                '         * bar',
+                '         * @public',
+                '         */',
+                '        bar: function () {}',
+                '    }',
+                ')'
+            ].join('\n'),
+            options: [{privilege: true}]
         }
     ],
 
     invalid: [
         {
             code: '/**\n * Foo\n * @class\n * @param {number\n */\nclass Foo {}',
+            options: [{classNode: true}],
             errors: [{
                 message: 'Expected to user `@class` to tag a class.baidu048',
                 type: 'ClassDeclaration'
@@ -224,6 +302,7 @@ ruleTester.run('valid-class-jsdoc', rule, {
         },
         {
             code: 'class Foo {}',
+            options: [{classNode: true}],
             errors: [{
                 message: 'Expected to user `@class` to tag a class.baidu048',
                 type: 'ClassDeclaration'
@@ -245,6 +324,7 @@ ruleTester.run('valid-class-jsdoc', rule, {
         },
         {
             code: 'class Fooo extends Foo {}',
+            options: [{classNode: true}],
             errors: [
                 {
                     message: 'Expected to user `@class` to tag a class.baidu048',
@@ -271,6 +351,32 @@ ruleTester.run('valid-class-jsdoc', rule, {
                 '   }',
                 '}'
             ].join('\n'),
+            options: [{privilege: true}],
+            errors: [
+                {
+                    message: ''
+                        + 'Expected to use '
+                        + '`@public`, `@protected` or `@private` '
+                        + 'to tag the property or method.baidu051',
+                    type: 'MethodDefinition'
+                }
+            ]
+        },
+        {
+            code: [
+                '/**',
+                ' * Foo',
+                ' * @class',
+                ' */',
+                'class Foo extends Fo {',
+                '   /**',
+                '    * bar',
+                '    */',
+                '   bar() {',
+                '   }',
+                '}'
+            ].join('\n'),
+            options: [{privilege: true}],
             errors: [
                 {
                     message: ''
@@ -292,6 +398,7 @@ ruleTester.run('valid-class-jsdoc', rule, {
                 '   }',
                 '}'
             ].join('\n'),
+            options: [{privilege: true}],
             errors: [
                 {
                     message: ''
@@ -318,6 +425,38 @@ ruleTester.run('valid-class-jsdoc', rule, {
                 {
                     message: 'Expected to use `@lends` to tag this.baidu050',
                     type: 'ObjectExpression'
+                }
+            ]
+        },
+        {
+            code: [
+                '/**',
+                ' * Foo',
+                ' * @class',
+                ' */',
+                'function Foo() {}',
+                'util.extend(',
+                '    Foo.prototype,',
+                '    {',
+                '        /**',
+                '         * bar',
+                '         */',
+                '        bar: true',
+                '    }',
+                ')'
+            ].join('\n'),
+            options: [{privilege: true}],
+            errors: [
+                {
+                    message: 'Expected to use `@lends` to tag this.baidu050',
+                    type: 'ObjectExpression'
+                },
+                {
+                    message: ''
+                        + 'Expected to use '
+                        + '`@public`, `@protected` or `@private` '
+                        + 'to tag the property or method.baidu051',
+                    type: 'Property'
                 }
             ]
         }

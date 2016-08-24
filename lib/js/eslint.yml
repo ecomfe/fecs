@@ -124,7 +124,11 @@ rules:
   fecs-use-computed-property: 1
 
   fecs-valid-var-jsdoc: 1
-  fecs-valid-class-jsdoc: 1
+  fecs-valid-class-jsdoc:
+    - 1
+    -
+      classNode: false
+      privilege: false
   fecs-valid-constructor: 1
   fecs-valid-dom-style: 1
   fecs-use-async-require: 0
