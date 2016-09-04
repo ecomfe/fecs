@@ -630,6 +630,61 @@ ruleTester.run('valid-jsdoc', rule, {
             ]
         },
         {
+            code: [
+                '/**',
+                ' * @param {Object} context.a',
+                ' * @param {string} context.a.b',
+                ' * @param {string} context.a.c',
+                ' */',
+                'function foo({a: {b, c}}){}'
+            ].join('\n'),
+            options: [
+                {
+                    requireReturn: false,
+                    requireDescription: false,
+                    requireParamDescription: false,
+                    requireObjectPatternParamBranchName: true
+                }
+            ]
+        },
+        {
+            code: [
+                '/**',
+                ' * @param {Object} context',
+                ' * @param {Object} context.a',
+                ' * @param {string} context.a.b',
+                ' * @param {string} context.a.c',
+                ' */',
+                'function foo({a: {b, c}}){}'
+            ].join('\n'),
+            options: [
+                {
+                    requireReturn: false,
+                    requireDescription: false,
+                    requireParamDescription: false,
+                    requireObjectPatternParamBranchName: true
+                }
+            ]
+        },
+        {
+            code: [
+                '/**',
+                ' * @param {Object} a',
+                ' * @param {string} b',
+                ' * @param {string} c',
+                ' */',
+                'function foo({a: {b, c}}){}'
+            ].join('\n'),
+            options: [
+                {
+                    requireReturn: false,
+                    requireDescription: false,
+                    requireParamDescription: false,
+                    requireObjectPatternParamBranchName: true
+                }
+            ]
+        },
+        {
             code: '/**\n* @param {string} b\n* @param {string} c\n */\nfunction foo({a: {b, c}}){}',
             options: [
                 {
@@ -677,6 +732,30 @@ ruleTester.run('valid-jsdoc', rule, {
     ],
 
     invalid: [
+        {
+            code: [
+                '/**',
+                ' * @param {Object} context.a',
+                ' * @param {string} context.a.b',
+                ' */',
+                'function foo({a: {b, c}}){}'
+            ].join('\n'),
+            options: [
+                {
+                    requireReturn: false,
+                    requireDescription: false,
+                    requireParamDescription: false,
+                    requireObjectPatternParamBranchName: true
+                }
+            ],
+            errors: [
+                {
+                    message: 'Missing JSDoc for parameter "c".baidu052',
+                    line: 2,
+                    type: 'Block'
+                }
+            ]
+        },
         {
             code: [
                 '/*',
@@ -835,7 +914,7 @@ ruleTester.run('valid-jsdoc', rule, {
             ],
             errors: [
                 {
-                    message: 'Missing JSDoc for parameter "a".baidu052',
+                    message: 'Expected JSDoc for "a" but found "b".baidu052',
                     line: 2,
                     type: 'Block'
                 }
