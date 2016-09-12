@@ -59,7 +59,7 @@ rules:
       requireReturnDescription: false
       requireBlankLineAfterDescription: true
       requireEmptyLineBeforeComment: true
-      requireObjectPatternParamBranchName: true
+      requireObjectPatternParamBranchName: false
   fecs-max-statements:
     - 1
     - 50
