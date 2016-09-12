@@ -31,6 +31,15 @@ ruleTester.run('valid-dom-style', rule, {
 
     invalid: [
         {
+            code: 'var foo = document.getElementById("foo");\nfoo.style.display = "none";',
+            errors: [
+                {
+                    message: 'Expected to change style via className.',
+                    type: 'Identifier'
+                }
+            ]
+        },
+        {
             code: 'document.getElementById("foo").style.width = "200px";',
             errors: [
                 {
