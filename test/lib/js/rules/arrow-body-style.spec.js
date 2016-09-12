@@ -42,19 +42,6 @@ ruleTester.run('arrow-body-style', rule, {
         {
             code: 'var foo = () => { return bar(); };',
             options: ['always']
-        }
-    ],
-    invalid: [
-        {
-            code: 'var foo = () => ({});',
-            options: ['always'],
-            errors: [
-                {
-                    line: 1,
-                    type: 'ArrowFunctionExpression',
-                    message: 'Expected block statement surrounding arrow body.'
-                }
-            ]
         },
         {
             code: 'var foo = () => ({});',
@@ -63,15 +50,14 @@ ruleTester.run('arrow-body-style', rule, {
                 {
                     ObjectExpression: true
                 }
-            ],
-            errors: [
-                {
-                    line: 1,
-                    type: 'ArrowFunctionExpression',
-                    message: 'Expected block statement surrounding arrow body.'
-                }
             ]
         },
+        {
+            code: 'var foo = () => ({});',
+            options: ['always']
+        }
+    ],
+    invalid: [
         {
             code: 'var foo = () => { bar: 1 };',
             errors: [
