@@ -27,10 +27,10 @@
   desc: "[强制] 箭头函数的参数只有一个，并且不包含解构时，参数部分的括号必须省略。"
 610:
   level: 1
-  desc: "[建议] 箭头函数的函数体只有一个非 `Object Literal` 的单行表达式语句，且作为返回值时，省略 `{}` 和 `return`。"
+  desc: "[建议] 箭头函数的函数体只有一个单行表达式语句，且作为返回值时，省略 `{}` 和 `return`。"
 611:
-  level: 2
-  desc: "[强制] 箭头函数的函数体只有一个 `Object Literal`，且作为返回值时，不得省略 `{}` 和 `return`。"
+  level: 1
+  desc: "[建议] 箭头函数的函数体只有一个 `Object Literal`，且作为返回值时，使用 `()` 包裹。"
 612:
   level: 2
   desc: "[强制] 解构多个变量时，如果超过行长度限制，每个解构的变量必须单独一行。"
@@ -72,7 +72,7 @@
   desc: "[强制] 定义方法时使用 `MethodDefinition` 语法，不使用 `PropertyName: FunctionExpression` 语法。"
 625:
   level: 1
-  desc: "[建议] 使用 `Object.keys` 进行对象遍历。"
+  desc: "[建议] 使用 `Object.keys` 或 `Object.entries` 进行对象遍历。"
 626:
   level: 1
   desc: "[建议] 定义对象的方法不应使用箭头函数。"
