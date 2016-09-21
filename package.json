@@ -35,7 +35,7 @@
   "license": "MIT",
   "preferGlobal": true,
   "engines": {
-    "node": ">=0.10"
+    "node": ">=4"
   },
   "bugs": {
     "url": "https://github.com/ecomfe/fecs/issues"
