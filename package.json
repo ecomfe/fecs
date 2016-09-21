@@ -1,6 +1,6 @@
 {
   "name": "fecs",
-  "version": "1.0.0-beta.1",
+  "version": "1.0.0-beta.2",
   "description": "Front End Code Style Suite",
   "main": "index.js",
   "scripts": {
@@ -47,7 +47,7 @@
     "csscomb": "^3.1.7",
     "csshint": "stable",
     "doctrine2": "latest",
-    "esformatter": "^0.9.5",
+    "esformatter": "^0.9.6",
     "eslint": "^3.5.0",
     "eslint-plugin-babel": "^3.3.0",
     "fixmyjs": "^1.0.3",
