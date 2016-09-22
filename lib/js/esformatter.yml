@@ -291,7 +291,8 @@ plugins:
   - "esformatter-dot-notation"
   - "esformatter-spaced-lined-comment"
   - "esformatter-remove-trailing-commas"
-  - "esformatter-curly"
+  - "esformatter-limit-linebreaks"
+  - "esformatter-fecs"
 
 quotes:
   type: "single"
