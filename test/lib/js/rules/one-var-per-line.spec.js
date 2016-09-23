@@ -31,10 +31,22 @@ ruleTester.run('one-var-per-line', rule, {
         'let {\n    a,\n    b,\n    c\n} = d;',
         'let [\n    a,\n    b,\n    c\n] = d;',
         'let [\n    a,\n    b,\n    ...c\n] = d;',
+        'import Foo, {foo} from "foo"',
         'import {foo} from "bar"',
         'import {\nfoo,\nbar\n} from "baz"'
     ],
     invalid: [
+        {
+            code: 'import Foo, {foo,\nbar} from "foo";',
+            errors: [
+                {
+                    line: 1,
+                    column: 14,
+                    type: 'ImportSpecifier',
+                    message: 'One Variable per line when destructuring.'
+                }
+            ]
+        },
         {
             code: 'import {foo,\nbar} from "baz";',
             errors: [
