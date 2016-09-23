@@ -149,8 +149,6 @@ describe('util', function () {
 
             expect(util.getConfig('eslint', false, {})).toEqual(config.eslint);
             expect(util.getConfig('esformatter', false, {})).toEqual(config.esformatter);
-            expect(util.getConfig('jformatter', false, {})).toEqual(config.jformatter);
-            expect(util.getConfig('jshint', false, {})).toEqual(config.jshint);
             expect(util.getConfig('lesslint', false, {})).toEqual(config.lesslint);
             expect(util.getConfig('htmlcs', false, {})).toEqual(config.htmlcs);
             expect(util.getConfig('csscomb', false, {})).toEqual(config.csscomb);
@@ -276,8 +274,6 @@ describe('util', function () {
 
             expect(maps).not.toEqual({});
             expect(maps.eslint).not.toBeUndefined();
-            expect(maps.jformatter).not.toBeUndefined();
-            expect(maps.jshint).not.toBeUndefined();
         });
 
         it('from lib/html', function () {
