@@ -24,6 +24,7 @@ ruleTester.run('prefer-assign-pattern', rule, {
         'foo = "bar"',
         'foo.bar = 1',
         'let foo = {};foo.bar = 1',
+        'function foo(a) { a = {...a, b};}',
         'let foo = {};if (!foo) {foo = 1}',
         'let foo = {};if (bar) {foo = "bar";}if (!foo) {foo = 1}',
         'let foo = {};if (foo) {foo = 1}',
