@@ -31,9 +31,10 @@ ruleTester.run('one-var-per-line', rule, {
         'let {\n    a,\n    b,\n    c\n} = d;',
         'let [\n    a,\n    b,\n    c\n] = d;',
         'let [\n    a,\n    b,\n    ...c\n] = d;',
-        'import Foo, {foo} from "foo"',
-        'import {foo} from "bar"',
-        'import {\nfoo,\nbar\n} from "baz"'
+        'import Foo, {foo} from "foo";',
+        'import {foo} from "bar";',
+        'import {\nfoo,\nbar\n} from "baz";',
+        'import "foo";'
     ],
     invalid: [
         {
