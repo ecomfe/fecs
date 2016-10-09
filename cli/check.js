@@ -3,8 +3,9 @@
  * @author chris<wfsr@foxmail.com>
  */
 
+// 三方模块
 var fs          = require('vinyl-fs');
-
+// 自定义lib下模块
 var util        = require('../lib/util');
 var ignored     = require('../lib/ignored');
 var jschecker   = require('../lib/js/checker');
@@ -121,11 +122,13 @@ var streams = {
  */
 exports.run = function (options, done) {
     var pkg = require('../package');
+    // require('../') 省略文件名默认为index.js
     var name = util.format('%s@%s', require('../').leadName, pkg.version);
-
+    // console.time(label)输出时间，表示计时开始。
     console.time(name);
-
+    // 接受传来的color参数，是否使用颜色高亮，返回log对象，包含封装的不同的log方法
     var log = require('../lib/log')(options.color);
+    // 引入reporter/index.js获取配置指定的 reporter，否则使用 defaultReporter
     var reporter = require('../lib/reporter').get(log, options);
 
     done = done || function (success, json) {
