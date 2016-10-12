@@ -282,21 +282,21 @@ ruleTester.run('valid-class-jsdoc', rule, {
             code: '/**\n * Foo\n * @class\n * @param {number\n */\nclass Foo {}',
             options: [{classNode: true}],
             errors: [{
-                message: 'Expected to user `@class` to tag a class.baidu048',
+                message: 'Expected to use `@class` to tag a class.baidu048',
                 type: 'ClassDeclaration'
             }]
         },
         {
             code: '/**\n * Foo\n * @class\n * @param {number\n */\nfunction Foo() {}',
             errors: [{
-                message: 'Expected to user `@class` to tag a class.baidu048',
+                message: 'Expected to use `@class` to tag a class.baidu048',
                 type: 'FunctionDeclaration'
             }]
         },
         {
             code: '/**\n * Foo\n * @class\n * @param {number\n */\nvar Foo = function () {}',
             errors: [{
-                message: 'Expected to user `@class` to tag a class.baidu048',
+                message: 'Expected to use `@class` to tag a class.baidu048',
                 type: 'VariableDeclaration'
             }]
         },
@@ -304,21 +304,21 @@ ruleTester.run('valid-class-jsdoc', rule, {
             code: 'class Foo {}',
             options: [{classNode: true}],
             errors: [{
-                message: 'Expected to user `@class` to tag a class.baidu048',
+                message: 'Expected to use `@class` to tag a class.baidu048',
                 type: 'ClassDeclaration'
             }]
         },
         {
             code: 'function Foo() {}',
             errors: [{
-                message: 'Expected to user `@class` to tag a class.baidu048',
+                message: 'Expected to use `@class` to tag a class.baidu048',
                 type: 'FunctionDeclaration'
             }]
         },
         {
             code: 'var Foo = function () {}',
             errors: [{
-                message: 'Expected to user `@class` to tag a class.baidu048',
+                message: 'Expected to use `@class` to tag a class.baidu048',
                 type: 'VariableDeclaration'
             }]
         },
@@ -327,7 +327,7 @@ ruleTester.run('valid-class-jsdoc', rule, {
             options: [{classNode: true}],
             errors: [
                 {
-                    message: 'Expected to user `@class` to tag a class.baidu048',
+                    message: 'Expected to use `@class` to tag a class.baidu048',
                     type: 'ClassDeclaration'
                 },
                 {
