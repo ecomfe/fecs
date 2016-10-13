@@ -3,7 +3,7 @@
  * @author chris<wfsr@foxmail.com>
  */
 
-// 三方模块
+// 三方模块vinyl-fs
 var fs          = require('vinyl-fs');
 // 自定义lib下模块
 var util        = require('../lib/util');
@@ -27,6 +27,8 @@ var streams = {
      * @return {Transform} 转换流
      */
     files: function (options) {
+        // 命令选项：type、命令类型：string、默认值：“js,css,less,html"
+        // 说明：指定要处理的文件类型，类型之间以“,”分隔
         var patterns = util.buildPattern(options._, options.type);
         var specials = patterns.specials;
         delete patterns.specials;
@@ -40,7 +42,7 @@ var streams = {
     },
 
     /**
-     * 处理从 stdin 输入的代码
+     * 处理从stdin输入的代码
      *
      * @param {Object} options minimist 处理后的 cli 参数
      * @return {Transform} 转换流
@@ -102,7 +104,9 @@ var streams = {
      * @return {Transform} 转换流
      */
     get: function (options) {
+        // 命令选项：stream、命令类型：boolean、默认值：false、说明：是否使用process.stdin作为输入
         var stream = options.stream;
+        // 通过!!转换成boolean类型
         options.stream = !!stream;
 
         if (typeof stream === 'boolean') {
@@ -132,12 +136,16 @@ exports.run = function (options, done) {
     var reporter = require('../lib/reporter').get(log, options);
 
     done = done || function (success, json) {
+        // 结束计时
         console.timeEnd(name);
-
+        // 命令选项：format、类型：string、说明：指定check命令的结果输出格式，
+        // 支持checkstyle、json、xml与html，打开silient时也不影响输出
+        // 命令选项：silent、类型：boolean、默认值：false、说明：是否隐藏所有通过console.log输出的信息
         if (options.format) {
             var formatter = require('../lib/formatter/');
 
             if (formatter[options.format]) {
+                // 格式化输出结果
                 formatter[options.format](json);
             }
         }
