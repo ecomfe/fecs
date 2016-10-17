@@ -323,5 +323,6 @@ rules:
   prefer-rest-params: 2
   unicode-bom: 1
   max-statements-per-line: 2
+  fecs-prefer-import-to-require: 1
 
 
