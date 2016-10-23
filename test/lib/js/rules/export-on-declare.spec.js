@@ -37,7 +37,13 @@ ruleTester.run('export-on-declare', rule, {
         'export default (function (foo) {return foo;})();',
         'export {a};',
         'export const foo = {a, bar};',
-        'export {};'
+        'export {};',
+        [
+            'import router from \'react-router\';',
+            'import store from \'store\';',
+            'let app = new Map({router, store});',
+            'export {router, store};'
+        ].join('\n')
     ],
 
     invalid: [
