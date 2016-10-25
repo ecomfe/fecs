@@ -28,9 +28,7 @@ var ruleTester = new RuleTester({parser: 'babel-eslint'});
 ruleTester.run('no-require', rule, {
 
     valid: [
-        /* eslint-disable fecs-indent */
         [
-            '',
             'import path from "path";',
             'if (1 > 0) {',
             '   var require = function () {};',
@@ -39,7 +37,6 @@ ruleTester.run('no-require', rule, {
             'require();'
         ].join('\n'),
         [
-            '',
             'import path from "path";',
             'if (1 > 0) {',
             '   require();',
@@ -48,7 +45,6 @@ ruleTester.run('no-require', rule, {
             'require();'
         ].join('\n'),
         [
-            '',
             'import path from "path";',
             'try {',
             '   var a = b;',
@@ -57,11 +53,9 @@ ruleTester.run('no-require', rule, {
             '   var require = function () {};',
             '   require();',
             '}',
-            'require();',
-            ''
+            'require();'
         ].join('\n'),
         [
-            '',
             'import path from "path";',
             'try {',
             '   var a = b;',
@@ -70,33 +64,27 @@ ruleTester.run('no-require', rule, {
             '   require();',
             '   var require = function () {};',
             '}',
-            'require();',
-            ''
+            'require();'
         ].join('\n'),
         [
-            '',
             'import path from "path";',
             'try {',
             '   var require = function () {};',
             '   require();',
             '}',
             'catch (e) {}',
-            'require();',
-            ''
+            'require();'
         ].join('\n'),
         [
-            '',
             'import path from "path";',
             'try {',
             '   require();',
             '   var require = function () {};',
             '}',
             'catch (e) {}',
-            'require();',
-            ''
+            'require();'
         ].join('\n'),
         [
-            '',
             'import path from "path";',
             'var i = 0;',
             'while (i < 6) {',
@@ -104,11 +92,9 @@ ruleTester.run('no-require', rule, {
             '   var require = function () {};',
             '   require();',
             '}',
-            'require();',
-            ''
+            'require();'
         ].join('\n'),
         [
-            '',
             'import path from "path";',
             'var i = 0;',
             'while (i < 6) {',
@@ -116,28 +102,23 @@ ruleTester.run('no-require', rule, {
             '   require();',
             '   var require = function () {};',
             '}',
-            'require();',
-            ''
+            'require();'
         ].join('\n'),
         [
-            '',
             'import path from "path";',
             'for (var value of []) {',
             '   var require = function () {};',
             '   require();',
             '}',
-            'require();',
-            ''
+            'require();'
         ].join('\n'),
         [
-            '',
             'import path from "path";',
             'for (var value of []) {',
             '   require();',
             '   var require = function () {};',
             '}',
-            'require();',
-            ''
+            'require();'
         ].join('\n'),
         [
             'import path from "path";',
@@ -229,7 +210,6 @@ ruleTester.run('no-require', rule, {
             '   }',
             '}'
         ].join(''),
-        /* eslint-enable fecs-indent */
         'const require = () => {}',
         'const notRequire = () => {}',
         'var require = function () {}',
@@ -244,88 +224,74 @@ ruleTester.run('no-require', rule, {
     ],
 
     invalid: [
-        /* eslint-disable fecs-indent */
         {
             code: [
-                '',
                 'import path from "path";',
                 'if (1 > 0) {',
                 '   const require = function () {};',
                 '   require();',
                 '}',
-                'require();',
-                ''
+                'require();'
             ].join('\n'),
             errors: [ERROR]
         },
         {
             code: [
-                '',
                 'import path from "path";',
                 'if (1 > 0) {',
                 '   require();',
                 '   const require = function () {};',
                 '}',
-                'require();',
-                ''
+                'require();'
             ].join('\n'),
             errors: [ERROR]
         },
         {
             code: [
-                '',
                 'import path from "path";',
                 'if (1 > 0) {',
                 '   let require = function () {};',
                 '   require();',
                 '}',
-                'require();',
-                ''
+                'require();'
             ].join('\n'),
             errors: [ERROR]
         },
         {
             code: [
-                '',
                 'import path from "path";',
                 'if (1 > 0) {',
                 '   require();',
                 '   let require = function () {};',
                 '}',
-                'require();',
-                ''
+                'require();'
             ].join('\n'),
             errors: [ERROR]
         },
         {
             code: [
-                '',
                 'import path from "path";',
                 'if (1 > 0) {',
                 '   function require() {};',
                 '   require();',
                 '}',
-                'require();',
-                ''
+                'require();'
             ].join('\n'),
             errors: [ERROR]
         },
         {
             code: [
-                '',
                 'import path from "path";',
                 'if (1 > 0) {',
                 '   require();',
                 '   function require() {};',
                 '}',
-                'require();',
-                ''
+                'require();'
             ].join('\n'),
             errors: [ERROR]
         },
         {
             code: [
-                '',
                 'import path from "path";',
                 'try {',
                 '   var a = b;',
@@ -334,14 +300,12 @@ ruleTester.run('no-require', rule, {
                 '   function require() {}',
                 '   require();',
                 '}',
-                'require();',
-                ''
+                'require();'
             ].join('\n'),
             errors: [ERROR]
         },
         {
             code: [
-                '',
                 'import path from "path";',
                 'try {',
                 '   var a = b;',
@@ -350,14 +314,12 @@ ruleTester.run('no-require', rule, {
                 '   require();',
                 '   function require() {}',
                 '}',
-                'require();',
-                ''
+                'require();'
             ].join('\n'),
             errors: [ERROR]
         },
         {
             code: [
-                '',
                 'import path from "path";',
                 'try {',
                 '   var a = b;',
@@ -366,14 +328,12 @@ ruleTester.run('no-require', rule, {
                 '   const require = function () {};',
                 '   require();',
                 '}',
-                'require();',
-                ''
+                'require();'
             ].join('\n'),
             errors: [ERROR]
         },
         {
             code: [
-                '',
                 'import path from "path";',
                 'try {',
                 '   var a = b;',
@@ -382,14 +342,12 @@ ruleTester.run('no-require', rule, {
                 '   require();',
                 '   const require = function () {};',
                 '}',
-                'require();',
-                ''
+                'require();'
             ].join('\n'),
             errors: [ERROR]
         },
         {
             code: [
-                '',
                 'import path from "path";',
                 'try {',
                 '   var a = b;',
@@ -398,14 +356,12 @@ ruleTester.run('no-require', rule, {
                 '   let require = function () {};',
                 '   require();',
                 '}',
-                'require();',
-                ''
+                'require();'
             ].join('\n'),
             errors: [ERROR]
         },
         {
             code: [
-                '',
                 'import path from "path";',
                 'try {',
                 '   var a = b;',
@@ -414,99 +370,85 @@ ruleTester.run('no-require', rule, {
                 '   require();',
                 '   let require = function () {};',
                 '}',
-                'require();',
-                ''
+                'require();'
             ].join('\n'),
             errors: [ERROR]
         },
 
         {
             code: [
-                '',
                 'import path from "path";',
                 'try {',
                 '   function require() {}',
                 '   require();',
                 '}',
                 'catch (e) {}',
-                'require();',
-                ''
+                'require();'
             ].join('\n'),
             errors: [ERROR]
         },
         {
             code: [
-                '',
                 'import path from "path";',
                 'try {',
                 '   require();',
                 '   function require() {}',
                 '}',
                 'catch (e) {}',
-                'require();',
-                ''
+                'require();'
             ].join('\n'),
             errors: [ERROR]
         },
         {
             code: [
-                '',
                 'import path from "path";',
                 'try {',
                 '   const require = function () {};',
                 '   require();',
                 '}',
                 'catch (e) {}',
-                'require();',
-                ''
+                'require();'
             ].join('\n'),
             errors: [ERROR]
         },
         {
             code: [
-                '',
                 'import path from "path";',
                 'try {',
                 '   require();',
                 '   const require = function () {};',
                 '}',
                 'catch (e) {}',
-                'require();',
-                ''
+                'require();'
             ].join('\n'),
             errors: [ERROR]
         },
         {
             code: [
-                '',
                 'import path from "path";',
                 'try {',
                 '   let require = function () {};',
                 '   require();',
                 '}',
                 'catch (e) {}',
-                'require();',
-                ''
+                'require();'
             ].join('\n'),
             errors: [ERROR]
         },
         {
             code: [
-                '',
                 'import path from "path";',
                 'try {',
                 '   require();',
                 '   let require = function () {};',
                 '}',
                 'catch (e) {}',
-                'require();',
-                ''
+                'require();'
             ].join('\n'),
             errors: [ERROR]
         },
         {
             code: [
-                '',
                 'import path from "path";',
                 'var i = 0;',
                 'while (i < 6) {',
@@ -514,14 +456,12 @@ ruleTester.run('no-require', rule, {
                 '   function require() {}',
                 '   require();',
                 '}',
-                'require();',
-                ''
+                'require();'
             ].join('\n'),
             errors: [ERROR]
         },
         {
             code: [
-                '',
                 'import path from "path";',
                 'var i = 0;',
                 'while (i < 6) {',
@@ -529,14 +469,12 @@ ruleTester.run('no-require', rule, {
                 '   require();',
                 '   function require() {}',
                 '}',
-                'require();',
-                ''
+                'require();'
             ].join('\n'),
             errors: [ERROR]
         },
         {
             code: [
-                '',
                 'import path from "path";',
                 'var i = 0;',
                 'while (i < 6) {',
@@ -544,14 +482,12 @@ ruleTester.run('no-require', rule, {
                 '   const require = function () {};',
                 '   require();',
                 '}',
-                'require();',
-                ''
+                'require();'
             ].join('\n'),
             errors: [ERROR]
         },
         {
             code: [
-                '',
                 'import path from "path";',
                 'var i = 0;',
                 'while (i < 6) {',
@@ -559,14 +495,12 @@ ruleTester.run('no-require', rule, {
                 '   require();',
                 '   const require = function () {};',
                 '}',
-                'require();',
-                ''
+                'require();'
             ].join('\n'),
             errors: [ERROR]
         },
         {
             code: [
-                '',
                 'import path from "path";',
                 'var i = 0;',
                 'while (i < 6) {',
@@ -574,14 +508,12 @@ ruleTester.run('no-require', rule, {
                 '   let require = function () {};',
                 '   require();',
                 '}',
-                'require();',
-                ''
+                'require();'
             ].join('\n'),
             errors: [ERROR]
         },
         {
             code: [
-                '',
                 'import path from "path";',
                 'var i = 0;',
                 'while (i < 6) {',
@@ -589,86 +521,73 @@ ruleTester.run('no-require', rule, {
                 '   require();',
                 '   let require = function () {};',
                 '}',
-                'require();',
-                ''
+                'require();'
             ].join('\n'),
             errors: [ERROR]
         },
         {
             code: [
-                '',
                 'import path from "path";',
                 'for (var value of []) {',
                 '   function require() {}',
                 '   require();',
                 '}',
-                'require();',
-                ''
+                'require();'
             ].join('\n'),
             errors: [ERROR]
         },
         {
             code: [
-                '',
                 'import path from "path";',
                 'for (var value of []) {',
                 '   require();',
                 '   function require() {}',
                 '}',
-                'require();',
-                ''
+                'require();'
             ].join('\n'),
             errors: [ERROR]
         },
         {
             code: [
-                '',
                 'import path from "path";',
                 'for (var value of []) {',
                 '   const require = function () {};',
                 '   require();',
                 '}',
-                'require();',
-                ''
+                'require();'
             ].join('\n'),
             errors: [ERROR]
         },
         {
             code: [
-                '',
                 'import path from "path";',
                 'for (var value of []) {',
                 '   require();',
                 '   const require = function () {};',
                 '}',
-                'require();',
-                ''
+                'require();'
             ].join('\n'),
             errors: [ERROR]
         },
         {
             code: [
-                '',
                 'import path from "path";',
                 'for (var value of []) {',
                 '   let require = function () {};',
                 '   require();',
                 '}',
-                'require();',
-                ''
+                'require();'
             ].join('\n'),
             errors: [ERROR]
         },
         {
             code: [
-                '',
                 'import path from "path";',
                 'for (var value of []) {',
                 '   require();',
                 '   let require = function () {};',
                 '}',
-                'require();',
-                ''
+                'require();'
             ].join('\n'),
             errors: [ERROR]
         },
@@ -678,22 +597,21 @@ ruleTester.run('no-require', rule, {
                 'function require1() {}',
                 'require();',
                 'function aa() {',
-                    'function require2() {}',
-                    'require();',
-                    'function cc() {',
-                        'function require3() {}',
-                        'require();',
-                        'function require4() {',
-                            'function require5() {}',
-                            'require();',
-                        '}',
-                    '}',
-                    'require();',
+                '   function require2() {}',
+                '   require();',
+                '   function cc() {',
+                '       function require3() {}',
+                '       require();',
+                '       function require4() {',
+                '           function require5() {}',
+                '           require();',
+                '       }',
+                '   }',
+                '   require();',
                 '}'
             ].join(''),
             errors: [ERROR, ERROR, ERROR, ERROR, ERROR]
         },
-        /* eslint-enable fecs-indent */
         {
             code: 'require("http")',
             errors: [ERROR]
