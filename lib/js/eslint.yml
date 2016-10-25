@@ -132,6 +132,7 @@ rules:
   fecs-valid-constructor: 1
   fecs-valid-dom-style: 1
   fecs-use-async-require: 0
+  fecs-no-require: 1
 
   babel/generator-star-spacing:
     - 2
@@ -323,5 +324,3 @@ rules:
   prefer-rest-params: 2
   unicode-bom: 1
   max-statements-per-line: 2
-
-
