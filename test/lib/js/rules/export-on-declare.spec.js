@@ -29,6 +29,7 @@ ruleTester.run('export-on-declare', rule, {
         'let foo = true;\nif (foo) {}\nexport default [foo, bar];',
         'let foo = true;\nif (foo) {}\nexport {foo};',
         'let foo = true;\nif (foo) {}\nexport {foo, bar};',
+        'export default from "xxx";',
         'export default [foo, bar]',
         'export default {foo, bar}',
         'export default class {}',
