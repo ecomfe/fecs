@@ -8,7 +8,7 @@ color-case: "lower"
 color-shorthand: true
 element-case: "lower"
 eof-newline: true
-leading-zero: true
+leading-zero: false
 quotes: "double"
 remove-empty-rulesets: true
 space-after-colon: " "
