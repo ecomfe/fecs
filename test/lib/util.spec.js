@@ -149,8 +149,6 @@ describe('util', function () {
 
             expect(util.getConfig('eslint', false, {})).toEqual(config.eslint);
             expect(util.getConfig('esformatter', false, {})).toEqual(config.esformatter);
-            expect(util.getConfig('jformatter', false, {})).toEqual(config.jformatter);
-            expect(util.getConfig('jshint', false, {})).toEqual(config.jshint);
             expect(util.getConfig('lesslint', false, {})).toEqual(config.lesslint);
             expect(util.getConfig('htmlcs', false, {})).toEqual(config.htmlcs);
             expect(util.getConfig('csscomb', false, {})).toEqual(config.csscomb);
@@ -276,8 +274,6 @@ describe('util', function () {
 
             expect(maps).not.toEqual({});
             expect(maps.eslint).not.toBeUndefined();
-            expect(maps.jformatter).not.toBeUndefined();
-            expect(maps.jshint).not.toBeUndefined();
         });
 
         it('from lib/html', function () {
@@ -651,6 +647,36 @@ describe('util', function () {
             });
 
 
+            it('Rewrite by self', function () {
+                var code = ''
+                    + 'let data = foo();'
+                    + 'data = data;';
+
+                eslint.on('Identifier', function (node) {
+                    if (node.name === 'data') {
+                        expect(isArray(node)).toBeFalsy();
+                    }
+                });
+
+                eslint.verify(code, config, filename, true);
+            });
+
+
+            it('Rewrite by self method', function () {
+                var code = ''
+                    + 'let data = foo();'
+                    + 'data = data.slice(0, index).concat(data.slice(index));';
+
+                eslint.on('Identifier', function (node) {
+                    if (node.name === 'data') {
+                        expect(isArray(node)).toBeTruthy();
+                    }
+                });
+
+                eslint.verify(code, config, filename, true);
+            });
+
+
         });
 
         describe('isObjectNode', function () {
@@ -759,6 +785,21 @@ describe('util', function () {
 
                 eslint.verify(code, config, filename, true);
             });
+
+            it('Rewrite by self', function () {
+                var code = ''
+                    + 'let data = foo();'
+                    + 'data = data';
+
+                eslint.on('Identifier', function (node) {
+                    if (node.name === 'data') {
+                        expect(isObject(node)).toBeFalsy();
+                    }
+                });
+
+                eslint.verify(code, config, filename, true);
+            });
+
         });
 
     });

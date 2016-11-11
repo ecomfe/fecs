@@ -29,6 +29,7 @@ ruleTester.run('export-on-declare', rule, {
         'let foo = true;\nif (foo) {}\nexport default [foo, bar];',
         'let foo = true;\nif (foo) {}\nexport {foo};',
         'let foo = true;\nif (foo) {}\nexport {foo, bar};',
+        'export default from "xxx";',
         'export default [foo, bar]',
         'export default {foo, bar}',
         'export default class {}',
@@ -37,7 +38,13 @@ ruleTester.run('export-on-declare', rule, {
         'export default (function (foo) {return foo;})();',
         'export {a};',
         'export const foo = {a, bar};',
-        'export {};'
+        'export {};',
+        [
+            'import router from \'react-router\';',
+            'import store from \'store\';',
+            'let app = new Map({router, store});',
+            'export {router, store};'
+        ].join('\n')
     ],
 
     invalid: [

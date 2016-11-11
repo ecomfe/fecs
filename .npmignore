@@ -12,4 +12,5 @@ output
 lib/reporter/baidu/cover.js
 lib/reporter/baidu/uncover.js
 public
+appveyor.yml
 

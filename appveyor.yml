@@ -7,9 +7,9 @@ version: "{build}"
 # What combinations to test
 environment:
   matrix:
-    - nodejs_version: 0.12
     - nodejs_version: 4
-    - nodejs_version: 6.0.0
+    - nodejs_version: 5
+    - nodejs_version: 6
 
 install:
   # Get the latest stable version of Node.js or io.js

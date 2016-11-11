@@ -1,7 +1,6 @@
 var mock = require('mock-fs');
 var fs = require('vinyl-fs');
 var File = require('vinyl');
-var Q = require('q');
 
 var helper = require('../helper');
 
@@ -100,7 +99,7 @@ describe('formatter', function () {
 
     });
 
-    it('check with callback', function (done) {
+    it('format with callback', function (done) {
 
         formatter.format = function (contents, path, cliOptions, callback) {
             expect(typeof callback).toBe('function');
@@ -113,12 +112,10 @@ describe('formatter', function () {
 
     });
 
-    it('check with promise', function (done) {
+    it('format with promise', function (done) {
 
         formatter.format = function (contents, path, cliOptions) {
-            var deferred = Q.defer();
-            deferred.resolve([true]);
-            return deferred.promise;
+            return Promise.resolve([true]);
         };
 
         fs.src('test/**')

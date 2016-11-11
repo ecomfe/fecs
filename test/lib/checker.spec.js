@@ -1,7 +1,6 @@
 var mock = require('mock-fs');
 var fs = require('vinyl-fs');
 var File = require('vinyl');
-var Q = require('q');
 
 var helper = require('../helper');
 
@@ -98,9 +97,7 @@ describe('checker', function () {
     it('check with promise', function (done) {
 
         checker.check = function (contents, path, cliOptions) {
-            var deferred = Q.defer();
-            deferred.resolve([true]);
-            return deferred.promise;
+            return Promise.resolve([true]);
         };
 
         fs.src('test/**')

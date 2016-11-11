@@ -9,7 +9,7 @@ describe('formatter', function () {
     it('options', function () {
         var options = formatter.options;
 
-        expect(options.name).toBe('jformatter');
+        expect(options.name).toBe('esformatter');
         expect(options.type).toBe('js');
         expect(options.suffix).toBe('js,es,es6');
 
@@ -50,28 +50,6 @@ describe('formatter', function () {
         var formatted = formatter.format('var foo=bar', 'path/to/file.js', options);
 
         expect(formatted).toEqual('var foo = bar;\n');
-
-    });
-
-    it('format - low mode', function () {
-
-        var options = cli.getOptions();
-        options.safe = 'low';
-
-        var formatted = formatter.format('var foo=bar', 'path/to/file.js', options);
-
-        expect(formatted).toEqual('var foo = bar;\n');
-
-    });
-
-    it('format - high mode', function () {
-
-        var options = cli.getOptions();
-        options.safe = 'high';
-
-        var formatted = formatter.format('var foo=bar', 'path/to/file.js', options);
-
-        expect(formatted).toEqual('var foo=bar;');
 
     });
 

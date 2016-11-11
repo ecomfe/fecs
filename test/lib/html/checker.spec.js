@@ -200,7 +200,7 @@ describe('checker', function () {
             });
     });
 
-    it('do not check js or css content', function () {
+    it('do not check js or css content', function (done) {
         var getConfig = util.getConfig;
         util.getConfig = function (key) {
             var config = getConfig.apply(util, arguments);
@@ -216,16 +216,17 @@ describe('checker', function () {
 
         var options = cli.getOptions();
 
-        var errors = checker.check(
+        checker.check(
             '<style>\nbody {\n}</style><script>\nvar foo = 1;</script>',
             'path/to/file.html',
             options
-        );
-
-        expect(errors.length).toBe(2);
-        expect(errors[0].rule).toBe('css-in-head');
-        expect(errors[1].rule).toBe('style-disabled');
-        util.getConfig = getConfig;
+        ).then(function (errors) {
+            expect(errors.length).toBe(2);
+            expect(errors[0].rule).toBe('css-in-head');
+            expect(errors[1].rule).toBe('style-disabled');
+            util.getConfig = getConfig;
+            done();
+        });
 
     });
 
