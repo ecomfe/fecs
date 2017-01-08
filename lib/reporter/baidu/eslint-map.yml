@@ -41,6 +41,8 @@ fecs-valid-constructor: "110,111"
 fecs-valid-dom-style: "137,138"
 fecs-use-async-require: "128"
 
+fecs-no-require: "655"
+
 babel/generator-star-spacing: "604"
 babel/new-cap: "027,029,030"
 babel/array-bracket-spacing: "012"

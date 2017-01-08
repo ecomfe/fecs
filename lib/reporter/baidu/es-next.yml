@@ -160,4 +160,6 @@
 654:
   level: 1
   desc: "[建议] AMD/CommonJS 模块依赖 ESNext 模块时，AMD/CommonJS 模块对 default export 的 require 需要改造。"
-
+655:
+  level: 1
+  desc: "[建议] ESNext 的文件中，不要使用 `require`。"
