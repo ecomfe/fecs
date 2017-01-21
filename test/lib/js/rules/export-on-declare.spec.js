@@ -34,7 +34,6 @@ ruleTester.run('export-on-declare', rule, {
         'export default {foo, bar}',
         'export default class {}',
         'export class Foo {}',
-        'export new Foo();',
         'export default (function (foo) {return foo;})();',
         'export {a};',
         'export const foo = {a, bar};',
