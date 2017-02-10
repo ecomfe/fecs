@@ -134,7 +134,7 @@ rules:
   fecs-use-async-require: 0
   fecs-no-require: 1
 
-  babel/generator-star-spacing:
+  generator-star-spacing:
     - 2
     -
       before: false
@@ -145,13 +145,13 @@ rules:
       capIsNewExceptions:
         - "T"
         - "AddToFavoritesBar"
-  babel/array-bracket-spacing:
+  array-bracket-spacing:
     - 2
     - "never"
   babel/object-curly-spacing:
     - 2
     - "never"
-  babel/arrow-parens:
+  arrow-parens:
     - 2
     - "as-needed"
 
