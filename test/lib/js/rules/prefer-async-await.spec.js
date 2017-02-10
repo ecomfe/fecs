@@ -239,7 +239,6 @@ ruleTester.run('prefer-async-await', rule, {
                 + '}\n',
             errors: [{
                 line: 3,
-                type: 'YieldExpression',
                 message: 'Expected to excute in parallel.'
             }]
         },
@@ -254,7 +253,6 @@ ruleTester.run('prefer-async-await', rule, {
                 + '}\n',
             errors: [{
                 line: 4,
-                type: 'YieldExpression',
                 message: 'Expected to excute in parallel.'
             }]
         },
@@ -269,7 +267,6 @@ ruleTester.run('prefer-async-await', rule, {
                 + '}\n',
             errors: [{
                 line: 4,
-                type: 'YieldExpression',
                 message: 'Expected to excute in parallel.'
             }]
         },
