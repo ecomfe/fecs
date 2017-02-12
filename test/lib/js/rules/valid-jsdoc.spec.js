@@ -76,6 +76,17 @@ ruleTester.run('valid-jsdoc', rule, {
                 }
             ]
         },
+        {
+            code: [
+                '/* foo-bar */',
+                'foo();'
+            ].join('\n'),
+            options: [
+                {
+                    preferLineComment: false
+                }
+            ]
+        },
         '// comment here\nvar foo;',
         '/* jshint max-len: 80 */\nvar foo;',
         '/* istanbul ignore */\nvar foo;',
