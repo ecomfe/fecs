@@ -285,7 +285,10 @@ rules:
       exceptions:
         - "-"
         - "+"
-        - ""
+        - '"'
+      block:
+        balanced: true
+
   max-nested-callbacks:
     - 1
     - 3
