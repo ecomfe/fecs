@@ -50,6 +50,7 @@ rules:
         object: "Object"
         regexp: "RegExp"
         promise: "Promise"
+      preferLineComment: true
       requireReturn: false
       requireAuthor: true
       requireDescription: true
