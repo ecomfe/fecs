@@ -302,7 +302,23 @@ plugins:
   - "esformatter-remove-trailing-commas"
   - "esformatter-limit-linebreaks"
   - "esformatter-fecs"
+  - "esformatter-jsx"
 
 quotes:
   type: "single"
 
+jsx:
+  formatJSX: true
+  attrsOnSameLineAsTag: false
+  maxAttrsOnTag: 3
+  firstAttributeOnSameLine: false
+  formatJSXExpressions: false
+  JSXExpressionsSingleLine: true
+  alignWithFirstAttribute: false
+  spaceInJSXExpressionContainers: ""
+  removeSpaceBeforeClosingJSX: false
+  closingTagOnNewLine: false
+  JSXAttributeQuotes: "double"
+  htmlOptions:
+    indent_size: 4
+    preserve_newlines: true
