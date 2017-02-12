@@ -5,22 +5,22 @@ env:
   jasmine: true
   node: true
 globals:
-  - baidu
-  - bds
-  - T
-  - $
-  - jQuery
-  - goog
-  - fis
-  - F
-  - __inline
-  - __uri
-  - angular
-  - setImmediate
-  - ActiveXObject
-  - unescape
-  - escape
-  - Promise
+  baidu: true
+  bds: true
+  T: true
+  $: true
+  jQuery: true
+  goog: true
+  fis: true
+  F: true
+  __inline: true
+  __uri: true
+  angular: true
+  setImmediate: true
+  ActiveXObject: true
+  unescape: true
+  escape: true
+  Promise: true
 plugins:
   - babel
 rules:
