@@ -43,6 +43,17 @@ describe('formatter', function () {
     });
 
 
+    it('fix', function () {
+
+        var options = cli.getOptions();
+        options.fix = true;
+
+        var formatted = formatter.format('if (typeof alert ==\'function\') {}', 'path/to/file.js', options);
+
+        expect(formatted).toEqual('if (typeof alert === \'function\') {\n}\n');
+
+    });
+
     it('format', function () {
 
         var options = cli.getOptions();
