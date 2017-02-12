@@ -144,6 +144,16 @@ describe('util', function () {
             mock.restore();
         });
 
+        it('use .eslintrc', function () {
+            mock({
+                '.eslintrc': '{"foo": "bar"}'
+            });
+
+            var config = util.getConfig('eslint', './test', null, true);
+            expect(config.foo).toBe('bar');
+            mock.restore();
+        });
+
         it('no lookup', function () {
             var config = util.config;
 
