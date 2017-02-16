@@ -99,6 +99,22 @@ describe('checker', function () {
 
     });
 
+    it('check js in html like files', function () {
+
+        var options = cli.getOptions();
+
+        var errors = checker.check(
+            '<template>{{foo}}</template>\n<script>\nvar foo =\n</script>',
+            'path/to/file.san',
+            options
+        );
+        expect(errors.length).toBe(1);
+        expect(errors[0].line).toBe(4);
+        expect(errors[0].code).toBe('998');
+        expect(errors[0].rule).toBe('syntax');
+
+    });
+
 
     it('error code should be 998 when throw error in eslint.verify', function () {
 
