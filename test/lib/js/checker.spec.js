@@ -11,7 +11,7 @@ describe('checker', function () {
 
         expect(options.name).toBe('eslint');
         expect(options.type).toBe('js');
-        expect(options.suffix).toBe('js,es,es6');
+        expect(options.suffix).toBe('js,es,es6,vue,san');
         expect(options.ignore).toEqual(/\.(m|min|mock|mockup)\.(js|es|es6)$/);
 
     });

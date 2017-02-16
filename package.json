@@ -61,6 +61,7 @@
     "esformatter-var-each": "^2.1.0",
     "eslint": "^3.5.0",
     "eslint-plugin-babel": "^3.3.0",
+    "eslint-plugin-html": "https://github.com/junmer/eslint-plugin-html.git",
     "htmlcs": "stable",
     "lesslint": "stable",
     "loophole": "^1.1.0",
