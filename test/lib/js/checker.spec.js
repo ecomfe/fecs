@@ -11,7 +11,7 @@ describe('checker', function () {
 
         expect(options.name).toBe('eslint');
         expect(options.type).toBe('js');
-        expect(options.suffix).toBe('js,es,es6');
+        expect(options.suffix).toBe('js,es,es6,vue,san');
         expect(options.ignore).toEqual(/\.(m|min|mock|mockup)\.(js|es|es6)$/);
 
     });
@@ -94,6 +94,22 @@ describe('checker', function () {
 
         var errors = checker.check('var foo =', 'path/to/file.js', options);
         expect(errors.length).toBe(1);
+        expect(errors[0].code).toBe('998');
+        expect(errors[0].rule).toBe('syntax');
+
+    });
+
+    it('check js in html like files', function () {
+
+        var options = cli.getOptions();
+
+        var errors = checker.check(
+            '<template>{{foo}}</template>\n<script>\nvar foo =\n</script>',
+            'path/to/file.san',
+            options
+        );
+        expect(errors.length).toBe(1);
+        expect(errors[0].line).toBe(4);
         expect(errors[0].code).toBe('998');
         expect(errors[0].rule).toBe('syntax');
 

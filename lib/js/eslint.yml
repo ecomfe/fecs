@@ -22,7 +22,12 @@ globals:
   escape: true
   Promise: true
 plugins:
+  - html
   - babel
+settings:
+  "html/html-extensions":
+  - ".san"
+  - ".vue"
 rules:
   fecs-indent:
     - 2
