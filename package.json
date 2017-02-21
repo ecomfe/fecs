@@ -44,7 +44,7 @@
   "dependencies": {
     "babel-eslint": "^7.1.1",
     "chalk": "^1.1.1",
-    "csscomb": "^3.1.7",
+    "csscomb": "^4.0.0",
     "csshint": "stable",
     "doctrine2": "latest",
     "esformatter": "^0.10.0",
