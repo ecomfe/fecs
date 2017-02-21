@@ -36,6 +36,29 @@ describe('ignored', function () {
             .pipe(helper.pass(checkSpecials, done));
     });
 
+    it('should be ignored simply', function (done) {
+        var check = jasmine.createSpy('check');
+
+        mock({
+            '../src': {
+                'a.min.js': '',
+                'b.min.js': '',
+                'c.Min.js': ''
+            }
+        });
+
+        fs.src('../src/*.js')
+            .pipe(ignored({ignore: '*.Min.js'}, []))
+            .pipe(helper.pass(
+                check,
+                function () {
+                    expect(check).not.toHaveBeenCalled();
+                    done();
+                }
+            ));
+    });
+
+
     it('should be ignored by .fecsignore', function (done) {
         var check = jasmine.createSpy('check');
 
