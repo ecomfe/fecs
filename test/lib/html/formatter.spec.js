@@ -48,91 +48,105 @@ describe('formatter', function () {
     });
 
 
-    it('format', function () {
+    it('format', function (done) {
 
         var options = cli.getOptions();
 
-        var formatted = formatter.format('<html></html>', 'path/to/file.html', options);
-
-        expect(formatted).toEqual('<!DOCTYPE html>\n<html lang="zh-CN"></html>');
-
+        formatter
+            .format('<html></html>', 'path/to/file.html', options)
+            .then(function (formatted) {
+                expect(formatted).toEqual('<!DOCTYPE html>\n<html lang="zh-CN"></html>');
+                done();
+            });
     });
 
-    it('format js in html', function () {
+    it('format js in html', function (done) {
 
         var options = cli.getOptions();
         options.lookup = false;
 
-        var formatted = formatter.format('<script>var foo=1</script>', 'path/to/file.html', options);
-
-        expect(formatted).toEqual('<script>\nvar foo = 1;\n</script>');
-
+        formatter
+            .format('<script>var foo=1</script>', 'path/to/file.html', options)
+            .then(function (formatted) {
+                expect(formatted).toEqual('<script>\nvar foo = 1;\n</script>');
+                done();
+            });
     });
 
-    it('format js in html - specify type', function () {
+    it('format js in html - specify type', function (done) {
 
         var options = cli.getOptions();
 
-        var formatted = formatter.format(
-            '<script type="text/javascript">var foo=1</script>',
-            'path/to/file.html',
-            options
-        );
-
-        expect(formatted).toEqual('<script>\nvar foo = 1;\n</script>');
-
+        formatter
+            .format(
+                '<script type="text/javascript">var foo=1</script>',
+                'path/to/file.html',
+                options
+            )
+            .then(function (formatted) {
+                expect(formatted).toEqual('<script>\nvar foo = 1;\n</script>');
+                done();
+            });
     });
 
-    it('format js in html - specify unknown type', function () {
+    it('format js in html - specify unknown type', function (done) {
 
         var options = cli.getOptions();
 
-        var formatted = formatter.format(
-            '<script type="text/tpl">  var foo=1</script>',
-            'path/to/file.html',
-            options
-        );
-
-        expect(formatted).toEqual('<script type="text/tpl">\n  var foo=1\n</script>');
-
+        formatter
+            .format(
+                '<script type="text/tpl">  var foo=1</script>',
+                'path/to/file.html',
+                options
+            )
+            .then(function (formatted) {
+                expect(formatted).toEqual('<script type="text/tpl">\n  var foo=1\n</script>');
+                done();
+            });
     });
 
-    it('format css in html', function () {
+    it('format css in html', function (done) {
 
         var options = cli.getOptions();
 
-        var formatted = formatter.format('<style>body{height:0px}</style>', 'path/to/file.html', options);
-
-        expect(formatted).toEqual('<style>\nbody {\n    height: 0;\n}\n</style>');
-
+        formatter
+            .format('<style>body{height:0px}</style>', 'path/to/file.html', options)
+            .then(function (formatted) {
+                expect(formatted).toEqual('<style>\nbody {\n    height: 0;\n}\n</style>');
+                done();
+            });
     });
 
-    it('format css in html - specify type', function () {
+    it('format css in html - specify type', function (done) {
 
         var options = cli.getOptions();
 
-        var formatted = formatter.format(
-            '<style type="text/css">body{height:0px}</style>',
-            'path/to/file.html',
-            options
-        );
-
-        expect(formatted).toEqual('<style>\nbody {\n    height: 0;\n}\n</style>');
-
+        formatter
+            .format(
+                '<style type="text/css">body{height:0px}</style>',
+                'path/to/file.html',
+                options
+            )
+            .then(function (formatted) {
+                expect(formatted).toEqual('<style>\nbody {\n    height: 0;\n}\n</style>');
+                done();
+            });
     });
 
-    it('format css in html - specify unknown type', function () {
+    it('format css in html - specify unknown type', function (done) {
 
         var options = cli.getOptions();
 
-        var formatted = formatter.format(
-            '<style type="text/less">  body{height:0px}</style>',
-            'path/to/file.html',
-            options
-        );
-
-        expect(formatted).toEqual('<style type="text/less">\n  body{height:0px}\n</style>');
-
+        formatter
+            .format(
+                '<style type="text/less">  body{height:0px}</style>',
+                'path/to/file.html',
+                options
+            )
+            .then(function (formatted) {
+                expect(formatted).toEqual('<style type="text/less">\n  body{height:0px}\n</style>');
+                done();
+            });
     });
 
 
