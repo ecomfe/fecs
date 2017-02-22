@@ -65,9 +65,20 @@ describe('formatter', function () {
     });
 
 
-    it('syntax error', function () {
+    it('syntax error without --fix', function () {
 
         var options = cli.getOptions();
+
+        var formatted = formatter.format('var foo=', 'path/to/file.js', options);
+
+        expect(formatted).toEqual('var foo=');
+
+    });
+
+    it('syntax error with --fix', function () {
+
+        var options = cli.getOptions();
+        options.fix = true;
 
         var formatted = formatter.format('var foo=', 'path/to/file.js', options);
 
