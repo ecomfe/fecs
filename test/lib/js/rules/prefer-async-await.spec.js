@@ -33,6 +33,16 @@ ruleTester.run('prefer-async-await', rule, {
         },
         {
             code: ''
+                + 'async function requestData() {\n'
+                + '    let tags = await requestTags();\n'
+                + '    if (tags.id) {\n'
+                + '        tags = await requestArticles();\n'
+                + '    }\n'
+                + '\n'
+                + '}\n'
+        },
+        {
+            code: ''
                 + 'async function addReport(report, userId) {\n'
                 + '    let user = await getUser(userId);\n'
                 + '    let isValid = await validateUser(user);\n'
