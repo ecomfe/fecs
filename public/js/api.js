@@ -10,13 +10,15 @@
      *
      * @class
      * @param  {string | HTMLElement} nav 导航dom
+     * @param  {string | HTMLElement=} navWrap 导航主区域
      * @param  {string | HTMLElement=} slideContent 滚动区域内容
      * @param  {string | HTMLElement=} slideWrap 滚动区域框
      */
-    function AutoNav(nav, slideContent, slideWrap) {
+    function AutoNav(nav, navWrap, slideContent, slideWrap) {
         var self = this;
 
         self.anchorMap = [];
+        self.navWrap = $('.api-nav-inner');
         self.slideContent = $(slideContent) || $('body');
         self.slideWrap = $(slideWrap) || $(window);
 
@@ -78,11 +80,30 @@
         },
         bindEvents: function () {
             var self = this;
+            var contentHeight = self.slideContent.height();
+            var navHeight = self.navWrap.height();
 
             // 页面滚动时，动态计算当前cate
             self.slideWrap.scroll(function () {
                 var currScrollTop = self.slideWrap.scrollTop();
                 var currItem;
+
+                // 因为考虑到有高度较窄的屏幕，nav 可能被挡住
+                // 所以滚动的时候，如果左侧存在被遮挡的 nav，整个nav需要缓慢上移保证隐藏的 nav 露出
+                var currWindowHeight = (navHeight > $(window).height())
+                    ? navHeight - $(window).height()
+                    : 0
+                if (currWindowHeight) {
+                    self.navWrap.css({
+                        // 加上40px让每次滚动的距离稍微多一点，这样滚到最后时会与底部留一点间距，更加美观
+                        transform: 'translateY(-' + (currScrollTop / contentHeight * (currWindowHeight + 40)) + 'px)'
+                    });
+                }
+                else {
+                    self.navWrap.css({
+                        transform: 'translateY(0)'
+                    });
+                }
 
                 $.each(self.anchorMap, function (i, item) {
 
@@ -128,5 +149,10 @@
         }
     };
 
-    new AutoNav('.api-nav-list .anchor', '.api-entry', '.api-content').init();
+    new AutoNav(
+        '.api-nav-list .anchor',
+        '.api-nav-inner',
+        '.api-entry',
+        '.api-content'
+    ).init();
 })();

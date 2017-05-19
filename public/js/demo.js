@@ -271,7 +271,8 @@
                 mac: 'Command-Shift-F'
             },
             exec: function (editor, line) {
-                formatCode(codeVal, type, function (data) {
+                var currCodeVal = editor.getSession().getValue();
+                formatCode(currCodeVal, type, function (data) {
                     editor.getSession().setValue(data.code);
                 });
             },
