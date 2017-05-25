@@ -150,7 +150,7 @@ describe('checker', function () {
             expect(config.parserOptions.ecmaVersion).toBe(5);
         };
 
-        checker.check('var foo = true;',  'path/to/file.js', options);
+        checker.check('var foo = true;', 'path/to/file.js', options);
 
         expect(options.es).toBe(5);
 
@@ -168,7 +168,7 @@ describe('checker', function () {
             expect(config.env.es6).toBe(true);
         };
 
-        checker.check('var foo = true;',  'path/to/file.js', options);
+        checker.check('var foo = true;', 'path/to/file.js', options);
 
         expect(options.es).toBe(7);
 
