@@ -195,14 +195,14 @@ describe('util', function () {
             var patterns = util.buildPattern();
 
             expect(patterns.length).toEqual(4);
-            expect(patterns[0]).toBePath('lib/**/*.{js,es,es6,css,less,htm,html}');
+            expect(patterns[0]).toBePath('lib/**/*.{js,jsx,es,es6,css,less,htm,html}');
         });
 
         it('js only', function () {
             var patterns = util.buildPattern([], 'js');
 
             expect(patterns.length).toEqual(4);
-            expect(patterns[0]).toBePath('lib/**/*.{js,es,es6}');
+            expect(patterns[0]).toBePath('lib/**/*.{js,jsx,es,es6}');
         });
 
         it('es only', function () {
@@ -223,8 +223,8 @@ describe('util', function () {
             var patterns = util.buildPattern(['cli', 'lib', 'index.js', 'package.json'], 'js');
 
             expect(patterns.length).toEqual(5);
-            expect(patterns[0]).toBePath('cli/**/*.{js,es,es6}');
-            expect(patterns[1]).toBePath('lib/**/*.{js,es,es6}');
+            expect(patterns[0]).toBePath('cli/**/*.{js,jsx,es,es6}');
+            expect(patterns[1]).toBePath('lib/**/*.{js,jsx,es,es6}');
             expect(patterns[2]).toEqual('index.js');
             expect(patterns[3]).toEqual('package.json');
             expect(patterns[4]).toBePath('!**/{node_modules,bower_components}/**');
@@ -249,7 +249,7 @@ describe('util', function () {
             var patterns = util.buildPattern();
 
             expect(patterns.length).toEqual(2);
-            expect(patterns[0]).toBePath('./**/*.{js,es,es6,css,less,htm,html}');
+            expect(patterns[0]).toBePath('./**/*.{js,jsx,es,es6,css,less,htm,html}');
 
             mock.restore();
         });
