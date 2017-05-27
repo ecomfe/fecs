@@ -25,6 +25,7 @@ plugins:
   - html
   - babel
   - react
+  - import
 settings:
   "html/html-extensions":
   - ".san"
@@ -489,5 +490,35 @@ rules:
   react/sort-prop-types: 0
   react/style-prop-object: 2
   react/void-dom-elements-no-children: 2
+
+  import/no-unresolved: 2
+  import/named: 2
+  import/default: 2
+  import/namespace: 2
+  import/no-restricted-paths: 0
+  import/no-absolute-path: 2
+  import/no-dynamic-require: 1
+  import/no-internal-modules: 0
+  import/no-webpack-loader-syntax: 1
+  import/export: 2
+  import/no-named-as-default: 0
+  import/no-named-as-default-member: 2
+  import/no-deprecated: 2
+  import/no-extraneous-dependencies: 0
+  import/no-mutable-exports: 0
+  import/unambiguous: 2
+  import/no-commonjs: 1
+  import/no-amd: 1
+  import/no-nodejs-modules: 0
+  import/first: 2
+  import/no-duplicates: 2
+  import/no-namespace: 0
+  import/extensions: 2
+  import/order: 1
+  import/newline-after-import: 2
+  import/prefer-default-export: 0
+  import/max-dependencies: 0
+  import/no-unassigned-import: 0
+  import/no-named-default: 2
 
   no-useless-constructor: 1
