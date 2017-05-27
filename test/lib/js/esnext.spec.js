@@ -256,6 +256,70 @@ describe('esnext', function () {
 
     });
 
+    describe('removeRedundantRules', function () {
+        var config;
+        beforeEach(function () {
+            config = {
+                env: {
+                    'node': true,
+                    'es6': true,
+                    'import': true,
+                    'react': true
+                },
+                plugins: ['react', 'import'],
+                rules: {
+                    'indent': 2,
+                    'import/a': 0,
+                    'import/b': 1,
+                    'import/c': 2,
+                    'import/d': 2,
+                    'react/a': 0,
+                    'react/b': 1,
+                    'react/c': 2
+                }
+            };
+        });
+
+        it('{react: true, import: true} should keep all rules', function () {
+            esnext.removeRedundantRules(config);
+
+            expect(Object.keys(config.rules).length).toEqual(8);
+        });
+
+        it('no plugins should keep all rules', function () {
+            config.plugins = [];
+            esnext.removeRedundantRules(config);
+
+            expect(Object.keys(config.rules).length).toEqual(8);
+        });
+
+        it('{react: false, import: true} should remove all reace rules', function () {
+            config.env.react = false;
+            esnext.removeRedundantRules(config);
+
+            expect(config.plugins).toEqual(['import']);
+            expect(Object.keys(config.rules).length).toEqual(5);
+        });
+
+        it('{react: true, import: false} should remove all import rules', function () {
+            config.env.import = false;
+            esnext.removeRedundantRules(config);
+
+            expect(config.plugins).toEqual(['react']);
+            expect(Object.keys(config.rules).length).toEqual(4);
+        });
+
+        it('{react: false, import: false} should remove all react and import rules', function () {
+            config.env.react = false;
+            config.env.import = false;
+            esnext.removeRedundantRules(config);
+
+            expect(config.plugins).toEqual([]);
+            expect(Object.keys(config.rules).length).toEqual(1);
+        });
+
+    });
+
     describe('verify proxy', function () {
         var eslint = require('eslint').linter;
 
