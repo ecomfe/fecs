@@ -4,6 +4,8 @@ env:
   amd: true
   jasmine: true
   node: true
+  react: false
+  import: false
 globals:
   baidu: true
   bds: true
