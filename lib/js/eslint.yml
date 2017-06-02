@@ -345,7 +345,7 @@ rules:
   unicode-bom: 1
   max-statements-per-line: 2
 
-  react/display-name: 2
+  react/display-name: 0
   react/forbid-component-props: 1
   react/forbid-elements: 0
   react/forbid-foreign-prop-types: 1
@@ -399,7 +399,7 @@ rules:
     - 2
     -
       ignoreCase: true
-  react/jsx-no-literals: 2
+  react/jsx-no-literals: 0
   react/jsx-no-target-blank: 2
   react/jsx-no-undef: 2
   react/jsx-pascal-case:
