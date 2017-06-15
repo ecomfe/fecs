@@ -92,6 +92,7 @@ rules:
     -
       - "js"
       - "es"
+      - "jsx"
   fecs-no-extra-semi: 2
   fecs-use-method-definition: 1
   fecs-use-property-shorthand:
