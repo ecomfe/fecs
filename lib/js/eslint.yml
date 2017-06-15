@@ -29,6 +29,7 @@ settings:
   "html/html-extensions":
   - ".san"
   - ".vue"
+  - ".atom"
 rules:
   fecs-indent:
     - 2
@@ -461,5 +462,3 @@ rules:
   react/void-dom-elements-no-children: 2
 
   no-useless-constructor: 1
-
-
