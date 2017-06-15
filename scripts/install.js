@@ -5,9 +5,8 @@
 
 var fs = require('fs');
 var path = require('path');
+var eslintPath = require.resolve('eslint/lib/eslint.js');
 
-var npm2 = fs.existsSync(path.join(__dirname, '../node_modules/eslint/'))
-var eslintPath = path.join(__dirname, '..', npm2 ? 'node_modules' : '..', 'eslint/lib/eslint.js');
 var eslintBackup = eslintPath + '.bak';
 
 if (fs.existsSync(eslintBackup)) {
@@ -20,8 +19,11 @@ else {
 
     fs.renameSync(eslintPath, eslintBackup);
 
-    var esnextPath = path.join(__dirname, '..', 'lib/js/esnext').replace(/\\/g, '\\\\');
-    var injectCode = 'require("' + esnextPath + '").detect(ast, config, currentFilename);';
+    var esnextPath = path.join(__dirname, '..', 'lib/js/esnext');
+    var relativePath = path.relative(path.dirname(eslintPath), esnextPath)
+        // 修复 windows 上的路径是 \ 的问题
+        .replace(/\\/g, '/');
+    var injectCode = 'require("' + relativePath + '").detect(ast, config, currentFilename);';
 
     code = code.replace(/(\s*)(sourceCode = new SourceCode\(text, ast\);)/, '$1$2$1' + injectCode);
 
