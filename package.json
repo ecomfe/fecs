@@ -71,7 +71,7 @@
     "map-stream": "^0.1.0",
     "minimatch": "^3.0.2",
     "minimist": "^1.2.0",
-    "msee": "^0.3.2",
+    "msee": "^0.3.3",
     "vinyl": "^2.0.0",
     "vinyl-fs": "^2.4.3"
   },
@@ -79,7 +79,7 @@
     "coveralls": "^2.11.14",
     "istanbul": "^0.4.5",
     "jasmine-node": "^2.0.0",
-    "mock-fs": "4.3.0",
+    "mock-fs": "^4.4.1",
     "mock-require": "^2.0.1"
   }
 }
