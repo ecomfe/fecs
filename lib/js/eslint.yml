@@ -91,6 +91,7 @@ rules:
     - 2
     -
       - "js"
+      - "jsx"
       - "es"
   fecs-no-extra-semi: 2
   fecs-use-method-definition: 1
@@ -375,7 +376,7 @@ rules:
   react/jsx-handler-names:
     - 2
     -
-      eventHandlerPrefix: ""
+      eventHandlerPrefix: ".*"
       eventHandlerPropPrefix: "on"
   react/jsx-indent-props:
     - 2
