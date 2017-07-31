@@ -19,9 +19,9 @@ var ruleTester = new RuleTester({parser: 'babel-eslint'});
 ruleTester.run('properties-quote', rule, {
 
     valid: [
+        '({\'null\': 0})',
+        '({\'true\': 0})',
         '({0: 0})',
-        '({null: 0})',
-        '({true: 0})',
         '({\'a-b\': 0})',
         '({\'if\': 0})',
         '({\'@\': 0})',
@@ -34,8 +34,8 @@ ruleTester.run('properties-quote', rule, {
         '({\'@\': 0, x})',
         '({a: 0, b: 0})',
         '({a: 0, 0: 0})',
-        '({a: 0, true: 0})',
-        '({a: 0, null: 0})',
+        '({\'a\': 0, \'true\': 0})',
+        '({\'a\': 0, \'null\': 0})',
         '({\'a\': 0, \'@\': 0})',
         '({a: 0, 0: 0})',
         '({\'a\': 0, \'0x0\': 0})',
@@ -64,16 +64,16 @@ ruleTester.run('properties-quote', rule, {
     ],
     invalid: [
         {
+            code: '({null: 0})',
+            errors: [{message: 'Expected key `\'null\'` but `null` found.baidu095', type: 'Property'}]
+        },
+        {
+            code: '({true: 0})',
+            errors: [{message: 'Expected key `\'true\'` but `true` found.baidu095', type: 'Property'}]
+        },
+        {
             code: '({"0": 0})',
             errors: [{message: 'Expected key `0` but `\'0\'` found.baidu094', type: 'Property'}]
-        },
-        {
-            code: '({"null": 0})',
-            errors: [{message: 'Expected key `null` but `\'null\'` found.baidu094', type: 'Property'}]
-        },
-        {
-            code: '({"true": 0})',
-            errors: [{message: 'Expected key `true` but `\'true\'` found.baidu094', type: 'Property'}]
         },
         {
             code: '({if: 0})',
@@ -116,11 +116,11 @@ ruleTester.run('properties-quote', rule, {
         },
         {
             code: '({a: 0, "true": 0})',
-            errors: [{message: 'Expected key `true` but `\'true\'` found.baidu094', type: 'Property'}]
+            errors: [{message: 'Expected key `\'a\'` but `a` found.baidu095', type: 'Property'}]
         },
         {
             code: '({a: 0, "null": 0})',
-            errors: [{message: 'Expected key `null` but `\'null\'` found.baidu094', type: 'Property'}]
+            errors: [{message: 'Expected key `\'a\'` but `a` found.baidu095', type: 'Property'}]
         },
         {
             code: '({a: 0, \'@\': 0})',
@@ -159,7 +159,8 @@ ruleTester.run('properties-quote', rule, {
             errors: [
                 {message: 'Expected key `\'a\'` but `a` found.baidu095', type: 'Property'},
                 {message: 'Expected key `\'volatile\'` but `volatile` found.baidu095', type: 'Property'}
-            ]
+            ],
+            options: [{esVersion: 3}]
         },
         {
             code: '({a: 0, if: 0})',

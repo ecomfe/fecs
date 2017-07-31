@@ -1,6 +1,6 @@
 {
   "name": "fecs",
-  "version": "1.5.0-beta.1",
+  "version": "1.5.0-beta.2",
   "description": "Front End Code Style Suite",
   "main": "index.js",
   "scripts": {
@@ -72,6 +72,7 @@
     "minimatch": "^3.0.2",
     "minimist": "^1.2.0",
     "msee": "^0.3.3",
+    "reserved-keywords": "^0.1.2",
     "vinyl": "^2.0.0",
     "vinyl-fs": "^2.4.3"
   },
