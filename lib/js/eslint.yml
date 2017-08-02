@@ -30,8 +30,8 @@ plugins:
   - import
 settings:
   "html/html-extensions":
-  - ".san"
-  - ".vue"
+    - ".san"
+    - ".vue"
 rules:
   fecs-indent:
     - 2
@@ -409,7 +409,7 @@ rules:
   react/jsx-pascal-case:
     - 2
     -
-      allowAllCaps: false
+      allowAllCaps: true
   react/jsx-sort-props: 0
   react/jsx-tag-spacing:
     - 2
@@ -519,7 +519,12 @@ rules:
   import/first: 2
   import/no-duplicates: 2
   import/no-namespace: 0
-  import/extensions: 2
+  import/extensions:
+    - 2
+    -
+      .js: never,
+      .jsx: never,
+      .es: never
   import/order: 1
   import/newline-after-import: 2
   import/prefer-default-export: 0
