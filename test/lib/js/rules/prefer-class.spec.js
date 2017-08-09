@@ -39,7 +39,8 @@ ruleTester.run('prefer-class', rule, {
         'let Foo = ({foo, bar}) => (<div />)',
         'let Foo = ({foo, bar}, context) => <div />',
         'let Foo = ({foo, bar}, {baz}) => <div />',
-        'let Foo = (prop, ctx) => (<div />)'
+        'let Foo = (prop, ctx) => (<div />)',
+        'let Foo = ({onClick}) => (<div onClick={() => onClick()} />)'
     ],
 
     invalid: [
