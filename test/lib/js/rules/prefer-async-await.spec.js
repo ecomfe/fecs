@@ -236,6 +236,20 @@ ruleTester.run('prefer-async-await', rule, {
                 + '    });\n'
                 + '}\n',
             options: [{co: true}]
+        },
+        {
+            code: ''
+                + 'async function foo() {\n'
+                + '    const requesting = await api.markErrorReport(params);\n'
+                + '    const status = await requesting;\n'
+                + '}\n'
+        },
+        {
+            code: ''
+                + 'async function foo() {\n'
+                + '    const request = await api.markErrorReport(params);\n'
+                + '    const status = await request.fetch;\n'
+                + '}\n'
         }
     ],
     invalid: [

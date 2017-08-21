@@ -4,6 +4,8 @@ env:
   amd: true
   jasmine: true
   node: true
+  react: false
+  import: false
 globals:
   baidu: true
   bds: true
@@ -25,6 +27,7 @@ plugins:
   - html
   - babel
   - react
+  - import
 settings:
   "html/html-extensions":
   - ".san"
@@ -89,6 +92,7 @@ rules:
     - 2
     -
       - "js"
+      - "jsx"
       - "es"
   fecs-no-extra-semi: 2
   fecs-use-method-definition: 1
@@ -360,14 +364,20 @@ rules:
   react/jsx-equals-spacing:
     - 2
     - "never"
-  react/jsx-filename-extension: 0
+  react/jsx-filename-extension:
+    - 2
+    -
+      extensions:
+        - ".js"
+        - ".jsx"
+        - ".es"
   react/jsx-first-prop-new-line:
     - 2
     - "multiline-multiprop"
   react/jsx-handler-names:
     - 2
     -
-      eventHandlerPrefix: "on"
+      eventHandlerPrefix: ".*"
       eventHandlerPropPrefix: "on"
   react/jsx-indent-props:
     - 2
@@ -375,7 +385,7 @@ rules:
   react/jsx-indent:
     - 2
     - 4
-  react/jsx-key: 1
+  react/jsx-key: 2
   react/jsx-max-props-per-line:
     - 2
     -
@@ -386,17 +396,14 @@ rules:
       ignoreRefs: true
       allowArrowFunctions: false
       allowBind: false
-  react/jsx-no-comment-textnodes: 2
+  react/jsx-no-comment-textnodes: 1
   react/jsx-no-duplicate-props:
     - 2
     -
       ignoreCase: true
   react/jsx-no-literals: 0
-  react/jsx-no-target-blank: 1
-  react/jsx-no-undef:
-    - 2
-    -
-      allowGlobals: true
+  react/jsx-no-target-blank: 2
+  react/jsx-no-undef: 2
   react/jsx-pascal-case:
     - 2
     -
@@ -419,9 +426,9 @@ rules:
       arrow: true
   react/no-array-index-key: 2
   react/no-children-prop: 2
-  react/no-danger-with-children: 0
-  react/no-danger: 2
-  react/no-deprecated: 1
+  react/no-danger-with-children: 2
+  react/no-danger: 1
+  react/no-deprecated: 2
   react/no-did-mount-set-state: 2
   react/no-did-update-set-state: 2
   react/no-will-update-set-state: 2
@@ -434,7 +441,7 @@ rules:
       ignoreStateless: true
   react/no-render-return-value: 2
   react/no-set-state: 0
-  react/no-string-refs: 1
+  react/no-string-refs: 2
   react/no-unescaped-entities: 2
   react/no-unknown-property: 2
   react/no-unused-prop-types: 2
@@ -442,9 +449,9 @@ rules:
     - 2
     - "always"
   react/prefer-stateless-function: 2
-  react/prop-types: 1
+  react/prop-types: 2
   react/react-in-jsx-scope: 0
-  react/require-default-props: 0
+  react/require-default-props: 2
   react/require-optimization: 0
   react/require-render-return: 2
   react/self-closing-comp:
@@ -454,11 +461,68 @@ rules:
       html: false
   react/sort-comp:
     - 2
-
-
+    -
+        order:
+          - "static-properties"
+          - "static-methods"
+          - "lifecycle"
+          - "everything-else"
+          - "render"
+        groups:
+          static-properties:
+            - "displayName"
+            - "propTypes"
+            - "contextTypes"
+            - "childContextTypes"
+            - "mixins"
+            - "statics"
+          lifecycle:
+            - "defaultProps"
+            - "constructor"
+            - "getDefaultProps"
+            - "getInitialState"
+            - "state"
+            - "getChildContext"
+            - "componentWillMount"
+            - "componentDidMount"
+            - "componentWillReceiveProps"
+            - "shouldComponentUpdate"
+            - "componentWillUpdate"
+            - "componentDidUpdate"
+            - "componentWillUnmount"
 
   react/sort-prop-types: 0
   react/style-prop-object: 2
   react/void-dom-elements-no-children: 2
+
+  import/no-unresolved: 2
+  import/named: 2
+  import/default: 2
+  import/namespace: 2
+  import/no-restricted-paths: 0
+  import/no-absolute-path: 2
+  import/no-dynamic-require: 1
+  import/no-internal-modules: 0
+  import/no-webpack-loader-syntax: 1
+  import/export: 2
+  import/no-named-as-default: 0
+  import/no-named-as-default-member: 2
+  import/no-deprecated: 2
+  import/no-extraneous-dependencies: 0
+  import/no-mutable-exports: 0
+  import/unambiguous: 2
+  import/no-commonjs: 1
+  import/no-amd: 1
+  import/no-nodejs-modules: 0
+  import/first: 2
+  import/no-duplicates: 2
+  import/no-namespace: 0
+  import/extensions: 2
+  import/order: 1
+  import/newline-after-import: 2
+  import/prefer-default-export: 0
+  import/max-dependencies: 0
+  import/no-unassigned-import: 0
+  import/no-named-default: 2
 
   no-useless-constructor: 1
