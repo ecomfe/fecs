@@ -32,6 +32,7 @@ settings:
   "html/html-extensions":
   - ".san"
   - ".vue"
+  - ".atom"
 rules:
   fecs-indent:
     - 2
