@@ -57,8 +57,10 @@ describe('fecs rules for eslint', function () {
             expect(eslintRules.get('fecs-foo')).toEqual({foo: true});
             expect(eslintRules.get('fecs-foo-bar')).toEqual({foo: true});
             expect(eslintRules.get('fecs-foo-baz')).toEqual({foo: true});
-            expect(eslintRules.get('fecs-index')).toBeUndefined();
-            expect(eslintRules.get('fecs-foobar')).toBeUndefined();
+
+            // default to {create: context => ({Program() {...}})}
+            expect(eslintRules.get('fecs-index')).not.toEqual({foo: true});
+            expect(eslintRules.get('fecs-foobar')).not.toEqual({foo: true});
         });
 
         it('only js file in __dirname', function () {
@@ -67,8 +69,10 @@ describe('fecs rules for eslint', function () {
             expect(eslintRules.get('fecs-foo')).toEqual({foo: true});
             expect(eslintRules.get('fecs-foo-bar')).toEqual({foo: true});
             expect(eslintRules.get('fecs-foo-baz')).toEqual({foo: true});
-            expect(eslintRules.get('fecs-index')).toBeUndefined();
-            expect(eslintRules.get('fecs-foobar')).toBeUndefined();
+
+            // default to {create: context => ({Program() {...}})}
+            expect(eslintRules.get('fecs-index')).not.toEqual({foo: true});
+            expect(eslintRules.get('fecs-foobar')).not.toEqual({foo: true});
         });
 
     });

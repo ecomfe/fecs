@@ -23,9 +23,9 @@ else {
     var relativePath = path.relative(path.dirname(eslintPath), esnextPath)
         // 修复 windows 上的路径是 \ 的问题
         .replace(/\\/g, '/');
-    var injectCode = 'require("' + relativePath + '").detect(ast, config, this.currentFilename);';
+    var injectCode = 'require("' + relativePath + '").detect(sourceCode.ast, config, this.currentFilename);';
 
-    code = code.replace(/(\s*)(this\.sourceCode = new SourceCode\(text, ast\);)/, '$1$2$1' + injectCode);
+    code = code.replace(/(\s*)(const sourceCode = lastSourceCodes\.get\(this\);)/, '$1$2$1' + injectCode);
 
     fs.writeFileSync(eslintPath, code, 'utf-8');
 
