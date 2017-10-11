@@ -295,7 +295,6 @@ plugins:
   - "esformatter-quotes"
   - "esformatter-semicolons"
   - "esformatter-parseint"
-  - "esformatter-var-each"
   - "esformatter-braces"
   - "esformatter-dot-notation"
   - "esformatter-spaced-lined-comment"
