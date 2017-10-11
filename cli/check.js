@@ -4,6 +4,7 @@
  */
 
 var fs          = require('vinyl-fs');
+var Readable    = require('stream').Readable;
 
 var util        = require('../lib/util');
 var ignored     = require('../lib/ignored');
@@ -45,6 +46,32 @@ var streams = {
      * @return {Transform} 转换流
      */
     stdin: function (options) {
+        return this.scriptStream(process.stdin, options);
+    },
+
+    /**
+     * 处理以 string 形式输入的代码
+     *
+     * @param {Stream} string 代码字符串
+     * @param {Object} options minimist 处理后的 cli 参数
+     * @return {Transform} 转换流
+     */
+    string: function (string, options) {
+        const scriptStream = new Readable();
+        scriptStream.push(string);
+        scriptStream.push(null);
+
+        return this.scriptStream(scriptStream, options);
+    },
+
+    /**
+     * 处理以字符串流形式输入的代码
+     *
+     * @param {Stream} scriptStream 代码字符串流
+     * @param {Object} options minimist 处理后的 cli 参数
+     * @return {Transform} 转换流
+     */
+    scriptStream: function (scriptStream, options) {
         var File = require('vinyl');
 
         var type = (options.type || 'js').split(',')[0];
@@ -66,10 +93,10 @@ var streams = {
         var handler = handlers[type];
 
         if (!handler) {
-            return process.stdin;
+            return scriptStream;
         }
 
-        return process.stdin
+        return scriptStream
             .pipe(
                 util.mapStream(function (chunk, cb) {
                     cb(null, new File({contents: chunk, path: 'current-file.' + type, stat: {size: chunk.length}}));
@@ -103,6 +130,10 @@ var streams = {
     get: function (options) {
         var stream = options.stream;
         options.stream = !!stream;
+
+        if (options.string) {
+            return this.string(options.string, options);
+        }
 
         if (typeof stream === 'boolean') {
             return this[stream ? 'stdin' : 'files'](options);
