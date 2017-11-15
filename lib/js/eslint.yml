@@ -4,8 +4,6 @@ env:
   amd: true
   jasmine: true
   node: true
-  react: false
-  import: false
 globals:
   baidu: true
   bds: true
@@ -523,8 +521,8 @@ rules:
   import/extensions:
     - 2
     -
-      .js: never,
-      .jsx: never,
+      .js: never
+      .jsx: never
       .es: never
   import/order: 1
   import/newline-after-import: 2
