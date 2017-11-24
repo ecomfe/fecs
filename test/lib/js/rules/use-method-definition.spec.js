@@ -27,7 +27,8 @@ ruleTester.run('use-method-definition', rule, {
         'class Foo extends null {["bar"]() {}}',
         'let foo = {bar: () => {}}',
         'let foo = {bar: (n) => {return n * 10;}}',
-        'let foo = {baz: 1, bar: () => {this.baz++; return this.baz;}}'
+        'let foo = {baz: 1, bar: () => {this.baz++; return this.baz;}}',
+        'let foo = {baz: 1, values: list => list.map(item => item.value)}'
     ],
 
     invalid: [
