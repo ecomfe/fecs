@@ -4,6 +4,8 @@ env:
   amd: true
   jasmine: true
   node: true
+  react: false
+  import: false
 globals:
   baidu: true
   bds: true
@@ -22,7 +24,15 @@ globals:
   escape: true
   Promise: true
 plugins:
+  - html
   - babel
+  - react
+  - import
+settings:
+  "html/html-extensions":
+    - ".san"
+    - ".vue"
+    - ".atom"
 rules:
   fecs-indent:
     - 2
@@ -50,6 +60,7 @@ rules:
         object: "Object"
         regexp: "RegExp"
         promise: "Promise"
+      preferLineComment: true
       requireReturn: false
       requireAuthor: true
       requireDescription: true
@@ -71,7 +82,10 @@ rules:
     - 2
     - true
   fecs-camelcase: 2
-  fecs-properties-quote: 1
+  fecs-properties-quote:
+    - 1
+    -
+      esVersion: 5
   fecs-no-forin-array: 2
   fecs-valid-amd-id: 2
   fecs-no-eval: 2
@@ -81,6 +95,7 @@ rules:
     - 2
     -
       - "js"
+      - "jsx"
       - "es"
   fecs-no-extra-semi: 2
   fecs-use-method-definition: 1
@@ -134,7 +149,7 @@ rules:
   fecs-use-async-require: 0
   fecs-no-require: 1
 
-  babel/generator-star-spacing:
+  generator-star-spacing:
     - 2
     -
       before: false
@@ -145,13 +160,13 @@ rules:
       capIsNewExceptions:
         - "T"
         - "AddToFavoritesBar"
-  babel/array-bracket-spacing:
+  array-bracket-spacing:
     - 2
     - "never"
   babel/object-curly-spacing:
     - 2
     - "never"
-  babel/arrow-parens:
+  arrow-parens:
     - 2
     - "as-needed"
 
@@ -236,6 +251,13 @@ rules:
     - "last"
   new-parens: 1
   no-array-constructor: 2
+  no-multi-spaces:
+    - 2
+    -
+      exceptions:
+        Property: true
+        BinaryExpression: true
+        VariableDeclarator: true
   no-new-object: 2
   no-spaced-func: 2
   no-trailing-spaces: 2
@@ -284,7 +306,10 @@ rules:
       exceptions:
         - "-"
         - "+"
-        - ""
+        - '"'
+      block:
+        balanced: true
+
   max-nested-callbacks:
     - 1
     - 3
@@ -324,3 +349,187 @@ rules:
   prefer-rest-params: 2
   unicode-bom: 1
   max-statements-per-line: 2
+  react/display-name: 0
+  react/forbid-component-props: 1
+  react/forbid-elements: 0
+  react/forbid-foreign-prop-types: 1
+  react/forbid-prop-types: 1
+  react/jsx-boolean-value:
+    - 2
+    - "never"
+  react/jsx-closing-bracket-location:
+    - 2
+    - "line-aligned"
+  react/jsx-curly-spacing:
+    - 2
+    - "never"
+  react/jsx-equals-spacing:
+    - 2
+    - "never"
+  react/jsx-filename-extension:
+    - 2
+    -
+      extensions:
+        - ".js"
+        - ".jsx"
+        - ".es"
+  react/jsx-first-prop-new-line:
+    - 2
+    - "multiline-multiprop"
+  react/jsx-handler-names:
+    - 2
+    -
+      eventHandlerPrefix: ".*"
+      eventHandlerPropPrefix: "on"
+  react/jsx-indent-props:
+    - 2
+    - 4
+  react/jsx-indent:
+    - 2
+    - 4
+  react/jsx-key: 2
+  react/jsx-max-props-per-line:
+    - 2
+    -
+      when: "multiline"
+  react/jsx-no-bind:
+    - 2
+    -
+      ignoreRefs: true
+      allowArrowFunctions: false
+      allowBind: false
+  react/jsx-no-comment-textnodes: 1
+  react/jsx-no-duplicate-props:
+    - 2
+    -
+      ignoreCase: true
+  react/jsx-no-literals: 0
+  react/jsx-no-target-blank: 2
+  react/jsx-no-undef: 2
+  react/jsx-pascal-case:
+    - 2
+    -
+      allowAllCaps: true
+  react/jsx-sort-props: 0
+  react/jsx-tag-spacing:
+    - 2
+    -
+      closingSlash: "never"
+      beforeSelfClosing: "always"
+      afterOpening: "never"
+  react/jsx-uses-react: 0
+  react/jsx-uses-vars: 2
+  react/jsx-wrap-multilines:
+    - 2
+    -
+      declaration: true
+      assignment: true
+      return: true
+      arrow: true
+  react/no-array-index-key: 2
+  react/no-children-prop: 2
+  react/no-danger-with-children: 2
+  react/no-danger: 1
+  react/no-deprecated: 2
+  react/no-did-mount-set-state: 2
+  react/no-did-update-set-state: 2
+  react/no-will-update-set-state: 2
+  react/no-direct-mutation-state: 2
+  react/no-find-dom-node: 2
+  react/no-is-mounted: 2
+  react/no-multi-comp:
+    - 2
+    -
+      ignoreStateless: true
+  react/no-render-return-value: 2
+  react/no-set-state: 0
+  react/no-string-refs: 2
+  react/no-unescaped-entities: 2
+  react/no-unknown-property: 2
+  react/no-unused-prop-types: 2
+  react/prefer-es6-class:
+    - 2
+    - "always"
+  react/prefer-stateless-function: 2
+  react/prop-types: 2
+  react/react-in-jsx-scope: 0
+  react/require-default-props: 2
+  react/require-optimization: 0
+  react/require-render-return: 2
+  react/self-closing-comp:
+    - 2
+    -
+      component: true
+      html: false
+  react/sort-comp:
+    - 2
+    -
+        order:
+          - "static-properties"
+          - "static-methods"
+          - "lifecycle"
+          - "everything-else"
+          - "render"
+        groups:
+          static-properties:
+            - "displayName"
+            - "propTypes"
+            - "contextTypes"
+            - "childContextTypes"
+            - "mixins"
+            - "statics"
+          lifecycle:
+            - "defaultProps"
+            - "constructor"
+            - "getDefaultProps"
+            - "getInitialState"
+            - "state"
+            - "getChildContext"
+            - "componentWillMount"
+            - "componentDidMount"
+            - "componentWillReceiveProps"
+            - "shouldComponentUpdate"
+            - "componentWillUpdate"
+            - "componentDidUpdate"
+            - "componentWillUnmount"
+
+  react/sort-prop-types: 0
+  react/style-prop-object: 2
+  react/void-dom-elements-no-children: 2
+
+  import/no-unresolved: 2
+  import/named: 2
+  import/default: 2
+  import/namespace: 2
+  import/no-restricted-paths: 0
+  import/no-absolute-path: 2
+  import/no-dynamic-require: 1
+  import/no-internal-modules: 0
+  import/no-webpack-loader-syntax: 1
+  import/export: 2
+  import/no-named-as-default: 0
+  import/no-named-as-default-member: 2
+  import/no-deprecated: 2
+  import/no-extraneous-dependencies: 0
+  import/no-mutable-exports: 0
+  import/unambiguous: 2
+  import/no-commonjs: 1
+  import/no-amd: 1
+  import/no-nodejs-modules: 0
+  import/first: 2
+  import/no-duplicates: 2
+  import/no-namespace: 0
+  import/extensions:
+    - 2
+    -
+      .js: never,
+      .jsx: never,
+      .es: never
+  import/order: 1
+  import/newline-after-import: 2
+  import/prefer-default-export: 0
+  import/max-dependencies: 0
+  import/no-unassigned-import: 0
+  import/no-named-default: 2
+
+  no-useless-constructor: 1

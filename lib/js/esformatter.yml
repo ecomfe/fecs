@@ -33,6 +33,7 @@ lineBreak:
     CatchKeyword: ">=1"
     CatchOpeningBrace: 0
     CatchClosingBrace: ">=1"
+    ClassClosingBrace: ">=1"
     DeleteOperator: ">=1"
     DoWhileStatement: ">=1"
     DoWhileStatementOpeningBrace: 0
@@ -68,6 +69,7 @@ lineBreak:
     ElseStatementClosingBrace: 1
     EndOfFile: 1
     LogicalExpression: -1
+    MethodDefinitionClosingBrace: 1
     ObjectExpressionClosingBrace: ">=1"
     Property: ">=1"
     ReturnStatement: ">=1"
@@ -93,6 +95,7 @@ lineBreak:
     CatchOpeningBrace: ">=1"
     CatchClosingBrace: ">=1"
     ConditionalExpression: ">=1"
+    ClassOpeningBrace: ">=1"
     DeleteOperator: ">=1"
     DoWhileStatement: ">=1"
     DoWhileStatementOpeningBrace: ">=1"
@@ -126,6 +129,8 @@ lineBreak:
     ElseStatementOpeningBrace: ">=1"
     ElseStatementClosingBrace: ">=1"
     LogicalExpression: -1
+    MethodDefinitionOpeningBrace: 1
+    MethodDefinitionClosingBrace: ">=1"
     ObjectExpressionOpeningBrace: ">=1"
     Property: 0
     ReturnStatement: -1
@@ -228,6 +233,8 @@ whiteSpace:
     CatchParameterList: 0
     CatchOpeningBrace: 1
     CatchClosingBrace: 1
+    ClassKeyword: 1
+    ClassExtendsKeyword: 1
     CommaOperator: 1
     ConditionalExpressionConsequent: 1
     ConditionalExpressionTest: 1
@@ -264,6 +271,8 @@ whiteSpace:
     ElseIfStatementOpeningBrace: 1
     ElseIfStatementClosingBrace: 1
     MemberExpressionOpening: 0
+    MethodName: 0
+    MethodDefinitionName: 0
     LogicalExpressionOperator: 1
     ObjectExpressionClosingBrace: 0
     PropertyName: 0
@@ -286,7 +295,6 @@ plugins:
   - "esformatter-quotes"
   - "esformatter-semicolons"
   - "esformatter-parseint"
-  - "esformatter-var-each"
   - "esformatter-braces"
   - "esformatter-dot-notation"
   - "esformatter-spaced-lined-comment"
@@ -296,4 +304,3 @@ plugins:
 
 quotes:
   type: "single"
-

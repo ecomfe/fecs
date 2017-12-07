@@ -39,6 +39,23 @@ ruleTester.run('valid-jsdoc', rule, {
         },
         {
             code: [
+                '/**',
+                ' * foo desc',
+                ' *',
+                ' * @param {Object} bar.foo desc',
+                ' */',
+                'function foo(bar) {}'
+            ].join('\n'),
+            options: [
+                {
+                    requireFileDescription: false,
+                    requireAuthor: false,
+                    requireReturn: false
+                }
+            ]
+        },
+        {
+            code: [
                 '/*foo-bar*/',
                 'function foo(bar) {}'
             ].join('\n'),
@@ -56,6 +73,17 @@ ruleTester.run('valid-jsdoc', rule, {
             options: [
                 {
                     ignore: ['/\\s*foo-bar\\s*/']
+                }
+            ]
+        },
+        {
+            code: [
+                '/* foo-bar */',
+                'foo();'
+            ].join('\n'),
+            options: [
+                {
+                    preferLineComment: false
                 }
             ]
         },

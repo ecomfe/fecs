@@ -14,7 +14,7 @@ var RuleTester = require('eslint').RuleTester;
 // Tests
 //------------------------------------------------------------------------------
 
-var ruleTester = new RuleTester();
+var ruleTester = new RuleTester({parser: 'babel-eslint'});
 
 ruleTester.run('esnext-ext', rule, {
 
@@ -24,6 +24,11 @@ ruleTester.run('esnext-ext', rule, {
         {
             code: 'var a = 123;',
             filename: 'foo/bar.js'
+        },
+        {
+            code: 'export default bar = ({foo}) => (<div>{foo}bar</div>);',
+            filename: 'foo/bar.jsx',
+            options: [['js', 'jsx']]
         }
     ],
 

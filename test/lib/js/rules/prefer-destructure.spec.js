@@ -29,6 +29,15 @@ ruleTester.run('prefer-destructure', rule, {
         'let foo = {bar: 1, baz: 2};export let bar = foo.bar;export let baz = foo.baz;',
         {
             code: [
+                'function foo(dom) {',
+                '    let x = dom.get().x;',
+                '    let y = dom.y;',
+                '    return {x, y};',
+                '}'
+            ].join('\n')
+        },
+        {
+            code: [
                 'function getXY(element) {',
                 '    let x = 0;',
                 '    let y = 0;',

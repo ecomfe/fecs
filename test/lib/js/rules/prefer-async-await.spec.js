@@ -33,6 +33,16 @@ ruleTester.run('prefer-async-await', rule, {
         },
         {
             code: ''
+                + 'async function requestData() {\n'
+                + '    let tags = await requestTags();\n'
+                + '    if (tags.id) {\n'
+                + '        tags = await requestArticles();\n'
+                + '    }\n'
+                + '\n'
+                + '}\n'
+        },
+        {
+            code: ''
                 + 'async function addReport(report, userId) {\n'
                 + '    let user = await getUser(userId);\n'
                 + '    let isValid = await validateUser(user);\n'
@@ -226,6 +236,20 @@ ruleTester.run('prefer-async-await', rule, {
                 + '    });\n'
                 + '}\n',
             options: [{co: true}]
+        },
+        {
+            code: ''
+                + 'async function foo() {\n'
+                + '    const requesting = await api.markErrorReport(params);\n'
+                + '    const status = await requesting;\n'
+                + '}\n'
+        },
+        {
+            code: ''
+                + 'async function foo() {\n'
+                + '    const request = await api.markErrorReport(params);\n'
+                + '    const status = await request.fetch;\n'
+                + '}\n'
         }
     ],
     invalid: [
@@ -239,7 +263,6 @@ ruleTester.run('prefer-async-await', rule, {
                 + '}\n',
             errors: [{
                 line: 3,
-                type: 'YieldExpression',
                 message: 'Expected to excute in parallel.'
             }]
         },
@@ -254,7 +277,6 @@ ruleTester.run('prefer-async-await', rule, {
                 + '}\n',
             errors: [{
                 line: 4,
-                type: 'YieldExpression',
                 message: 'Expected to excute in parallel.'
             }]
         },
@@ -269,7 +291,6 @@ ruleTester.run('prefer-async-await', rule, {
                 + '}\n',
             errors: [{
                 line: 4,
-                type: 'YieldExpression',
                 message: 'Expected to excute in parallel.'
             }]
         },

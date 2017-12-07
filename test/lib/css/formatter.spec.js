@@ -44,46 +44,55 @@ describe('formatter', function () {
     });
 
 
-    it('format', function () {
+    it('format', function (done) {
 
         var options = cli.getOptions();
 
-        var formatted = formatter.format('p{\nheight:0px}', 'path/to/file.css', options);
-
-        expect(formatted).toEqual('p {\n    height: 0;\n}\n');
+        formatter
+            .format('p{\nheight:0px}', 'path/to/file.css', options)
+            .then(function (formatted) {
+                expect(formatted).toEqual('p {\n    height: 0;\n}\n');
+                done();
+            });
 
     });
 
-    it('html files should be take as css', function () {
+    it('html files should be take as css', function (done) {
 
         var options = cli.getOptions();
 
-        var formatted = formatter.format('p{\nheight:0px}', 'path/to/file.html', options);
-
-        expect(formatted).toEqual('p {\n    height: 0;\n}\n');
-
+        formatter
+            .format('p{\nheight:0px}', 'path/to/file.html', options)
+            .then(function (formatted) {
+                expect(formatted).toEqual('p {\n    height: 0;\n}\n');
+                done();
+            });
     });
 
-    it('one empty rule should be ignore', function () {
+    it('one empty rule should be ignore', function (done) {
 
         var options = cli.getOptions();
 
-        var formatted = formatter.format('a{}', 'path/to/file.css', options);
-
-        expect(formatted).toEqual('a{}');
-
+        formatter
+            .format('a{}', 'path/to/file.css', options)
+            .then(function (formatted) {
+                expect(formatted).toEqual('a{}');
+                done();
+            });
     });
 
-    it('one empty rule should be throw in debug', function () {
+    it('one empty rule should be throw in debug', function (done) {
 
         var options = cli.getOptions();
         options.debug = true;
 
-        var format = function () {
-            formatter.format('a{}', 'path/to/file.css', options);
-        };
+        formatter
+            .format('a{}', 'path/to/file.css', options)
+            .catch(function (error) {
+                expect(error != null).toBe(true);
+                done();
+            });
 
-        expect(format).toThrow();
 
     });
 

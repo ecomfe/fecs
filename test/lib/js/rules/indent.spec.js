@@ -42,7 +42,7 @@ function expectedErrors(indentType, errors) {
 
 var ruleTester = new RuleTester({parser: 'babel-eslint'});
 
-ruleTester.run('indent', rule, {
+ruleTester.run('fecs-indent', rule, {
 
     valid: [
         'var foo = []',

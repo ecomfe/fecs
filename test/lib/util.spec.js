@@ -1,3 +1,4 @@
+var Linter = require('eslint').Linter;
 var mock = require('mock-fs');
 var fs = require('vinyl-fs');
 var util = require('../../lib/util');
@@ -20,7 +21,7 @@ describe('util', function () {
                 // 行列信息必须对应上面 throw new 的位置
                 //                         ^
                 // 有变化时必须更正以下两个期望值
-                expect(error.line).toBe(12);
+                expect(error.line).toBe(13);
                 expect(error.column).toBe(23);
                 expect(error.message).toMatch(/foo\([^\)]+\)/);
             }
@@ -88,8 +89,7 @@ describe('util', function () {
         });
 
         it('error from eslint', function () {
-            var eslint = require('eslint').linter;
-            var errors = eslint.verify('\nvar a', {rules: {semi: 2}});
+            var errors = new Linter().verify('\nvar a', {rules: {semi: 2}});
 
             expect(errors.length).toEqual(1);
 
@@ -144,6 +144,16 @@ describe('util', function () {
             mock.restore();
         });
 
+        it('use .eslintrc', function () {
+            mock({
+                '.eslintrc': '{"foo": "bar"}'
+            });
+
+            var config = util.getConfig('eslint', './test', null, true);
+            expect(config.foo).toBe('bar');
+            mock.restore();
+        });
+
         it('no lookup', function () {
             var config = util.config;
 
@@ -185,14 +195,14 @@ describe('util', function () {
             var patterns = util.buildPattern();
 
             expect(patterns.length).toEqual(4);
-            expect(patterns[0]).toBePath('lib/**/*.{js,es,es6,css,less,htm,html}');
+            expect(patterns[0]).toBePath('lib/**/*.{js,jsx,es,es6,css,less,htm,html}');
         });
 
         it('js only', function () {
             var patterns = util.buildPattern([], 'js');
 
             expect(patterns.length).toEqual(4);
-            expect(patterns[0]).toBePath('lib/**/*.{js,es,es6}');
+            expect(patterns[0]).toBePath('lib/**/*.{js,jsx,es,es6}');
         });
 
         it('es only', function () {
@@ -213,8 +223,8 @@ describe('util', function () {
             var patterns = util.buildPattern(['cli', 'lib', 'index.js', 'package.json'], 'js');
 
             expect(patterns.length).toEqual(5);
-            expect(patterns[0]).toBePath('cli/**/*.{js,es,es6}');
-            expect(patterns[1]).toBePath('lib/**/*.{js,es,es6}');
+            expect(patterns[0]).toBePath('cli/**/*.{js,jsx,es,es6}');
+            expect(patterns[1]).toBePath('lib/**/*.{js,jsx,es,es6}');
             expect(patterns[2]).toEqual('index.js');
             expect(patterns[3]).toEqual('package.json');
             expect(patterns[4]).toBePath('!**/{node_modules,bower_components}/**');
@@ -239,7 +249,7 @@ describe('util', function () {
             var patterns = util.buildPattern();
 
             expect(patterns.length).toEqual(2);
-            expect(patterns[0]).toBePath('./**/*.{js,es,es6,css,less,htm,html}');
+            expect(patterns[0]).toBePath('./**/*.{js,jsx,es,es6,css,less,htm,html}');
 
             mock.restore();
         });
@@ -464,13 +474,28 @@ describe('util', function () {
     });
 
     describe('AST Helper', function () {
-        var eslint = require('eslint').linter;
-        var config = {parser: 'babel-eslint'};
+        var config = {parser: 'babel-eslint', rules: {'fecs-test': [1]}};
         var filename = 'test.js';
 
+        var eslint = {
+            on: function (selector, listener) {
+                this.rule[selector] = listener;
+            },
+
+            verify: function (code) {
+                var linter = new Linter();
+                linter.defineRule('fecs-test', function (context) {
+                    eslint.context = context;
+                    return eslint.rule;
+                });
+
+                linter.verify(code, config, filename);
+            }
+        };
+
         describe('variablesInScope', function () {
-            afterEach(function () {
-                eslint.reset();
+            beforeEach(function () {
+                eslint.rule = {};
             });
 
             var variablesInScope = util.variablesInScope;
@@ -493,15 +518,15 @@ describe('util', function () {
                         return variable;
                     };
 
-                    var noA = !eslint.getScope().variables.some(finder);
-                    var hasA = variablesInScope(eslint).some(finder);
+                    var noA = !eslint.context.getScope().variables.some(finder);
+                    var hasA = variablesInScope(eslint.context).some(finder);
 
                     expect(noA).toBeTruthy();
                     expect(hasA).toBeTruthy();
                     expect(variable.scope.type).toBe('module');
                 });
 
-                eslint.verify(code, config, filename, true);
+                eslint.verify(code);
             });
 
             it('In current scope', function () {
@@ -522,7 +547,7 @@ describe('util', function () {
                         return variable;
                     };
 
-                    variablesInScope(eslint).some(finder);
+                    variablesInScope(eslint.context).some(finder);
 
                     expect(!!variable).toBeTruthy();
                     expect(variable.scope.type).toBe('function');
@@ -530,18 +555,19 @@ describe('util', function () {
                     expect(variable.defs[0].node.init.type).toBe('ArrayExpression');
                 });
 
-                eslint.verify(code, config, filename, true);
+                eslint.verify(code);
             });
 
         });
 
         describe('isArrayNode', function () {
-
-            afterEach(function () {
-                eslint.reset();
+            beforeEach(function () {
+                eslint.rule = {};
             });
 
-            var isArray = util.isArrayNode(eslint);
+            var isArray = function (node) {
+                return util.isArrayNode(eslint.context)(node);
+            };
 
             it('ArrayExpression', function () {
                 var code = 'let a = [];';
@@ -550,7 +576,7 @@ describe('util', function () {
                     expect(isArray(node)).toBeTruthy();
                 });
 
-                eslint.verify(code, config, filename, true);
+                eslint.verify(code);
             });
 
             it('NewExpression and callee name end with `Array`', function () {
@@ -563,7 +589,7 @@ describe('util', function () {
                     expect(isArray(node)).toBeTruthy();
                 });
 
-                eslint.verify(code, config, filename, true);
+                eslint.verify(code);
             });
 
             it('CallExpression truthy case', function () {
@@ -580,7 +606,7 @@ describe('util', function () {
                     expect(isArray(node)).toBeTruthy();
                 });
 
-                eslint.verify(code, config, filename, true);
+                eslint.verify(code);
             });
 
             it('CallExpression falsy case', function () {
@@ -593,7 +619,7 @@ describe('util', function () {
                     expect(isArray(node)).toBeFalsy();
                 });
 
-                eslint.verify(code, config, filename, true);
+                eslint.verify(code);
             });
 
 
@@ -607,7 +633,7 @@ describe('util', function () {
                     expect(isArray(node)).toBeTruthy();
                 });
 
-                eslint.verify(code, config, filename, true);
+                eslint.verify(code);
             });
 
 
@@ -620,7 +646,7 @@ describe('util', function () {
                     expect(isArray(node)).toBeFalsy();
                 });
 
-                eslint.verify(code, config, filename, true);
+                eslint.verify(code);
             });
 
 
@@ -643,7 +669,37 @@ describe('util', function () {
                     expect(isArray(node)).toBeFalsy();
                 });
 
-                eslint.verify(code, config, filename, true);
+                eslint.verify(code);
+            });
+
+
+            it('Rewrite by self', function () {
+                var code = ''
+                    + 'let data = foo();'
+                    + 'data = data;';
+
+                eslint.on('Identifier', function (node) {
+                    if (node.name === 'data') {
+                        expect(isArray(node)).toBeFalsy();
+                    }
+                });
+
+                eslint.verify(code);
+            });
+
+
+            it('Rewrite by self method', function () {
+                var code = ''
+                    + 'let data = foo();'
+                    + 'data = data.slice(0, index).concat(data.slice(index));';
+
+                eslint.on('Identifier', function (node) {
+                    if (node.name === 'data') {
+                        expect(isArray(node)).toBeTruthy();
+                    }
+                });
+
+                eslint.verify(code);
             });
 
 
@@ -680,11 +736,13 @@ describe('util', function () {
         });
 
         describe('isObjectNode', function () {
-            afterEach(function () {
-                eslint.reset();
+            beforeEach(function () {
+                eslint.rule = {};
             });
 
-            var isObject = util.isObjectNode(eslint);
+            var isObject = function (node) {
+                return util.isObjectNode(eslint.context)(node);
+            };
 
             it('ObjectExpression', function () {
                 var code = 'let a = [];';
@@ -693,7 +751,7 @@ describe('util', function () {
                     expect(isObject(node)).toBeTruthy();
                 });
 
-                eslint.verify(code, config, filename, true);
+                eslint.verify(code);
             });
 
             it('NewExpression and callee name not end with `Array`', function () {
@@ -706,7 +764,7 @@ describe('util', function () {
                     expect(isObject(node)).toBeTruthy();
                 });
 
-                eslint.verify(code, config, filename, true);
+                eslint.verify(code);
             });
 
             it('CallExpression truthy case', function () {
@@ -719,7 +777,7 @@ describe('util', function () {
                     expect(isObject(node)).toBeTruthy();
                 });
 
-                eslint.verify(code, config, filename, true);
+                eslint.verify(code);
             });
 
             it('CallExpression falsy case', function () {
@@ -732,7 +790,7 @@ describe('util', function () {
                     expect(isObject(node)).toBeFalsy();
                 });
 
-                eslint.verify(code, config, filename, true);
+                eslint.verify(code);
             });
 
 
@@ -746,7 +804,7 @@ describe('util', function () {
                     expect(isObject(node)).toBeTruthy();
                 });
 
-                eslint.verify(code, config, filename, true);
+                eslint.verify(code);
             });
 
 
@@ -760,7 +818,7 @@ describe('util', function () {
                     expect(isObject(node)).toBeFalsy();
                 });
 
-                eslint.verify(code, config, filename, true);
+                eslint.verify(code);
             });
 
 
@@ -783,7 +841,7 @@ describe('util', function () {
                     expect(isObject(node)).toBeFalsy();
                 });
 
-                eslint.verify(code, config, filename, true);
+                eslint.verify(code);
             });
 
             it('Rewrite by self', function () {
@@ -797,9 +855,8 @@ describe('util', function () {
                     }
                 });
 
-                eslint.verify(code, config, filename, true);
+                eslint.verify(code);
             });
-
         });
 
     });

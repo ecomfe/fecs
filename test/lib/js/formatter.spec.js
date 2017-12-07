@@ -11,7 +11,7 @@ describe('formatter', function () {
 
         expect(options.name).toBe('esformatter');
         expect(options.type).toBe('js');
-        expect(options.suffix).toBe('js,es,es6');
+        expect(options.suffix).toBe('js,jsx,es,es6');
 
     });
 
@@ -43,6 +43,18 @@ describe('formatter', function () {
     });
 
 
+    it('fix', function () {
+
+        var options = cli.getOptions();
+        options.fix = true;
+
+        var formatted = formatter.format('if (typeof alert ==\'function\') {}', 'path/to/file.js', options);
+
+        expect(formatted).toEqual('if (typeof alert === \'function\') {\n}\n');
+
+    });
+
+
     it('format', function () {
 
         var options = cli.getOptions();
@@ -54,9 +66,20 @@ describe('formatter', function () {
     });
 
 
-    it('syntax error', function () {
+    it('syntax error without --fix', function () {
 
         var options = cli.getOptions();
+
+        var formatted = formatter.format('var foo=', 'path/to/file.js', options);
+
+        expect(formatted).toEqual('var foo=');
+
+    });
+
+    it('syntax error with --fix', function () {
+
+        var options = cli.getOptions();
+        options.fix = true;
 
         var formatted = formatter.format('var foo=', 'path/to/file.js', options);
 

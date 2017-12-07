@@ -8,12 +8,13 @@ var path = require('path');
 var mockFS = require('mock-fs');
 var mockRequire = require('mock-require');
 
-var eslintRules = require('eslint/lib/rules');
-var eslintPlugins = require('eslint/lib/config/plugins');
+var eslint = require('eslint');
+var eslintRules = eslint.linter.rules;
 
 var ruleDir = path.join(__dirname, '../../../../lib/js/rules');
 var rules = require(ruleDir);
 
+var eslintPlugins;
 var isNewer = process.versions.node.split('.')[0] >= 4;
 
 describe('fecs rules for eslint', function () {
@@ -37,12 +38,13 @@ describe('fecs rules for eslint', function () {
                 });
             }
 
-            eslintRules.testClear();
+            eslintRules._rules = Object.create(null);
         });
 
         afterEach(function () {
             mockFS.restore();
-            eslintRules.testReset();
+            eslintRules._rules = Object.create(null);
+            eslintRules.load();
 
             if (isNewer) {
                 mockRequire.stopAll();
@@ -55,8 +57,10 @@ describe('fecs rules for eslint', function () {
             expect(eslintRules.get('fecs-foo')).toEqual({foo: true});
             expect(eslintRules.get('fecs-foo-bar')).toEqual({foo: true});
             expect(eslintRules.get('fecs-foo-baz')).toEqual({foo: true});
-            expect(eslintRules.get('fecs-index')).toBeUndefined();
-            expect(eslintRules.get('fecs-foobar')).toBeUndefined();
+
+            // default to {create: context => ({Program() {...}})}
+            expect(eslintRules.get('fecs-index')).not.toEqual({foo: true});
+            expect(eslintRules.get('fecs-foobar')).not.toEqual({foo: true});
         });
 
         it('only js file in __dirname', function () {
@@ -65,8 +69,10 @@ describe('fecs rules for eslint', function () {
             expect(eslintRules.get('fecs-foo')).toEqual({foo: true});
             expect(eslintRules.get('fecs-foo-bar')).toEqual({foo: true});
             expect(eslintRules.get('fecs-foo-baz')).toEqual({foo: true});
-            expect(eslintRules.get('fecs-index')).toBeUndefined();
-            expect(eslintRules.get('fecs-foobar')).toBeUndefined();
+
+            // default to {create: context => ({Program() {...}})}
+            expect(eslintRules.get('fecs-index')).not.toEqual({foo: true});
+            expect(eslintRules.get('fecs-foobar')).not.toEqual({foo: true});
         });
 
     });
@@ -83,18 +89,20 @@ describe('fecs rules for eslint', function () {
             mockRequire('eslint-plugin-foo', {rules: {}});
             mockRequire('eslint-plugin-bar', {rules: {}});
 
-            eslintRules.testClear();
+            eslintRules._rules = Object.create(null);
         });
 
         afterEach(function () {
             mockFS.restore();
             mockRequire.stopAll();
-            eslintRules.testReset();
-            eslintPlugins.testReset();
+            eslintRules._rules = Object.create(null);
+            eslintRules.load();
+            eslintPlugins._plugins = Object.create(null);
         });
 
         it('param `plugins` as reset arguments', function () {
             rules.registerPlugins('eslint-plugin-foo', 'eslint-plugin-bar');
+            eslintPlugins = rules.eslintPlugins();
 
             expect(eslintPlugins.get('eslint-plugin-foo')).toBeNull();
             expect(eslintPlugins.get('foo').rules).toEqual({});
@@ -105,6 +113,7 @@ describe('fecs rules for eslint', function () {
 
         it('param `plugins` as Array', function () {
             rules.registerPlugins(['eslint-plugin-foo', 'eslint-plugin-bar']);
+            eslintPlugins = rules.eslintPlugins();
 
             expect(eslintPlugins.get('eslint-plugin-foo')).toBeNull();
             expect(eslintPlugins.get('foo').rules).toEqual({});
