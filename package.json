@@ -8,7 +8,7 @@
     "coverage": "istanbul cover ./node_modules/jasmine-node/bin/jasmine-node -x \"{cli,lib/css/rules}/*.js\" --captureExceptions test/",
     "test": "npm run lint && npm run coverage",
     "coveralls": "cat ./coverage/lcov.info | coveralls",
-    "postinstall": "node scripts/install.js"
+    "postinstall": "node scripts/install.js --allow-root"
   },
   "bin": {
     "fecs": "./bin/fecs"
