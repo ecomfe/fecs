@@ -113,6 +113,11 @@
                         name: 'Visual Studio Code',
                         text: 'vscode-fecs(中文)',
                         link: 'https://github.com/MarxJiao/VScode-fecs'
+                    },
+                    {
+                        name: 'Visual Studio Code',
+                        text: 'vscode-fecs-plugin(中文)',
+                        link: 'https://github.com/l5oo00/vscode-fecs-plugin'
                     }
                 ]
             },
