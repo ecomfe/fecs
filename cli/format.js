@@ -3,8 +3,9 @@
  * @author chris<wfsr@foxmail.com>
  */
 
+// 三方模块
 var fs            = require('vinyl-fs');
-
+// 自定义lib下模块
 var util          = require('../lib/util');
 var ignored       = require('../lib/ignored');
 var jsformatter   = require('../lib/js/formatter');
@@ -50,7 +51,7 @@ var streams = {
     /**
      * 处理从 stdin 输入的代码
      *
-     * @param {Object} options minimist 处理后的 cli 参数
+     * @param {Object} options minimist处理后的cli参数
      * @return {Transform} 转换流
      */
     stdin: function (options) {

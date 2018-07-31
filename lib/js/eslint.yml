@@ -349,7 +349,6 @@ rules:
   prefer-rest-params: 2
   unicode-bom: 1
   max-statements-per-line: 2
-
   react/display-name: 0
   react/forbid-component-props: 1
   react/forbid-elements: 0

@@ -3,9 +3,10 @@
  * @author chris<wfsr@foxmail.com>
  */
 
+// 三方模块vinyl-fs
 var fs          = require('vinyl-fs');
 var Readable    = require('stream').Readable;
-
+// 自定义lib下模块
 var util        = require('../lib/util');
 var ignored     = require('../lib/ignored');
 var jschecker   = require('../lib/js/checker');
@@ -27,6 +28,8 @@ var streams = {
      * @return {Transform} 转换流
      */
     files: function (options) {
+        // 命令选项：type、命令类型：string、默认值：“js,css,less,html"
+        // 说明：指定要处理的文件类型，类型之间以“,”分隔
         var patterns = util.buildPattern(options._, options.type);
         var specials = patterns.specials;
         delete patterns.specials;
@@ -40,7 +43,7 @@ var streams = {
     },
 
     /**
-     * 处理从 stdin 输入的代码
+     * 处理从stdin输入的代码
      *
      * @param {Object} options minimist 处理后的 cli 参数
      * @return {Transform} 转换流
@@ -128,7 +131,9 @@ var streams = {
      * @return {Transform} 转换流
      */
     get: function (options) {
+        // 命令选项：stream、命令类型：boolean、默认值：false、说明：是否使用process.stdin作为输入
         var stream = options.stream;
+        // 通过!!转换成boolean类型
         options.stream = !!stream;
 
         if (options.string) {
@@ -152,20 +157,26 @@ var streams = {
  */
 exports.run = function (options, done) {
     var pkg = require('../package');
+    // require('../') 省略文件名默认为index.js
     var name = util.format('%s@%s', require('../').leadName, pkg.version);
-
+    // console.time(label)输出时间，表示计时开始。
     console.time(name);
-
+    // 接受传来的color参数，是否使用颜色高亮，返回log对象，包含封装的不同的log方法
     var log = require('../lib/log')(options.color);
+    // 引入reporter/index.js获取配置指定的 reporter，否则使用 defaultReporter
     var reporter = require('../lib/reporter').get(log, options);
 
     done = done || function (success, json) {
+        // 结束计时
         console.timeEnd(name);
-
+        // 命令选项：format、类型：string、说明：指定check命令的结果输出格式，
+        // 支持checkstyle、json、xml与html，打开silient时也不影响输出
+        // 命令选项：silent、类型：boolean、默认值：false、说明：是否隐藏所有通过console.log输出的信息
         if (options.format) {
             var formatter = require('../lib/formatter/');
 
             if (formatter[options.format]) {
+                // 格式化输出结果
                 formatter[options.format](json);
             }
         }

@@ -738,6 +738,36 @@ describe('util', function () {
             });
 
 
+            it('Rewrite by self', function () {
+                var code = ''
+                    + 'let data = foo();'
+                    + 'data = data;';
+
+                eslint.on('Identifier', function (node) {
+                    if (node.name === 'data') {
+                        expect(isArray(node)).toBeFalsy();
+                    }
+                });
+
+                eslint.verify(code, config, filename, true);
+            });
+
+
+            it('Rewrite by self method', function () {
+                var code = ''
+                    + 'let data = foo();'
+                    + 'data = data.slice(0, index).concat(data.slice(index));';
+
+                eslint.on('Identifier', function (node) {
+                    if (node.name === 'data') {
+                        expect(isArray(node)).toBeTruthy();
+                    }
+                });
+
+                eslint.verify(code, config, filename, true);
+            });
+
+
         });
 
         describe('isObjectNode', function () {
@@ -862,7 +892,6 @@ describe('util', function () {
 
                 eslint.verify(code);
             });
-
         });
 
     });

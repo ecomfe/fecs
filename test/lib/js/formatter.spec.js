@@ -54,6 +54,7 @@ describe('formatter', function () {
 
     });
 
+
     it('format', function () {
 
         var options = cli.getOptions();
