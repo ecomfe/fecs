@@ -170,6 +170,41 @@ describe('util', function () {
 
     });
 
+    describe('parseExtends - read configuration from .eslintrc', function () {
+        var name = 'eslint';
+
+        afterEach(function () {
+            mock.restore();
+        });
+
+        it('only one plugin as string', function () {
+            mock({
+                '.eslintrc': '{"plugins":"foo"}'
+            });
+
+            var config = util.getConfig(name, './test', null, true);
+            var defaultConfig = util.getConfig(name);
+            expect(config.plugins).toEqual('foo');
+
+            config = util.parseExtends(config, name);
+            expect(config.plugins).toEqual(defaultConfig.plugins.concat(['foo']));
+        });
+
+        it('merge plugins values', function () {
+            mock({
+                '.eslintrc': '{"plugins":["foo", "bar"]}'
+            });
+
+            var config = util.getConfig(name, './test', null, true);
+            var defaultConfig = util.getConfig(name);
+            expect(config.plugins).toEqual(['foo', 'bar']);
+
+            config = util.parseExtends(config, name);
+            expect(config.plugins).toEqual(defaultConfig.plugins.concat(['foo', 'bar']));
+        });
+
+    });
+
     describe('buildPattern', function () {
 
         var matchers = {
