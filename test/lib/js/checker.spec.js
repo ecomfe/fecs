@@ -1,4 +1,5 @@
 var File = require('vinyl');
+var mock = require('mock-fs');
 
 var checker = require('../../../lib/js/checker');
 var cli = require('../../../lib/cli');
@@ -174,6 +175,28 @@ describe('checker', function () {
 
         esnext.verify = verify;
 
+    });
+
+    it('assign es with 5 but set ecmaVersioni with 7 in configuration file', function () {
+        mock({
+            '.eslintrc': '{"parserOptions": {"ecmaVersion": 7}}'
+        });
+
+        var options = cli.getOptions(['--es', '5']);
+        var esnext = require('../../../lib/js/esnext');
+        var verify = esnext.verify;
+
+        esnext.verify = function (code, config) {
+            expect(config.env.es6).toBe(true);
+        };
+
+        checker.check('var foo = true;', './test', options);
+
+        expect(options.es).toBe(5);
+
+        esnext.verify = verify;
+
+        mock.restore();
     });
 
 });
