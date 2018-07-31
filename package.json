@@ -71,14 +71,14 @@
     "minimist": "^1.2.0",
     "msee": "^0.3.3",
     "reserved-words": "^0.1.2",
-    "vinyl": "^2.0.0",
-    "vinyl-fs": "^2.4.3"
+    "vinyl": "^2.2.0",
+    "vinyl-fs": "^3.0.3"
   },
   "devDependencies": {
     "coveralls": "^3.0.2",
     "istanbul": "^0.4.5",
     "jasmine-node": "^2.0.0",
-    "mock-fs": "^4.4.1",
-    "mock-require": "^2.0.1"
+    "mock-fs": "^4.5.0",
+    "mock-require": "^3.0.2"
   }
 }
