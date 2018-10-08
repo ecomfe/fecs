@@ -34,9 +34,9 @@ describe('formatter', function () {
 
     it('isValid', function () {
         var invalidFiles = [
-            new File({contents: new Buffer(''), path: 'test/a.foo.spec'}),
-            new File({contents: new Buffer(''), path: 'test/b.bar.spec'}),
-            new File({contents: new Buffer(''), path: 'test/baz.x'})
+            new File({contents: Buffer.from(''), path: 'test/a.foo.spec'}),
+            new File({contents: Buffer.from(''), path: 'test/b.bar.spec'}),
+            new File({contents: Buffer.from(''), path: 'test/baz.x'})
         ];
 
         var hasValid = invalidFiles.some(function (file) {
@@ -46,9 +46,9 @@ describe('formatter', function () {
         expect(hasValid).toBeFalsy();
 
         var validFiles = [
-            new File({contents: new Buffer(''), path: 'test/a.spec'}),
-            new File({contents: new Buffer(''), path: 'test/b.spec'}),
-            new File({contents: new Buffer(''), path: 'test/c.spec'})
+            new File({contents: Buffer.from(''), path: 'test/a.spec'}),
+            new File({contents: Buffer.from(''), path: 'test/b.spec'}),
+            new File({contents: Buffer.from(''), path: 'test/c.spec'})
         ];
 
         var hasInvalid = validFiles.some(function (file) {
@@ -63,11 +63,11 @@ describe('formatter', function () {
         formatter.options.ignore = '';
 
         var validFiles = [
-            new File({contents: new Buffer(''), path: 'test/a.foo.spec'}),
-            new File({contents: new Buffer(''), path: 'test/b.bar.spec'}),
-            new File({contents: new Buffer(''), path: 'test/a.spec'}),
-            new File({contents: new Buffer(''), path: 'test/b.spec'}),
-            new File({contents: new Buffer(''), path: 'test/c.spec'})
+            new File({contents: Buffer.from(''), path: 'test/a.foo.spec'}),
+            new File({contents: Buffer.from(''), path: 'test/b.bar.spec'}),
+            new File({contents: Buffer.from(''), path: 'test/a.spec'}),
+            new File({contents: Buffer.from(''), path: 'test/b.spec'}),
+            new File({contents: Buffer.from(''), path: 'test/c.spec'})
         ];
 
         var hasInvalid = validFiles.some(function (file) {

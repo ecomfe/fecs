@@ -18,10 +18,10 @@ describe('checker', function () {
 
     it('isValid', function () {
         var invalidFiles = [
-            new File({contents: new Buffer(''), path: 'test/a.styl'}),
-            new File({contents: new Buffer(''), path: 'test/b.scss'}),
-            new File({contents: new Buffer(''), path: 'test/b.sass'}),
-            new File({contents: new Buffer(''), path: 'test/baz.css'})
+            new File({contents: Buffer.from(''), path: 'test/a.styl'}),
+            new File({contents: Buffer.from(''), path: 'test/b.scss'}),
+            new File({contents: Buffer.from(''), path: 'test/b.sass'}),
+            new File({contents: Buffer.from(''), path: 'test/baz.css'})
         ];
 
         var hasValid = invalidFiles.some(function (file) {
@@ -31,9 +31,9 @@ describe('checker', function () {
         expect(hasValid).toBeFalsy();
 
         var validFiles = [
-            new File({contents: new Buffer(''), path: 'test/a.m.less'}),
-            new File({contents: new Buffer(''), path: 'test/b.min.less'}),
-            new File({contents: new Buffer(''), path: 'test/c.less'})
+            new File({contents: Buffer.from(''), path: 'test/a.m.less'}),
+            new File({contents: Buffer.from(''), path: 'test/b.min.less'}),
+            new File({contents: Buffer.from(''), path: 'test/c.less'})
         ];
 
         var hasInvalid = validFiles.some(function (file) {

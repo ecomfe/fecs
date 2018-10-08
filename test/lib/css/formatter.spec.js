@@ -17,9 +17,9 @@ describe('formatter', function () {
 
     it('isValid', function () {
         var invalidFiles = [
-            new File({contents: new Buffer(''), path: 'test/a.styl'}),
-            new File({contents: new Buffer(''), path: 'test/b.js'}),
-            new File({contents: new Buffer(''), path: 'test/baz.xcss'})
+            new File({contents: Buffer.from(''), path: 'test/a.styl'}),
+            new File({contents: Buffer.from(''), path: 'test/b.js'}),
+            new File({contents: Buffer.from(''), path: 'test/baz.xcss'})
         ];
 
         var hasValid = invalidFiles.some(function (file) {
@@ -29,10 +29,10 @@ describe('formatter', function () {
         expect(hasValid).toBeFalsy();
 
         var validFiles = [
-            new File({contents: new Buffer(''), path: 'test/a.css'}),
-            new File({contents: new Buffer(''), path: 'test/b.less'}),
-            new File({contents: new Buffer(''), path: 'test/c.sass'}),
-            new File({contents: new Buffer(''), path: 'test/d.scss'})
+            new File({contents: Buffer.from(''), path: 'test/a.css'}),
+            new File({contents: Buffer.from(''), path: 'test/b.less'}),
+            new File({contents: Buffer.from(''), path: 'test/c.sass'}),
+            new File({contents: Buffer.from(''), path: 'test/d.scss'})
         ];
 
         var hasInvalid = validFiles.some(function (file) {

@@ -19,9 +19,9 @@ describe('checker', function () {
 
     it('isValid', function () {
         var invalidFiles = [
-            new File({contents: new Buffer(''), path: 'test/a.m.css'}),
-            new File({contents: new Buffer(''), path: 'test/b.min.css'}),
-            new File({contents: new Buffer(''), path: 'test/baz.x'})
+            new File({contents: Buffer.from(''), path: 'test/a.m.css'}),
+            new File({contents: Buffer.from(''), path: 'test/b.min.css'}),
+            new File({contents: Buffer.from(''), path: 'test/baz.x'})
         ];
 
         var hasValid = invalidFiles.some(function (file) {
@@ -31,9 +31,9 @@ describe('checker', function () {
         expect(hasValid).toBeFalsy();
 
         var validFiles = [
-            new File({contents: new Buffer(''), path: 'test/a.css'}),
-            new File({contents: new Buffer(''), path: 'test/b.css'}),
-            new File({contents: new Buffer(''), path: 'test/c.css'})
+            new File({contents: Buffer.from(''), path: 'test/a.css'}),
+            new File({contents: Buffer.from(''), path: 'test/b.css'}),
+            new File({contents: Buffer.from(''), path: 'test/c.css'})
         ];
 
         var hasInvalid = validFiles.some(function (file) {
@@ -48,11 +48,11 @@ describe('checker', function () {
         checker.options.ignore = '';
 
         var validFiles = [
-            new File({contents: new Buffer(''), path: 'test/a.foo.css'}),
-            new File({contents: new Buffer(''), path: 'test/b.bar.css'}),
-            new File({contents: new Buffer(''), path: 'test/a.css'}),
-            new File({contents: new Buffer(''), path: 'test/b.css'}),
-            new File({contents: new Buffer(''), path: 'test/c.css'})
+            new File({contents: Buffer.from(''), path: 'test/a.foo.css'}),
+            new File({contents: Buffer.from(''), path: 'test/b.bar.css'}),
+            new File({contents: Buffer.from(''), path: 'test/a.css'}),
+            new File({contents: Buffer.from(''), path: 'test/b.css'}),
+            new File({contents: Buffer.from(''), path: 'test/c.css'})
         ];
 
         var hasInvalid = validFiles.some(function (file) {
