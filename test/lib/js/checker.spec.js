@@ -19,11 +19,11 @@ describe('checker', function () {
 
     it('isValid', function () {
         var invalidFiles = [
-            new File({contents: new Buffer(''), path: 'test/a.m.js'}),
-            new File({contents: new Buffer(''), path: 'test/b.min.js'}),
-            new File({contents: new Buffer(''), path: 'test/c.mock.js'}),
-            new File({contents: new Buffer(''), path: 'test/d.mockup.js'}),
-            new File({contents: new Buffer(''), path: 'test/baz.x'})
+            new File({contents: Buffer.from(''), path: 'test/a.m.js'}),
+            new File({contents: Buffer.from(''), path: 'test/b.min.js'}),
+            new File({contents: Buffer.from(''), path: 'test/c.mock.js'}),
+            new File({contents: Buffer.from(''), path: 'test/d.mockup.js'}),
+            new File({contents: Buffer.from(''), path: 'test/baz.x'})
         ];
 
         var hasValid = invalidFiles.some(function (file) {
@@ -33,9 +33,9 @@ describe('checker', function () {
         expect(hasValid).toBeFalsy();
 
         var validFiles = [
-            new File({contents: new Buffer(''), path: 'test/a.js'}),
-            new File({contents: new Buffer(''), path: 'test/b.js'}),
-            new File({contents: new Buffer(''), path: 'test/c.js'})
+            new File({contents: Buffer.from(''), path: 'test/a.js'}),
+            new File({contents: Buffer.from(''), path: 'test/b.js'}),
+            new File({contents: Buffer.from(''), path: 'test/c.js'})
         ];
 
         var hasInvalid = validFiles.some(function (file) {
@@ -50,11 +50,11 @@ describe('checker', function () {
         checker.options.ignore = '';
 
         var validFiles = [
-            new File({contents: new Buffer(''), path: 'test/a.foo.js'}),
-            new File({contents: new Buffer(''), path: 'test/b.bar.js'}),
-            new File({contents: new Buffer(''), path: 'test/a.js'}),
-            new File({contents: new Buffer(''), path: 'test/b.js'}),
-            new File({contents: new Buffer(''), path: 'test/c.js'})
+            new File({contents: Buffer.from(''), path: 'test/a.foo.js'}),
+            new File({contents: Buffer.from(''), path: 'test/b.bar.js'}),
+            new File({contents: Buffer.from(''), path: 'test/a.js'}),
+            new File({contents: Buffer.from(''), path: 'test/b.js'}),
+            new File({contents: Buffer.from(''), path: 'test/c.js'})
         ];
 
         var hasInvalid = validFiles.some(function (file) {

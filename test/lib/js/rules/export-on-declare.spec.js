@@ -38,12 +38,21 @@ ruleTester.run('export-on-declare', rule, {
         'export {a};',
         'export const foo = {a, bar};',
         'export {};',
-        [
-            'import router from \'react-router\';',
-            'import store from \'store\';',
-            'let app = new Map({router, store});',
-            'export {router, store};'
-        ].join('\n')
+        `
+            import router from 'react-router';
+            import store from 'store';
+            let app = new Map({router, store});
+            export {router, store};
+        `,
+        `
+            // @TODO: it need fixed when node.declaration.type is ExperimentalSpreadProperty.
+            import foo from "./foo";
+            import bar from "./bar";
+
+            export default {
+                ...foo
+            };
+        `
     ],
 
     invalid: [
