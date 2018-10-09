@@ -1,4 +1,5 @@
 var File = require('vinyl');
+var mock = require('mock-fs');
 
 var checker = require('../../../lib/js/checker');
 var cli = require('../../../lib/cli');
@@ -18,11 +19,11 @@ describe('checker', function () {
 
     it('isValid', function () {
         var invalidFiles = [
-            new File({contents: new Buffer(''), path: 'test/a.m.js'}),
-            new File({contents: new Buffer(''), path: 'test/b.min.js'}),
-            new File({contents: new Buffer(''), path: 'test/c.mock.js'}),
-            new File({contents: new Buffer(''), path: 'test/d.mockup.js'}),
-            new File({contents: new Buffer(''), path: 'test/baz.x'})
+            new File({contents: Buffer.from(''), path: 'test/a.m.js'}),
+            new File({contents: Buffer.from(''), path: 'test/b.min.js'}),
+            new File({contents: Buffer.from(''), path: 'test/c.mock.js'}),
+            new File({contents: Buffer.from(''), path: 'test/d.mockup.js'}),
+            new File({contents: Buffer.from(''), path: 'test/baz.x'})
         ];
 
         var hasValid = invalidFiles.some(function (file) {
@@ -32,9 +33,9 @@ describe('checker', function () {
         expect(hasValid).toBeFalsy();
 
         var validFiles = [
-            new File({contents: new Buffer(''), path: 'test/a.js'}),
-            new File({contents: new Buffer(''), path: 'test/b.js'}),
-            new File({contents: new Buffer(''), path: 'test/c.js'})
+            new File({contents: Buffer.from(''), path: 'test/a.js'}),
+            new File({contents: Buffer.from(''), path: 'test/b.js'}),
+            new File({contents: Buffer.from(''), path: 'test/c.js'})
         ];
 
         var hasInvalid = validFiles.some(function (file) {
@@ -49,11 +50,11 @@ describe('checker', function () {
         checker.options.ignore = '';
 
         var validFiles = [
-            new File({contents: new Buffer(''), path: 'test/a.foo.js'}),
-            new File({contents: new Buffer(''), path: 'test/b.bar.js'}),
-            new File({contents: new Buffer(''), path: 'test/a.js'}),
-            new File({contents: new Buffer(''), path: 'test/b.js'}),
-            new File({contents: new Buffer(''), path: 'test/c.js'})
+            new File({contents: Buffer.from(''), path: 'test/a.foo.js'}),
+            new File({contents: Buffer.from(''), path: 'test/b.bar.js'}),
+            new File({contents: Buffer.from(''), path: 'test/a.js'}),
+            new File({contents: Buffer.from(''), path: 'test/b.js'}),
+            new File({contents: Buffer.from(''), path: 'test/c.js'})
         ];
 
         var hasInvalid = validFiles.some(function (file) {
@@ -174,6 +175,28 @@ describe('checker', function () {
 
         esnext.verify = verify;
 
+    });
+
+    it('assign es with 5 but set ecmaVersioni with 7 in configuration file', function () {
+        mock({
+            '.eslintrc': '{"parserOptions": {"ecmaVersion": 7}}'
+        });
+
+        var options = cli.getOptions(['--es', '5']);
+        var esnext = require('../../../lib/js/esnext');
+        var verify = esnext.verify;
+
+        esnext.verify = function (code, config) {
+            expect(config.env.es6).toBe(true);
+        };
+
+        checker.check('var foo = true;', './test', options);
+
+        expect(options.es).toBe(5);
+
+        esnext.verify = verify;
+
+        mock.restore();
     });
 
 });

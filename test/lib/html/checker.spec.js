@@ -19,15 +19,15 @@ describe('checker', function () {
 
     it('isValid', function () {
         var invalidFiles = [
-            new File({contents: new Buffer(''), path: 'test/a.m.html'}),
-            new File({contents: new Buffer(''), path: 'test/a.m.htm'}),
-            new File({contents: new Buffer(''), path: 'test/b.min.html'}),
-            new File({contents: new Buffer(''), path: 'test/b.min.htm'}),
-            new File({contents: new Buffer(''), path: 'test/c.css'}),
-            new File({contents: new Buffer(''), path: 'test/d.js'}),
-            new File({contents: new Buffer(''), path: 'test/d.tpl.html'}),
-            new File({contents: new Buffer(''), path: 'test/d.tpl.htm'}),
-            new File({contents: new Buffer(''), path: 'test/baz.x'})
+            new File({contents: Buffer.from(''), path: 'test/a.m.html'}),
+            new File({contents: Buffer.from(''), path: 'test/a.m.htm'}),
+            new File({contents: Buffer.from(''), path: 'test/b.min.html'}),
+            new File({contents: Buffer.from(''), path: 'test/b.min.htm'}),
+            new File({contents: Buffer.from(''), path: 'test/c.css'}),
+            new File({contents: Buffer.from(''), path: 'test/d.js'}),
+            new File({contents: Buffer.from(''), path: 'test/d.tpl.html'}),
+            new File({contents: Buffer.from(''), path: 'test/d.tpl.htm'}),
+            new File({contents: Buffer.from(''), path: 'test/baz.x'})
         ];
 
         var hasValid = invalidFiles.some(function (file) {
@@ -37,10 +37,10 @@ describe('checker', function () {
         expect(hasValid).toBeFalsy();
 
         var validFiles = [
-            new File({contents: new Buffer(''), path: 'test/a.html'}),
-            new File({contents: new Buffer(''), path: 'test/a.htm'}),
-            new File({contents: new Buffer(''), path: 'test/b.html'}),
-            new File({contents: new Buffer(''), path: 'test/c.html'})
+            new File({contents: Buffer.from(''), path: 'test/a.html'}),
+            new File({contents: Buffer.from(''), path: 'test/a.htm'}),
+            new File({contents: Buffer.from(''), path: 'test/b.html'}),
+            new File({contents: Buffer.from(''), path: 'test/c.html'})
         ];
 
         var hasInvalid = validFiles.some(function (file) {
@@ -55,14 +55,14 @@ describe('checker', function () {
         checker.options.ignore = '';
 
         var validFiles = [
-            new File({contents: new Buffer(''), path: 'test/a.tpl.html'}),
-            new File({contents: new Buffer(''), path: 'test/a.tpl.htm'}),
-            new File({contents: new Buffer(''), path: 'test/b.min.html'}),
-            new File({contents: new Buffer(''), path: 'test/b.min.htm'}),
-            new File({contents: new Buffer(''), path: 'test/a.m.html'}),
-            new File({contents: new Buffer(''), path: 'test/a.m.htm'}),
-            new File({contents: new Buffer(''), path: 'test/b.html'}),
-            new File({contents: new Buffer(''), path: 'test/c.htm'})
+            new File({contents: Buffer.from(''), path: 'test/a.tpl.html'}),
+            new File({contents: Buffer.from(''), path: 'test/a.tpl.htm'}),
+            new File({contents: Buffer.from(''), path: 'test/b.min.html'}),
+            new File({contents: Buffer.from(''), path: 'test/b.min.htm'}),
+            new File({contents: Buffer.from(''), path: 'test/a.m.html'}),
+            new File({contents: Buffer.from(''), path: 'test/a.m.htm'}),
+            new File({contents: Buffer.from(''), path: 'test/b.html'}),
+            new File({contents: Buffer.from(''), path: 'test/c.htm'})
         ];
 
         var hasInvalid = validFiles.some(function (file) {
