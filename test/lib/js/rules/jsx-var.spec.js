@@ -23,6 +23,7 @@ ruleTester.run('jsx-var', rule, {
         'render(<div></div>);',
         'import App from "./app";\nrender(<App visible />);',
         'import App from "./app";\nrender(<App.Foo />);',
+        'import App from "./app";\nrender(<App.Foo.Bar />);',
         'import App from "./app";\nrender(<App:Foo />);',
         'import App from "./app";\nlet store = createStore();\nrender(<App store={store} />);'
     ],
@@ -32,6 +33,22 @@ ruleTester.run('jsx-var', rule, {
             code: 'render(<unknownTagName />);',
             errors: [{
                 message: '`unknownTagName` is not defined',
+                type: 'JSXIdentifier'
+            }]
+        },
+        {
+            code: 'render(<App.Foo />);',
+            parserOptions: {sourceType: 'script'},
+            errors: [{
+                message: '`App` is not defined',
+                type: 'JSXIdentifier'
+            }]
+        },
+        {
+            code: 'render(<App.Foo.Bar />);',
+            parserOptions: {sourceType: 'script'},
+            errors: [{
+                message: '`App` is not defined',
                 type: 'JSXIdentifier'
             }]
         },
