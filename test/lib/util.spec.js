@@ -479,18 +479,11 @@ describe('util', function () {
     });
 
     describe('mapStrem', function () {
-        beforeEach(function () {
-            mock({'/test/foo': 'foo', '/test/bar': 'bar'});
-        });
-
-        afterEach(function () {
-            mock.restore();
-        });
-
         it('transform & flush', function (done) {
             var count = 0;
-            fs.src(['/test/**'], {allowEmpty: true})
+            fs.src(['test/fixture/ignored/*.min.js'], {allowEmpty: true})
                 .pipe(util.mapStream(function (file, cb) {
+                    console.log(file);
                     file.foobar = true;
                     count++;
                     cb(null, file);

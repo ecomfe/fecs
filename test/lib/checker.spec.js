@@ -1,4 +1,3 @@
-var mock = require('mock-fs');
 var fs = require('vinyl-fs');
 var File = require('vinyl');
 
@@ -14,23 +13,6 @@ var checker = new Checker({
 
 
 describe('checker', function () {
-
-    beforeEach(function () {
-        mock({
-            test: {
-                'a.spec': '',
-                'b.spec': '',
-                'c.spec': '',
-                'foo.spec': '',
-                'bar.spec': '',
-                'baz.x': ''
-            }
-        });
-    });
-
-    afterEach(function () {
-        mock.restore();
-    });
 
     it('isValid', function () {
         var invalidFiles = [
@@ -88,19 +70,18 @@ describe('checker', function () {
             return callback([]);
         };
 
-        fs.src('test/**')
+        fs.src('test/fixture/checker/**')
             .pipe(checker.exec({}))
             .on('end', done);
 
     });
 
     it('check with promise', function (done) {
-
         checker.check = function (contents, path, cliOptions) {
             return Promise.resolve([true]);
         };
 
-        fs.src('test/**')
+        fs.src('test/fixture/checker/**')
             .pipe(checker.exec({}))
             .pipe(helper.pass(
                 function (file) {
@@ -119,7 +100,7 @@ describe('checker', function () {
             return [true];
         };
 
-        fs.src('test/**')
+        fs.src('test/fixture/checker/**')
             .pipe(checker.exec({}))
             .pipe(helper.pass(
                 function (file) {

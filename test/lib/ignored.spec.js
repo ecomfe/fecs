@@ -1,14 +1,9 @@
 var fs = require('vinyl-fs');
-var mock = require('mock-fs');
 var helper = require('../helper');
 
 describe('ignored', function () {
 
     var ignored = require('../../lib/ignored');
-
-    afterEach(function () {
-        mock.restore();
-    });
 
     it('specials can\'t be ignored', function (done) {
         var specials = ['lib/c.spec.js'];
@@ -23,15 +18,7 @@ describe('ignored', function () {
 
         };
 
-        mock({
-            'test/lib': {
-                'a.spec.js': '',
-                'b.spec.js': '',
-                'c.spec.js': ''
-            }
-        });
-
-        fs.src('test/**/*.spec.js')
+        fs.src('test/fixture/ignored/*.spec.js')
             .pipe(ignored({ignore: '**/*.spec.js'}, specials))
             .pipe(helper.pass(checkSpecials, done));
     });
@@ -39,16 +26,8 @@ describe('ignored', function () {
     it('should be ignored simply', function (done) {
         var check = jasmine.createSpy('check');
 
-        mock({
-            '../src': {
-                'a.min.js': '',
-                'b.min.js': '',
-                'c.Min.js': ''
-            }
-        });
-
-        fs.src('../src/*.js')
-            .pipe(ignored({ignore: '*.Min.js'}, []))
+        fs.src('test/fixture/ignored/*.js')
+            .pipe(ignored({ignore: ['*.min.js', '*.spec.js']}, []))
             .pipe(helper.pass(
                 check,
                 function () {
@@ -62,17 +41,8 @@ describe('ignored', function () {
     it('should be ignored by .fecsignore', function (done) {
         var check = jasmine.createSpy('check');
 
-        mock({
-            '.fecsignore': '**/*.spec.js',
-            'test/lib': {
-                'a.spec.js': '',
-                'b.spec.js': '',
-                'c.spec.js': ''
-            }
-        });
-
-        fs.src('test/**/*.spec.js')
-            .pipe(ignored({}, []))
+        fs.src('test/fixture/ignored/*.spec')
+            .pipe(ignored({}, [], 'test/fixture/ignored/.fecsignore'))
             .pipe(helper.pass(
                 check,
                 function () {
@@ -85,16 +55,8 @@ describe('ignored', function () {
     it('can be unignored/specials by .fecsignore', function (done) {
         var check = jasmine.createSpy('check');
 
-        mock({
-            '.fecsignore': '*.js\n!foo.js',
-            'test/': {
-                'foo.js': '',
-                'bar.js': ''
-            }
-        });
-
-        fs.src('test/**/*.js')
-            .pipe(ignored({}, []))
+        fs.src('test/fixture/ignored/*.js')
+            .pipe(ignored({}, [], 'test/fixture/ignored/.unfecsignore'))
             .pipe(
                 helper.pass(
                     check,
@@ -112,21 +74,13 @@ describe('ignored', function () {
 
         console.log = jasmine.createSpy('log');
 
-        mock({
-            '.fecsignore': '*.js\n!foo.js',
-            'test/': {
-                'foo.js': '',
-                'bar.js': ''
-            }
-        });
-
-        fs.src('test/**/*.js')
-            .pipe(ignored({debug: true}, []))
+        fs.src('test/fixture/ignored/*.js')
+            .pipe(ignored({debug: true}, [], 'test/fixture/ignored/.unfecsignore'))
             .pipe(
                 helper.pass(
                     check,
                     function () {
-                        expect(console.log).toHaveBeenCalledWith('%s is ignored by %s.', 'bar.js', '*.js');
+                        expect(console.log).toHaveBeenCalledWith('%s is ignored by %s.', 'a.min.js', '*.js');
                         console.log = log;
                         done();
                     }

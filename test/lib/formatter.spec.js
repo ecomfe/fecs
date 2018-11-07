@@ -1,4 +1,3 @@
-var mock = require('mock-fs');
 var fs = require('vinyl-fs');
 var File = require('vinyl');
 
@@ -14,23 +13,6 @@ var formatter = new Formatter({
 
 
 describe('formatter', function () {
-
-    beforeEach(function () {
-        mock({
-            test: {
-                'a.spec': '',
-                'b.spec': '',
-                'c.spec': '',
-                'foo.spec': '',
-                'bar.spec': '',
-                'baz.x': ''
-            }
-        });
-    });
-
-    afterEach(function () {
-        mock.restore();
-    });
 
     it('isValid', function () {
         var invalidFiles = [
@@ -89,7 +71,7 @@ describe('formatter', function () {
             return '';
         };
 
-        fs.src('test/**')
+        fs.src('test/fixture/checker/**')
             .pipe(formatter.exec({}))
             .on('end', function () {
                 expect(formatter.register).toHaveBeenCalled();
@@ -106,7 +88,7 @@ describe('formatter', function () {
             return callback('');
         };
 
-        fs.src('test/**')
+        fs.src('test/fixture/checker/**')
             .pipe(formatter.exec({}))
             .on('end', done);
 
@@ -118,7 +100,7 @@ describe('formatter', function () {
             return Promise.resolve([true]);
         };
 
-        fs.src('test/**')
+        fs.src('test/fixture/checker/**')
             .pipe(formatter.exec({}))
             .pipe(helper.pass(
                 function (file) {
