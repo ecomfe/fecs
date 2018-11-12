@@ -229,21 +229,21 @@ describe('util', function () {
         it('default options', function () {
             var patterns = util.buildPattern();
 
-            expect(patterns.length).toEqual(4);
+            expect(patterns.length).toEqual(5);
             expect(patterns[0]).toBePath('lib/**/*.{js,jsx,es,es6,css,less,htm,html}');
         });
 
         it('js only', function () {
             var patterns = util.buildPattern([], 'js');
 
-            expect(patterns.length).toEqual(4);
+            expect(patterns.length).toEqual(5);
             expect(patterns[0]).toBePath('lib/**/*.{js,jsx,es,es6}');
         });
 
         it('es only', function () {
             var patterns = util.buildPattern([], 'es');
 
-            expect(patterns.length).toEqual(4);
+            expect(patterns.length).toEqual(5);
             expect(patterns[0]).toBePath('lib/**/*.es');
         });
 
@@ -483,7 +483,6 @@ describe('util', function () {
             var count = 0;
             fs.src(['test/fixture/ignored/*.min.js'], {allowEmpty: true})
                 .pipe(util.mapStream(function (file, cb) {
-                    console.log(file);
                     file.foobar = true;
                     count++;
                     cb(null, file);

@@ -2,6 +2,7 @@ files:
   - "lib"
   - "cli"
   - "test/**/*.spec.js"
+  - "!test/fixture/**/*"
 eslint:
   env:
     node: true
