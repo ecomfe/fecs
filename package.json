@@ -42,7 +42,7 @@
   },
   "homepage": "https://github.com/ecomfe/fecs",
   "dependencies": {
-    "babel-eslint": "^8.0.1",
+    "babel-eslint": "^10.0.1",
     "chalk": "^2.1.0",
     "csscomb": "^4.2.0",
     "csshint": "stable",
@@ -57,7 +57,7 @@
     "esformatter-remove-trailing-commas": "^1.0.1",
     "esformatter-semicolons": "^1.1.2",
     "esformatter-spaced-lined-comment": "^2.0.1",
-    "eslint": "^4.8.0",
+    "eslint": "^5.9.0",
     "eslint-plugin-babel": "^4.1.2",
     "eslint-plugin-html": "^3.2.2",
     "eslint-plugin-import": "^2.7.0",

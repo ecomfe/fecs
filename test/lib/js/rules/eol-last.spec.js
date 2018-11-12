@@ -20,7 +20,6 @@ var ruleTester = new RuleTester();
 ruleTester.run('eol-last', rule, {
 
     valid: [
-        '',
         '\n',
         '\r\n',
         'var a = 123;\n',
