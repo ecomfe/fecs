@@ -9,6 +9,8 @@ FECS 是基于 Node.js 的前端代码风格工具。
 [![Coverage Status](https://img.shields.io/coveralls/ecomfe/fecs.svg?style=flat)](https://coveralls.io/r/ecomfe/fecs)
 [![Dependencies](https://img.shields.io/david/ecomfe/fecs.svg?style=flat)](https://david-dm.org/ecomfe/fecs)
 [![DevDependencies](https://img.shields.io/david/dev/ecomfe/fecs.svg?style=flat)](https://david-dm.org/ecomfe/fecs)
+[![Code Quality: Javascript](https://img.shields.io/lgtm/grade/javascript/g/ecomfe/fecs.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/ecomfe/fecs/context:javascript)
+[![Total Alerts](https://img.shields.io/lgtm/alerts/g/ecomfe/fecs.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/ecomfe/fecs/alerts)
 
 
 ### 安装
