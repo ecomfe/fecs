@@ -79,6 +79,6 @@
     "istanbul": "^0.4.5",
     "jasmine-node": "^2.0.0",
     "mock-fs": "^4.7.0",
-    "mock-require": "^3.0.2"
+    "mock-require": "3.0.2"
   }
 }
