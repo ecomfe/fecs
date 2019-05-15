@@ -65,7 +65,7 @@
     "htmlcs": "stable",
     "lesslint": "stable",
     "loophole": "^1.1.0",
-    "manis": "^0.3.4",
+    "manis": "^0.3.5",
     "map-stream": "^0.1.0",
     "minimatch": "^3.0.2",
     "minimist": "^1.2.0",
