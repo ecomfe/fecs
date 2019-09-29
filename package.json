@@ -57,7 +57,7 @@
     "esformatter-remove-trailing-commas": "^1.0.1",
     "esformatter-semicolons": "^1.1.2",
     "esformatter-spaced-lined-comment": "^2.0.1",
-    "eslint": "^5.9.0",
+    "eslint": "^6.5.0",
     "eslint-plugin-babel": "^5.2.1",
     "eslint-plugin-html": "^5.0.0",
     "eslint-plugin-import": "^2.14.0",
