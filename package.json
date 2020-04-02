@@ -43,7 +43,7 @@
   "homepage": "https://github.com/ecomfe/fecs",
   "dependencies": {
     "babel-eslint": "^10.0.1",
-    "chalk": "^2.1.0",
+    "chalk": "^4.0.0",
     "csscomb": "^4.2.0",
     "csshint": "stable",
     "doctrine2": "latest",
