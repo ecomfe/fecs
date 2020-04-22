@@ -75,7 +75,7 @@
     "vinyl-fs": "^3.0.3"
   },
   "devDependencies": {
-    "coveralls": "^3.0.2",
+    "coveralls": "^3.0.13",
     "istanbul": "^0.4.5",
     "jasmine-node": "^2.0.0",
     "mock-fs": "^4.7.0",
