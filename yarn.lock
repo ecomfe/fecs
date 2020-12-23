@@ -676,7 +676,7 @@ compressible@1:
   resolved "https://registry.npm.taobao.org/compressible/download/compressible-1.1.1.tgz#23b71ea90ea6c6a66289701a918182c24d0729ef"
   integrity sha1-I7ceqQ6mxqZiiXAakYGCwk0HKe8=
 
-compressible@2, compressible@~2.0.6:
+compressible@2:
   version "2.0.18"
   resolved "https://registry.npm.taobao.org/compressible/download/compressible-2.0.18.tgz#af53cca6b070d4c3c0750fbd77286a6d7cc46fba"
   integrity sha1-r1PMprBw1MPAdQ+9dyhqbXzEb7o=
@@ -1693,11 +1693,6 @@ fs-mkdirp-stream@^1.0.0:
     graceful-fs "^4.1.11"
     through2 "^2.0.3"
 
-fs-readdir-recursive@~1.0.0:
-  version "1.0.0"
-  resolved "https://registry.npm.taobao.org/fs-readdir-recursive/download/fs-readdir-recursive-1.0.0.tgz#8cd1745c8b4f8a29c8caec392476921ba195f560"
-  integrity sha1-jNF0XItPiinIyuw5JHaSG6GV9WA=
-
 fs.realpath@^1.0.0:
   version "1.0.0"
   resolved "https://registry.npm.taobao.org/fs.realpath/download/fs.realpath-1.0.0.tgz#1504ad2523158caa40db4a2787cb01411994ea4f"
@@ -2372,17 +2367,6 @@ koa-session@3.1.0:
     debug "*"
     deep-equal "~0.2.1"
 
-koa-static-cache@4.1.1:
-  version "4.1.1"
-  resolved "https://registry.npm.taobao.org/koa-static-cache/download/koa-static-cache-4.1.1.tgz#2f82885e155fd46591ccb5d22f3f6a0d17d63982"
-  integrity sha1-L4KIXhVf1GWRzLXSLz9qDRfWOYI=
-  dependencies:
-    compressible "~2.0.6"
-    debug "*"
-    fs-readdir-recursive "~1.0.0"
-    mime-types "~2.1.8"
-    mz "~2.4.0"
-
 koa-static@^1.4.9:
   version "1.5.3"
   resolved "https://registry.npm.taobao.org/koa-static/download/koa-static-1.5.3.tgz#dbd2146eee71780dffd312f23cc4a762e8bcdfd2"
@@ -2621,7 +2605,7 @@ mime-db@1.44.0:
   resolved "https://registry.npm.taobao.org/mime-db/download/mime-db-1.45.0.tgz#cceeda21ccd7c3a745eba2decd55d4b73e7879ea"
   integrity sha1-zO7aIczXw6dF66LezVXUtz54eeo=
 
-mime-types@^2.1.12, mime-types@~2.1.7, mime-types@~2.1.8:
+mime-types@^2.1.12, mime-types@~2.1.7:
   version "2.1.27"
   resolved "https://registry.npm.taobao.org/mime-types/download/mime-types-2.1.27.tgz#47949f98e279ea53119f5722e0f34e529bec009f"
   integrity sha1-R5SfmOJ56lMRn1ci4PNOUpvsAJ8=
@@ -2772,15 +2756,6 @@ mz@^2.0.0, mz@^2.7.0:
   version "2.7.0"
   resolved "https://registry.npm.taobao.org/mz/download/mz-2.7.0.tgz#95008057a56cafadc2bc63dde7f9ff6955948e32"
   integrity sha1-lQCAV6Vsr63CvGPd5/n/aVWUjjI=
-  dependencies:
-    any-promise "^1.0.0"
-    object-assign "^4.0.1"
-    thenify-all "^1.0.0"
-
-mz@~2.4.0:
-  version "2.4.0"
-  resolved "https://registry.npm.taobao.org/mz/download/mz-2.4.0.tgz#987ba9624d89395388c37cb4741e2caf4dd13b1a"
-  integrity sha1-mHupYk2JOVOIw3y0dB4sr03ROxo=
   dependencies:
     any-promise "^1.0.0"
     object-assign "^4.0.1"
