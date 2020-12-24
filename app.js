@@ -27,7 +27,7 @@ var markd = require('./lib/markd');
 app.context.render = render(markd({
     root: config.viewDir,
     autoescape: true,
-    cache: false, // 'memory',
+    cache: 'memory', // 'memory',
     ext: 'html'
     // locals: locals,
     // filters: filters,
@@ -48,23 +48,21 @@ app.use(bodyParser());
 var validator = require('koa-validator');
 app.use(validator());
 
-// 静态文件cache
-var staticCache = require('koa-static-cache');
 var staticDir = config.staticDir;
-app.use(staticCache(staticDir + '/js'));
-app.use(staticCache(staticDir + '/css'));
 
 var serve = require('koa-static');
 
 // stylus
 var stylus = require('koa-stylus');
 app.use(stylus({
-    force: true,
+    serve: true,
     src: staticDir,
     dest: staticDir
 }));
 
-app.use(serve(staticDir));
+app.use(serve(staticDir, {
+    maxage: 365 * 24 * 60 * 60 * 1000
+}));
 
 
 // 应用路由
